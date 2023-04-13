@@ -1,0 +1,28 @@
+<mat-card *ngFor="let variant of variants">
+	<mat-card-header>
+		<div fxLayout="row wrap" fxLayoutAlign="space-around">
+			<div flex="50%">Name: {{variant.name}}	</div>
+			<div flex="50%">Full Name: {{variant.lname}}</div>
+		</div>
+	</mat-card-header>
+	<mat-card-content>
+		<mat-list>
+			<mat-list-item *ngFor="let attr of variant.attrs|keyvalue">
+				{{attr.key}}: {{attr.value}}
+			</mat-list-item>
+		</mat-list>
+		<app-price [productId]="variant.product" [itemId]="variant.id" [priceType]="'VRT'" [isViewMode]="true"></app-price>
+		<div fxLayout="row wrap" fxLayoutAlign="space-around center" fxLayoutGap="5px">
+			<mat-card *ngFor="let item of variant?.assets?.imgs; let i = index">
+				<img mat-card-image [src]="item.downloadUrl|safe" *ngIf="variant.assets.imgs[0].downloadUrl" alt="Variant Image">
+				<mat-card-actions>
+				    <button mat-icon-button color="error" (click)="deleteImage(variant, item, i)"><mat-icon>delete</mat-icon></button>
+				</mat-card-actions>
+			</mat-card>
+		</div>
+	</mat-card-content>
+	<mat-card-actions>
+		<button mat-raised-button color="primary" (click)="openVariantDialog(variant)">Edit</button>
+	</mat-card-actions>
+</mat-card>
+<button mat-raised-button color="primary" (click)="openVariantDialog(null)">Add New Variant</button>

@@ -1,0 +1,9 @@
+<mat-card [ngClass]="{'selected': isSelected}" (click)="selected()">
+  <mat-card-content>
+    <div fxLayout="column" fxFlexAlign="center space-between">
+      <img fxFlexAlign="center" class="mouse-hand" [src]="product?.assets?.imgs[0]?.downloadUrl" 
+      height="180px" width="180px" (click)="selected()" loading="lazy"/>
+      <div class="full-width center title  mouse-hand" (click)="showDetail()">{{product?.name}}</div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "giriraj-store",
+    "girirajstore": "giriraj-store"
+  }
+}

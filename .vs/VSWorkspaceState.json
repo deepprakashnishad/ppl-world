@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\shoppin",
+    "\\src\\app\\shoppin\\category-bar\\categories",
+    "\\src\\app\\shoppin\\category-bar\\department-bar",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\storage.service.ts",
+  "PreviewInSolutionExplorer": false
+}

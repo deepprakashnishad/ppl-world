@@ -1,0 +1,22 @@
+{
+  "name": "accubridge",
+  "version": "0.0.1",
+  "main": "electron-main.js",
+  "private": true,
+  "scripts": {
+    "rebuild": "electron-rebuild"
+  },
+  "dependencies": {
+    "agentkeepalive": "^2.2.0",
+    "axios": "^0.27.2",
+    "electron-log": "^4.4.0",
+    "excel4node": "^1.7.2",
+    "node-machine-id": "^1.1.12",
+    "node-schedule": "^2.0.0",
+    "nodemailer": "^6.6.3",
+    "printer": "^0.4.0"
+  },
+  "devDependencies": {
+    "electron-rebuild": "^2.3.5"
+  }
+}
