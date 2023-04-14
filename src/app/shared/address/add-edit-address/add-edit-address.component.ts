@@ -78,9 +78,7 @@ export class AddEditAddressComponent implements OnInit {
       } else {
         this.notifier.notify("error", "Pincode not available for service. We regret for the inconvenience caused");
       }
-    });
-
-    
+    });    
   }
 
   close(){

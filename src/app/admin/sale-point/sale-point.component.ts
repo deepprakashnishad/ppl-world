@@ -38,10 +38,12 @@ export class SalePointComponent implements OnInit {
   unitPrice: number;
   qty: number;
   actualPrice: number;
-  amntPaid: number;
+  amntPaid: number=0;
   status: string = "Complete";
 
   isPartialPayment: boolean = false;
+
+  isDeliveryNeeded: boolean = false;
 
   customer: Person = new Person();
 
@@ -56,6 +58,13 @@ export class SalePointComponent implements OnInit {
   dataSource: MatTableDataSource<any>=new MatTableDataSource();
 
   totalAmountWithoutDelivery: number = 0;
+
+  selectedAddress: any;
+
+  upiPaymentType: string = "Paytm";
+  upiAmount: number;
+  cashAmount: number;
+
 
   constructor(
     private personService: PersonService,
@@ -159,6 +168,17 @@ export class SalePointComponent implements OnInit {
         this.fetchPersonList(val);
       }
   	});
+  }
+
+  amountPaidUpdated(){
+    if(this.upiAmount && (!this.cashAmount)){
+      this.amntPaid = this.upiAmount;
+    }else if(this.cashAmount && (!this.upiAmount)){
+      this.amntPaid = this.cashAmount;
+    }else{
+      this.amntPaid = this.cashAmount +  this.upiAmount;
+    }
+    
   }
 
   fetchPersonList(searchStr){
@@ -294,12 +314,12 @@ export class SalePointComponent implements OnInit {
       return;
     }
 
-    if((this.customer?.id==undefined || this.customer.id==null) && (this.totalAmountWithoutDelivery+this.deliveryCharge) != this.amntPaid){
+    if((this.customer?.id==undefined || this.customer.id==null) && (this.totalAmountWithoutDelivery+this.deliveryCharge) > this.amntPaid){
       this.notifier.notify("error", "Paid amount is less than grand total");
       return;
     }
 
-    if(!this.isPartialPayment && ((this.totalAmountWithoutDelivery+this.deliveryCharge)<this.amntPaid || this.amntPaid==undefined || isNaN(this.amntPaid))){
+    if(!this.isPartialPayment && ((this.totalAmountWithoutDelivery+this.deliveryCharge)>this.amntPaid || this.amntPaid==undefined || isNaN(this.amntPaid))){
       this.notifier.notify("error", "Paid amount is less than grand total");
       return;
     }
@@ -317,6 +337,9 @@ export class SalePointComponent implements OnInit {
       onCredit: this.isPartialPayment,
       amountPaid: this.amntPaid && this.amntPaid!=null?this.amntPaid: 0.0,
       personId: this.customer.id,
+      fulfillmentType: this.isDeliveryNeeded?"self_pick":"delivery",
+      fulfillmentAddress: this.selectedAddress,
+      paymentDetails: [],
       items: []
     }
 
@@ -341,13 +364,23 @@ export class SalePointComponent implements OnInit {
       orderData.items.push(orderItem);
     }
 
+    if(this.upiAmount && this.upiAmount>0){
+      orderData['paymentDetails'].push({"method": this.upiPaymentType, "amount": this.upiAmount});
+    }
+
+    if(this.cashAmount && this.cashAmount>0){
+      orderData['paymentDetails'].push({"method": "cash", "amount": this.cashAmount});
+    }    
+
     this.orderService.addOrderFromSalePoint(orderData).subscribe(result=>{
-      orderData['id'] = result['']
+      orderData['id'] = result['order']['id']
+      orderData['createdAt'] = result['order']['createdAt']
       const dialogRef = this.dialog.open(SaleRecieptDialogComponent, {
         data: {
           order: orderData,
           person: this.customer,
-          store: this.selectedStore
+          store: this.selectedStore,
+          deliveryAddress: this.isDeliveryNeeded?this.selectedAddress:undefined 
         }
       });
 
@@ -356,5 +389,10 @@ export class SalePointComponent implements OnInit {
         this.reset();
       })
     })
+  }
+
+  addressSelected($event){
+    this.selectedAddress = $event;
+
   }
 }

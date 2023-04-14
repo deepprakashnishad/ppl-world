@@ -16,6 +16,7 @@ export class AddressComponent implements OnInit {
   @Input("selectedAddress") selectedAddress: Address;
   @Input("displayAddButton") displayAddButton: boolean = true;
   @Input("fulfillmentType") fulfillmentType: string = "delivery";
+  @Input("forId") forId: string;
   @Output("addressSelected") addressSelected: EventEmitter<any> = new EventEmitter();
   forType: string = "Person";
 
@@ -35,9 +36,13 @@ export class AddressComponent implements OnInit {
   }
 
   fetchAddress(){
-    this.addressService.get(this.forType).subscribe(result=>{
+    this.addressService.get(this.forType, this.forId).subscribe(result=>{
       this.addresses = Address.fromJSON(result);
+      this.addressSelected.emit(this.addresses[0]);
+      this.selectedAddress = this.addresses[0];
+      sessionStorage.setItem("selectedAddress", JSON.stringify(this.addresses[0]));
     });
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,6 +54,11 @@ export class AddressComponent implements OnInit {
       }
       this.fetchAddress();
     }
+
+    if(changes['forId'] && changes['forId']['currentValue']){
+      this.forId = changes['forId']['currentValue'];
+      this.fetchAddress();
+    }
   }
   
 
@@ -57,7 +67,8 @@ export class AddressComponent implements OnInit {
       AddEditAddressComponent,
       {
         data:{
-          "forType": this.forType
+          "forType": this.forType,
+          "forId": this.forId,
         },
         height: "80%",
         width: "80%"

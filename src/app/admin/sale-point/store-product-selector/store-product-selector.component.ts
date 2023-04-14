@@ -55,14 +55,18 @@ export class StoreProductSelectorComponent implements OnInit {
 
   registerFilter(){
     this.cntl.valueChanges.pipe(debounceTime(500)).subscribe(val => {
-      console.log(val);
-      console.log(this.productList);
       if(typeof val === "string"){
         this.filteredItems = this.productList.filter(ele=>{
           if(ele.name?.toLowerCase().indexOf(val.toLowerCase())>-1 || ele.prices[0]?.sku?.toLowerCase().indexOf(val.toLowerCase())>-1){
             return ele;
           }
         });
+        console.log(this.filteredItems)
+        if(this.filteredItems.length===1){
+          this.itemSelected.emit(this.filteredItems[0]);
+          this.cntl.setValue("");
+          this.autocomplete.closePanel();
+        }
       }else{
         this.productList;
       }

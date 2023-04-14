@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" (keypress)="keypressed($event)">
   <div id="print-content">
     <div class="reciept-header">
       <div fxLayout fxLayoutAlign="center">
         <div fxLayout="column">
-          <h3 fxLayout fxLayoutAlign="center center">{{store.title}}</h3>
+          <h3 fxLayout fxLayoutAlign="center center" *ngIf="store && store?.title && store?.title!=null">{{store.title}}</h3>
           <div *ngIf="store?.address && store?.address!=null">{{store.address}}</div>  
         </div>
       </div>
@@ -11,13 +11,12 @@
     <div>
       <div>
         <h4>Bill To:</h4>
-        <p>Name: {{customer.name}}<br>Mobile: {{customer.mobile}} <br>Address: {{customer.address}}</p>
+        <p>Name: {{customer.name}}<br>Mobile: {{customer.mobile}} <br>Address: {{address}}</p>
       </div>
       <div>
         <h5>Order: {{order.id}}
-          <br>Payment Method: Prepaid
-          <br>Total Items: {{order.items.length}}
-          <br>Order Datetime: {{convertToDate(order.createdAt)}}</h5>
+        <br>Total Items: {{order.items.length}}
+        <br>Order Datetime: {{convertToDate(order.createdAt)}}</h5>
       </div>
       <table class="item-list-table">
         <tr style="font-size: 12px;font-weight: bold;border: 1px solid black;">
@@ -58,7 +57,13 @@
           <td></td>
           <td colspan="4">Final Amt - {{getTotalCost()}}</td>
         </tr>
+        <tr *ngFor="let payment of order['paymentDetails']; let i=index" style="font-size: 12px;font-weight: bold;">
+          <td style="text-align: center;border: 1px solid black;" rowspan="order['paymentDetails'].length" colspan="2" *ngIf="i===0">Payment Detail</td>
+          <td style="text-align: center;border: 1px solid black;">{{payment['method']}}</td>
+          <td style="text-align: center;border: 1px solid black;">{{payment['amount']}}</td>
+        </tr>
       </table>
+      <qrcode [qrdata]="'Your data string'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
     </div>
     <div class="reciept-footer" style="font-size: 10px;font-weight: italic;">
       <h5>Terms &amp; Conditions:</h5>
@@ -68,5 +73,5 @@
       <h3>!!!Thanks &amp; Please visit again!!!</h3>
     </div>
   </div>
-  <button mat-raised-button (click)="print('print-content')">Print</button>
+  <button mat-raised-button (click)="print('print-content')" autofocus>Print</button>
 </div>

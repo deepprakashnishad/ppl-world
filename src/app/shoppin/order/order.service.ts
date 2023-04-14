@@ -100,7 +100,7 @@ export class OrderService {
       if(item.discount?.length>0){
         total = total + item.discount[0].discount*item.qty;
       }
-      return total;
+      return Math.round((total + Number.EPSILON)*100)/100;
     }, 0);
   }
 

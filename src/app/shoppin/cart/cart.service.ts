@@ -63,7 +63,7 @@ export class CartService implements OnDestroy {
       }else{
         total = total + item.prices[0]?.unitPrice*item.qty;
       }
-      return total;
+      return Math.round((total+Number.EPSILON)*100)/100;
     }, 0);
   }
 
@@ -75,7 +75,7 @@ export class CartService implements OnDestroy {
       if(item.prices[0].discounts?.length>0){
         total = total + this.getDiscountedPrice(item.qty, item.prices[0].discounts).discount*item.qty;
       }
-      return total;
+      return Math.round((total+Number.EPSILON)*100)/100;
     }, 0);
   }
 
@@ -121,7 +121,7 @@ export class CartService implements OnDestroy {
         selectedDiscount = discounts[i];
       }
     }
-
+    
     return selectedDiscount;
   }
 
@@ -281,7 +281,16 @@ export class CartService implements OnDestroy {
     return true;
   }
 
-  priceInWords(price) {
+  priceInWords(price){
+    var numbers = price.toString().split(".")
+    var priceInWord = this.numberToWord(numbers[0]);
+    if(numbers[1]){
+      priceInWord = priceInWord + " and " + this.numberToWord(numbers[1]) + "paisa";
+    }
+    return priceInWord;
+  }
+
+  numberToWord(price) {
     var sglDigit = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"],
       dblDigit = ["Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"],
       tensPlace = ["", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety"],

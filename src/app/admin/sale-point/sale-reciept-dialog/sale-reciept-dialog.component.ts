@@ -13,13 +13,14 @@ export class SaleRecieptDialogComponent implements OnInit {
   order: any;
   customer: any;
   store: any;
+  address: any;
 
   constructor(
     private myIpcService: MyIpcService,
     private orderService: OrderService,
     @Inject(MAT_DIALOG_DATA) data: any
   ) { 
-
+    console.log(data.person);
     if(data?.person){
       this.customer = data.person;
     }
@@ -31,9 +32,32 @@ export class SaleRecieptDialogComponent implements OnInit {
     if(data?.store){
       this.store = data.store;
     }
+    if(data?.deliveryAddress){
+      this.address = this.getAddressAsText(data.deliveryAddress);
+    }
   }
 
   ngOnInit() {
+  }
+
+  keypressed(event){
+    console.log(event);
+  }
+
+  getAddressAsText(address){
+    var addressText="";
+    var keys = Object.keys(address);
+    keys.forEach(key=>{
+      if(address[key]){
+        if(addressText===""){
+          addressText = address[key]
+        }else{
+          addressText = addressText + "," + address[key];
+        }
+      }
+    })
+    console.log(addressText);
+    return addressText;
   }
 
   print(printContentId: string) {

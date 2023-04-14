@@ -19,8 +19,9 @@ export class AddressService {
      this.pincodeTranslationUrl = "https://api.postalpincode.in/pincode/my_pincode";
   }
 
-  get(forType): Observable<Array<Address>> {
-  	return this.http.get<Address>(`${this.addressUrl}/${forType}`)
+  get(forType, forId=undefined): Observable<Array<Address>> {
+    var url=`${this.addressUrl}?forType=${forType}&forId=${forId}`;
+  	return this.http.get<Address>(url)
   		.pipe(
   			catchError(this.handleError('Get Token', null)));
   }
