@@ -77,7 +77,7 @@ export class CarouselComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Hey Govind")
+    console.log(this.slides)
     this.preloadImages(); // for the demo
   }
 

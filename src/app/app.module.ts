@@ -19,6 +19,7 @@ import { PersonModule } from './person/person.module';
 import { Navigation } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { HomeComponent } from './home/home.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -62,8 +63,8 @@ const notifierDefaultOptions: NotifierOptions = {
 
 @NgModule({
   declarations: [				
-      AppComponent,
-    // StaticPageComponent,
+    AppComponent,
+    HomeComponent,
     NavigationComponent
    ],
   imports: [
