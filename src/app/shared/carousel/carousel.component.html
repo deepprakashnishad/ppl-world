@@ -1,11 +1,16 @@
 <div class="carousel">
-  <ng-container *ngFor="let slide of slides; let i = index">
+  <ng-container class="img-wrapper" *ngFor="let slide of slides; let i = index">
     <img
       *ngIf="i === currentSlide"
       [src]="slide.src"
       class="slide"
       [@slideAnimation]="animationType"
     />
+    <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType">
+      <h5 class="small-text">{{slide.headline}}</h5>
+      <h3 class="big-text">{{slide.text}}</h3>
+      <button mat-raised-button color="primary">{{slide.callToActionText}}</button>
+    </div>
   </ng-container>
 
   <!-- controls -->
