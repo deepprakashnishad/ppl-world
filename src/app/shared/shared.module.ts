@@ -16,11 +16,9 @@ import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { FirestorageUploaderComponent } from './firestorage-uploader/firestorage-uploader.component';
 import { UploaderComponent } from './uploader/uploader.component';
+import { CarouselComponent } from './carousel/carousel.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
 import { NotifierModule } from 'angular-notifier';
-import { AddressCardComponent } from './address/address-card/address-card.component';
-import { AddEditAddressComponent } from './address/add-edit-address/add-edit-address.component';
-import { AddressComponent } from './address/address.component';
 import { PersonModule } from '../person/person.module';
 import { LazyImgDirective } from '../directives/lazy-img.directive';
 
@@ -40,10 +38,7 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     SafeUrlPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
-    AddressCardComponent,
-    AddEditAddressComponent,
-    AddressCardComponent,
-    AddressComponent
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -72,10 +67,9 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
   	SafeUrlPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
-    AddressComponent,
-    AddressCardComponent
+    CarouselComponent
   ],
-  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent, AddEditAddressComponent],
+  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

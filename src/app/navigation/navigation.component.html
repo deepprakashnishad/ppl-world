@@ -1,45 +1,40 @@
 <app-progress-spinner></app-progress-spinner>
 <mat-toolbar class="navbar" #navToolbar>
-	<mat-toolbar-row class="top-section">
-		<div class="full-width" fxLayout fxLayoutAlign="center">
-			<h5>{{storeSettings?.headerText}}</h5>
-			<div fxHide fxShow.gt-md class="right-section">
-				<a class="pageLink" [routerLink]="'/static-page/about-us'">
-					About Us
-				</a>
-				<span>
-					<a class="pageLink" [routerLink]="'/order-list'">
-						My Orders
-					</a>
-				</span>
-			</div>
-		</div>
-	</mat-toolbar-row>
 	<mat-toolbar-row *ngIf="!shrinkToolbar" class="wide-navbar" fxLayout fxLayoutAlign="space-around center" fxHide.lt-md>
-		<a class="brand" routerLink="/">
-			<span>
-				<!--<img height="110" width="110" src="/assets/images/logo.jpeg"/>-->
-				<img height="80" width="80" [src]="storeSettings?.logo?.downloadUrl | safe" />
-			</span>
+		<a routerLink="/">
+			GoodAct
 		</a>
 		<div fxLayout="column" style="padding-top: 25px; align-items: center;">
 			<div class="middle-container" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="4px" fxHide.lt-md>
 				<div class="full-width">
-					<app-search-bar></app-search-bar>
+					<button mat-button>
+						Home
+					</button>
+					<button mat-button>
+						About Us
+					</button>
+					<button mat-button>
+						Explore
+					</button>
+					<button mat-button>
+						FAQ
+					</button>
+					<button mat-button>
+						Contact
+					</button>
+					<button mat-button>
+						Download
+					</button>
 				</div>
 				<div>
 					<button class="nav-icon" mat-icon-button (click)="toggleLoginStatus(isLoggedIn)">
-						<mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+						Login <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
 					</button>
 				</div>
 			</div>
 			<div class="full-width" fxHide fxShow.gt-md style="margin-top: -15px;">
 				<app-department-bar></app-department-bar>
 			</div>
-		</div>
-		<div>
-			<!--<app-cart-floating-button [isAbsolute]="true"></app-cart-floating-button>-->
-			<app-pincode-checker *ngIf="storeSettings?.enablePincodeChecker" fxShow.gt-md></app-pincode-checker>
 		</div>
 		<div fxLayout fxHide.gt-sm>
 			<div fxHide fxShow.gt-md fxFlexAlign="center">Welcome {{isLoggedIn?name:'User'}}</div>
@@ -107,24 +102,10 @@
 	<button mat-button class="mobPageLink" (click)="navigateTo('/')">
 		Home
 	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/categories')">
-		Categories
-	</button>
 	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
 		My Profile
-	</button>
-	<button mat-button *ngIf="false" class="mobPageLink" (click)="navigateTo('/static-page/about-us')" >
-		My Addresses
-	</button>
-	<button mat-button *ngIf="isLoggedIn" class="mobPageLink" (click)="navigateTo('/order-list')">
-		My Orders
 	</button>
 	<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
 		{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
 	</button>
-	<!--<app-category-tree [allowEdit]="false"
-										 [isExpanded]="false"
-										 [showExpansionIcon]="false"
-										 [enableNavigation]="true"
-										 (categorySelected)="categorySelected($event)"></app-category-tree>-->
 </div>

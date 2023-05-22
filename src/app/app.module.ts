@@ -1,7 +1,8 @@
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 import {AppRoutingModule} from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import {SharedModule} from './shared/shared.module';
@@ -12,10 +13,7 @@ import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './http-interceptors/index';
 import { NavigationComponent } from './navigation/navigation.component';
 import { environment } from '../environments/environment';
-import { QuillModule } from 'ngx-quill';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
-import { ShoppinModule } from './shoppin/shoppin.module';
-import { StaticPageComponent } from './static-page/static-page.component';
 import { AdminModule } from './admin/admin.module';
 import { PersonModule } from './person/person.module';
 import { Navigation } from 'swiper';
@@ -65,23 +63,24 @@ const notifierDefaultOptions: NotifierOptions = {
 @NgModule({
   declarations: [				
       AppComponent,
-    StaticPageComponent,
+    // StaticPageComponent,
     NavigationComponent
    ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CommonModule,
     HttpClientModule,
     AuthenticationModule,
     NotifierModule.withConfig(notifierDefaultOptions),
-    ShoppinModule,
+    AppRoutingModule,
     AdminModule,
     PersonModule,
     SharedModule,
-    QuillModule.forRoot(),
+    // QuillModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireStorageModule,
-    AppRoutingModule,
+    
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

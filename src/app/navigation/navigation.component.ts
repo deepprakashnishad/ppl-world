@@ -2,11 +2,8 @@ import { AfterViewInit, Component, HostListener, Inject, NgZone, OnInit, Rendere
 import {Router, RoutesRecognized} from '@angular/router';
 import {AuthenticationService} from '../authentication/authentication.service';
 import { Title } from '@angular/platform-browser';
-import { StaticPageService } from '../admin/static-page/static-page.service';
-import { Page } from '../admin/static-page/page';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { environment } from '../../environments/environment';
-import { DepartmentBarComponent } from '../shoppin/category-bar/department-bar/department-bar.component';
 import { StorageService } from '../storage.service';
 
 
@@ -38,12 +35,7 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	isLoggedIn: boolean  = false;
 	isSidebarOpen: boolean = false;
 	name: String;
-	pages: Array<Page> = [];
-	@ViewChild(DepartmentBarComponent) categoryBar: DepartmentBarComponent;
 	@ViewChild("navToolbar") navToolbar;
-	minOrder = environment.minOrderFreeDelivery;
-	storeSettings: any = JSON.parse(sessionStorage.getItem("storeSettings"));
-
 	isLeftBarOpen: boolean = false;
 
 	private readonly SHRINK_TOP_SCROLL_POSITION = 5;
@@ -78,22 +70,8 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	      }
     });
 
-    this.storageService.changes.subscribe(result => {
-      if (result['key']==="storeSettings") {
-        this.storeSettings = JSON.parse(result['value']);
-      }
-    })
-
-		//this.pageService.getPages().subscribe(result=>{
-		//	this.pages = result;
-		//})
-
-		this.renderer.listen('window', 'click', (e: Event)=>{});	
+    this.renderer.listen('window', 'click', (e: Event)=>{});	
 	}
-
-	/* @HostListener('document:keydown', ['$event']) handleKeydown(e: KeyboardEvent){
-		console.log(e);
-    } */
 
 	@HostListener('document:scroll', []) scrollHandler(){
 		console.log("I am scrolled");
@@ -117,14 +95,11 @@ export class NavigationComponent implements OnInit, AfterViewInit {
       this.toggleLeftDrawer();
     }
     this.isSidebarOpen = !this.isSidebarOpen;
-    this.categoryBar.isCategoryBarOpen = this.isSidebarOpen;
     
 	}
 
 	openCategoryDrawer(){
-		//this.isSidebarOpen = !this.isSidebarOpen;		
-    this.categoryBar.isCategoryBarOpen = !this.categoryBar?.isCategoryBarOpen;
-    console.log(this.categoryBar.isCategoryBarOpen);
+	console.log("openCategoryDrawer function can be removed")	
   }
 
   toggleLeftDrawer() {
