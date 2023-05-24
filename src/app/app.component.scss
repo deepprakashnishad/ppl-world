@@ -1,0 +1,38 @@
+:host{
+	height: 100%;
+}
+
+.main-container{
+  max-height: 100%;
+	min-height: 100%;
+  padding:0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.notifier-container{
+	z-index: 9999;
+}
+
+button:hover,
+.active-link {
+  color: #731539;
+}
+
+.scroll-top-button{
+  position: absolute;
+  bottom: 15px;
+  right:25px;
+}
+
+.footer{
+  min-height: 160px;
+  background-color: black;
+  color: white;
+  margin-top: -20px;
+}
+
+.footer-text{
+  text-align: justify;
+  word-break: break-all;
+}

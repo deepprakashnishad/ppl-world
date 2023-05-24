@@ -1,28 +1,28 @@
 <app-progress-spinner></app-progress-spinner>
 <mat-toolbar class="navbar" #navToolbar>
-	<mat-toolbar-row *ngIf="!shrinkToolbar" class="wide-navbar" fxLayout fxLayoutAlign="space-around center" fxHide.lt-md>
+	<mat-toolbar-row *ngIf="!shrinkToolbar" class="navbar" fxLayout fxLayoutAlign="space-around center" fxHide.lt-md>
 		<a routerLink="/">
 			GoodAct
 		</a>
 		<div fxLayout="column" style="padding-top: 25px; align-items: center;">
 			<div class="middle-container" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="4px" fxHide.lt-md>
 				<div class="full-width">
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/')">
 						Home
 					</button>
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/about-us')">
 						About Us
 					</button>
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/explore')">
 						Explore
 					</button>
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/faq')">
 						FAQ
 					</button>
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/contact')">
 						Contact
 					</button>
-					<button mat-button>
+					<button mat-button (click)="navigateTo('/downloads')">
 						Download
 					</button>
 				</div>
@@ -46,9 +46,7 @@
 	</mat-toolbar-row>
 	<mat-toolbar-row *ngIf="shrinkToolbar" class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.lt-md>
 		<a class="brand" routerLink="/">
-			<span>
-				<img height="30" width="30" [src]="storeSettings?.logo?.downloadUrl | safe" />
-			</span>
+			Good Act
 		</a>
 		<div class="middle-container">
 			<div class="full-width">
@@ -58,9 +56,7 @@
 	</mat-toolbar-row>
 	<mat-toolbar-row class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.gt-sm>
 		<a class="brand" routerLink="/">
-			<span>
-				<img height="30" width="30" [src]="storeSettings?.logo?.downloadUrl | safe" />
-			</span>
+			Good Act
 		</a>
 		<div class="mob-welcome-msg">Welcome {{isLoggedIn?name:''}}</div>
 	</mat-toolbar-row>
@@ -69,41 +65,27 @@
 			<mat-icon *ngIf="!isLeftBarOpen">menu</mat-icon>
 			<mat-icon *ngIf="isLeftBarOpen">close</mat-icon>
 		</button>
-		<app-search-bar class="full-width"></app-search-bar>
-		<!--<button mat-icon-button (click)="toggleSidebar()">
-			<mat-icon *ngIf="!isSidebarOpen">person</mat-icon>
-			<mat-icon *ngIf="isSidebarOpen">close</mat-icon>
-		</button>-->
 	</mat-toolbar-row>
 </mat-toolbar>
-<!--<div [hidden]="isSidebarOpen" [@openClose]="isSidebarOpen?'open':'closed'" class="sidebar" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>-->
-<!--<app-pincode-checker *ngIf="storeSettings?.enablePincodeChecker"></app-pincode-checker>-->
-<!--<a mat-button class="mobPageLink" [routerLink]="'/'">
-		Home
-	</a>
-	<a mat-button class="mobPageLink" [routerLink]="'/shoppin/categories'">
-		Categories
-	</a>
-	<a mat-button class="mobPageLink" [routerLink]="'/static-page/about-us'">
-		My Profile
-	</a>
-	<a mat-button class="mobPageLink" [routerLink]="'/static-page/about-us'">
-		My Addresses
-	</a>
-	<a mat-button class="mobPageLink" [routerLink]="'/order-list'">
-		My Orders
-	</a>
-	<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
-		{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
-	</button>
-</div>-->
 
 <div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
 	<button mat-button class="mobPageLink" (click)="navigateTo('/')">
 		Home
 	</button>
 	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		My Profile
+		About Us
+	</button>
+	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+		Explore
+	</button>
+	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+		FAQ
+	</button>
+	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+		Contact
+	</button>
+	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+		Download
 	</button>
 	<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
 		{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>

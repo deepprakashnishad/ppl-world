@@ -30,10 +30,10 @@ import {
 
       /* fade */
       transition("void => fade", [
-        useAnimation(fadeIn, { params: { time: "500ms" } })
+        useAnimation(fadeIn, { params: { time: "800ms" } })
       ]),
       transition("fade => void", [
-        useAnimation(fadeOut, { params: { time: "500ms" } })
+        useAnimation(fadeOut, { params: { time: "1000ms" } })
       ]),
 
       /* flip */

@@ -10,6 +10,7 @@ import { SidenavComponent } from './admin/sidenav/sidenav.component';
 import { ActivityLogComponent } from './admin/activity-log/activity-log.component';
 import { PersonComponent } from './person/person.component';
 import { UserReportComponent } from './admin/reports/user-report/user-report.component';
+import {AboutUsComponent} from './static-page/about-us/about-us.component';
 
 const routes: Routes = [
 	 {
@@ -22,7 +23,31 @@ const routes: Routes = [
 		component: HomeComponent,
 		data: { title: 'Home', permissions: []}
 	},
-
+	{
+		path: 'about-us', 
+		component: AboutUsComponent,
+		data: { title: 'About-Us', permissions: []}
+	},
+	{
+		path: 'explore', 
+		component: HomeComponent,
+		data: { title: 'Explore', permissions: []}
+	},
+	{
+		path: 'faq', 
+		component: HomeComponent,
+		data: { title: 'FAQ', permissions: []}
+	},
+	{
+		path: 'contact', 
+		component: HomeComponent,
+		data: { title: 'Contact-Us', permissions: []}
+	},
+	{
+		path: 'downloads', 
+		component: HomeComponent,
+		data: { title: 'Downloads', permissions: []}
+	},
 	{
 		path: 'admin', 
 		component: SidenavComponent,

@@ -7,50 +7,28 @@
 	</header>
 	<!-- Main -->
 	<main class="main-container" fxFlex="grow" fxLayout="column" fxLayoutAlign="start">
+		<div  id="moveTop"></div>
 		<app-navigation *ngIf="isShowNavigation"></app-navigation>
 		<!--<app-navigation *ngIf="isShowNavigation"></app-navigation>-->
 		<router-outlet></router-outlet>
 
 		<notifier-container class="notifier-container"></notifier-container>
+		<button class="scroll-top-button" mat-fab (click)="scrollToTopFunc($event)">
+	        <mat-icon>arrow_upward</mat-icon>
+	    </button>
 		<!-- <app-sidenav #mSidebar fxFlex="auto"></app-sidenav> -->
 		<!-- <div class="content-container-without-sidenav" *ngIf="!isSidenav" fxFlex="auto">
 		<router-outlet #m="outlet"></router-outlet>
 	</div> -->
+		<mat-toolbar class="footer" fxLayout="column" fxLayoutAlign="space-around center">
+			<div class="footer-text">Good Act is an open fundraising platform for all fundraiser, Raise fund for any cause Worldwide.</div>
+			<div fxLayout fxLayoutAlign="space-between center">
+				<button mat-icon-button><mat-icon>facebook</mat-icon></button>
+				<button mat-icon-button><i class="fab fa-twitter"></i></button>
+				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
+			</div>
+		</mat-toolbar>
 	</main>
 	<!-- Footer -->
-	<footer *ngIf="isShowNavigation">
-		<mat-toolbar fxHide.gt-sm="true" sticky class="toolbarNav" fx.hide.gt-md fxLayout fxLayoutAlign="space-between center">
-			<button mat-icon-button routerLink="/" routerLinkActive="active-link">
-				<mat-icon class="material-icons color_blue">
-					home
-				</mat-icon>
-			</button>
-			<button mat-icon-button routerLink="/categories" routerLinkActive="active-link">
-				<mat-icon class="material-icons color_blue">
-					grid_view
-				</mat-icon>
-			</button>
-			<button *ngIf="isLoggedIn" mat-icon-button routerLink="/profile" routerLinkActive="active-link">
-				<mat-icon class="material-icons color_blue">
-					person
-				</mat-icon>
-			</button>
-			<button *ngIf="isLoggedIn" mat-icon-button routerLink="/order-list" routerLinkActive="active-link">
-				<mat-icon class="material-icons color_blue">
-					checklist_rtl
-				</mat-icon>
-			</button>
-			<button *ngIf="isLoggedIn" mat-icon-button (click)="logout()">
-				<mat-icon class="material-icons color_blue">
-					logout
-				</mat-icon>
-			</button>
-			<button *ngIf="!isLoggedIn" mat-icon-button routerLink="/login" routerLinkActive="active-link">
-				<mat-icon class="material-icons color_blue">
-					login
-				</mat-icon>
-			</button>
-		</mat-toolbar>
-	</footer>
 </div>
 

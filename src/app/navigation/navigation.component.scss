@@ -1,3 +1,7 @@
+.navbar{
+  z-index: 999;
+}
+
 a.pageLink, .nav-icon {
   padding: 0 14px;
   color:#731539;  
@@ -92,8 +96,6 @@ a{
 }
 
 mat-toolbar{
-  min-height: 25px;
-  height: 25px;
   background-color: white;
 }
 
@@ -115,7 +117,7 @@ mat-toolbar{
 .navbar {
   border-bottom: 1px solid #afa6a6;
   padding: 0;
-  height: 20vh;
+  height: 15vh;
 }
 
 .top-section {

@@ -1,0 +1,115 @@
+.container{
+	padding: 32px 64px;
+}
+.top-section{
+	line-height: 30px;
+	text-align: justify;
+	padding: 16px 12px 16px 0px;
+}
+
+.second-container{
+	padding: 32px 64px;
+	background-color: #f4f4f4;	
+}
+
+header{
+	font-size: 72px;
+	font-weight: bold;
+}
+
+li{
+	font-size: 18px;
+	margin-bottom: 18px;
+}
+
+.desc{
+	font-size: 18px;
+	line-height: 24px;
+	text-align: justify;
+	color: #7f7f7f;
+}
+
+.unselected-call-to-action{
+  cursor: pointer;
+  min-width: 120px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 16px 32px;
+  text-align: center;
+  background-color: white;
+  color: black; 
+  -webkit-transition: background 0.25s ease; /* For Safari 3.0 to 6.0 */
+  transition: background 0.25s ease;
+  transform-origin: top right;
+}
+
+.unselected-call-to-action:hover{
+  background-color: black;
+  color: white;
+}
+
+.selected-call-to-action{
+  min-width: 120px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 16px 32px;
+  text-align: center;
+  background-color: black;
+  color: white; 
+}
+
+.fourth-container{
+  background: linear-gradient(0deg, #30303075, #30303075), url("/assets/images/carousel/business.jpg");
+  background-attachment: fixed;
+  background-size: cover;
+  position: static;
+  padding: 15px 80px;
+  color: white;
+  margin-bottom: 20px;
+  .small-title{
+    background-color: black;
+    padding: 16px;
+  }
+
+  .my-title{
+    padding: 24px;
+    max-width: 800px; 
+    text-align: center;
+  }
+}
+
+.dark-overlay{
+  background-color: #30303075;
+  width: 100%;
+  height: 100%;
+  position: static;
+}
+
+.my-title{
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.call-to-action-dark{
+  cursor: pointer;
+  min-width: 120px;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 16px 32px;
+  text-align: center;
+  background-color: black;
+  color: white; 
+  -webkit-transition: background 0.25s ease; /* For Safari 3.0 to 6.0 */
+  transition: background 0.25s ease;
+  transform-origin: top right;
+}
+
+.call-to-action-dark:hover{
+  background-color: white;
+  color: black;
+}
+
+.small-title{
+  font-size: 36px;
+  font-weight: bold;
+}

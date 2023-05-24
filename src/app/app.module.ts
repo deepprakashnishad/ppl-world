@@ -20,6 +20,7 @@ import { Navigation } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HomeComponent } from './home/home.component';
+import {AboutUsComponent} from './static-page/about-us/about-us.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -65,7 +66,8 @@ const notifierDefaultOptions: NotifierOptions = {
   declarations: [				
     AppComponent,
     HomeComponent,
-    NavigationComponent
+    NavigationComponent,
+    AboutUsComponent
    ],
   imports: [
     BrowserModule,

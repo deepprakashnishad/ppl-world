@@ -1,0 +1,118 @@
+<div class="container">
+	<h1>About Us</h1>
+	<div fxLayout="row">
+		<div fxFlex>
+			<h2>Introduction</h2>
+			<p class="top-section">GoodAct provides fundraising platform with the intelligence, technology and human expertise. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. There are no central authority of this program, this concept is created by an group of programars and developers situated arround the world, you can also join our technical community and donate your skills. GoodAct platform is created for humanity, social causes and helping purpose not for earning.</p>
+			<div fxLayout="column" fxLayoutGap="24px">
+				<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
+					<div style="padding-top: 24px"><mat-icon>check_box</mat-icon></div>
+					<h3>Discover how to plan, create and manage your crowdfunding campaign</h3>
+				</div>
+				<div fxLayout fxLayoutGap="12px">
+					<div style="padding-top: 24px"><mat-icon>check_box</mat-icon></div>
+					<h3>Enroll into GoodAct 10X community, it will help you to boost your fundraising</h3>
+				</div>
+			</div>
+		</div>
+		<div fxFlex>
+			<img src="/assets/images/about-us.jpg"/>
+		</div>
+	</div>
+	<div class="second-container">
+		<div class="row">
+			<div fxFlex fxLayout="column" fxLayoutGap="24px">
+				<header>Next Generation of Crowdfunding</header>
+				<div fxLayout fxLayoutAlign="space-around center">
+					<div [ngClass]="selectedText == 'mission' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='mission'">Our Mission</div>
+					<div [ngClass]="selectedText == 'vision' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='vision'">Our Vision</div>
+					<div [ngClass]="selectedText == 'history' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='history'">Our History</div>
+					<!-- <button mat-raised-button color="primary">Our Mission</button>
+					<button mat-raised-button color="primary">Our Vision</button>
+					<button mat-raised-button color="primary">Our History</button> -->
+				</div>
+				<div fxLayout fxLayoutGap="8px">
+					
+					<div class="mlist">
+						<ul>
+							<li>100% fund belongs to you</li>
+							<li>No adminor platform fee</li>
+							<li>Easy to create campaign</li>
+							<li>100% fund belongs to you</li>
+							<li>Fundraiser to fundraiser community support</li>
+						</ul>
+					</div>
+					<div><img src="/assets/images/next-big-thing-thumb.png"/></div>
+				</div>
+			</div>
+			<div fxFlex>
+				<div class="desc" *ngIf="selectedText=='mission'">
+					<p>Goodact is unique and innovative invention, popularly known as 'Community-Sharing Crowd-Funding' which has started giving a whole new dimension to the model of traditional crowd-funding. We focus, not just on the cause, but also on how to make it easy for the people to fund that cause, in the simplest and smoothest ways possible. It's just like reverse engineering, where we reproduce a quick path towards the plan implementation and finally accomplishment of the goal that you have in sight.</p>
+
+					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
+
+					<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+				</div>
+				<div class="desc" *ngIf="selectedText=='vision'">
+					<p>Over the past few years, thousands of people have successfully used our platform to raise huge sums of money for their personal causes as well as for social causes and at the same time these thousands of people have experienced the exciting innovations of our platform and given it a big thumbs up. We continue to grow and we continue to build on our innovations to bring you excitements every now and then, because, we believe that once you start loving what you do, you give the best! We promise that with us, you'll raise more money for your cause, get your money right away, and keep whatever you raise since there are no mandatory goal requirements or campaign deadlines with us.</p>
+					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
+					<p>
+						You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..
+					</p>
+				</div>
+				<div class="desc" *ngIf="selectedText=='history'">
+					<p>
+						Meanwhile, crowdfunding is quickly becoming the internet's most exciting social trend for raising funds, by providing a convenient website platform that allows people to support any project that you create, simply by sharing it on various social media platforms like Facebook, Twitter, LinkedIn etc. Backed with innovative technology and efficient payment gateways, getting contributions from millions of people for your innovative projects or social campaigns is just a matter of a few clicks now.
+					</p>
+					<p>We connect campaign owners to funders in a way that is productive and engaging. When creative people work together, amazing things happen. We understand the difficulties of raising money, and we are passionate about providing an alternative funding source for startups, charities, and personal causes. We believe in the power of community support and sharing your story with the world. Ultimately, we want to build great company, have fun, and help people in a meaningful way.</p>
+					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
+					<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="third-container" fxLayout="column" fxLayoutAlign="center center">
+		<h1>Experience Freedom</h1>
+		<div class="desc">
+			<p>There's no easier way to share your story and attract support. Raise funds and grow your community with a crowdfunding campaign. Share with Family & Friends as our built-in connections to Facebook, Twitter & Email make sharing a breeze.</p>
+
+			<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
+
+			<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+		</div>
+		<h2 fxFlexAlign="start">How is crowdfunding different?</h2>
+		<div class="desc">
+			<p>Crowdfunding is essentially the opposite of the mainstream approach to business funding. Traditionally, if you want to raise funds to start a business or launch a new product or fund a charity you would need to put together a business plan in place, do your market research, get a prototype ready (for products) or get a pitch note in place for charities etc and then sell your story to a limited pool or wealthy individuals or institutions whom you know. These funding sources included HNI's, corporates, banks, angel investors and venture capital firms thus limiting your options to a few key players. You can think of this fundraising approach as a funnel, with you and your campaign story at the wide end & your audience of probable funders at the narrow end. This is a very time consuming approach with massive geographical constraints and allows you to only meet 2 to 3 funders on a daily basis.</p>
+
+			<p>A Crowdfunding platform like GoodAct on the other hand, turns that funnel upside down. We give you (You can be a individual or an organisation) a single platform to build & showcase your campaign story to a large set of funders including your friends /family /fan base in a much quicker period of time. It transcends borders & making a pitch globally. Its fast, efficient, transparent and effective.</p>
+
+			<p>As a crowdfunding platform Goodact gives you tools to tell your story well. We help you curate your story with our happiness team & give you tools, tips and advice to promote it on Social media. We give you software & an elaborate dashboard to monitor progress of the funding through a backend tool, which also gives you key analytics. This approach dramatically streamlines the traditional model. Traditionally, you'd spend months sifting through your personal network, vetting potential funders and spending your own time and money to get in front of them. With crowdfunding, it's much easier for you to get your story in front.</p>
+		</div>
+		<h2 fxFlexAlign="start">It serves as marketing tool</h2>
+		<div class="desc">
+			<p>An active crowdfunding campaign is a good way to introduce a venture's overall mission and vision to the market, as it is a free and easy way to reach numerous channels. Our crowdfunding platforms incorporate social media mechanisms, making it painless to get referral traffic to your website and other social media pages.</p>
+
+
+
+			<p>Typically, this allows ventures to receive thousands of organic visits from unique users and potential funders. These users are also important for viral marketing, as they have the ability to share and spread the word to their connections.</p>
+		</div>
+		<h2 fxFlexAlign="start">It's 100% free</h2>
+		<div class="desc">
+			<p>The momentum created by successful crowdfunding campaigns attracts potential investment from traditional channels and attention from media outlets.</p>
+
+
+			<p>Success stories make for interesting reading, and reporters are always hungry for them. Crowdfunding is a unique and hot industry these days, and countless entrepreneurs who have been successful with it have seen larger success and exposure as a result.</p>
+
+
+			<p>It provides the opportunity of pre-selling. Launching a crowdfunding campaign gives an entrepreneur the ability to pre-sell a product or concept that they haven't yet taken to market. This is a good way to gauge user reaction and analyze the market in order to decide whether to pursue or pivot on a given concept.</p>
+		</div>
+	</div>
+	<div class="fourth-container">
+		<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
+            <div class="small-title">Power of Unity</div>
+            <div class="my-title">Together more creativity as full energy of inidividual is brought out</div>
+            <div class="call-to-action-dark">START A PROJECT</div>    
+        </div>
+        <div class="dark-overlay"></div>
+	</div>
+</div>

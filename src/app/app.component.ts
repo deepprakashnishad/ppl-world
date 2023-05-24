@@ -8,7 +8,7 @@ import { StorageService } from './storage.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'shop-manager';
@@ -52,5 +52,11 @@ export class AppComponent implements OnInit {
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  scrollToTopFunc(event) {
+    var scrollElem= document.querySelector('#moveTop');
+    console.log(scrollElem);
+    scrollElem.scrollIntoView({ behavior: "smooth"});
   }
 }
