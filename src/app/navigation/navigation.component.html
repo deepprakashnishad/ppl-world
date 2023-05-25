@@ -1,12 +1,15 @@
 <app-progress-spinner></app-progress-spinner>
 <mat-toolbar class="navbar" #navToolbar>
 	<mat-toolbar-row *ngIf="!shrinkToolbar" class="navbar" fxLayout fxLayoutAlign="space-around center" fxHide.lt-md>
-		<a routerLink="/">
-			GoodAct
-		</a>
-		<div fxLayout="column" style="padding-top: 25px; align-items: center;">
+		<div fxFlexAlign="center">
+			<a routerLink="/">
+				GoodAct
+			</a>	
+		</div>
+		
+		<div fxLayout="column" style="padding-top: 25px; align-items: center;" fxFlex="75">
 			<div class="middle-container" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="4px" fxHide.lt-md>
-				<div class="full-width">
+				<div>
 					<button mat-button (click)="navigateTo('/')">
 						Home
 					</button>
@@ -25,10 +28,11 @@
 					<button mat-button (click)="navigateTo('/downloads')">
 						Download
 					</button>
-				</div>
-				<div>
-					<button class="nav-icon" mat-icon-button (click)="toggleLoginStatus(isLoggedIn)">
-						Login <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+					<button mat-button (click)="navigateTo('/profile')">
+						Profile
+					</button>
+					<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
+						{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
 					</button>
 				</div>
 			</div>

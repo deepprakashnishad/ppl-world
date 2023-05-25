@@ -28,6 +28,8 @@ export class PersonSearchComponent implements OnInit {
 
   @Input("displayMode") displayMode = "dropdown"; //dropdown or grid
 
+  @Input("personType") personType = "general";
+
 	@Output() personSelected = new EventEmitter<Person>();
 
 	@ViewChild(MatAutocompleteTrigger) trigger;
@@ -45,6 +47,7 @@ export class PersonSearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.personType);
   	this.personControl.valueChanges.subscribe(val => {
       if(typeof val === "string" && val.length > 3){
         this.searchStr = val;
@@ -52,12 +55,10 @@ export class PersonSearchComponent implements OnInit {
         this.fetchPersonList();
       }
   	});
-
-    this.fetchPersonList();
   }
 
   fetchPersonList(){
-    this.personService.fetchFilteredPersonList(this.searchStr, this.limit, this.offset)
+    this.personService.fetchFilteredPersonList(this.searchStr, this.limit, this.offset, this.personType)
     .subscribe((personList)=>{
       if(this.offset===0){
         this.filteredPersons = personList;

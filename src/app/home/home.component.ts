@@ -71,6 +71,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log("Home page")
     this.images.push("/assets/images/extras/list-icon.png")
   }
 

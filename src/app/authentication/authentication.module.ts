@@ -1,6 +1,7 @@
 import { NgModule,NO_ERRORS_SCHEMA } from '@angular/core';
 import {AuthRoutingModule} from './auth-routing/auth-routing.module';
 import {SharedModule} from '../shared/shared.module';
+import {PersonModule} from '../person/person.module';
 import { LoginComponent } from './login/login.component';
 import { RoleComponent } from '../admin/role/role.component';
 import { PermissionComponent } from '../admin/permission/permission.component';
@@ -8,6 +9,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { MobileAuthenticationComponent } from './mobile-authentication/mobile-authentication.component';
 import { ReCaptchaModule } from 'angular-recaptcha3';
 import { environment } from '../../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { environment } from '../../environments/environment';
       },
       language: 'en'
     }),
+    PersonModule
   ],
   exports: [LoginComponent],
   schemas:[NO_ERRORS_SCHEMA]

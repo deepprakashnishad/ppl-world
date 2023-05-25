@@ -83,14 +83,14 @@ export class AuthenticationService {
 
   signup(registrationData): Observable<AuthResponse> {
   	const mRegistrationData = {
-  		userid: registrationData.username,
-  		name: registrationData.name,
-  		mobile: registrationData.mobile,
-  		email: registrationData.email,
-  		password: registrationData.password
+  		n: registrationData.name,
+  		m: registrationData.mobile,
+  		e: registrationData.email,
+  		password: registrationData.password,
+      p: registrationData.parent.id
   	};
   	return this.http.post<AuthResponse>(
-  		this.signupUrl, registrationData, httpOptions)
+  		this.signupUrl, mRegistrationData, httpOptions)
   		.pipe(
   			retry(2),
   			catchError(this.handleError('registration', null))
@@ -152,10 +152,10 @@ export class AuthenticationService {
       if(data.fbToken){
         sessionStorage.setItem('fbToken', data.fbToken);
       }
-      localStorage.setItem('name', data.name);
-      localStorage.setItem('mobile', data.mobile);
-      localStorage.setItem('email', data.email);
-      localStorage.setItem('role', data.role);
+      localStorage.setItem('name', data.n);
+      localStorage.setItem('mobile', data.m);
+      localStorage.setItem('email', data.e);
+      localStorage.setItem('role', data.r);
       localStorage.setItem('permissions', data.permissions);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('id', data.id);
@@ -164,10 +164,10 @@ export class AuthenticationService {
       if(data.fbToken){
         sessionStorage.setItem('fbToken', data.fbToken);
       }
-      sessionStorage.setItem('name', data.name);
-      sessionStorage.setItem('mobile', data.mobile);
-      sessionStorage.setItem('email', data.email);
-      sessionStorage.setItem('role', data.role);
+      sessionStorage.setItem('name', data.n);
+      sessionStorage.setItem('mobile', data.m);
+      sessionStorage.setItem('email', data.e);
+      sessionStorage.setItem('role', data.r);
       sessionStorage.setItem('permissions', data.permissions);
       sessionStorage.setItem('isLoggedIn', 'true');
       sessionStorage.setItem('id', data.id);

@@ -40,8 +40,12 @@ export class PersonService {
         catchError(this.handleError('Get Customers', null)));
   }
 
-  fetchFilteredPersonList(strQuery: any, limit: number, offset: number): Observable<Array<Person>> {
-    let mUrl = `${this.PersonUrl}/get?strQuery=${strQuery}&limit=${limit}&offset=${offset}`;
+  fetchFilteredPersonList(strQuery: any, limit: number, offset: number, personType="general"): Observable<Array<Person>> {
+    var mUrl = `${this.PersonUrl}/get?strQuery=${strQuery}&limit=${limit}&offset=${offset}`;  
+    if(personType==="referrer"){
+      mUrl = `${this.PersonUrl}/getReferrer?strQuery=${strQuery}&limit=${limit}&offset=${offset}`;  
+    }
+    
   	return this.http.get<Person>(mUrl)
   		.pipe(
   			catchError(this.handleError('Get Token', null)));

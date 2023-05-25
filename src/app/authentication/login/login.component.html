@@ -77,7 +77,7 @@
             <mat-error *ngIf="cardForm.errors?.passwordMismatched && cardForm.controls['materialFormCardConfirmPass'].touched && cardForm.controls['materialFormCardPasswordEx'].touched && cardForm.controls['materialFormCardConfirmPass'].dirty &&
             cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error>
           </mat-form-field>
-
+          <app-person-search (personSelected)="referrerSelected($event)" [personType]="'referrer'"></app-person-search>
           <div>
             <button mat-raised-button type="reset" [disabled]="cardForm.invalid" color="primary" (click)="onSubmit();">Register</button>
           </div>

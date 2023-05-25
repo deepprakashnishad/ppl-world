@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit{
     passwordOrText = 'password';
     hide=true;
     private rememberMe=false;
+    referrer: any;
 
   constructor(
     public fb: FormBuilder,
@@ -76,7 +77,7 @@ export class LoginComponent implements OnInit{
       var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value;
 
       this.authService.signup(
-        {name: name, password: password, email: email, mobile: mobile}
+        {name: name, password: password, email: email, mobile: mobile, parent: this.referrer}
         ).subscribe((authResponse) =>  {
           this.authResponse = authResponse;
           if (authResponse) {
@@ -121,7 +122,8 @@ export class LoginComponent implements OnInit{
           this.notifier.notify("success", "Login successful");
           this.storeData(this.authResponse);
           this.clearForm();
-          let redirectUrl = this.authService.redirectUrl ? this.authService.redirectUrl : ''
+
+          let redirectUrl = this.authService.redirectUrl && this.authService.redirectUrl.indexOf("login")===-1 ? this.authService.redirectUrl : '';
           this.router.navigate([redirectUrl]);
         }
       }, (error) => {
@@ -151,7 +153,7 @@ export class LoginComponent implements OnInit{
   storeData(authResponse){
     var data = authResponse;
     data.permissions = this.getPermissionList(authResponse.permissions);
-    data.role = authResponse.role.name
+    data.role = authResponse.r.name
     if (this.rememberMe) { 
       this.authService.storeLocalData(data, "LOCAL_STORAGE")
     } 
@@ -169,6 +171,11 @@ export class LoginComponent implements OnInit{
   navigateTo(path) {
     console.log("Navigation called");
     //this.router.navigate([path]);
+  }
+
+  referrerSelected(event){
+    this.referrer = event;
+    console.log(this.referrer);
   }
 }
 

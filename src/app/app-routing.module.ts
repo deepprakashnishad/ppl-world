@@ -11,6 +11,7 @@ import { ActivityLogComponent } from './admin/activity-log/activity-log.componen
 import { PersonComponent } from './person/person.component';
 import { UserReportComponent } from './admin/reports/user-report/user-report.component';
 import {AboutUsComponent} from './static-page/about-us/about-us.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
 	 {
@@ -47,6 +48,11 @@ const routes: Routes = [
 		path: 'downloads', 
 		component: HomeComponent,
 		data: { title: 'Downloads', permissions: []}
+	},
+	{
+		path: 'profile', 
+		component: ProfileComponent,
+		data: { title: 'My Profile', permissions: []}
 	},
 	{
 		path: 'admin', 

@@ -7,11 +7,7 @@ import { CanDeactivateGuardService } from './../../authentication/can-deactivate
 import { PersonComponent } from './../person.component'
 
 const personRoutes: Routes = [
-	{
-		path: '', 
-		component: PersonComponent, 
-    	children: []
-	}
+	
 ]
 
 @NgModule({
