@@ -61,7 +61,7 @@ export class PersonSearchComponent implements OnInit {
     this.personService.fetchFilteredPersonList(this.searchStr, this.limit, this.offset, this.personType)
     .subscribe((personList)=>{
       if(this.offset===0){
-        this.filteredPersons = personList;
+        this.filteredPersons = Person.fromJSONArray(personList);
       }else{
         this.filteredPersons.concat(personList);
       }
