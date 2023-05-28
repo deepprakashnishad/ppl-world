@@ -1,44 +1,26 @@
 <app-progress-spinner></app-progress-spinner>
 <mat-toolbar class="navbar" #navToolbar>
-	<mat-toolbar-row *ngIf="!shrinkToolbar" class="navbar" fxLayout fxLayoutAlign="space-around center" fxHide.lt-md>
-		<div fxFlexAlign="center">
-			<a routerLink="/">
-				GoodAct
-			</a>	
+	<mat-toolbar-row *ngIf="!shrinkToolbar" class="header-top" fxHide.lt-md>
+		<div fxLayout="row" fxFlex="50">
+			<div class="header-info">
+				<ul>
+				   <li><a href="mailto:info@deepway.io"><i class="fa fa-envelope"></i> info@deepway.io</a></li>
+				   <li>
+					  <a href="https://t.me/deepway_global" target="_blank">
+					  <i class="fa fa-telegram"></i>Join Telegram</a>
+				   </li>
+				</ul>
+			 </div>
 		</div>
-		
-		<div fxLayout="column" style="padding-top: 25px; align-items: center;" fxFlex="75">
-			<div class="middle-container" fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="4px" fxHide.lt-md>
-				<div>
-					<button mat-button (click)="navigateTo('/')">
-						Home
-					</button>
-					<button mat-button (click)="navigateTo('/about-us')">
-						About Us
-					</button>
-					<button mat-button (click)="navigateTo('/explore')">
-						Explore
-					</button>
-					<button mat-button (click)="navigateTo('/faq')">
-						FAQ
-					</button>
-					<button mat-button (click)="navigateTo('/contact')">
-						Contact
-					</button>
-					<button mat-button (click)="navigateTo('/downloads')">
-						Download
-					</button>
-					<button mat-button (click)="navigateTo('/profile')">
-						Profile
-					</button>
-					<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
-						{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
-					</button>
-				</div>
-			</div>
-			<div class="full-width" fxHide fxShow.gt-md style="margin-top: -15px;">
-				<app-department-bar></app-department-bar>
-			</div>
+		<div fxLayout="row" fxFlex="50" fxLayoutAlign="end">
+			<div class="social">
+				<ul>
+				   <li><a href="https://www.facebook.com/deepway-112254153865584" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+				   <li><a href="https://twitter.com/deepwayin" target="_blank"><i class="fa fa-twitter"></i></a></li>
+				   <li><a href="https://www.youtube.com/channel/UCMrdibmQe_aUHm6kdRvX8NQ/" target="_blank"><i class="fa fa-youtube"></i></a></li>
+				   <li><a href="https://www.linkedin.com/company/deepwayin/?viewAsMember=true" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+				</ul>
+			 </div>
 		</div>
 		<div fxLayout fxHide.gt-sm>
 			<div fxHide fxShow.gt-md fxFlexAlign="center">Welcome {{isLoggedIn?name:'User'}}</div>
@@ -48,7 +30,43 @@
 			</button>
 		</div>
 	</mat-toolbar-row>
-	<mat-toolbar-row *ngIf="shrinkToolbar" class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.lt-md>
+	
+	<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
+		<div fxLayout="row" fxFlex="20">
+			<div class="header-logo">
+				<a href="index.aspx"><img src="https://deepway.io/assets/images/logo.png" alt="logo.deepway" style="width:125px"></a>
+			 </div>
+		</div>
+		<div fxLayout="row" fxFlex="60" fxLayoutAlign="center">
+			<button mat-button (click)="navigateTo('/')">
+				Home
+			</button>
+			<button mat-button (click)="navigateTo('/about-us')">
+				About Us
+			</button>
+			<button mat-button (click)="navigateTo('/explore')">
+				Explore
+			</button>
+			<button mat-button (click)="navigateTo('/faq')">
+				FAQ
+			</button>
+			<button mat-button (click)="navigateTo('/contact')">
+				Contact
+			</button>
+			<button mat-button (click)="navigateTo('/downloads')">
+				Download
+			</button>
+			<button mat-button (click)="navigateTo('/profile')">
+				Profile
+			</button>
+		 </div>
+		<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+			<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
+				{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+			</button>
+		</div>
+	</mat-toolbar-row>
+	<!-- <mat-toolbar-row *ngIf="shrinkToolbar" class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.lt-md>
 		<a class="brand" routerLink="/">
 			Good Act
 		</a>
@@ -57,41 +75,65 @@
 				<app-department-bar></app-department-bar>
 			</div>
 		</div>
-	</mat-toolbar-row>
-	<mat-toolbar-row class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.gt-sm>
-		<a class="brand" routerLink="/">
-			Good Act
-		</a>
-		<div class="mob-welcome-msg">Welcome {{isLoggedIn?name:''}}</div>
-	</mat-toolbar-row>
-	<mat-toolbar-row class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.gt-sm>
-		<button mat-icon-button (click)="toggleLeftDrawer()">
-			<mat-icon *ngIf="!isLeftBarOpen">menu</mat-icon>
-			<mat-icon *ngIf="isLeftBarOpen">close</mat-icon>
-		</button>
+	</mat-toolbar-row> -->
+
+	<mat-toolbar-row class="narrow-navbar" fxHide.gt-sm>
+		<div fxLayout="row" fxFlex="30">
+			<div class="header-logo">
+				<a href="index.aspx"><img src="https://deepway.io/assets/images/logo.png" alt="logo.deepway" style="width:125px"></a>
+			 </div>
+		</div>
+		<div fxLayout="row" fxFlex="20"></div>
+		<div fxLayout="row" fxFlex="50" fxLayoutAlign="end">
+			<button mat-icon-button>
+				<mat-icon>login</mat-icon> Login
+			</button>
+			<button mat-icon-button (click)="toggleLeftDrawer()">
+				<mat-icon *ngIf="!isLeftBarOpen">menu</mat-icon>
+				<mat-icon *ngIf="isLeftBarOpen">close</mat-icon>
+			</button>
+		</div>
 	</mat-toolbar-row>
 </mat-toolbar>
 
 <div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/')">
-		Home
-	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		About Us
-	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		Explore
-	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		FAQ
-	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		Contact
-	</button>
-	<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
-		Download
-	</button>
-	<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
-		{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
-	</button>
+	<div class="social" fxLayout="row">
+			<ul>
+			   <li><a href="https://www.facebook.com/deepway-112254153865584" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+			   <li><a href="https://twitter.com/deepwayin" target="_blank"><i class="fa fa-twitter"></i></a></li>
+			   <li><a href="https://www.youtube.com/channel/UCMrdibmQe_aUHm6kdRvX8NQ/" target="_blank"><i class="fa fa-youtube"></i></a></li>
+			   <li><a href="https://www.linkedin.com/company/deepwayin/?viewAsMember=true" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+			</ul>
+	</div>
+	<div fxLayout="column" fxLayoutGap="16px">
+		<button mat-button class="mobPageLink" (click)="navigateTo('/')">
+			Home
+		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+			About Us
+		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+			Explore
+		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+			FAQ
+		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+			Contact
+		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/static-page/about-us')">
+			Download
+		</button>
+		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
+			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+		</button>
+	</div>
+	<div class="offcanvas_footer">
+		<span>
+		<a href="https://t.me/deepway_global" target="_blank">
+		<i class="fa fa-telegram "></i> Join Telegram</a></span>
+		<br>
+		<br>
+		<span><a href="mailto:info@deepway.io"><i class="fa fa-envelope-o"></i> info@deepway.io</a></span>
+	</div>
 </div>
