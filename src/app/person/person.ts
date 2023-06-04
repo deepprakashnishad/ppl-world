@@ -18,6 +18,7 @@ export class Person{
 	amtWithdrawable: number;
 	totalAmountWithdrawnTillDate: number;
 	totalAmountCollected: number;
+	amountCollectedForNextLevel: number;
 	directDownlines: any[];
 	teamSize: number;
 	currOrbit: number;
@@ -26,6 +27,7 @@ export class Person{
 	aadhar_front: string;
 	aadhar_back: string;
 	pan: string;
+	lwdlc: any;
 
 	constructor(){
 		this.email = "";
@@ -51,17 +53,19 @@ export class Person{
     person.referrer = data['p'];
     person.uplines = data['ulc'];
     person.paidAmount = data['pamt'];
-    person.amtWithdrawable = data[''];
-    person.totalAmountWithdrawnTillDate = data[''];
-    person.totalAmountCollected = data[''];
-    person.teamSize = data[''];
-    person.directDownlines = data[''];
-    person.currOrbit = data[''];
-    person.projectsInvestedIn = data[''];
-    person.picture = data[''];
-    person.aadhar_front = data[''];
-    person.aadhar_back = data[''];
-    person.pan = data[''];
+    person.amtWithdrawable = data['aw'];
+    person.totalAmountWithdrawnTillDate = data['taw'];
+    person.totalAmountCollected = data['tac'];
+    person.teamSize = data['ts'];
+    person.directDownlines = data['ddl'];
+    person.currOrbit = data['curr_orbit'];
+    // person.projectsInvestedIn = data[''];
+    person.picture = data['pic'];
+    person.aadhar_front = data['adh_f'];
+    person.aadhar_back = data['adh_b'];
+    person.pan = data['pan'];
+    person.amountCollectedForNextLevel = data['acnl'];
+    person.lwdlc = data['lwdlc'];
     return person;
   }
 

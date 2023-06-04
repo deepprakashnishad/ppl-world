@@ -14,11 +14,13 @@ import { StorageService } from '../storage.service';
 	animations: [
 		trigger('openClose', [
 			state('open', style({
-        opacity: 1,
+				display: "flex",
+				opacity: 1,
         width:"100%"
 			})),
 			state('closed', style({
-        opacity: 0,
+				display: "none",
+				opacity: 0,
         width: "0%"
 			})),
 			transition('open => closed', [

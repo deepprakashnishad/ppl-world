@@ -1,29 +1,32 @@
 <div class="container">
-	<h1>About Us</h1>
-	<div fxLayout="row">
-		<div fxFlex>
-			<h2>Introduction</h2>
-			<p class="top-section">GoodAct provides fundraising platform with the intelligence, technology and human expertise. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. There are no central authority of this program, this concept is created by an group of programars and developers situated arround the world, you can also join our technical community and donate your skills. GoodAct platform is created for humanity, social causes and helping purpose not for earning.</p>
-			<div fxLayout="column" fxLayoutGap="24px">
-				<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
-					<div style="padding-top: 24px"><mat-icon>check_box</mat-icon></div>
-					<h3>Discover how to plan, create and manage your crowdfunding campaign</h3>
-				</div>
-				<div fxLayout fxLayoutGap="12px">
-					<div style="padding-top: 24px"><mat-icon>check_box</mat-icon></div>
-					<h3>Enroll into GoodAct 10X community, it will help you to boost your fundraising</h3>
+	<div class="about-us-container">
+		<h1>About Us</h1>
+		<div fxLayout="row" fxLayout.lt-md="column">
+			<div fxFlex fxFlexOrder.lt-md="2">
+				<h2>Introduction</h2>
+				<p class="top-section">GoodAct provides fundraising platform with the intelligence, technology and human expertise. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. There are no central authority of this program, this concept is created by an group of programars and developers situated arround the world, you can also join our technical community and donate your skills. GoodAct platform is created for humanity, social causes and helping purpose not for earning.</p>
+				<div fxLayout="column" fxLayoutGap="24px">
+					<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
+						<div style="padding-top: 12px"><mat-icon>check_box</mat-icon></div>
+						<h3>Discover how to plan, create and manage your crowdfunding campaign</h3>
+					</div>
+					<div fxLayout fxLayoutGap="12px">
+						<div style="padding-top: 12px"><mat-icon>check_box</mat-icon></div>
+						<h3>Enroll into GoodAct 10X community, it will help you to boost your fundraising</h3>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div fxFlex>
-			<img src="/assets/images/about-us.jpg"/>
+			<div fxFlex fxFlexOrder.lt-md="1">
+				<img class="title-img" src="/assets/images/about-us.jpg"/>
+			</div>
 		</div>
 	</div>
-	<div class="second-container">
+
+	<div class="second-container grey-container">
 		<div class="row">
 			<div fxFlex fxLayout="column" fxLayoutGap="24px">
 				<header>Next Generation of Crowdfunding</header>
-				<div fxLayout fxLayoutAlign="space-around center">
+				<div fxLayout fxLayoutAlign="space-around center" fxLayout.lt-md="column" fxLayoutGap.lt-md="4px">
 					<div [ngClass]="selectedText == 'mission' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='mission'">Our Mission</div>
 					<div [ngClass]="selectedText == 'vision' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='vision'">Our Vision</div>
 					<div [ngClass]="selectedText == 'history' ? 'selected-call-to-action' : 'unselected-call-to-action'" (click)="selectedText='history'">Our History</div>
@@ -32,7 +35,6 @@
 					<button mat-raised-button color="primary">Our History</button> -->
 				</div>
 				<div fxLayout fxLayoutGap="8px">
-					
 					<div class="mlist">
 						<ul>
 							<li>100% fund belongs to you</li>
@@ -42,7 +44,7 @@
 							<li>Fundraiser to fundraiser community support</li>
 						</ul>
 					</div>
-					<div><img src="/assets/images/next-big-thing-thumb.png"/></div>
+					<div fxHide.lt-md><img src="/assets/images/next-big-thing-thumb.png"/></div>
 				</div>
 			</div>
 			<div fxFlex>
@@ -70,8 +72,9 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="third-container" fxLayout="column" fxLayoutAlign="center center">
+	</div>	
+	
+	<div class="second-container" fxLayout="column" fxLayoutAlign="center center">
 		<h1>Experience Freedom</h1>
 		<div class="desc">
 			<p>There's no easier way to share your story and attract support. Raise funds and grow your community with a crowdfunding campaign. Share with Family & Friends as our built-in connections to Facebook, Twitter & Email make sharing a breeze.</p>

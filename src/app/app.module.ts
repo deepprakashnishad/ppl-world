@@ -68,6 +68,7 @@ const notifierDefaultOptions: NotifierOptions = {
     AppComponent,
     HomeComponent,
     NavigationComponent,
+    ProfileComponent,
     AboutUsComponent
    ],
   imports: [

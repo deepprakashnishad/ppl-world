@@ -1,15 +1,43 @@
 <div class="container">
-	<div fxLayout>
-		<div fxFlex="33" fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="start center">
+	<div fxLayout="row" fxLayout.lt-md="column">
+		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="start start">
 			<img src="/assets/images/profile/profile.png" />
-			<div class="person-detail" fxLayout="column" fxLayoutAlign="center center">
-				<h3 fxFlexAlign="center">{{personDetail.name}}</h3>
-				<h3 fxFlexAlign="center">{{personDetail.mobile}}</h3>
-				<h3 fxFlexAlign="center">{{personDetail.email}}</h3>
-			</div>
+			<div fxLayout="column" fxLayoutGap="2px" >
+				<div class="sub-title" fxFlexAlign="center">{{person.name}}</div>
+				<div class="sub-title" fxFlexAlign="center" fxLayout fxLayout="center center">
+					{{person.mobile}} <span *ngIf="person.isMobileVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span>
+				</div>
+				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>	
+			</div>	
 		</div>
-		<div fxFlex="67">
-			
+		<div fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
+			<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+				<div class="title">Team Size: {{person.teamSize}}</div>
+				<div class="title">Direct Downlines: {{person.directDownlines?.length}}</div>
+				<div class="title">Referred By: {{person.referrer}}</div>
+				<div class="title">Current Orbit: {{person.currOrbit}}</div>
+			</div>
+			<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+				<div class="title">Total Collection: {{person.totalAmountCollected}}</div>
+				<div class="title">Amount Withdrawable: {{person.amtWithdrawable}}</div>
+				<div class="title">Amount Withdrawn: {{person.totalAmountWithdrawnTillDate}}</div>
+				<div class="title">Collection for next level: {{person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0}}</div>
+			</div>
+			<div fxLayout="column">
+				<div class="title" fxFlexAlign="center">Level wise downline count</div>
+				<table>
+					<tr>
+						<th></th>
+						<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">Orbit {{i+1}}</th>
+					</tr>
+					<tr *ngFor="let key of keys">
+						<td class="table-header">Level {{key}}</td>
+						<td *ngFor="let temp of [].constructor(maxChildOrbit); let j=index">
+							{{person.lwdlc[key][(j+1).toString()]?person.lwdlc[key][(j+1).toString()]:0}}
+						</td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

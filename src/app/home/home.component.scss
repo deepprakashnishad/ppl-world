@@ -3,10 +3,9 @@ a{
 }
 
 .first-container {
-  height: 80vh;
+  height:35vw;
   width: 100%;
   max-height: 600px;
-  margin-bottom: 50px;
 }
 
 .animition-type-selector {
@@ -19,10 +18,24 @@ a{
   padding-top: 1em;
 }
 
-.title {
+.second-container .title {
   //background: rgba(0,0,0,0.5);
   user-select: none;
+  font-size: 6vw;
+  margin: 2vw;
+  padding: 0px;
 }
+
+.sub-title{
+  font-size: 4vw; 
+  margin: 1.5vw;
+}
+
+.desc{
+  font-size: 2.5vw;
+  text-align: justify;
+}
+
 .button {
   background: #3f51b5;
   cursor: pointer;
@@ -60,7 +73,6 @@ a{
 }
 
 .second-container{
-  // background-image: url("/assets/images/bg-water.jpg");
   padding: 50px;
   color: white;
   margin-bottom: 50px;
@@ -94,7 +106,7 @@ mat-card.category{
 }
 
 .my-title{
-  font-size: 48px;
+  font-size: 6vw;
   font-weight: bold;
 }
 
@@ -128,6 +140,7 @@ mat-card.category{
 .small-title{
   font-size: 36px;
   font-weight: bold;
+  text-align: center;
 }
 
 .main-container{

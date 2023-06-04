@@ -2,11 +2,11 @@
     <div class="first-container">
       <app-carousel [slides]="slides" [animationType]="'fade'"></app-carousel>
     </div>
-    <div class="second-container" fxLayout fxLayoutAlign="space-between center">
+    <div class="second-container" fxLayout fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column">
         <div fxLayout="column" fxLayoutAlign="center center" fxFlex>
-            <h2>Cause you can donate for!</h2>
-            <h1 class="header">Top Categories</h1>
-            <p>GoodAct is built for donation based crowdfunding campaigns. We accept donations to support all kind of campaigns like Health, Education, Startup Idea, Farmer, Personal cause and more.</p>    
+            <div class="sub-title">Cause you can donate for!</div>
+            <div class="title">Top Categories</div>
+            <p class="desc">GoodAct is built for donation based crowdfunding campaigns. We accept donations to support all kind of campaigns like Health, Education, Startup Idea, Farmer, Personal cause and more.</p>    
         </div>
         <div fxFlex>
             <div fxLayout="column">
@@ -43,19 +43,19 @@
         </div>
     </div>
     <div class="third-container" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="36px">
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center">
             <div class="my-title">Ready to Raise Funds for Ideas?</div>
             <div class="call-to-action-dark">Make It Happen</div>
         </div>
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
             <div class="my-title">Want to fulfill your dreams?</div>
             <div class="call-to-action-dark">Join Us</div>
         </div>
-        <div class="full-width" fxLayout fxLayoutAlign="space-between center">
+        <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
             <div class="my-title">Want to help others?</div>
             <div class="call-to-action-dark">Donate</div>
         </div>
-        <div class="small-title">Trusted by more that 12000 fundraisers & counting more</div>
+        <div class="small-title">Trusted by more than 12000 fundraisers & counting more</div>
     </div>
     <div class="fourth-container">
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">

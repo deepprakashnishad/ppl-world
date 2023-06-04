@@ -7,9 +7,9 @@
       [@slideAnimation]="animationType"
     />
     <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType">
-      <h5 class="small-text">{{slide.headline}}</h5>
-      <h3 class="big-text">{{slide.text}}</h3>
-      <button mat-raised-button color="primary">{{slide.callToActionText}}</button>
+      <div class="small-text">{{slide.headline}}</div>
+      <div class="big-text">{{slide.text}}</div>
+      <button mat-raised-button color="primary" class="call-to-action-button">{{slide.callToActionText}}</button>
     </div>
   </ng-container>
 
