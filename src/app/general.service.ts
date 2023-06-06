@@ -1,36 +1,26 @@
 import { Injectable, Inject } from '@angular/core';
-import { environment } from './../../environments/environment';
+import { environment } from './../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
-import { Person } from  './../person/person';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfileService {
+export class GeneralService {
 
-  private personUrl:string;
+  private genericUrl:string;
 
-  constructor(
-    private http: HttpClient, 
-    private notifier: NotifierService
-  ){
-    this.personUrl = environment.baseurl+'/Person';  
+  constructor(private http: HttpClient, private notifier: NotifierService){
+    this.genericUrl = environment.baseurl+'/generic';  
   }
   
 
-  getPersonDetail(): Observable<Person> {
-    return this.http.get<Person>(this.personUrl+"/getUserDetail")
+  saveContactDetails(data: any): Observable<any> {
+    return this.http.post<any>(this.genericUrl+"/submit-contact-details", data)
       .pipe(
-        catchError(this.handleError('Get Token', null)));
-  }
-
-  approveNewJoinee(newJoineeId, amount): Observable<any>{
-    return this.http.get<Person>(this.personUrl+"/approveNewJoinee")
-      .pipe(
-        catchError(this.handleError('Approve New Joinee', null))); 
+        catchError(this.handleError('Save Contact Details', null)));
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

@@ -51,6 +51,15 @@ export class PersonService {
   			catchError(this.handleError('Get Token', null)));
   }
 
+  fetchReferrer(strQuery: any, detail="min"): Observable<any> {
+    var encodedQ = encodeURIComponent(strQuery);
+    var mUrl = `${this.PersonUrl}/getReferrer?strQuery=${encodedQ}&detail=${detail}`;  
+    
+    return this.http.get<any>(mUrl)
+      .pipe(
+        catchError(this.handleError('Get referrer', null)));
+  }
+
   add(person): Observable<Person> {
     return this.http.post<Person>(this.PersonUrl, person)
     .pipe(

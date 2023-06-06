@@ -47,7 +47,6 @@ export class PersonSearchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.personType);
   	this.personControl.valueChanges.subscribe(val => {
       if(typeof val === "string" && val.length > 3){
         this.searchStr = val;

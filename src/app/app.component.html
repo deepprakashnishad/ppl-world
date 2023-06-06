@@ -6,7 +6,7 @@
 		<app-progress-spinner></app-progress-spinner>
 	</header>
 	<!-- Main -->
-	<main class="main-container" fxLayout="column" fxLayoutAlign="start">
+	<main class="main-container" fxFlex="grow" fxLayout="column" fxLayoutAlign="start">
 		<div  id="moveTop"></div>
 		<app-navigation *ngIf="isShowNavigation"></app-navigation>
 		<!--<app-navigation *ngIf="isShowNavigation"></app-navigation>-->
@@ -20,6 +20,7 @@
 		<!-- <div class="content-container-without-sidenav" *ngIf="!isSidenav" fxFlex="auto">
 		<router-outlet #m="outlet"></router-outlet>
 	</div> -->
+		<!-- Footer -->
 		<mat-toolbar class="footer" fxLayout="column" fxLayoutAlign="space-around center">
 			<div class="footer-text">Good Act is an open fundraising platform for all fundraiser, Raise fund for any cause Worldwide.</div>
 			<div fxLayout fxLayoutAlign="space-between center">
@@ -27,8 +28,8 @@
 				<button mat-icon-button><i class="fab fa-twitter"></i></button>
 				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
 			</div>
-		</mat-toolbar>
+		</mat-toolbar>	
 	</main>
-	<!-- Footer -->
+
 </div>
 

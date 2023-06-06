@@ -85,10 +85,6 @@ strong{
 	cursor: pointer;
 }
 
-mat-form-field{
-	width: 100%;
-}
-
 .dropzone { 
     display: flex;
     align-items: center;
@@ -118,6 +114,14 @@ mat-form-field{
 
   .full-width{
     width: 100%;
+  }
+
+  .half-wide{
+    width: 50%;
+  }
+
+  .quarter-wide{
+    width: 25%;
   }
 
   .responsive-img {

@@ -6,6 +6,7 @@ import {FormControl} from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { ProfileService } from './profile.service';
 import { Person } from  './../person/person';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +18,15 @@ export class ProfileComponent implements OnInit {
   person: Person = new Person();
   keys: Array<string> = [];
   maxChildOrbit: number = 0;
-  constructor(private profileService: ProfileService){
+
+  selectedPersonForApproval: any;
+  joiningCharges: number = environment.joiningCharges;
+
+
+  constructor(
+    private profileService: ProfileService,
+    private notifier: NotifierService
+  ){
 
   }
 
@@ -33,9 +42,24 @@ export class ProfileComponent implements OnInit {
           this.maxChildOrbit = clKeys.length-1;
         }
       }
-
-
     });
   }
 
+  newPersonSelected($event){
+    this.selectedPersonForApproval = $event;
+  }
+
+  approve(){
+    if(this.person.amtWithdrawable < this.joiningCharges){
+      this.notifier.notify("error", `Insufficient balance. ${this.joiningCharges - this.person.amtWithdrawable} more is required.`);
+    }else if(this.selectedPersonForApproval !== "APPROVAL_PENDING"){
+      this.notifier.notify("error", `${this.selectedPersonForApproval.n} is already joined`);
+    }else{
+      this.profileService.approveNewJoinee(
+        this.selectedPersonForApproval.id, joiningCharges
+      ).subscribe(result=>{
+        console.log(result);
+      });
+    }
+  }
 }

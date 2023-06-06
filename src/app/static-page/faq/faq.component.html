@@ -1,0 +1,354 @@
+<div class="container">
+	<div fxLayout="row wrap" fxLayoutAlign="space-between center">
+		<mat-card class="category zoom" [ngClass]="selectedCategory=='fundraiser'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='fundraiser'">
+            <mat-icon>diversity_2</mat-icon>
+            <p class="icon-title">Fundraiser's</p>
+        </mat-card>
+        <mat-card class="category zoom" [ngClass]="selectedCategory=='campaign'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='campaign'">
+            <mat-icon>campaign</mat-icon>
+            <p class="icon-title">Campaigns</p>
+        </mat-card>
+        <mat-card class="category zoom" [ngClass]="selectedCategory=='payments'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='payments'">
+            <mat-icon>payments</mat-icon>
+            <p class="icon-title">Payments</p>
+        </mat-card>   
+        <mat-card class="category zoom" [ngClass]="selectedCategory=='ga10comm'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='ga10comm'">
+            <mat-icon>local_library</mat-icon>
+            <p class="icon-title">10X Community</p>
+        </mat-card>
+        <mat-card class="category zoom" [ngClass]="selectedCategory=='legal'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='legal'">
+            <mat-icon>policy</mat-icon>
+            <p class="icon-title">Legal</p>
+        </mat-card>
+        <mat-card class="category zoom" [ngClass]="selectedCategory=='account'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='account'">
+            <mat-icon>account_balance</mat-icon>
+            <p class="icon-title">Account</p>
+        </mat-card>     
+	</div>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='fundraiser'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How do I raise fund?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    To start fundraising, follow these three steps:
+	    <ol>
+	    	<li>Signup on Goodact platform.</li>
+	    	<li>Activate your account.</li>
+	    	<li>Create campaign by filling all campaign details.</li>
+	    	<li>Save campaign.</li>
+	    	<li>Copy and share campaign link using share icon.</li>
+	    </ol>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Can I raise funds for a friend or NGO as well?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Yes, you can raise funds for anyone who is need and is in crucial or important stage of life or for NGO as well who are dedicated for doing some good work in the society.
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How to turn visitors into contributors?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Write brief &amp; real story about your campaign &amp; submit campaign related pictures, so that visitors can contribute after watchread your story.
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How can I find my campaign?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    <ol>
+	    	<li>Go to Profile</li>
+	    	<li>Select "My Campaign" option</li>
+	    	<li>Your campaign will be listed</li>
+	    </ol>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How can I find my campaign?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    <ol>
+	    	<li>Go to Profile</li>
+	    	<li>Select "My Campaign" option</li>
+	    	<li>Your campaign will be listed</li>
+	    </ol>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is my campaign allowed on goodact platform?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Yes, after filling and submitting campaign details, it will be verified and approved by GoodAct community. After approval campaign will be visible on GoodAct website and will be able to recieve funds.
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How to soft launch your campaign?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Start sharing campaign link with social media eg. Facebook, Instagram, Email, Whatsapp, Messaging etc.
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Does the raised amount reach individual directly?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Yes, fundraiser can recieve all contribution in his bank account directly or GoodAct platform account and later from there he/she can transfer fund to their bank account as per need.
+	  </mat-expansion-panel>
+	</mat-accordian>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='campaign'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        What is Campaign Landing Page?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    Landing page is an online page & method for express your problem in front of known or unknown donors!.
+	  	</mat-expansion-panel>
+	  	
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is there any charges to create this page on GoodAct?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	No! GoodAct doesn't charge any amount to create campaign page, it's 100% free.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Do I need add bank details to receive contribution?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes, you will need mention account details in which you wish funds to be transferred.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Can I raise fund from Worldwide?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes, you can share your campaign link around the world  and raise funds. In this case transfer charges will be deducted as per country norms.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How can I boost my campaign & fundraising?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	If your contribution and fundraising not goes well as you thought, you can enrol in GoodAct 10X Community.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        What Goal values should I fill in Campaign form?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+			The values are not fixed and there is no limits on goal amount, but you should keep real required value.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How to explain my story in brief ?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Write real story in campaign discription box.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+        	What kind of image file type support on campaign form?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Upload only PNG or JPEG Image with max size of 5 MB.
+	  	</mat-expansion-panel>
+	</mat-accordian>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='payments'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How do I receive contribution?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	GoodAct platform provide you campaign landing page where you can recieve fund directly in your bank account via UPI, NEFT, IMPS or GoodAct account and later transfer to your account.
+
+	    	In case you are not a member of 10X community then you can recieve contribution in GoodAct account and on withdrawl community deducts 2% for maintenance of platform and system.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is it safe to create GoodAct account?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes! GoodAct community has designed this platform, where all assets belongs to you as personal.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How GoodAct account is secure?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes, GoodAct account is secure as it follows latest security protocols and all sensitive data is encrypted during transfer.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How can i withdraw or transfer my funds?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	You can raise a withdrawl request and your funds will be transferred with 48 working hours to your account.
+	  	</mat-expansion-panel>
+	</mat-accordian>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='ga10comm'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        What is GoodAct 10X Community?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	GoodAct has created another platform, called GoodAct 10X community, it will boost any campaign without dependency of outside donors.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+        	How does GoodAct 10X community helps me to boost fundraising?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Average donation percentage is 2-35 percent, depends upon countries, 10X community was created for P2P donation system, where one fundraiser financialy support to another fundraiser.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How to enrol in 10X community?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	You can enrol in goodact 10X community by donating a small amount of 1000 INR & this contribution will auto transfer to existing 9 up-line fundraiser as per pre-program algorithm & you will receive the same percentage of contribution from 1st to 9th Down-line fundraiser invited by you.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        What should I do after enrol in 10X community?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Invite fundraiser like you by your referral link, who really want to boost their fundraising, once they donate the same ether, you will get contribution as per algorithm program
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Where can I find all details about goodact 10X Community Program?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	You can Download the PDF file from download button on website home page at bottom of the page!.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is there any limits in this community for raising funds?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	No! GoodAct 10X community is created for endless fundraisng, without any limits.
+	  	</mat-expansion-panel>
+	</mat-accordian>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='legal'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is Fundraising/Crowdfunding Legal?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes! Donation/Crowdfunding/Fundraising are already Legal in each Countries, from the decades of years are using this method for social or charity causes, now use this methos to raise funds for your personal causes.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is there any TAX liabilities on raised fund?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes! in each country the rules and regulations are exist & each and every fundraised should pay the TAX as per his/her country where are you belongs.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+        	Is GoodAct.io Legal platform?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Yes! Goodact is not an company nor a central authority, its an open community of fundraisers & 12 programmers, situated around the world, and open for all, you can also donate your skills to become mamber of programmer community, you may call as Self Help Group, it is created for work without company, without investment, without product.
+	  	</mat-expansion-panel>
+	</mat-accordian>
+
+	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='account'">
+		<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How to Create GoodAct Account/Wallet?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	Signup and fill all account details. Your account wallet is created.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Is any Email or SMS verify the account?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	You may verify your email and SMS that help us to keep your account secure and enable password recovery.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Does GoodAct store any of my personal info?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	We have a strict privacy policy and we DO NOT share or sell any personal information. We share very limited information regarding teamsize with your uplines. This information is limited to name and id only.
+	  	</mat-expansion-panel>
+
+	  	<mat-expansion-panel >
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        How can i restore wallet in case of forgotten password?
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    	You can use forgot password link to recover your password.
+	  	</mat-expansion-panel>
+	</mat-accordian>
+</div>

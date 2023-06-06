@@ -1,0 +1,35 @@
+<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout fxLayoutAlign="center start">
+	<mat-card fxFlex.gt-md="50" fxFlex.gt-sm="80" >
+	  <form fxLayout="column" [formGroup]="cardForm">
+	    <p class="h4" fxFlexAlign.gt-xs="center">Write To Us</p>
+	    <mat-form-field appearance="outline">
+	      <input matInput placeholder="Name" type="text" id="inputName" formControlName="inputName" class="form-control">
+	      <span matPrefix>
+	      	<i class="fa fa-user prefix grey-text"></i>&nbsp;&nbsp;
+	      </span>
+	    </mat-form-field>
+	    
+	    <mat-form-field appearance="outline">
+	      <input matInput placeholder="Email" type="text" id="inputEmail" formControlName="inputEmail" class="form-control">
+	      <span matPrefix>
+	      	<i class="fa fa-envelope prefix grey-text"></i>&nbsp;&nbsp;
+	      </span>
+	    </mat-form-field>
+
+	    <mat-form-field appearance="outline">
+	      <input matInput placeholder="Mobile" type="text" id="inputMobile" formControlName="inputMobile" class="form-control">
+	      <span matPrefix>
+	      	<i class="fa fa-mobile prefix grey-text"></i>&nbsp;&nbsp;
+	      </span>
+	    </mat-form-field>
+
+	    <mat-form-field appearance="outline">
+	      <textarea matInput placeholder="Description" type="text" id="inputDescription" formControlName="inputDescription" class="form-control"></textarea>
+	    </mat-form-field>
+
+	    <div class="text-center py-4 mt-3">
+	      <button class="full-width" mat-raised-button type="submit"  [disabled]="cardForm.invalid" color="primary" (click)="submit();">Submit</button>
+	    </div>
+	  </form>
+	</mat-card>
+</div>

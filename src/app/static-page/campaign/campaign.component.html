@@ -1,0 +1,31 @@
+<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout="column" fxLayoutAlign="center start">
+	<mat-form-field appearance="outline" fxFlexAlign="center">
+		<mat-label>---SELECT A CATEGORY---</mat-label>
+	    <mat-select [formControl]="catFormCntl" [(ngModel)]="selectedCategory" (selectionChange)="getCampaigns()">
+		    <mat-option *ngFor="let cat of categories" [value]="cat.key">{{cat.value}}</mat-option>
+	  	</mat-select>
+    </mat-form-field>
+	
+	<div class="card-container full-width" fxLayout="column" fxLayoutAlign="center center">
+		<div *ngIf="campaigns.length < 1" fxLayout="column" fxLayoutAlign="center center">
+			<h3>No campaigns founds in this category.</h3>
+			<button mat-raised-button color="primary" (click)="navigateToCreateCampaign()">Create New Campaign</button>
+		</div>
+		<div *ngIf="campaigns.length > 0" fxLayout="row wrap">
+			<mat-card *ngFor="let campaign of campaigns" fxLayout="column" fxLayoutAlign="center center">
+				<mat-card-header>{{campaign.title}}</mat-card-header>
+				<img class="card-img" mat-card-image src="./assets/images/logo.png"/>
+				<mat-card-content fxFlexAlign="start">
+					<p>
+						{{campaign.desc}}
+					</p>
+				</mat-card-content>
+				<mat-card-actions fxLayout fxLayoutAlign="space-between center">
+					<button mat-raised-button color="primary" fxFlexAlign="start" *ngIf="campaign.owner===userId" (click)="navigateToCreateCampaign(campaign.id)">EDIT</button>
+					<button mat-raised-button color="primary" fxFlexAlign="start" (click)="navigateToCreateCampaign(campaign.id)">VIEW</button>
+					<button mat-raised-button color="primary" fxFlexAlign="end">DONATE</button>
+				</mat-card-actions>
+			</mat-card>
+		</div>
+	</div>
+</div>

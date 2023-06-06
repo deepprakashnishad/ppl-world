@@ -1,12 +1,8 @@
 export const environment = {
   appName: "Trendy Fashion",
   production: true,
-  minOrderFreeDelivery: 500,
-  deliveryCharges: 100,
-  // baseurl: "https://giriraj-store.web.app/api",
+  joiningCharges: 1100,
   baseurl: "https://giriraj-backend.onrender.com",
-  // baseurl: "https://fir-erp-944d6.web.app/api",
-  // baseurl: "http://localhost:5000",
   firebase: {
     apiKey: "AIzaSyAhZuYfYus07UoRic1O7JAtT9FcTWLTpzY",
     authDomain: "giriraj-store.firebaseapp.com",

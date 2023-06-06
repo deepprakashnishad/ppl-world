@@ -22,6 +22,10 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FaqComponent } from './static-page/faq/faq.component';
+import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
+import { CampaignComponent } from './static-page/campaign/campaign.component';
+import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -69,7 +73,11 @@ const notifierDefaultOptions: NotifierOptions = {
     HomeComponent,
     NavigationComponent,
     ProfileComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    FaqComponent,
+    ContactUsComponent,
+    CampaignComponent,
+    CreateCampaignComponent
    ],
   imports: [
     BrowserModule,

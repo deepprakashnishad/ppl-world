@@ -11,33 +11,63 @@
 			</div>	
 		</div>
 		<div fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
-			<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-				<div class="title">Team Size: {{person.teamSize}}</div>
-				<div class="title">Direct Downlines: {{person.directDownlines?.length}}</div>
-				<div class="title">Referred By: {{person.referrer}}</div>
-				<div class="title">Current Orbit: {{person.currOrbit}}</div>
-			</div>
-			<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-				<div class="title">Total Collection: {{person.totalAmountCollected}}</div>
-				<div class="title">Amount Withdrawable: {{person.amtWithdrawable}}</div>
-				<div class="title">Amount Withdrawn: {{person.totalAmountWithdrawnTillDate}}</div>
-				<div class="title">Collection for next level: {{person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0}}</div>
-			</div>
-			<div fxLayout="column">
-				<div class="title" fxFlexAlign="center">Level wise downline count</div>
-				<table>
-					<tr>
-						<th></th>
-						<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">Orbit {{i+1}}</th>
-					</tr>
-					<tr *ngFor="let key of keys">
-						<td class="table-header">Level {{key}}</td>
-						<td *ngFor="let temp of [].constructor(maxChildOrbit); let j=index">
-							{{person.lwdlc[key][(j+1).toString()]?person.lwdlc[key][(j+1).toString()]:0}}
-						</td>
-					</tr>
-				</table>
-			</div>
+			<mat-accordian>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+				      <mat-panel-title>
+				        Personal 10X Community Details
+				      </mat-panel-title>
+				    </mat-expansion-panel-header>
+				    <div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+						<div class="">Team Size: {{person.teamSize}}</div>
+						<div class="">Direct Downlines: {{person.directDownlines?.length}}</div>
+						<div class="">Referred By: {{person.referrer}}</div>
+						<div class="">Current Orbit: {{person.currOrbit}}</div>
+					</div>
+					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+						<div class="">Total Collection: {{person.totalAmountCollected}}</div>
+						<div class="">Amount Withdrawable: {{person.amtWithdrawable}}</div>
+						<div class="">Amount Withdrawn: {{person.totalAmountWithdrawnTillDate}}</div>
+						<div class="">Collection for next level: {{person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0}}</div>
+					</div>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+				      <mat-panel-title>
+				        Levelwise &amp; Orbitwise Downlines
+				      </mat-panel-title>
+				    </mat-expansion-panel-header>
+				    <table>
+						<tr>
+							<th></th>
+							<th>Total</th>
+							<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">Orbit {{i+1}}</th>
+						</tr>
+						<tr *ngFor="let key of keys">
+							<td class="table-header">Level {{key}}</td>
+							<td>{{person.lwdlc[key]['count']}}</td>
+							<td *ngFor="let temp of [].constructor(maxChildOrbit); let j=index">
+								{{person.lwdlc[key][(j+1).toString()]?person.lwdlc[key][(j+1).toString()]:0}}
+							</td>
+						</tr>
+					</table>
+				</mat-expansion-panel>
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>Approve New Joinee</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div fxLayout="column" fxLayoutGap="8px">
+						<app-person-exact-match (personSelected)="newPersonSelected($event)"></app-person-exact-match>
+						<button 
+							mat-raised-button 
+							color="primary"
+							[disabled]="!selectedPersonForApproval || selectedPersonForApproval.s !== 'APPROVAL_PENDING' ">
+							Donate {{joiningCharges}} pts &amp; Approve
+						</button>
+					</div>
+				</mat-expansion-panel>
+			</mat-accordian>
 		</div>
 	</div>
 </div>

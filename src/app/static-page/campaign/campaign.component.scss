@@ -1,0 +1,35 @@
+.webContainer{
+	padding: 48px 48px;
+}
+
+.mContainer{
+	padding: 8px 48px;
+}
+
+mat-form-field{
+	max-width: 500px;
+	text-align: center;
+}
+
+mat-card{
+	max-width: 400px;
+	padding: 16px;
+}
+
+.card-img{
+	width: 250px;
+	height: auto;
+}
+
+mat-card-content {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    p{
+    	word-break: break-all;
+    	white-space: normal;
+    	text-align: left;
+    }
+}

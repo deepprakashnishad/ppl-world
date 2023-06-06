@@ -12,6 +12,10 @@ import { PersonComponent } from './person/person.component';
 import { UserReportComponent } from './admin/reports/user-report/user-report.component';
 import {AboutUsComponent} from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
+import { FaqComponent } from './static-page/faq/faq.component';
+import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
+import { CampaignComponent } from './static-page/campaign/campaign.component';
+import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 
 const routes: Routes = [
 	 {
@@ -31,17 +35,27 @@ const routes: Routes = [
 	},
 	{
 		path: 'explore', 
-		component: HomeComponent,
+		component: CampaignComponent,
 		data: { title: 'Explore', permissions: []}
 	},
 	{
+		path: 'campaigns/edit', 
+		component: CreateCampaignComponent,
+		data: { title: 'Create Component', permissions: []}
+	},
+	{
+		path: 'campaigns/edit/:id', 
+		component: CreateCampaignComponent,
+		data: { title: 'Create Component', permissions: []}
+	},
+	{
 		path: 'faq', 
-		component: HomeComponent,
+		component: FaqComponent,
 		data: { title: 'FAQ', permissions: []}
 	},
 	{
 		path: 'contact', 
-		component: HomeComponent,
+		component: ContactUsComponent,
 		data: { title: 'Contact-Us', permissions: []}
 	},
 	{

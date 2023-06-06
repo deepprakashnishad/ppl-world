@@ -1,0 +1,46 @@
+<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout="column" fxLayoutGap="8px">
+	<div fxLayout="row wrap" fxLayoutGap="8px" fxLayoutAlign="space-between center">
+		<mat-form-field appearance="outline" class="full-width">
+	      <input matInput placeholder="Title" type="text" id="inputTitle" class="form-control" [(ngModel)]="campaign.title" [readonly]="!enableEditMode">
+	      <span matPrefix>
+	      </span>
+	    </mat-form-field>
+
+	    <mat-form-field appearance="outline">
+	      <input matInput placeholder="Amount Required" type="number" id="inputAmtReqd" class="form-control" [(ngModel)]="campaign.areqd" [readonly]="!enableEditMode">
+	    </mat-form-field>
+
+	    <mat-form-field appearance="outline" fxFlexAlign="center">
+			<mat-label>---SELECT A CATEGORY---</mat-label>
+		    <mat-select [formControl]="catFormCntl" [(ngModel)]="campaign.cat" [disabled]="!enableEditMode">
+			    <mat-option *ngFor="let cat of categories" [value]="cat.key">{{cat.value}}</mat-option>
+		  	</mat-select>
+	    </mat-form-field>
+
+	    <mat-form-field appearance="outline">
+	      <mat-select [(ngModel)]="campaign.s" [disabled]="!enableEditMode">
+	      	<mat-option value="Draft">Draft</mat-option>
+	      	<mat-option value="Active">Active</mat-option>
+	      	<mat-option value="Paused">Paused</mat-option>
+	      	<mat-option value="Suspended">Suspended</mat-option>
+	      	<mat-option value="Blacklisted">Blacklisted</mat-option>
+	      </mat-select>
+	    </mat-form-field>
+
+	    <mat-form-field>
+	      <mat-label>Choose expiry date</mat-label>
+		  <input matInput [matDatepicker]="expiryPicker" [formControl]="expiryDateCntl" (dateInput)="expiryDateSelected($event)" [readonly]="!enableEditMode">
+		  <mat-hint>MM/DD/YYYY</mat-hint>
+		  <mat-datepicker-toggle matSuffix [for]="expiryPicker"></mat-datepicker-toggle>
+		  <mat-datepicker #expiryPicker></mat-datepicker>
+	    </mat-form-field>
+	</div>
+	<div class="full-width">
+		<mat-form-field class="full-width" appearance="outline">
+		    <mat-label>Description</mat-label>
+		    <textarea matInput placeholder="Ex. Detailed description of the campaign" maxlength="1000" [(ngModel)]="campaign.desc" [readonly]="!enableEditMode">{{campaign.description}}</textarea>
+		</mat-form-field>
+	</div>
+	<button fxFlexAlign="center" mat-raised-button (click)="saveCampaign()" color="primary" *ngIf="enableEditMode"
+	ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Submit</button>
+</div>

@@ -6,12 +6,9 @@ export const environment = {
   appName: "Trendy Fashion",
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
-  minOrderFreeDelivery: 500,
-  deliveryCharges: 100,
-  // baseurl: "https://giriraj-backend.onrender.com",
+  joiningCharges: 1100,
   baseurl: "http://localhost:4200/api",
-  // baseurl: "https://giriraj-store.herokuapp.com",
-  // baseurl: "https://merp-demo.herokuapp.com/",
+  
   firebase: {
     apiKey: "AIzaSyAhZuYfYus07UoRic1O7JAtT9FcTWLTpzY",
     authDomain: "giriraj-store.firebaseapp.com",

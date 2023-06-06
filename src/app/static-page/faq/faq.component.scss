@@ -1,0 +1,41 @@
+.container{
+	padding: 4vw 8vw;
+}
+
+mat-card.category{
+  border: 2.5px solid;
+  border-color: teal;
+  color: white;
+  text-align: center;
+  vertical-align: center;
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  padding-top: 30px;
+  cursor: pointer;
+}
+
+.selected-cat{
+	background-color: teal;
+}
+
+.unselected-cat{
+	background-color: #0080806e;	
+}
+
+.zoom{
+  transition: transform .2s;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+}
+
+mat-accordian{
+	margin-top: 4vw;
+}
+
+mat-expansion-panel-header:hover{
+	background-color: white;
+	color: teal;
+}
