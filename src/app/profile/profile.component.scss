@@ -2,7 +2,7 @@
   padding: 32px 64px;
 }
 
-img {
+img.profile-pic {
   border-radius: 60%;
 }
 
@@ -15,4 +15,12 @@ td{
 
 .table-header{
   font-weight: bold;
+}
+
+.rectangular-img{
+  border-radius: 5px;
+}
+
+.right-container{
+  padding: 8px;
 }

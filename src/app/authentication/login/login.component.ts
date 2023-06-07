@@ -175,7 +175,6 @@ export class LoginComponent implements OnInit{
 
   referrerSelected(event){
     this.referrer = event;
-    console.log(this.referrer);
   }
 }
 

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from '../../authentication/authentication.service';
-import { OrderService } from '../../shoppin/order/order.service';
 import { Payment } from './../payment';
 import { PaymentService } from './../payment.service';
 
@@ -45,7 +44,6 @@ export class RazorpayButtonComponent {
   }
 
   constructor(
-    private orderService: OrderService,
     private notifier: NotifierService,
     private authenticationService: AuthenticationService,
     private paymentService: PaymentService,

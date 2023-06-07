@@ -1,8 +1,8 @@
 <mat-form-field class="full-width">
   <mat-label>Enter Mobile Number</mat-label>
-  <input matInput type="text" [(ngModel)]="mobileNumber">
+  <input matInput type="text" [(ngModel)]="mobileNumber"  (keydown.enter)="fetchPersonList()">
   <button matSuffix mat-icon-button aria-label="Clear" (click)="fetchPersonList()">
     <mat-icon>search</mat-icon>
   </button>
 </mat-form-field>
-<p *ngIf="person.n"> {{person.n}} | {{person.m}} | {{person.e}} | {{person.s}} | {{person.co}}<span *ngIf="person.p"> | Referred By: {{person.p}}</span></p>
+<p *ngIf="person.n"> {{person.n}} | {{person.m}} | {{person.e}} | {{person.s}} | Current Orbit: {{person.co}}<span *ngIf="person.p"> | Referred By: {{person.p}}</span></p>

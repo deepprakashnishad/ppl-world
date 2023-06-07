@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Payment } from './payment';
 
 
 @Injectable({
@@ -16,6 +17,13 @@ export class PaymentService {
   	private http: HttpClient,
   ) {
      this.paymentUrl = environment.baseurl+'/payment';
+  }
+
+  add(data): Observable<Payment>{
+    console.log(data);
+    return this.http.post<Payment>(this.paymentUrl, data)
+    .pipe(
+        catchError(this.handleError('Add payment', null)));
   }
 
   checkOrderPayment( order_id, payment_id, transaction_id, pg_order_id, channel): Observable<any> {

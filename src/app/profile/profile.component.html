@@ -1,16 +1,19 @@
 <div class="container">
 	<div fxLayout="row" fxLayout.lt-md="column">
 		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="start start">
-			<img src="/assets/images/profile/profile.png" />
+			<img class="profile-pic" src="/assets/images/profile/profile.png" />
 			<div fxLayout="column" fxLayoutGap="2px" >
 				<div class="sub-title" fxFlexAlign="center">{{person.name}}</div>
 				<div class="sub-title" fxFlexAlign="center" fxLayout fxLayout="center center">
 					{{person.mobile}} <span *ngIf="person.isMobileVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span>
 				</div>
-				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>	
+				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>
+				<div class="sub-title">Status: {{person.status}}</div>
+				<app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment>
+				<button mat-raised-button color="primary"></button>
 			</div>	
 		</div>
-		<div fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
+		<div class="right-container" fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
 			<mat-accordian>
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
@@ -21,7 +24,7 @@
 				    <div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
 						<div class="">Team Size: {{person.teamSize}}</div>
 						<div class="">Direct Downlines: {{person.directDownlines?.length}}</div>
-						<div class="">Referred By: {{person.referrer}}</div>
+						<div class="">Referred By: {{person.referrer?.n}}</div>
 						<div class="">Current Orbit: {{person.currOrbit}}</div>
 					</div>
 					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
@@ -29,6 +32,10 @@
 						<div class="">Amount Withdrawable: {{person.amtWithdrawable}}</div>
 						<div class="">Amount Withdrawn: {{person.totalAmountWithdrawnTillDate}}</div>
 						<div class="">Collection for next level: {{person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0}}</div>
+					</div>
+
+					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+						<div class="">Donation Quota: {{person.donationQuota}}</div>
 					</div>
 				</mat-expansion-panel>
 
@@ -53,6 +60,7 @@
 						</tr>
 					</table>
 				</mat-expansion-panel>
+
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
 						<mat-panel-title>Approve New Joinee</mat-panel-title>
@@ -62,9 +70,35 @@
 						<button 
 							mat-raised-button 
 							color="primary"
-							[disabled]="!selectedPersonForApproval || selectedPersonForApproval.s !== 'APPROVAL_PENDING' ">
+							[disabled]="!selectedPersonForApproval || selectedPersonForApproval.s !== 'APPROVAL_PENDING'"
+							(click)="approve()">
 							Donate {{joiningCharges}} pts &amp; Approve
 						</button>
+					</div>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>Update Aadhaar</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div fxLayout="row wrap" fxLayoutAlign="space-between center">
+						<div fxLayout="column">
+							<app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'adh_f')" [header]="'Aadhaar Front Image'" [newFilename]="'adh_f'"></app-uploader>
+							<img class="rectangular-img" *ngIf="person.aadhar_front?.downloadUrl" [src]="person.aadhar_front?.downloadUrl" height="150" width="300" alt="Aadhar Front"/>
+						</div>
+
+						<div fxLayout="column">
+							<app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'adh_b')" [header]="'Aadhaar Back Image'" [newFilename]="'adh_b'"></app-uploader>
+
+							<img class="rectangular-img" *ngIf="person.aadhar_back?.downloadUrl" [src]="person.aadhar_back?.downloadUrl" height="150" width="300"/>
+						</div>
+
+						<div fxLayout="column">
+							<app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'pan')" [header]="'Pan Card Image'" [newFilename]="'pan'"></app-uploader>
+
+							<img class="rectangular-img" *ngIf="person.pan?.downloadUrl" [src]="person.pan?.downloadUrl" height="150" width="300"/>
+						</div>
+
 					</div>
 				</mat-expansion-panel>
 			</mat-accordian>

@@ -20,6 +20,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
 import { NotifierModule } from 'angular-notifier';
 import { PersonModule } from '../person/person.module';
+import { PaymentModule } from '../payment/payment.module';
+import { PaymentComponent } from '../payment/payment.component';
 import { LazyImgDirective } from '../directives/lazy-img.directive';
 
 @NgModule({
@@ -46,6 +48,7 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     FlexLayoutModule,
     FileUploadModule,
     FormsModule,
+    PaymentModule,
     ReactiveFormsModule,
   ],
   exports:[
@@ -67,7 +70,8 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
   	SafeUrlPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
-    CarouselComponent
+    CarouselComponent,
+    PaymentComponent
   ],
   entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -28,9 +28,20 @@ export class ProfileService {
   }
 
   approveNewJoinee(newJoineeId, amount): Observable<any>{
-    return this.http.get<Person>(this.personUrl+"/approveNewJoinee")
+    return this.http.post<Person>(this.personUrl+"/approveNewJoinee", 
+      {"newJoineeId": newJoineeId, "amount": amount})
       .pipe(
         catchError(this.handleError('Approve New Joinee', null))); 
+  }
+
+  updateProfileImages(data, field): Observable<any>{
+    return this.http.post<any>(this.personUrl+"/updateProfileImages", 
+      {
+        "field": field, 
+        "data": data
+      })
+      .pipe(
+        catchError(this.handleError('Approve New Joinee', null)));  
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

@@ -18,11 +18,7 @@ export const environment = {
     appId: "1:76938672473:web:b6104cac7a86829024b448"
   },
   razorpay: {
-    keyId: "rzp_test_n79BXV5lUVYL1R"
-  },
-  paytm: {
-    merchantId: "PvIEXq67462511961659",
-    merchantName: "Everything Satvik"
+    keyId: "rzp_test_OhtTwkr00dbNU1"
   },
   recaptcha_site_key: "6LdbScYcAAAAAMy3OZigFtko17jK8DiQvEy7YzV4"
 };

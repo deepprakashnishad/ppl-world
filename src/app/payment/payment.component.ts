@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit } from '@angular/core';
+import { Component, NgZone, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
@@ -6,9 +6,6 @@ import { CheckoutService } from 'paytm-blink-checkout-angular';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from '../authentication/authentication.service';
-import { CartService } from '../shoppin/cart/cart.service';
-import { OrderConfirmationComponent } from '../shoppin/order/order-confirmation/order-confirmation.component';
-import { OrderService } from '../shoppin/order/order.service';
 import { Payment } from './payment';
 import { PaymentService } from './payment.service';
 
@@ -22,7 +19,8 @@ declare var Razorpay: any;
 export class PaymentComponent implements OnInit {
 
   readonly razorpay: string = "RAZORPAY";
-  readonly paytm: string = "PAYTM";
+  @Input() action_name: string;
+  @Input() order: any;
 
   modeOfPayment: string = "online";
   orderId: string;
@@ -57,15 +55,12 @@ export class PaymentComponent implements OnInit {
   }
 
   constructor(
-    private orderService: OrderService,
-    private cartService: CartService,
     private notifier: NotifierService,
     private authenticationService: AuthenticationService,
     private paymentService: PaymentService,
     private router: Router,
     private dialog: MatDialog,
-    private zone: NgZone,
-    private checkoutService: CheckoutService
+    private zone: NgZone
   ) { 
   }
 
@@ -76,70 +71,17 @@ export class PaymentComponent implements OnInit {
     if(this.orderId){
       this.notifier.notify("success", "Order is created. Please check in my orders");
       this.postSuccessProcess({ success: true, msg: "Order is already placed" });
-      // this.paymentService.retryPayment({
-      //   order_id: this.orderId,
-      //   payment_id: this.payment.id,
-      // }).subscribe(result=>{
-      //   this.postSuccessProcess();
-      // });
     }else{
-      this.orderService.add({
-        "modeOfPayment": this.modeOfPayment,
-        "paymentGateway": paymentGateway,
-        "fulfillmentType": sessionStorage.getItem("fulfillmentType"),
-        "fulfillmentAddress": JSON.parse(sessionStorage.getItem("selectedAddress"))
-      }).subscribe(result=>{
+      this.paymentService.add(this.order).subscribe(result=>{
         if (result['success']) {
-          // this.cartService.deleteLocalCart();
-          if (result['payment_details']) {
-            this.payment = Payment.fromJSON(result['payment_details']);
-          }
-          //COD
-          if (this.modeOfPayment === "cod") {
-            this.orderId = result['id'];
-            this.postSuccessProcess({success: true, msg: "Your order has been placed successfully"});
-          } else {
-            this.orderId = result['order']['id'];
-            //Razorpay
-            if (paymentGateway === this.razorpay) {
-              this.amount = result['amount'];
-              this.initiateRazorpayForm(result);
-            }
+          
+          this.payment = Payment.fromJSON(result);
 
-            //Paytm
-            else if (paymentGateway === this.paytm) {
-              console.log(result);
-              this.checkoutService.init(
-                //config
-                {
-                  data: {
-                    orderId: result['order']['id'],
-                    amount: result['order']['netPrice'],
-                    token: result['body']['txnToken'],
-                    tokenType: "TXN_TOKEN"
-                  },
-                  merchant: {
-                    mid: environment.paytm.merchantId,
-                    name: environment.paytm.merchantName,
-                    redirect: true
-                  },
-                  flow: "DEFAULT",
-                  handler: {
-                    notifyMerchant: this.notifyPaytmHandler
-                  }
-                },
-                //options
-                {
-                  env: 'STAGE', // optional, possible values : STAGE, PROD; default : PROD
-                  openInPopup: true // optional; default : true
-                }
-              );
-
-              this.subs = this.checkoutService
-                .checkoutJsInstance$
-                .subscribe(instance => console.log(instance));
-            }
-          }
+          // this.orderId = result['id'];
+          
+          this.amount = result['amount'];
+          this.initiateRazorpayForm(result);
+          
         } else {
           this.notifier.notify("error", "Failed to create order");
         }
@@ -159,13 +101,13 @@ export class PaymentComponent implements OnInit {
 
   initiateRazorpayForm(result) {
     var usermob = this.authenticationService.getTokenOrOtherStoredData("mobile").toString();
-    this.orderId = result['receipt'];
+    this.orderId = result['id'];
     this.razorPayOptions.key = environment.razorpay.keyId;
     this.razorPayOptions.amount = result['amount'];
     this.razorPayOptions.prefill.name = this.authenticationService.getTokenOrOtherStoredData("name");
     this.razorPayOptions.prefill.email = this.authenticationService.getTokenOrOtherStoredData("email");
     this.razorPayOptions.prefill.contact = usermob;
-    this.razorPayOptions.order_id = result['id'];
+    this.razorPayOptions.order_id = result['notes']['razorpay_order_id'];
     this.razorPayOptions.handler = this.razorPayCallbackHandler.bind(this);
     var rzp1 = new Razorpay(this.razorPayOptions);
     rzp1.on('payment.failed', function(response){
@@ -192,10 +134,8 @@ export class PaymentComponent implements OnInit {
     this.zone.run(() => {
       if (result['success']) {
         this.notifier.notify("success", result['msg']);
-        this.notifier.notify("success", "Track your order from My Orders")
-        this.cartService.deleteLocalCart();
         this.openConfirmationDialog();
-        this.router.navigate(['/order-list']);
+        this.router.navigate(['/profile']);
       } else {
         this.notifier.notify("error", result['msg']);
       }     
@@ -203,8 +143,9 @@ export class PaymentComponent implements OnInit {
   }
 
   openConfirmationDialog() {
-    this.dialog.open(OrderConfirmationComponent, {
+    console.log("Payment completed. Confirmation can be displayed");
+    /*this.dialog.open(OrderConfirmationComponent, {
       data: this.orderId,
-    });
+    });*/
   }
 }

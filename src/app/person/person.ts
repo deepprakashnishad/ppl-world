@@ -15,6 +15,7 @@ export class Person{
 	referrer: any;
 	uplines: any[];
 	paidAmount: number;
+	donationQuota: number;
 	amtWithdrawable: number;
 	totalAmountWithdrawnTillDate: number;
 	totalAmountCollected: number;
@@ -49,7 +50,7 @@ export class Person{
     person.email = data['e'];
     person.role = data['r'];
     person.permissions = data['permissions'];
-    person.status = data['status'];
+    person.status = data['s'];
     person.referrer = data['p'];
     person.uplines = data['ulc'];
     person.paidAmount = data['pamt'];
@@ -66,6 +67,7 @@ export class Person{
     person.pan = data['pan'];
     person.amountCollectedForNextLevel = data['acnl'];
     person.lwdlc = data['lwdlc'];
+    person.donationQuota = data['dq'];
     return person;
   }
 
