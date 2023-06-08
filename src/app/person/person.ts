@@ -24,10 +24,10 @@ export class Person{
 	teamSize: number;
 	currOrbit: number;
 	projectsInvestedIn: Array<any>;;
-	picture: string;
-	aadhar_front: string;
-	aadhar_back: string;
-	pan: string;
+	picture: any;
+	aadhar_front: any;
+	aadhar_back: any;
+	pan: any;
 	lwdlc: any;
 
 	constructor(){

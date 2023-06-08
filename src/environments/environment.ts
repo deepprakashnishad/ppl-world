@@ -3,19 +3,20 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  appName: "Trendy Fashion",
+  appName: "Good Act",
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
   joiningCharges: 1100,
   baseurl: "http://localhost:4200/api",
   
   firebase: {
-    apiKey: "AIzaSyAhZuYfYus07UoRic1O7JAtT9FcTWLTpzY",
-    authDomain: "giriraj-store.firebaseapp.com",
-    projectId: "giriraj-store",
-    storageBucket: "giriraj-store.appspot.com",
-    messagingSenderId: "76938672473",
-    appId: "1:76938672473:web:b6104cac7a86829024b448"
+    apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
+    authDomain: "good-act.firebaseapp.com",
+    projectId: "good-act",
+    storageBucket: "good-act.appspot.com",
+    messagingSenderId: "769896398353",
+    appId: "1:769896398353:web:6d2873cc864e1495927bb0",
+    measurementId: "G-T3FZ3Q73RL"
   },
   razorpay: {
     keyId: "rzp_test_OhtTwkr00dbNU1"

@@ -31,17 +31,12 @@ export class ProfileComponent implements OnInit {
     private profileService: ProfileService,
     private notifier: NotifierService
   ){
-    
+
   }
 
   ngOnInit(){
     this.profileService.getPersonDetail().subscribe(result=>{
       this.person = Person.fromJSON(result);
-      this.order = {
-          amount: environment.joiningCharges, 
-          person: this.person.id, 
-          product: "Starter Plan Activation"
-        }
       if(this.person.status==="APPROVAL_PENDING" && this.person.currOrbit===0){
         this.order = {
           amount: environment.joiningCharges, 
