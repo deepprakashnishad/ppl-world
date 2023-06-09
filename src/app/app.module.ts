@@ -16,6 +16,8 @@ import { environment } from '../environments/environment';
 import { NotifierModule, NotifierOptions } from 'angular-notifier';
 import { AdminModule } from './admin/admin.module';
 import { PersonModule } from './person/person.module';
+// import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+// import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import { Navigation } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -90,6 +92,8 @@ const notifierDefaultOptions: NotifierOptions = {
     AdminModule,
     PersonModule,
     SharedModule,
+    // ShareButtonsModule,
+    // ShareIconsModule,
     // QuillModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireStorageModule,

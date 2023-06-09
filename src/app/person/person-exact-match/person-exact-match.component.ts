@@ -5,7 +5,7 @@ import {
   Input,
   ViewChild, 
   EventEmitter,
-  SimpleChange 
+  SimpleChanges
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {PersonService} from './../person.service';
@@ -19,7 +19,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class PersonExactMatchComponent implements OnInit {
 
-  mobileNumber: string="";
+  @Input() mobileNumber: string="";
 
   person: any = {n:"", m:"", s:"", e: "", p:"", co: ""};
 
@@ -34,6 +34,16 @@ export class PersonExactMatchComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+    if(changes.mobileNumber.currentValue != '' && changes.mobileNumber.currentValue){
+      if(this.mobileNumber.length>10){
+        this.mobileNumber = this.mobileNumber.slice(-1, 10);
+        console.log(this.mobileNumber);
+      }
+      this.fetchPersonList();
+    }
   }
 
   fetchPersonList(){

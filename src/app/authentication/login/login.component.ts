@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit{
     private rememberMe=false;
     referrer: any;
 
+    referrerMobile: string;
+
+    selectedTab: number = 0;
+
   constructor(
     public fb: FormBuilder,
     private authService: AuthenticationService,
@@ -60,6 +64,16 @@ export class LoginComponent implements OnInit{
       const errors = this.route.paramMap.pipe(
         map((params)=>params.get('error'))
       );
+      this.route.queryParams.subscribe(params=>{
+        if(params['referrer'] && params['referrer'].length>10){
+          this.referrerMobile = params['referrer'].slice(-10);  
+          this.selectedTab = 1;
+        }else if(params['referrer']){
+          this.referrerMobile = params['referrer'];
+          this.selectedTab = 1;
+        }
+      });
+
       errors.subscribe(val=>{
         if (val !== null) {
           this.errors.push(val)

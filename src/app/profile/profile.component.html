@@ -10,6 +10,7 @@
 				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>
 				<div class="sub-title">Status: {{person.status}}</div>
 				<app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment>
+				<button mat-raised-button (click)="openShareBottomSheet()">Share <mat-icon>share</mat-icon></button>
 			</div>	
 		</div>
 		<div class="right-container" fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
@@ -71,7 +72,7 @@
 							color="primary"
 							[disabled]="!selectedPersonForApproval || selectedPersonForApproval.s !== 'APPROVAL_PENDING'"
 							(click)="approve()">
-							Donate {{joiningCharges}} pts &amp; Approve
+							Donate {{joiningCharges}} coins &amp; Approve
 						</button>
 					</div>
 				</mat-expansion-panel>
@@ -98,6 +99,21 @@
 							<img class="rectangular-img" *ngIf="person.pan?.downloadUrl" [src]="person.pan?.downloadUrl" height="150" width="300"/>
 						</div>
 
+					</div>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>Transfer Coins</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div fxLayout="column" fxLayoutGap="8px">
+						<app-person-exact-match (personSelected)="newPersonSelected($event)"></app-person-exact-match>
+						<button 
+							mat-raised-button 
+							color="primary"
+							(click)="transfer()">
+							Transfer {{joiningCharges}} coins
+						</button>
 					</div>
 				</mat-expansion-panel>
 			</mat-accordian>

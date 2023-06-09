@@ -7,6 +7,12 @@ import { NotifierService } from 'angular-notifier';
 import { ProfileService } from './profile.service';
 import { Person } from  './../person/person';
 import { environment } from './../../environments/environment';
+import { ShareComponent } from './../shared/share/share.component';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+} from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +35,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private profileService: ProfileService,
+    private _bottomSheet: MatBottomSheet,
     private notifier: NotifierService
   ){
 
@@ -85,5 +92,17 @@ export class ProfileComponent implements OnInit {
         this.notifier.notify("error", "Update failed");
       }
     });
+  }
+
+  openShareBottomSheet(){
+    if(!this.person.id){
+      this.notifier.notify("error", "Try again in sometime.")
+    }
+    var mTxt = `${this.person.name} is inviting you to GoodAct platform. Join GoodAct to help people in time of need and to get help in your critical phase of life. This is also an oppurtunity to make your dreams true. So join by clicking on below link. ${window.location.protocol}//${window.location.host}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
+    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt}});
+  }
+
+  transfer(){
+    this.notifier.notify("error", "This feature is in progress.");
   }
 }

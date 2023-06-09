@@ -5,7 +5,7 @@
         <li *ngFor="let error of errors">{{error}}</li>
       </ul>
     </div>
-    <mat-tab-group mat-stretch-tabs dynamicHeight>
+    <mat-tab-group mat-stretch-tabs dynamicHeight [(selectedIndex)]="selectedTab">
       <mat-tab label="Existing User? Login">
       	<mat-card>
 	        <form fxLayout="column" [formGroup]="loginForm">
@@ -78,7 +78,7 @@
             cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error>
           </mat-form-field>
           <!-- <app-person-search (personSelected)="referrerSelected($event)" [personType]="'referrer'"></app-person-search> -->
-          <app-person-exact-match (personSelected)="referrerSelected($event)"></app-person-exact-match>
+          <app-person-exact-match (personSelected)="referrerSelected($event)" [mobileNumber]="this.referrerMobile"></app-person-exact-match>
           <div>
             <button mat-raised-button type="reset" [disabled]="cardForm.invalid" color="primary" (click)="onSubmit();">Register</button>
           </div>

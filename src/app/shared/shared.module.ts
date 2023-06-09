@@ -17,6 +17,7 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { FirestorageUploaderComponent } from './firestorage-uploader/firestorage-uploader.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { ShareComponent } from './share/share.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
 import { NotifierModule } from 'angular-notifier';
 import { PersonModule } from '../person/person.module';
@@ -40,7 +41,8 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     SafeUrlPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
-    CarouselComponent
+    CarouselComponent,
+    ShareComponent
   ],
   imports: [
     CommonModule,
@@ -71,7 +73,8 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     FirestorageUploaderComponent,
     UploaderComponent,
     CarouselComponent,
-    PaymentComponent
+    PaymentComponent,
+    ShareComponent
   ],
   entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
