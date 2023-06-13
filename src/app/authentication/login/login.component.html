@@ -73,14 +73,14 @@
           	<span matPrefix>
             	<i class="fa fa-lock prefix grey-text"></i>&nbsp;&nbsp;
             </span>
-            <input type="password" id="materialFormCardConfirmPass" formControlName="materialFormCardConfirmPass" class="form-control" matInput placeholder="Confirm Password" (keyup.enter)="onSubmit()">
-            <mat-error *ngIf="cardForm.errors?.passwordMismatched && cardForm.controls['materialFormCardConfirmPass'].touched && cardForm.controls['materialFormCardPasswordEx'].touched && cardForm.controls['materialFormCardConfirmPass'].dirty &&
-            cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error>
+            <input [type]="hide?'password':'text'" id="materialFormCardConfirmPass" formControlName="materialFormCardConfirmPass" class="form-control" matInput placeholder="Confirm Password" (keyup.enter)="onSubmit()">
           </mat-form-field>
+          <!-- <mat-error *ngIf="cardForm.errors?.passwordMismatched && cardForm.controls['materialFormCardConfirmPass'].touched && cardForm.controls['materialFormCardPasswordEx'].touched && cardForm.controls['materialFormCardConfirmPass'].dirty &&
+            cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error> -->
           <!-- <app-person-search (personSelected)="referrerSelected($event)" [personType]="'referrer'"></app-person-search> -->
           <app-person-exact-match (personSelected)="referrerSelected($event)" [mobileNumber]="this.referrerMobile"></app-person-exact-match>
           <div>
-            <button mat-raised-button type="reset" [disabled]="cardForm.invalid" color="primary" (click)="onSubmit();">Register</button>
+            <button mat-raised-button type="reset" [disabled]="cardForm.invalid || !referrer" color="primary" (click)="onSubmit();">Register</button>
           </div>
         </form>
       </mat-tab>

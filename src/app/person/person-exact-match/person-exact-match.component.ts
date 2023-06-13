@@ -40,7 +40,6 @@ export class PersonExactMatchComponent implements OnInit {
     if(changes.mobileNumber.currentValue != '' && changes.mobileNumber.currentValue){
       if(this.mobileNumber.length>10){
         this.mobileNumber = this.mobileNumber.slice(-1, 10);
-        console.log(this.mobileNumber);
       }
       this.fetchPersonList();
     }

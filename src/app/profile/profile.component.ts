@@ -78,7 +78,11 @@ export class ProfileComponent implements OnInit {
       this.profileService.approveNewJoinee(
         this.selectedPersonForApproval.id, this.joiningCharges
       ).subscribe(result=>{
-        console.log(result);
+        if(result['success']){
+          this.notifier.notify("success", "Approval successfull");
+        }else{
+          this.notifier.notify("error", "Approval failed");
+        }
       });
     }
   }

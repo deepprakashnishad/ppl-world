@@ -9,7 +9,7 @@
 				</div>
 				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>
 				<div class="sub-title">Status: {{person.status}}</div>
-				<app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment>
+				<!-- <app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment> -->
 				<button mat-raised-button (click)="openShareBottomSheet()">Share <mat-icon>share</mat-icon></button>
 			</div>	
 		</div>

@@ -90,6 +90,10 @@ export class LoginComponent implements OnInit{
       const email = this.cardForm.get('materialFormCardEmailEx').value;
       var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value;
 
+      if(!this.referrer){
+        return this.notifier.notify("error", "Referrer missing");
+      }
+
       this.authService.signup(
         {name: name, password: password, email: email, mobile: mobile, parent: this.referrer}
         ).subscribe((authResponse) =>  {

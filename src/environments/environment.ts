@@ -6,7 +6,7 @@ export const environment = {
   appName: "Good Act",
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
-  joiningCharges: 1100,
+  joiningCharges: 2200,
   baseurl: "http://localhost:4200/api",
   
   firebase: {

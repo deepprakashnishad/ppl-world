@@ -1,7 +1,7 @@
 export const environment = {
   appName: "Trendy Fashion",
   production: true,
-  joiningCharges: 1100,
+  joiningCharges: 2200,
   baseurl: "https://goodact.onrender.com",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",

@@ -101,6 +101,8 @@ export class PersonService {
     	} else {
         if(error['msg']){
           this.notifier.notify("error", error['msg']);
+        }else if(error['error'] && error['error']['msg']){
+          this.notifier.notify("error", error['error']['msg']);
         }
     		return throwError(error);
     	}
