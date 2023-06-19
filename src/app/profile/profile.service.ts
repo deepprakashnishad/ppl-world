@@ -44,6 +44,15 @@ export class ProfileService {
         catchError(this.handleError('Approve New Joinee', null)));  
   }
 
+  tranferCredits(person, amt): Observable<any>{
+    return this.http.post<any>(this.personUrl+"/tranferCredits", {
+      "transferTo": person.id,
+      "amount": amt
+    })
+    .pipe(
+        catchError(this.handleError('Transfer Credits', null)));
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

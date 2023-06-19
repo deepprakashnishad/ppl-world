@@ -66,7 +66,7 @@
 						<mat-panel-title>Approve New Joinee</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="newPersonSelected($event)"></app-person-exact-match>
+						<app-person-exact-match (personSelected)="newPersonSelected($event)" [type]="'generic'"></app-person-exact-match>
 						<button 
 							mat-raised-button 
 							color="primary"
@@ -104,15 +104,19 @@
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Transfer Coins</mat-panel-title>
+						<mat-panel-title>Transfer credits in exchange of money</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="newPersonSelected($event)"></app-person-exact-match>
+						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="Please select a person to transfer coins"></app-person-exact-match>
+						<mat-form-field>
+							<mat-label>Credits</mat-label>
+							<input matInput placeholder="number" type="text" [(ngModel)]="transferAmt" class="form-control">
+						</mat-form-field>
 						<button 
 							mat-raised-button 
 							color="primary"
 							(click)="transfer()">
-							Transfer {{joiningCharges}} coins
+							Transfer
 						</button>
 					</div>
 				</mat-expansion-panel>

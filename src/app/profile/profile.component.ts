@@ -26,6 +26,11 @@ export class ProfileComponent implements OnInit {
   maxChildOrbit: number = 0;
 
   selectedPersonForApproval: any;
+
+  transferCreditsTo: any;
+
+  transferAmt: number;
+
   joiningCharges: number = environment.joiningCharges;
 
   uploadPath: string = "";
@@ -106,7 +111,24 @@ export class ProfileComponent implements OnInit {
     this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt}});
   }
 
+  transferCreditsToSelected($event){
+    this.transferCreditsTo = $event; 
+    console.log(this.transferCreditsTo);
+  }
+
   transfer(){
-    this.notifier.notify("error", "This feature is in progress.");
+    if(this.transferAmt<0){
+      this.notifier.notify("error", "Amount should be greater than 0.");
+      return;
+    }
+    if(!this.transferCreditsTo || !this.transferAmt){
+      this.notifier.notify("error", "Select a person and enter amount to be transferred");
+      return;
+    }
+
+    this.profileService.tranferCredits(this.transferCreditsTo, Number(this.transferAmt))
+    .subscribe(result=>{
+      console.log(result);
+    });
   }
 }

@@ -78,7 +78,9 @@
           <!-- <mat-error *ngIf="cardForm.errors?.passwordMismatched && cardForm.controls['materialFormCardConfirmPass'].touched && cardForm.controls['materialFormCardPasswordEx'].touched && cardForm.controls['materialFormCardConfirmPass'].dirty &&
             cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error> -->
           <!-- <app-person-search (personSelected)="referrerSelected($event)" [personType]="'referrer'"></app-person-search> -->
-          <app-person-exact-match (personSelected)="referrerSelected($event)" [mobileNumber]="this.referrerMobile"></app-person-exact-match>
+          <app-person-exact-match (personSelected)="referrerSelected($event)" [mobileNumber]="this.referrerMobile" [inputLabel]="'Enter referrer mobile number and search'" 
+          [errorLabel]="'Please select a referrer'" [isMandatory]="true"></app-person-exact-match>
+          <!-- <mat-error *ngIf="!referrer">Please select referrer</mat-error> -->
           <div>
             <button mat-raised-button type="reset" [disabled]="cardForm.invalid || !referrer" color="primary" (click)="onSubmit();">Register</button>
           </div>
