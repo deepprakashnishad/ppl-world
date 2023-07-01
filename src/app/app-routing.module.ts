@@ -13,9 +13,11 @@ import { UserReportComponent } from './admin/reports/user-report/user-report.com
 import {AboutUsComponent} from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './static-page/faq/faq.component';
+import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
+import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 
 const routes: Routes = [
 	 {
@@ -54,6 +56,11 @@ const routes: Routes = [
 		data: { title: 'FAQ', permissions: []}
 	},
 	{
+		path: 'privacy', 
+		component: PrivacyComponent,
+		data: { title: 'Privacy', permissions: []}
+	},
+	{
 		path: 'contact', 
 		component: ContactUsComponent,
 		data: { title: 'Contact-Us', permissions: []}
@@ -66,6 +73,11 @@ const routes: Routes = [
 	{
 		path: 'profile', 
 		component: ProfileComponent,
+		data: { title: 'My Profile', permissions: []}
+	},
+	{
+		path: 'daily-report', 
+		component: DailyReportComponent,
 		data: { title: 'My Profile', permissions: []}
 	},
 	{

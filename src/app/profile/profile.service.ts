@@ -46,7 +46,7 @@ export class ProfileService {
 
   tranferCredits(person, amt): Observable<any>{
     return this.http.post<any>(this.personUrl+"/tranferCredits", {
-      "transferTo": person.id,
+      "recieverId": person.id,
       "amount": amt
     })
     .pipe(

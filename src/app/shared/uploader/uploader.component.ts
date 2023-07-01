@@ -37,10 +37,8 @@ export class UploaderComponent {
         this.files.push(files.item(i));
       }
     }else{
-      console.log(this.newFilename);
       if(this.newFilename && !this.isMultiple){
         this.files[0] = this.renameFile(files.item(0), this.newFilename);
-        console.log(this.files);
       }else{
         this.files[0] = files.item(0);
       }

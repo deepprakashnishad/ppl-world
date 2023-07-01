@@ -51,7 +51,6 @@ export class PersonExactMatchComponent implements OnInit {
       }
       this.fetchPersonList();
     }
-    console.log(changes);
   }
 
   fetchPersonList(){

@@ -24,7 +24,7 @@ export class Person{
 	teamSize: number;
 	currOrbit: number;
 	projectsInvestedIn: Array<any>;;
-	picture: any;
+	pic: any;
 	aadhar_front: any;
 	aadhar_back: any;
 	pan: any;
@@ -61,10 +61,10 @@ export class Person{
     person.directDownlines = data['ddl'];
     person.currOrbit = data['curr_orbit'];
     // person.projectsInvestedIn = data[''];
-    person.picture = data['pic'];
     person.aadhar_front = data['adh_f'];
     person.aadhar_back = data['adh_b'];
     person.pan = data['pan'];
+    person.pic = data['pic'];
     person.amountCollectedForNextLevel = data['acnl'];
     person.lwdlc = data['lwdlc'];
     person.donationQuota = data['dq'];

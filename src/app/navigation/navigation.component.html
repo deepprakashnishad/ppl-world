@@ -33,9 +33,14 @@
 	
 	<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
 		<div fxLayout="row" fxFlex="20">
-			<div class="header-logo">
-				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway" style="width:125px"></a>
-			 </div>
+			<picture>
+				<source media="(min-width:650px)" srcset="/assets/images/logo-72x72.png">
+			  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
+			  	<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto;">
+			</picture>
+			<!-- <div class="header-logo">
+				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
+			 </div> -->
 		</div>
 		<div fxLayout="row" fxFlex="60" fxLayoutAlign="center">
 			<button mat-button (click)="navigateTo('/')">
@@ -59,6 +64,9 @@
 			<button mat-button (click)="navigateTo('/profile')">
 				Profile
 			</button>
+			<!-- <button mat-button (click)="navigateTo('/daily-report')">
+				Daily Report
+			</button> -->
 		 </div>
 		<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
 			<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
@@ -80,7 +88,7 @@
 	<mat-toolbar-row class="narrow-navbar" fxHide.gt-sm>
 		<div fxLayout="row" fxFlex="30">
 			<div class="header-logo">
-				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway" style="width:125px"></a>
+				<a href="index.aspx"><img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto"></a>
 			 </div>
 		</div>
 		<div fxLayout="row" fxFlex="20"></div>
@@ -112,6 +120,9 @@
 		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/profile')">
 			My Profile
 		</button>
+		<!-- <button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/daily-report')">
+			Daily Report
+		</button> -->
 		<button mat-button class="mobPageLink" (click)="navigateTo('/about-us')">
 			About Us
 		</button>

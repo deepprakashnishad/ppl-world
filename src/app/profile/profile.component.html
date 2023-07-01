@@ -1,7 +1,8 @@
 <div class="container">
 	<div fxLayout="row" fxLayout.lt-md="column">
 		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="start start">
-			<img class="profile-pic" src="/assets/images/profile/profile.png" />
+			<img class="profile-pic" *ngIf="!person.pic?.downloadUrl" src="/assets/images/profile/profile.png" />
+			<img class="profile-pic" *ngIf="person.pic?.downloadUrl" [src]="person.pic?.downloadUrl" height="150" width="150"/>
 			<div fxLayout="column" fxLayoutGap="2px" >
 				<div class="sub-title" fxFlexAlign="center">{{person.name}}</div>
 				<div class="sub-title" fxFlexAlign="center" fxLayout fxLayout="center center">
@@ -79,7 +80,7 @@
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Update Aadhaar</mat-panel-title>
+						<mat-panel-title>Upload Images</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="row wrap" fxLayoutAlign="space-between center">
 						<div fxLayout="column">
@@ -99,15 +100,21 @@
 							<img class="rectangular-img" *ngIf="person.pan?.downloadUrl" [src]="person.pan?.downloadUrl" height="150" width="300"/>
 						</div>
 
+						<div fxLayout="column">
+							<app-uploader [maxAllowedFileSize]="512" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'pic')" [header]="'Profile Pic Image'" [newFilename]="'pic'"></app-uploader>
+
+							<img class="rectangular-img" *ngIf="person.pic?.downloadUrl" [src]="person.pic?.downloadUrl" height="150" width="150"/>
+						</div>
+
 					</div>
 				</mat-expansion-panel>
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Transfer credits in exchange of money</mat-panel-title>
+						<mat-panel-title>Transfer credits</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="Please select a person to transfer coins"></app-person-exact-match>
+						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'"></app-person-exact-match>
 						<mat-form-field>
 							<mat-label>Credits</mat-label>
 							<input matInput placeholder="number" type="text" [(ngModel)]="transferAmt" class="form-control">
