@@ -30,6 +30,7 @@ import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -100,9 +101,10 @@ const notifierDefaultOptions: NotifierOptions = {
     // ShareIconsModule,
     // QuillModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
+    AngularFireMessagingModule,
     AngularFireStorageModule,
     
-    ServiceWorkerModule.register('ngsw-worker.js', {
+    ServiceWorkerModule.register('combined-sw.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable
       // or after 30 seconds (whichever comes first).

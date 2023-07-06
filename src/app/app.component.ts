@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker';
 import { PwaService } from './pwa.service';
+import { GeneralService } from './general.service';
 import { AuthenticationService } from './authentication/authentication.service';
 import { StorageService } from './storage.service';
+import { AngularFireMessaging } from '@angular/fire/messaging';
+import { map, mergeMap, startWith, mergeMapTo } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-root',
@@ -19,6 +23,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private pwaService: PwaService,
+    private afMessaging: AngularFireMessaging,
+    private generalService: GeneralService,
     private authenticationService: AuthenticationService,
     private storageService: StorageService
   ) {
@@ -43,6 +49,8 @@ export class AppComponent implements OnInit {
         }
       }
     );
+
+    this.requestPermission();
   }
 
   installPwa(): void {
@@ -58,5 +66,24 @@ export class AppComponent implements OnInit {
     var scrollElem= document.querySelector('#moveTop');
     console.log(scrollElem);
     scrollElem.scrollIntoView({ behavior: "smooth"});
+  }
+
+  requestPermission() {
+    this.afMessaging.requestPermission
+      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
+      .subscribe(
+        (token) => { 
+          this.generalService.updateFirebaseMessagingToken(token).subscribe(result=>{
+            console.log(result);
+          });
+          console.log('Permission granted! Save to the server!', token); 
+        },
+        (error) => { console.error(error); },  
+      );
+  }
+
+  listen() {
+    this.afMessaging.messages
+      .subscribe((message) => { console.log(message); });
   }
 }

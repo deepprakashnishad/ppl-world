@@ -6,8 +6,7 @@ import {
 	Router,
 	ActivatedRouteSnapshot,
 	RouterStateSnapshot,
- } from '@angular/router'
-import { database } from 'firebase-admin';
+ } from '@angular/router';
 import { AuthenticationService } from './authentication.service'
 
 @Injectable({

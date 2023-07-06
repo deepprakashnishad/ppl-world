@@ -16,6 +16,11 @@ export class GeneralService {
     this.genericUrl = environment.baseurl+'/generic';  
   }
   
+  updateFirebaseMessagingToken(token: string): Observable<any>{
+    return this.http.patch<any>(this.genericUrl+"/update-firebase-token", {token: token})
+      .pipe(
+        catchError(this.handleError('Save Contact Details', null)));
+  }
 
   saveContactDetails(data: any): Observable<any> {
     return this.http.post<any>(this.genericUrl+"/submit-contact-details", data)
