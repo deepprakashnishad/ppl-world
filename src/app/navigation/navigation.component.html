@@ -64,6 +64,9 @@
 			<button mat-button (click)="navigateTo('/profile')">
 				Profile
 			</button>
+			<button mat-button (click)="navigateTo('/transaction-report')">
+				Transaction Report
+			</button>
 			<!-- <button mat-button (click)="navigateTo('/daily-report')">
 				Daily Report
 			</button> -->
@@ -120,6 +123,9 @@
 		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/profile')">
 			My Profile
 		</button>
+		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/transaction-report')">
+			Transaction Report
+		</button>
 		<!-- <button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/daily-report')">
 			Daily Report
 		</button> -->
@@ -141,6 +147,8 @@
 		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
 			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
 		</button>
+
+		<div class="version" fxFlexAlign="start">Version 1.0.1</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

@@ -18,6 +18,7 @@ import { ContactUsComponent } from './static-page/contact-us/contact-us.componen
 import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
+import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 
 const routes: Routes = [
 	 {
@@ -79,6 +80,11 @@ const routes: Routes = [
 		path: 'daily-report', 
 		component: DailyReportComponent,
 		data: { title: 'My Profile', permissions: []}
+	},
+	{
+		path: 'transaction-report', 
+		component: TransactionReportComponent,
+		data: { title: 'Transactions', permissions: []}
 	},
 	{
 		path: 'admin', 

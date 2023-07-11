@@ -62,8 +62,6 @@ export class UploaderComponent {
 
   onChangeFileInput(): void {
     const files: File[] = this.fileInput.nativeElement.files;
-    console.log(this.newFilename);
-    console.log(!this.isMultiple);
     if(this.newFilename && !this.isMultiple){
       if(this.maxAllowedFileSize===undefined || files[0].size < this.maxAllowedFileSize*1024){
         this.files[0] = this.renameFile(files[0], this.newFilename);

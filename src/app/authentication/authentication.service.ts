@@ -92,7 +92,7 @@ export class AuthenticationService {
   	return this.http.post<AuthResponse>(
   		this.signupUrl, mRegistrationData, httpOptions)
   		.pipe(
-  			retry(2),
+  			retry(0),
   			catchError(this.handleError('registration', null))
   		);
   }
@@ -109,7 +109,7 @@ export class AuthenticationService {
   	return this.http.post<AuthResponse>(
   		this.loginUrl, null, httpOptions)
   		.pipe(
-  			retry(2),
+  			retry(0),
   			catchError(this.handleError('login', null))
   		);
   }
@@ -139,6 +139,19 @@ export class AuthenticationService {
       );
   }
 
+  resetPasswordWithOldPassword(oldPassword, newPassword) {
+
+    return this.http.patch<any>(
+      this.signupUrl + "/updatePasswordWithOldPassword", {
+        "oldPassword": oldPassword,
+        "newPassword": newPassword
+      })
+      .pipe(
+        retry(0),
+        catchError(this.handleErrorNormally('Reset Password', null))
+      );
+  }
+
   logout(): void{
     localStorage.clear();
     sessionStorage.clear();
@@ -159,6 +172,7 @@ export class AuthenticationService {
       localStorage.setItem('permissions', data.permissions);
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('id', data.id);
+      localStorage.setItem('iprr', data.iprr);
     } else {
       sessionStorage.setItem('token', data.token, );
       if(data.fbToken){
@@ -171,6 +185,7 @@ export class AuthenticationService {
       sessionStorage.setItem('permissions', data.permissions);
       sessionStorage.setItem('isLoggedIn', 'true');
       sessionStorage.setItem('id', data.id);
+      sessionStorage.setItem('iprr', data.iprr);
     }
     this.isLoggedIn.next(true);
   }
@@ -240,6 +255,23 @@ export class AuthenticationService {
     	} else {
     		return throwError(error);
     	}
+    };
+  }
+
+  handleErrorNormally<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // Let the app keep running by returning an empty result.
+      if(error instanceof HttpErrorResponse && error.status === 403){
+        this.notifier.notify("error", "Permission denied");
+      }else if(error instanceof HttpErrorResponse && error.status === 500){
+        this.notifier.notify("error", error.error.msg);
+        this.notifier.notify("error", "Server error. Please contact developer");
+        return throwError(error);
+      }else if (error instanceof ErrorEvent) {
+        return throwError('Unable to submit request. Please check your internet connection.');
+      } else {
+        return throwError(error);
+      }
     };
   }
 }

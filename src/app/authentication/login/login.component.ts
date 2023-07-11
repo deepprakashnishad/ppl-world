@@ -140,7 +140,10 @@ export class LoginComponent implements OnInit{
           this.notifier.notify("success", "Login successful");
           this.storeData(this.authResponse);
           this.clearForm();
-
+          if(authResponse.iprr && authResponse.iprr===1){
+            this.notifier.notify("warning", "Please reset your password from profile page");
+            this.router.navigate(["reset-password"]);  
+          }
           let redirectUrl = this.authService.redirectUrl && this.authService.redirectUrl.indexOf("login")===-1 ? this.authService.redirectUrl : '';
           this.router.navigate([redirectUrl]);
         }

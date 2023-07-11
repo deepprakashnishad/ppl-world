@@ -10,6 +10,7 @@ export class AuthResponse {
   token: string;
   role: Role;
   permissions: Array<Permission>;
+  iprr: number;
 
   constructor(id: number, title: string, mobile: string, email: string,
     status: string, token: string, role: Role, permissions?: Array<Permission>) {
@@ -21,6 +22,7 @@ export class AuthResponse {
     this.token = token;
     this.role = role;
     this.permissions = permissions || [];
+    this.iprr = 0;
   }
 
   addPermission(permission: Permission): void {

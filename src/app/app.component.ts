@@ -50,7 +50,7 @@ export class AppComponent implements OnInit {
       }
     );
 
-    this.requestPermission();
+    // this.requestPermission();
   }
 
   installPwa(): void {
@@ -66,20 +66,6 @@ export class AppComponent implements OnInit {
     var scrollElem= document.querySelector('#moveTop');
     console.log(scrollElem);
     scrollElem.scrollIntoView({ behavior: "smooth"});
-  }
-
-  requestPermission() {
-    this.afMessaging.requestPermission
-      .pipe(mergeMapTo(this.afMessaging.tokenChanges))
-      .subscribe(
-        (token) => { 
-          this.generalService.updateFirebaseMessagingToken(token).subscribe(result=>{
-            console.log(result);
-          });
-          console.log('Permission granted! Save to the server!', token); 
-        },
-        (error) => { console.error(error); },  
-      );
   }
 
   listen() {

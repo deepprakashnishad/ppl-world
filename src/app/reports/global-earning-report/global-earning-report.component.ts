@@ -11,11 +11,11 @@ const month = today.getMonth();
 const year = today.getFullYear();
 
 @Component({
-  selector: 'app-transaction-report',
-  templateUrl: './transaction-report.component.html',
-  styleUrls: ['./transaction-report.component.scss']
+  selector: 'app-global-earning-report',
+  templateUrl: './global-earning-report.component.html',
+  styleUrls: ['./global-earning-report.component.scss']
 })
-export class TransactionReportComponent implements OnInit {
+export class GlobalEarningReportComponent implements OnInit {
 
   rangeForm = new FormGroup({
     start: new FormControl(new Date(year, month, 13)),
@@ -51,7 +51,7 @@ export class TransactionReportComponent implements OnInit {
   }
 
   getTransactionReport(startDate: string, endDate: string){
-    this.reportService.getTransactionReport(startDate, endDate, this.limit, this.offset).subscribe(results=>{
+    this.reportService.getGlobalEarningReport(startDate, endDate, this.limit, this.offset).subscribe(results=>{
       this.transactions = this.transactions.concat(results);
       this.offset = this.transactions.length;
       
