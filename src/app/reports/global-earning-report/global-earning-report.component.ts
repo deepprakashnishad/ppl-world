@@ -22,7 +22,7 @@ export class GlobalEarningReportComponent implements OnInit {
     end: new FormControl(new Date(year, month, 16)),
   });
 
-  transactions: Array<any> = [];
+  globalEarnings: Array<any> = [];
 
   isEndReached: boolean = false;
 
@@ -44,21 +44,78 @@ export class GlobalEarningReportComponent implements OnInit {
     var currDate = new Date();
     var startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
     var endDate = new Date(new Date().setDate(currDate.getDate() + 1));
-    this.getTransactionReport(
+    this.getGlobalEarningReport(
       startDate,
       `${endDate.getFullYear()}/${endDate.getMonth()+1}/${endDate.getDate()}`      
     );
   }
 
-  getTransactionReport(startDate: string, endDate: string){
-    this.reportService.getGlobalEarningReport(startDate, endDate, this.limit, this.offset).subscribe(results=>{
-      this.transactions = this.transactions.concat(results);
-      this.offset = this.transactions.length;
-      
-      if(results.length < this.limit){
+  getGlobalEarningReport(startDate: string, endDate: string){
+    this.reportService.getGlobalEarningReport(startDate, endDate, this.limit, this.offset).subscribe(result=>{
+      console.log(result);
+      var pf = result['pf'];
+      var pfd = result['pfd'];
+      var jd = result['joining_date'];
+      var geRecords = result['geRecords'];
+
+      if(geRecords.length < this.limit){
         this.isEndReached = true;
       }
+
+      for(var i=0; i < geRecords.length; i++){
+        if(geRecords[i]['mTimestamp'] > jd){
+          break;
+        }
+        this.formatRecord(geRecords[i], undefined);
+      }
+
+      for(; i < geRecords.length; i++){
+        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+          break;
+        }
+        this.formatRecord(geRecords[i], "s");
+      }
+
+      for(; i < geRecords.length; i++){
+        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+          break;
+        }
+        this.formatRecord(geRecords[i], "g");
+      }
+
+      for(; i < geRecords.length; i++){
+        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+          break;
+        }
+        this.formatRecord(geRecords[i], "d");
+      }
+
+      for(; i < geRecords.length; i++){
+        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+          break;
+        }
+        this.formatRecord(geRecords[i], "p");
+      }
+
+      this.offset = this.globalEarnings.length;
     });
+  }
+
+  private formatRecord(record: any, pf: string){
+    var newRecs = [];
+    console.log(record);
+    var temp = {};
+    temp['tc'] = record['tc'];
+    temp['ged'] = record['ged'];
+    temp['bdc'] = record['dc'];
+    temp['dpd'] = record['dpd'];
+    temp['dad'] = record['dad'];
+    temp['s'] = record['ds'];
+    temp['upf'] = pf; //User Platform
+    if(record['dad'] && pf){
+      temp['ar'] = record['dad'][pf];
+    }
+    this.globalEarnings.push(temp);
   }
 
   refresh(){
@@ -68,6 +125,6 @@ export class GlobalEarningReportComponent implements OnInit {
     this.startDate = this.rangeForm.value.start;
     this.endDate = this.rangeForm.value.end;
     
-    this.getTransactionReport(this.startDate, this.endDate)
+    this.getGlobalEarningReport(this.startDate, this.endDate)
   }
 }

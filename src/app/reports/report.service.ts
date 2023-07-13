@@ -30,6 +30,16 @@ export class ReportService {
         catchError(this.handleError('Get Daily Report', null)));
   }
 
+  getGlobalEarningReport(startDate: string, endDate: string, limit: number, offset: number): Observable<any> {
+    if(!startDate){
+      var currDate = new Date();
+      startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
+    }
+    return this.http.get<any>(`${this.reportUrl}/global-earning-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&limit=${limit}&offset=${offset}`)
+      .pipe(
+        catchError(this.handleError('Get Global Earning Report', null)));
+  }
+
   getTransactionReport(startDate: string, endDate: string, limit: number, offset: number): Observable<any> {
     if(!startDate){
       var currDate = new Date();

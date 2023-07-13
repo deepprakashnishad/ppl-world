@@ -1,36 +1,5 @@
 <app-progress-spinner></app-progress-spinner>
-<mat-toolbar class="navbar" #navToolbar>
-	<!-- <mat-toolbar-row *ngIf="!shrinkToolbar" class="header-top" fxHide.lt-md>
-		<div fxLayout="row" fxFlex="50">
-			<div class="header-info">
-				<ul>
-				   <li><a href="mailto:info@deepway.io"><i class="fa fa-envelope"></i> info@deepway.io</a></li>
-				   <li>
-					  <a href="https://t.me/deepway_global" target="_blank">
-					  <i class="fa fa-telegram"></i>Join Telegram</a>
-				   </li>
-				</ul>
-			 </div>
-		</div>
-		<div fxLayout="row" fxFlex="50" fxLayoutAlign="end">
-			<div class="social">
-				<ul>
-				   <li><a href="https://www.facebook.com/deepway-112254153865584" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
-				   <li><a href="https://twitter.com/deepwayin" target="_blank"><i class="fa fa-twitter"></i></a></li>
-				   <li><a href="https://www.youtube.com/channel/UCMrdibmQe_aUHm6kdRvX8NQ/" target="_blank"><i class="fa fa-youtube"></i></a></li>
-				   <li><a href="https://www.linkedin.com/company/deepwayin/?viewAsMember=true" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-				</ul>
-			 </div>
-		</div>
-		<div fxLayout fxHide.gt-sm>
-			<div fxHide fxShow.gt-md fxFlexAlign="center">Welcome {{isLoggedIn?name:'User'}}</div>
-			<button mat-icon-button class="toggle-menu" (click)="toggleSidebar()">
-				<mat-icon *ngIf="!isSidebarOpen">menu</mat-icon>
-				<mat-icon *ngIf="isSidebarOpen">close</mat-icon>
-			</button>
-		</div>
-	</mat-toolbar-row> -->
-	
+<mat-toolbar class="navbar" #navToolbar>	
 	<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
 		<div fxLayout="row" fxFlex="20">
 			<picture>
@@ -42,7 +11,7 @@
 				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
 			 </div> -->
 		</div>
-		<div fxLayout="row" fxFlex="60" fxLayoutAlign="center">
+		<div class="nav-menu-container" fxLayout="row" fxFlex="60" fxLayoutAlign="center">
 			<button mat-button (click)="navigateTo('/')">
 				Home
 			</button>
@@ -64,9 +33,11 @@
 			<button mat-button (click)="navigateTo('/profile')">
 				Profile
 			</button>
-			<button mat-button (click)="navigateTo('/transaction-report')">
-				Transaction Report
-			</button>
+			<button mat-button [matMenuTriggerFor]="reports">Reports</button>
+			<mat-menu #reports="matMenu">
+			  <button mat-menu-item (click)="navigateTo('/transaction-report')">Transaction</button>
+			  <button mat-menu-item (click)="navigateTo('/global-earning-report')">Global Earning</button>
+			</mat-menu>
 			<!-- <button mat-button (click)="navigateTo('/daily-report')">
 				Daily Report
 			</button> -->
@@ -125,6 +96,9 @@
 		</button>
 		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/transaction-report')">
 			Transaction Report
+		</button>
+		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/global-earning-report')">
+			Global Earning Report
 		</button>
 		<!-- <button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/daily-report')">
 			Daily Report

@@ -19,6 +19,7 @@ import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
+import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 
 const routes: Routes = [
 	 {
@@ -84,6 +85,11 @@ const routes: Routes = [
 	{
 		path: 'transaction-report', 
 		component: TransactionReportComponent,
+		data: { title: 'Transactions', permissions: []}
+	},
+	{
+		path: 'global-earning-report', 
+		component: GlobalEarningReportComponent,
 		data: { title: 'Transactions', permissions: []}
 	},
 	{

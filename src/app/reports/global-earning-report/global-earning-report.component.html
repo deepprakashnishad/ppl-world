@@ -14,16 +14,56 @@
   <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
   <button mat-icon-button color="primary" (click)="refresh()"><mat-icon>refresh</mat-icon></button>
 </div>
-<div class="transaction-container">
-  <mat-card class="transaction-card" *ngFor="let t of transactions">
-      <div fxLayout fxLayoutGap="16px">
-        <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
-        <div>
-          <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
-          <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span></div>
-      </div>
-      <div class="comment">
-        {{t.c}}
+<div class="ge-container">
+  <mat-card class="ge-card" *ngFor="let ge of globalEarnings">
+      <div fxLayout="column" fxLayoutGap="16px">
+        <div fxLayout fxLayoutAlign="space-between center">
+          <div>Total Collection: {{ge.tc | currency: 'INR':'symbol-narrow'}}</div>
+          <div fxFlexAlign="center">Date: {{ge.ged}}</div>
+          <div>
+            Amount Recieved: 
+            <span [hidden]="!ge.ar">{{ge.ar | currency: 'INR':'symbol-narrow'}}</span>
+          </div>
+        </div>
+        <div fxLayout fxLayoutAlign="space-between start">
+          <div>
+            <table class="info-table" *ngIf="ge.s==='d'">
+              <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Members Count</th>
+              </tr>
+              <tr *ngIf="ge['dad'] && ge['dad']['s']">
+                <td>Silver</td>
+                <td>{{ge['dad']['s'] | currency: 'INR':'symbol-narrow'}}</td>
+                <td><span *ngIf="ge['dpd'] && ge['dpd']['s']">{{ge['dpd']['s']}}</span></td>
+              </tr>
+              <tr *ngIf="ge['dad'] && ge['dad']['g']">
+                <td>Gold</td>
+                <td>{{ge['dad']['g'] | currency: 'INR':'symbol-narrow'}}</td>
+                <td><span *ngIf="ge['dpd'] && ge['dpd']['g']">{{ge['dpd']['g']}}</span></td>
+              </tr>
+              <tr *ngIf="ge['dad'] && ge['dad']['d']">
+                <td>Diamond</td>
+                <td>{{ge['dad']['d'] | currency: 'INR':'symbol-narrow'}}</td>
+                <td><span *ngIf="ge['dpd'] && ge['dpd']['d']">{{ge['dpd']['d']}}</span></td>
+              </tr>
+              <tr *ngIf="ge['dad'] && ge['dad']['p']">
+                <td>Platinum</td>
+                <td>{{ge['dad']['p'] | currency: 'INR':'symbol-narrow'}}</td>
+                <td><span *ngIf="ge['dpd'] && ge['dpd']['p']">{{ge['dpd']['p']}}</span></td>
+              </tr>
+            </table>
+            <div *ngIf="ge.s!=='d'">Distribution Status: Pending</div>
+          </div>
+          <div>
+            <span *ngIf="!ge.upf || ge.upf===''">Not Yet Joined</span>
+            <span *ngIf="ge.upf==='s'">User Badge: Silver</span>
+            <span *ngIf="ge.upf==='g'">User Badge: Gold</span>
+            <span *ngIf="ge.upf==='d'">User Badge: Diamond</span>
+            <span *ngIf="ge.upf==='p'">User Badge: Platinum</span>
+          </div>
+        </div>
       </div>
   </mat-card>
   <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More</button>

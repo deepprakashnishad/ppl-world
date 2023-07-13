@@ -31,6 +31,7 @@ import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
+import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 const notifierDefaultOptions: NotifierOptions = {
@@ -86,7 +87,8 @@ const notifierDefaultOptions: NotifierOptions = {
     CampaignComponent,
     CreateCampaignComponent,
     DailyReportComponent,
-    TransactionReportComponent
+    TransactionReportComponent,
+    GlobalEarningReportComponent
    ],
   imports: [
     BrowserModule,
