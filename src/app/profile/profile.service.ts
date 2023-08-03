@@ -12,12 +12,14 @@ import { Person } from  './../person/person';
 export class ProfileService {
 
   private personUrl:string;
+  private slotUrl: string;
 
   constructor(
     private http: HttpClient, 
     private notifier: NotifierService
   ){
     this.personUrl = environment.baseurl+'/Person';  
+    this.slotUrl = environment.baseurl+'/Slot';  
   }
   
 
@@ -44,8 +46,15 @@ export class ProfileService {
         catchError(this.handleError('Approve New Joinee', null)));  
   }
 
+  buySlots(newJoineeId, amount, slotCount){
+    return this.http.post<Person>(this.slotUrl+"/buySlots", 
+      {"buyerId": newJoineeId, "amount": amount, "noOfSlots": slotCount})
+      .pipe(
+        catchError(this.handleError('Approve New Joinee', null))); 
+  }
+
   tranferCredits(person, amt): Observable<any>{
-    return this.http.post<any>(this.personUrl+"/tranferCredits", {
+    return this.http.post<any>(this.personUrl+"/transferCredits", {
       "recieverId": person.id,
       "amount": amt
     })

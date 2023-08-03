@@ -21,6 +21,12 @@ mat-card{
 	height: auto;
 }
 
+.campaign-card .mat-card-header{
+	display: block;
+	font-size: 16px;
+	font-weight: bold;
+}
+
 mat-card-content {
     overflow: hidden;
     display: -webkit-box;
@@ -32,4 +38,8 @@ mat-card-content {
     	white-space: normal;
     	text-align: left;
     }
+}
+
+.campaign-card{
+	margin: 12px;
 }

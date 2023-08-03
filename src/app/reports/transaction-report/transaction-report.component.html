@@ -15,16 +15,23 @@
   <button mat-icon-button color="primary" (click)="refresh()"><mat-icon>refresh</mat-icon></button>
 </div>
 <div class="transaction-container">
-  <mat-card class="transaction-card" *ngFor="let t of transactions">
-      <div fxLayout fxLayoutGap="16px">
-        <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
-        <div>
-          <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
-          <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span></div>
-      </div>
-      <div class="comment">
-        {{t.c}}
-      </div>
-  </mat-card>
-  <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More</button>
+  <div *ngIf="transactions.length===0">
+    <h3>No transactions found!!!</h3>
+  </div>
+  <div *ngIf="transactions.length>0">
+    <mat-card class="transaction-card" *ngFor="let t of transactions">
+        <div fxLayout fxLayoutGap="16px">
+          <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
+          <div>
+            <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
+            <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span>
+          </div>
+          <div>{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
+        </div>
+        <div class="comment">
+          {{t.c}}
+        </div>
+    </mat-card>
+    <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More</button>
+  </div>
 </div>

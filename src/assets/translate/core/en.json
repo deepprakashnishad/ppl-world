@@ -1,0 +1,23 @@
+{
+	"PROFILE": {
+		"TEAM_SIZE": "Team Size",
+		"DD": "Direct Downlines",
+		"REFERRED_BY": "Referred By",
+		"CURR_ORBIT": "Current Orbit",
+		"WITHDRAWABLE": "Amount Withdrawable",
+		"TC": "Total Collection",
+		"TAW": "Amount WITHDRAWN",
+		"ACNL": "Collection for next orbit",
+		"DQ": "Donation Quota",
+		"P10X": "Personal 10X Community Details",
+		"LEVELWISE": "Level wise & Orbit wise Downlines",
+		"APPROVE_NEW": "Approve New Joinee",
+		"BUY_SLOTS": "Donate & Get Slots",
+		"UPLOAD_IMAGES": "Upload Images",
+		"TRANSFER_CREDITS": "Transfer Credits",
+		"CREDITS": "Credits",
+		"TRANSFER": "Transfer",
+		"SLOT_COUNT": "Enter no. of slots to purchase",
+		"SLOTS": "Slots"
+	}
+}

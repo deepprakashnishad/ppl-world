@@ -1,5 +1,5 @@
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {HttpClientModule } from '@angular/common/http';
+import {HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
@@ -33,6 +33,11 @@ import { DailyReportComponent } from './reports/daily-report/daily-report.compon
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view-campaign.component';
+import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
+import { SubscriptionComponent } from './static-page/campaign/subscription/subscription.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -74,6 +79,13 @@ const notifierDefaultOptions: NotifierOptions = {
   }
 };
 
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new MultiTranslateHttpLoader(httpClient, [
+      {prefix: "./assets/translate/core/", suffix: ".json"},
+      {prefix: "./assets/translate/shared/", suffix: ".json"},
+  ]);
+}
+
 @NgModule({
   declarations: [				
     AppComponent,
@@ -86,6 +98,9 @@ const notifierDefaultOptions: NotifierOptions = {
     PrivacyComponent,
     CampaignComponent,
     CreateCampaignComponent,
+    ViewCampaignComponent,
+    WallOfFameComponent,
+    SubscriptionComponent,
     DailyReportComponent,
     TransactionReportComponent,
     GlobalEarningReportComponent
@@ -107,6 +122,13 @@ const notifierDefaultOptions: NotifierOptions = {
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireMessagingModule,
     AngularFireStorageModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     
     ServiceWorkerModule.register('combined-sw.js', {
       enabled: environment.production,

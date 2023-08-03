@@ -6,3 +6,9 @@
 	padding: 8px 48px;
 	padding-bottom: 32px;
 }
+
+@media screen and (max-width: 480px) {
+  ::ng-deep .mat-select-value{    
+    color: black;  
+  }
+}

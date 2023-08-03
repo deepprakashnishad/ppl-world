@@ -1,4 +1,4 @@
-<div class="carousel">
+<div class="carousel" ngStyle.gt-sm="min-height: 300px" ngStyle.lt-md="min-height: 200px">
   <ng-container class="img-wrapper" *ngFor="let slide of slides; let i = index">
     <img
       *ngIf="i === currentSlide"
@@ -9,7 +9,7 @@
     <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType">
       <div class="small-text">{{slide.headline}}</div>
       <div class="big-text">{{slide.text}}</div>
-      <button mat-raised-button color="primary" class="call-to-action-button">{{slide.callToActionText}}</button>
+      <button mat-raised-button color="primary" class="call-to-action-button" (click)="actionClicked(slide.linkToAction)">{{slide.callToActionText}}</button>
     </div>
   </ng-container>
 

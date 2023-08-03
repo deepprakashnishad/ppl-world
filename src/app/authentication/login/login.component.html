@@ -29,7 +29,7 @@
             </div>
 	          
 	          <div class="text-center py-4 mt-3">
-	            <button mat-raised-button type="submit"  [disabled]="loginForm.invalid" color="primary" (click)="login();">Login</button>
+	            <button class="full-width" mat-raised-button type="submit"  [disabled]="loginForm.invalid" color="primary" (click)="login();">Login</button>
 	          </div>
 	        </form>
         </mat-card>
@@ -82,7 +82,7 @@
           [errorLabel]="'Please select a referrer'" [isMandatory]="true"></app-person-exact-match>
           <!-- <mat-error *ngIf="!referrer">Please select referrer</mat-error> -->
           <div>
-            <button mat-raised-button type="reset" [disabled]="cardForm.invalid || !referrer" color="primary" (click)="onSubmit();">Register</button>
+            <button class="full-width" mat-raised-button type="reset" [disabled]="cardForm.invalid || !referrer" color="primary" (click)="onSubmit();">Register</button>
           </div>
         </form>
       </mat-tab>

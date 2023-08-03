@@ -1,8 +1,10 @@
 import { 
   Component, 
   OnInit, 
+  ViewChild
 } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {Router, RoutesRecognized} from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { ProfileService } from './profile.service';
 import { GeneralService } from './../general.service';
@@ -11,6 +13,7 @@ import { environment } from './../../environments/environment';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { map, mergeMap, startWith, mergeMapTo } from 'rxjs/operators';
 import { ShareComponent } from './../shared/share/share.component';
+import {PersonExactMatchComponent} from './../person/person-exact-match/person-exact-match.component';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -34,16 +37,24 @@ export class ProfileComponent implements OnInit {
 
   transferAmt: number;
 
-  joiningCharges: number = environment.joiningCharges;
-
   uploadPath: string = "";
 
   order: any;
 
+  totalAmountForSlots: number;
+
+  slotCount: number = 10;
+
+  buyButtonDisabled: boolean = false;
+
+  @ViewChild('boughtForSearchBox') boughtFor: PersonExactMatchComponent;
+
+  @ViewChild('beneficiary') beneficiary: PersonExactMatchComponent;
 
   constructor(
     private profileService: ProfileService,
     private afMessaging: AngularFireMessaging,
+    private router: Router,
     private generalService: GeneralService,
     private _bottomSheet: MatBottomSheet,
     private notifier: NotifierService
@@ -52,15 +63,18 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(){
+
+    this.totalAmountForSlots = this.slotCount*environment.slotPrice;
+
     this.profileService.getPersonDetail().subscribe(result=>{
       this.person = Person.fromJSON(result);
-      if(this.person.status==="APPROVAL_PENDING" && this.person.currOrbit===0){
+      /*if(this.person.status==="APPROVAL_PENDING" && this.person.currOrbit===0){
         this.order = {
           amount: environment.joiningCharges, 
           person: this.person.id, 
           product: "Starter Plan Activation"
         }
-      }
+      }*/
 
       this.uploadPath = this.person.id;
       
@@ -79,20 +93,62 @@ export class ProfileComponent implements OnInit {
     this.selectedPersonForApproval = $event;
   }
 
+  slotCountUpdated(event){
+    if(this.slotCount > 11000){
+      this.slotCount = 11000;
+    }
+
+    if(this.slotCount>0 && this.slotCount<=2){
+      this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 30);
+    }else if(this.slotCount >= 3 && this.slotCount <= 5){
+      this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 20);
+    }else if(this.slotCount >= 6 && this.slotCount <= 9){
+      this.totalAmountForSlots = this.slotCount*(environment.slotPrice + 10);
+    } else{
+      this.totalAmountForSlots = this.slotCount*environment.slotPrice;
+    }
+  }
+
   approve(){
-    if(this.person.amtWithdrawable < this.joiningCharges){
-      this.notifier.notify("error", `Insufficient balance. ${this.joiningCharges - this.person.amtWithdrawable} more is required.`);
-    }else if(this.selectedPersonForApproval.s !== "APPROVAL_PENDING"){
-      this.notifier.notify("error", `${this.selectedPersonForApproval.n} is already joined`);
+    if(this.slotCount <=0 ){
+      this.notifier.notify("error", "Slot count should be greater than 0");
+      return;
+    }
+    if(this.totalAmountForSlots <=0 ){
+      this.notifier.notify("error", "Amount should be greater than 0");
+      return;
+    }
+
+    if(!this.selectedPersonForApproval || !this.selectedPersonForApproval.id){
+      this.notifier.notify("error", "Please select a person");
+      return;
+    }
+
+    if(this.person.amtWithdrawable < this.totalAmountForSlots){
+      this.notifier.notify("error", `Insufficient balance. ${this.totalAmountForSlots - this.person.amtWithdrawable} more is required.`);
     }else{
-      this.profileService.approveNewJoinee(
-        this.selectedPersonForApproval.id, this.joiningCharges
+      this.buyButtonDisabled = true;
+      this.profileService.buySlots(
+        this.selectedPersonForApproval.id, 
+        this.totalAmountForSlots,
+        this.slotCount
       ).subscribe(result=>{
+        this.buyButtonDisabled = false;
         if(result['success']){
-          this.notifier.notify("success", "Approval successfull");
+          this.selectedPersonForApproval = undefined;
+          this.slotCount = 0;
+          this.totalAmountForSlots = 0;
+          this.boughtFor.reset();
+          this.notifier.notify("success", "Slots retrieval successfull");
         }else{
-          this.notifier.notify("error", "Approval failed");
+          this.notifier.notify("error", "Failed to get slots");
+          if(result['msg']){
+            this.notifier.notify("error", result['msg']);
+          }
         }
+      }, err=>{
+        console.log(err);
+        this.buyButtonDisabled = false;
       });
     }
   }
@@ -112,13 +168,17 @@ export class ProfileComponent implements OnInit {
     if(!this.person.id){
       this.notifier.notify("error", "Try again in sometime.")
     }
-    var mTxt = `${this.person.name} is inviting you to GoodAct platform. Join GoodAct to help people in time of need and to get help in your critical phase of life. This is also an oppurtunity to make your dreams true. So join by clicking on below link. ${window.location.protocol}//${window.location.host}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
-    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt}});
+    var mTxt = `${this.person.name} is inviting you to GoodAct platform. Join GoodAct to help people in time of need and to get help in your critical phase of life. This is also an oppurtunity to make your dreams true. So join by clicking on below link. ${window.location.protocol}//${environment.appUrl}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
+    var mLink = `${environment.appUrl}//${window.location.host}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
+    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
   }
 
   transferCreditsToSelected($event){
     this.transferCreditsTo = $event; 
-    console.log(this.transferCreditsTo);
+    if(this.transferCreditsTo.id === this.person.id){
+      this.notifier.notify("error", "Cannot transfer funds to self");
+      this.beneficiary.reset();
+    }
   }
 
   transfer(){
@@ -133,7 +193,13 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.tranferCredits(this.transferCreditsTo, Number(this.transferAmt))
     .subscribe(result=>{
-      console.log(result);
+      if(result.success){
+        this.beneficiary.reset();
+        this.transferAmt = 0;
+        this.notifier.notify("success", "Amount successfully credited");
+      }else{
+        this.notifier.notify("error", "Failed to transfer credit");
+      }
     });
   }
 
@@ -149,5 +215,9 @@ export class ProfileComponent implements OnInit {
         },
         (error) => { console.error(error); },  
       );
+  }
+
+  navigateTo(url){
+    this.router.navigate([url]);
   }
 }

@@ -1,53 +1,60 @@
 <app-progress-spinner></app-progress-spinner>
 <mat-toolbar class="navbar" #navToolbar>	
-	<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
-		<div fxLayout="row" fxFlex="20">
-			<picture>
-				<source media="(min-width:650px)" srcset="/assets/images/logo-72x72.png">
-			  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
-			  	<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto;">
-			</picture>
-			<!-- <div class="header-logo">
-				<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
-			 </div> -->
-		</div>
-		<div class="nav-menu-container" fxLayout="row" fxFlex="60" fxLayoutAlign="center">
-			<button mat-button (click)="navigateTo('/')">
-				Home
-			</button>
-			<button mat-button (click)="navigateTo('/about-us')">
-				About Us
-			</button>
-			<button mat-button (click)="navigateTo('/explore')">
-				Explore
-			</button>
-			<button mat-button (click)="navigateTo('/faq')">
-				FAQ
-			</button>
-			<button mat-button (click)="navigateTo('/contact')">
-				Contact
-			</button>
-			<button mat-button (click)="navigateTo('/downloads')">
-				Download
-			</button>
-			<button mat-button (click)="navigateTo('/profile')">
-				Profile
-			</button>
-			<button mat-button [matMenuTriggerFor]="reports">Reports</button>
-			<mat-menu #reports="matMenu">
-			  <button mat-menu-item (click)="navigateTo('/transaction-report')">Transaction</button>
-			  <button mat-menu-item (click)="navigateTo('/global-earning-report')">Global Earning</button>
-			</mat-menu>
-			<!-- <button mat-button (click)="navigateTo('/daily-report')">
-				Daily Report
-			</button> -->
-		 </div>
-		<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
-			<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
-				{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
-			</button>
-		</div>
-	</mat-toolbar-row>
+	
+		<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
+			<div fxLayout="row" fxFlex="20">
+				<picture>
+					<source media="(min-width:650px)" srcset="/assets/images/logo-72x72.png">
+				  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
+				  	<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto;">
+				</picture>
+				<!-- <div class="header-logo">
+					<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
+				 </div> -->
+			</div>
+			<div class="nav-menu-container" fxLayout="row" fxFlex="80" fxLayoutAlign="center">
+				<button mat-button (click)="navigateTo('/')">
+					Home
+				</button>
+				<button mat-button (click)="navigateTo('/about-us')">
+					About Us
+				</button>
+				<button mat-button (click)="navigateTo('/explore')">
+					Explore
+				</button>
+				<button mat-button (click)="navigateTo('/faq')">
+					FAQ
+				</button>
+				<button mat-button (click)="navigateTo('/contact')">
+					Contact
+				</button>
+				<button mat-button (click)="navigateTo('/downloads')">
+					Download
+				</button>
+				<button mat-button (click)="navigateTo('/profile')">
+					Profile
+				</button>
+				<button mat-button [matMenuTriggerFor]="reports">Reports</button>
+
+				<mat-select fxFlex="10" #langSelect (selectionChange)="mTranslate.use(langSelect.value)">
+					<mat-option *ngFor="let lang of mTranslate.getLangs()" [value]="lang">{{lang}}</mat-option>
+				</mat-select>
+
+				<mat-menu #reports="matMenu">
+				  <button mat-menu-item (click)="navigateTo('/transaction-report')">Transaction</button>
+				  <button mat-menu-item (click)="navigateTo('/global-earning-report')">Global Earning</button>
+				</mat-menu>
+				<!-- <button mat-button (click)="navigateTo('/daily-report')">
+					Daily Report
+				</button> -->
+			 </div>
+			<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+				<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
+					{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+				</button>
+			</div>
+		</mat-toolbar-row>
+	
 	<!-- <mat-toolbar-row *ngIf="shrinkToolbar" class="narrow-navbar" fxLayout fxLayoutAlign="space-between center" fxHide.lt-md>
 		<a class="brand" routerLink="/">
 			Good Act
@@ -58,7 +65,6 @@
 			</div>
 		</div>
 	</mat-toolbar-row> -->
-
 	<mat-toolbar-row class="narrow-navbar" fxHide.gt-sm>
 		<div fxLayout="row" fxFlex="30">
 			<div class="header-logo">
@@ -77,7 +83,6 @@
 		</div>
 	</mat-toolbar-row>
 </mat-toolbar>
-
 <div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
 	<!-- <div class="social" fxLayout="row">
 			<ul>
@@ -118,11 +123,17 @@
 		<button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
 			Download
 		</button>
+		<button mat-button *ngIf="pwa.promptEvent" class="mobPageLink" (click)="installPwa()">
+			Install App
+		</button>
+		<mat-select class="mobPageLink"  #langSelect [(value)]="selectedLanguage" (selectionChange)="this.isLeftBarOpen = false; mTranslate.use(langSelect.value)">
+			<mat-option *ngFor="let lang of mTranslate.getLangs()" [value]="lang">{{lang}}</mat-option>
+		</mat-select>
 		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
 			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.1</div>
+		<div class="version" fxFlexAlign="start">Version 1.0.3</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

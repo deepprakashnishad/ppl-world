@@ -5,6 +5,9 @@ import { Title } from '@angular/platform-browser';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { environment } from '../../environments/environment';
 import { StorageService } from '../storage.service';
+import { PwaService } from './../pwa.service';
+
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -14,14 +17,16 @@ import { StorageService } from '../storage.service';
 	animations: [
 		trigger('openClose', [
 			state('open', style({
-				display: "flex",
-				opacity: 1,
-        width:"100%"
+				width: '245px',
+				padding: "5%",
+        opacity: 1,
+        display: "block"
 			})),
 			state('closed', style({
-				display: "none",
-				opacity: 0,
-        width: "0%"
+				width: '0px',
+				padding: "0%",
+        opacity: 0.4,
+        display: "none"
 			})),
 			transition('open => closed', [
 				animate('200ms')
@@ -37,22 +42,36 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	isLoggedIn: boolean  = false;
 	isSidebarOpen: boolean = false;
 	name: String;
+	mTranslate: TranslateService;
 	@ViewChild("navToolbar") navToolbar;
 	isLeftBarOpen: boolean = false;
 
 	private readonly SHRINK_TOP_SCROLL_POSITION = 5;
 	shrinkToolbar = false;
-  	elementPosition: any;
+	elementPosition: any;
+	pwa: PwaService;
 
-  	constructor(
-		private authenticationService: AuthenticationService,
-		private router: Router,
-		private storageService: StorageService,
-		private titleService: Title,
-		private renderer: Renderer2,
-		private ngZone: NgZone,
-    ) {
-    }
+	selectedLanguage: string = "en";
+
+	constructor(
+	private authenticationService: AuthenticationService,
+	private router: Router,
+	private pwaService: PwaService,
+	private storageService: StorageService,
+	private translate: TranslateService,
+	private titleService: Title,
+	private renderer: Renderer2,
+	private ngZone: NgZone,
+  ) {
+  	this.pwa = this.pwaService;
+  	this.mTranslate = translate;
+
+  	translate.addLangs(['en', 'hi']);
+  	translate.setDefaultLang('en');
+
+  	const browserLang = translate.getBrowserLang();
+  	translate.use(browserLang.match(/en|hi/) ? browserLang:'en');
+  }
 
   ngAfterViewInit() {
   }
@@ -84,6 +103,7 @@ export class NavigationComponent implements OnInit, AfterViewInit {
     }
 
 	toggleLoginStatus(isLoggedIn){
+		this.isLeftBarOpen = false;
 		if(isLoggedIn){
 			this.isLoggedIn = false;
     		this.authenticationService.logout();
@@ -101,7 +121,7 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	}
 
 	openCategoryDrawer(){
-	console.log("openCategoryDrawer function can be removed")	
+		console.log("openCategoryDrawer function can be removed")	
   }
 
   toggleLeftDrawer() {
@@ -116,7 +136,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   }
 
   navigateTo(url) {
+  	this.isLeftBarOpen = false;
     this.router.navigate([url]);
-    this.isLeftBarOpen = false;
+  }
+
+  installPwa(): void {
+  	this.isLeftBarOpen = false;
+    this.pwaService.promptEvent.prompt();
   }
 }

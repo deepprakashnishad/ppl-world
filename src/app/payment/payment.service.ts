@@ -44,6 +44,19 @@ export class PaymentService {
        catchError(this.handleError('Retry Payment', null)));
   }
 
+  donateFromGAAcc(cid, amount, isAnonymous, campaignTitle): Observable<any>{
+    return this.http.post<any>(`${this.paymentUrl}/donateFromGA`,
+      {
+        "ctitle": campaignTitle,
+        "cid": cid,
+        "amount": amount,
+        "anonymous": isAnonymous
+      }
+    )
+    .pipe(
+       catchError(this.handleError('Retry Payment', null))); 
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

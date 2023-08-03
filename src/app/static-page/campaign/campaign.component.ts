@@ -50,13 +50,14 @@ export class CampaignComponent implements OnInit {
 		});
 	}
 
-	navigateToCreateCampaign(id: string){
-		if(id){
+	navigateToCreateCampaign(id: string, type: string = "view"){
+		if(id && type==="edit"){
 			this.router.navigate([`campaigns/edit/${id}`]);
+		}else if(id && type==="view"){
+			this.router.navigate([`campaigns/view/${id}`]);
 		}else{
 			this.router.navigate(['campaigns/edit']);
-		}
-		
+		}	
 	}
 
 	getCampaigns(){

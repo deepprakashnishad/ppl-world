@@ -54,11 +54,20 @@ export class PersonExactMatchComponent implements OnInit {
   }
 
   fetchPersonList(){
+    if(!this.mobileNumber || this.mobileNumber.length!=10){
+      this.notifier.notify("error", "Please enter a valid mobileNumber");
+      return;
+    }
     this.personService.fetchReferrer(`+91${this.mobileNumber}`, this.detail, this.type)
     .subscribe((person)=>{
       // this.mobileNumber = `${person.n} | ${person.m} | ${person.e}`;
       this.person = person;
       this.personSelected.emit(person);
     });
+  }
+
+  reset(){
+    this.person = {n:"", m:"", s:"", e: "", p:"", co: ""};
+    this.mobileNumber = "";
   }
 }

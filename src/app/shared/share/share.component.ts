@@ -15,11 +15,14 @@ import {MatButtonModule} from '@angular/material/button';
 export class ShareComponent {
 
   @Input() mTxt: string = "";
-  @Input() mTitle: string = "Good Act - Help and Grow"
+  @Input() mLink: string = "";
+  @Input() mTitle: string = "GoodAct - Help and Grow"
 
   whatsAppUrl: string = "whatsapp://send?text={mTxt}";
   smsUrl: string = "sms://body={mTxt}";
   emailUrl: string = "mailto:?Subject={mTitle}&body={mTxt}";
+  twitterUrl: string = "https://twitter.com/intent/tweet?text={mTxt}&hashtags={mTitle}";
+  instagramUrl: string = "https://www.instagram.com/?url={mLink}";
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<ShareComponent>,
@@ -29,11 +32,11 @@ export class ShareComponent {
   }
 
   ngOnInit(){
-    console.log(this.mTxt);
     this.whatsAppUrl = encodeURI(this.whatsAppUrl.replace("{mTxt}", this.mTxt));
-    console.log(this.whatsAppUrl);
-    // this.smsUrl = encodeURI(this.smsUrl.replace("{mTxt}", this.mTxt));
-    // this.emailUrl = encodeURI(this.emailUrl.replace("{mTxt}", this.mTxt).replace("{mTitle}", this.mTitle));
+    this.smsUrl = encodeURI(this.smsUrl.replace("{mTxt}", this.mTxt));
+    this.emailUrl = encodeURI(this.emailUrl.replace("{mTxt}", this.mTxt).replace("{mTitle}", this.mTitle));
+    this.twitterUrl = encodeURI(this.twitterUrl.replace("{mTxt}", this.mTxt).replace("{mTitle}", this.mTitle));
+    this.instagramUrl = encodeURI(this.instagramUrl.replace("{mLink}", this.mLink));
   }
 
   openLink(event: MouseEvent): void {

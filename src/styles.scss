@@ -74,7 +74,10 @@ strong{
 }
 
 .container{
-  background-color: white;
+  background: #2217c540;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c540, #0eeba447);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c540, #0eeba447);
+  padding: 12px;
 }
 
 .deep-padding{
@@ -187,6 +190,48 @@ strong{
     border-left: 20px solid red;
 }
 
+.summary-highlight{
+  font-weight: bold;
+  font-size: 16px;
+}
+
 .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-  background-color: #731539;
+  background-color: #2217c5;  /* fallback for old browsers */
+  background-color: -webkit-linear-gradient(to right, #2217c5, #0eeba4);  /* Chrome 10-25, Safari 5.1-6 */
+  background-color: linear-gradient(to right, #2217c5, #0eeba4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.zoom {
+  transform: scale(1);
+  transition: transform 1s !important;
+}
+
+.zoom:hover {
+  transform: scale(1.1);
+  transition: 0.5s all ease-in-out;
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, 
+.mat-mini-fab.mat-primary, .mat-table thead{
+  background: #2217c5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c5, #0eeba4) /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+  background: #00af15;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #00af15, #d9b706);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00af15, #d9b706); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.mat-flat-button.mat-warn, .mat-raised-button.mat-warn, .mat-fab.mat-warn, .mat-mini-fab.mat-warn{
+  background: #d70000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #d70000, #f9c040);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #d70000, #f9c040); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+}
+
+.x2-icon{
+  transform: scale(2);
 }

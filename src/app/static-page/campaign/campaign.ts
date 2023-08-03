@@ -8,10 +8,16 @@ export class Campaign{
 	owner: any;
 	cat: string; //Category
 	expiryDate: number;
+  reqf: string;
+  assets: any;
+  createdAt: any;
+
 
 	constructor(){
 		this.title = "";
     this.s="Draft";
+    this.reqf = "M";
+    this.desc="";
   }
 
   static fromJSON(data) {
@@ -20,11 +26,16 @@ export class Campaign{
     campaign.title = data['title'];
     campaign.desc = data['desc'];
     campaign.areqd = data['areqd'];
-    campaign.cltd = data['cltd'];
+    campaign.cltd = data['clct'];
     campaign.s = data['s'];
-    campaign.owner = data['owner'];
+    campaign.owner = data['o'];
     campaign.cat = data['cat'];
+    campaign.reqf = data['reqf'];
     campaign.expiryDate = data['expiryDate'];
+    campaign.assets = data['assets'];
+    if(data['createdAt']){
+      campaign.createdAt = new Date(data['createdAt']);
+    }
     return campaign;
   }
 

@@ -17,6 +17,16 @@
 		  	</mat-select>
 	    </mat-form-field>
 
+	    <mat-form-field appearance="outline" fxFlexAlign="center">
+			<mat-label>---Requirement Frequency---</mat-label>
+		    <mat-select [(ngModel)]="campaign.reqf" [disabled]="!enableEditMode">
+		    	<mat-option value="O">ONE TIME</mat-option>
+			    <mat-option value="W">WEEKLY</mat-option>
+			    <mat-option value="M">MONTHLY</mat-option>
+			    <mat-option value="Y">YEARLY</mat-option>
+		  	</mat-select>
+	    </mat-form-field>
+
 	    <mat-form-field appearance="outline">
 	      <mat-select [(ngModel)]="campaign.s" [disabled]="!enableEditMode">
 	      	<mat-option value="Draft">Draft</mat-option>
@@ -38,8 +48,16 @@
 	<div class="full-width">
 		<mat-form-field class="full-width" appearance="outline">
 		    <mat-label>Description</mat-label>
-		    <textarea matInput placeholder="Ex. Detailed description of the campaign" maxlength="1000" [(ngModel)]="campaign.desc" [readonly]="!enableEditMode">{{campaign.desc}}</textarea>
+		    <textarea name="message" #message="ngModel" matInput placeholder="Ex. Detailed description of the campaign" maxlength="1000" [(ngModel)]="campaign.desc" [readonly]="!enableEditMode">{{campaign.desc}}</textarea>
 		</mat-form-field>
+	</div>
+	<div fxLayout="column" *ngIf="campaign.id">
+		<app-uploader [maxAllowedFileSize]="1024" [uploadPath]="uploadPath" [isMultiple]="true" (imageUploaded)="uploadCompleted($event)" [header]="'Campaign Images'"></app-uploader>
+		<div fxLayout>
+			<div *ngFor="let image of campaign.assets">
+				<img [src]="image['downloadUrl']" width="150px" height="auto" />
+			</div>
+		</div>
 	</div>
 	<button fxFlexAlign="center" mat-raised-button (click)="saveCampaign()" color="primary" *ngIf="enableEditMode"
 	ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Submit</button>

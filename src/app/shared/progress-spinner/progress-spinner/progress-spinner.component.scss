@@ -20,9 +20,11 @@
   display: flex; 
   justify-content: center; 
   align-items: center;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 2px);
   width: 100%;
-  background: #731539;
+  background: #2217c599;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c599, #0eeba473);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c599, #0eeba473);
   z-index: 99999;
 }
 
@@ -36,6 +38,9 @@
   position: relative;
   animation: rotating 2s ease-in-out infinite;
   --direction: 1;
+  background: #2217c5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c5, #0eeba4);
 }
 
 .loader::before,

@@ -1,6 +1,6 @@
 <div class="main-container">
     <div class="first-container">
-      <app-carousel [slides]="slides" [animationType]="'fade'"></app-carousel>
+      <app-carousel [slides]="slides" [animationType]="'fade'" (outputEvent)="slideActionClicked($event)"></app-carousel>
     </div>
     <div class="second-container" fxLayout fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column">
         <div fxLayout="column" fxLayoutAlign="center center" fxFlex>

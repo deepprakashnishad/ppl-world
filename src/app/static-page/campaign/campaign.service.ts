@@ -41,6 +41,24 @@ export class CampaignService {
         catchError(this.handleError('Get Token', null)));
   }
 
+  getSubscription(cid, amount, frequency, isAnonymous, startDate): Observable<any>{
+    return this.http.post<any>(`${this.campaignUrl}/getSubscription`, {
+      "cid": cid,
+      "amount": amount,
+      "freq": frequency,
+      "isAnonymous": isAnonymous,
+      "startDate": startDate
+    })
+      .pipe(
+        catchError(this.handleError('Subscribe Campaign', null)));
+  }
+
+  getRegularDonors(limit:number = 50, offset:number = 0): Observable<any>{
+    return this.http.get<any>(`${this.campaignUrl}/getRegularDonors?limit=${limit}&offset=${offset}`)
+      .pipe(
+        catchError(this.handleError('Subscribe Campaign', null))); 
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

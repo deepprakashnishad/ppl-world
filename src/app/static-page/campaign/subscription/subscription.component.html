@@ -1,0 +1,31 @@
+<div class="m-container" fxLayout="column">
+	<h2>Campaign Subscription Form</h2>
+	<h3>{{campaign.title}}</h3>
+	<mat-form-field class="full-width">
+		<mat-label>Donation Amount</mat-label>
+		<input matInput placeholder="Donation Amount" type="number" [(ngModel)]="amount" class="form-control" min="25">
+	</mat-form-field>
+	<mat-form-field class="full-width" appearance="outline" fxFlexAlign="center">
+		<mat-label>---Requirement Frequency---</mat-label>
+	    <mat-select [(ngModel)]="frequency">
+	    	<mat-option value="O">ONE TIME</mat-option>
+	    	<mat-option value="FN">On 15 Days</mat-option>
+		    <mat-option value="W">WEEKLY</mat-option>
+		    <mat-option value="M">MONTHLY</mat-option>
+		    <mat-option value="Y">YEARLY</mat-option>
+	  	</mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Choose start date</mat-label>
+	  <input matInput [matDatepicker]="startDatePicker" (dateInput)="startDateSelected($event)">
+	  <mat-hint>MM/DD/YYYY</mat-hint>
+	  <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+	  <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+	<div class="full-width"><mat-checkbox [(ngModel)]="isAnonymous">Is Anonymous</mat-checkbox></div>
+	<div>
+		<button class="full-width" class="full-width" mat-raised-button color="primary" (click)="subscribeToCampaign()">
+			Subscribe
+		</button>
+	</div>
+</div>

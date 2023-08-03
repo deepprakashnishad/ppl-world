@@ -52,7 +52,6 @@ export class GlobalEarningReportComponent implements OnInit {
 
   getGlobalEarningReport(startDate: string, endDate: string){
     this.reportService.getGlobalEarningReport(startDate, endDate, this.limit, this.offset).subscribe(result=>{
-      console.log(result);
       var pf = result['pf'];
       var pfd = result['pfd'];
       var jd = result['joining_date'];
@@ -63,39 +62,36 @@ export class GlobalEarningReportComponent implements OnInit {
       }
 
       for(var i=0; i < geRecords.length; i++){
-        if(geRecords[i]['mTimestamp'] > jd){
+        if(!pfd || !pfd['p'] || geRecords[i]['mTimestamp'] < pfd['p']){
           break;
         }
-        this.formatRecord(geRecords[i], undefined);
+        this.formatRecord(geRecords[i], "p");
       }
 
       for(; i < geRecords.length; i++){
-        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
-          break;
-        }
-        this.formatRecord(geRecords[i], "s");
-      }
-
-      for(; i < geRecords.length; i++){
-        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
-          break;
-        }
-        this.formatRecord(geRecords[i], "g");
-      }
-
-      for(; i < geRecords.length; i++){
-        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+        if(!pfd || !pfd['d'] || geRecords[i]['mTimestamp'] < pfd['d']){
           break;
         }
         this.formatRecord(geRecords[i], "d");
       }
 
       for(; i < geRecords.length; i++){
-        if(pfd && pfd['g'] && geRecords[i]['ged']['timestamp'] < pfd['g']){
+        if(!pfd || !pfd['g'] || geRecords[i]['mTimestamp'] < pfd['g']){
           break;
         }
-        this.formatRecord(geRecords[i], "p");
+        this.formatRecord(geRecords[i], "g");
       }
+
+      for(; i < geRecords.length; i++){
+        if(pfd && pfd['s'] && geRecords[i]['mTimestamp'] < jd){
+          break;
+        }
+        this.formatRecord(geRecords[i], "s");
+      }
+
+      for(; i < geRecords.length; i++){
+        this.formatRecord(geRecords[i], undefined);
+      }      
 
       this.offset = this.globalEarnings.length;
     });
@@ -103,7 +99,6 @@ export class GlobalEarningReportComponent implements OnInit {
 
   private formatRecord(record: any, pf: string){
     var newRecs = [];
-    console.log(record);
     var temp = {};
     temp['tc'] = record['tc'];
     temp['ged'] = record['ged'];

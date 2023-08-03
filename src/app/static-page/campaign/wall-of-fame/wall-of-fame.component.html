@@ -1,0 +1,22 @@
+<div class="container" fxLayout="column" fxLayoutAlign="center center">
+	<div><h2>We heartily thank all our donors for their generous contribution!!!</h2></div>
+	<div fxLayout="row wrap" fxLayoutAlign="center center">
+		<div *ngFor="let donor of donors; let i=index" [class]="'card-container card'+(i%3+1)">
+			<mat-card class="example-card zoom" fxLayout="column" fxLayoutAlign="center center">
+			  <mat-card-header>
+			    <mat-card-title>{{donor.donor.n}}</mat-card-title>
+			  </mat-card-header>
+			  <img class="profile-pic" *ngIf="!donor.donor.pic?.downloadUrl" src="/assets/images/profile/profile.png" />
+			  <img class="profile-pic" *ngIf="donor.donor.pic?.downloadUrl" [src]="donor.donor.pic?.downloadUrl" height="150" width="150"/>
+			  <mat-card-content class="summary-highlight">
+			    <div>
+			      Donation Subscribed: {{donor.donor.da | currency: 'INR':'symbol-narrow'}}
+		      	</div>
+			    <div>
+			    	Total Donation: {{donor.totalAmt | currency: 'INR':'symbol-narrow'}}
+			    </div>
+			  </mat-card-content>
+			</mat-card>
+		</div>
+	</div>
+</div>

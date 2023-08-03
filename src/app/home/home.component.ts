@@ -17,7 +17,7 @@ import { CarouselComponent } from "../shared/carousel/carousel.component";
 })
 export class HomeComponent implements OnInit, AfterViewInit {
 
-   @ViewChild(CarouselComponent) carousel: CarouselComponent;
+  @ViewChild(CarouselComponent) carousel: CarouselComponent;
 
   animationType = AnimationType.Scale;
 
@@ -44,19 +44,22 @@ export class HomeComponent implements OnInit, AfterViewInit {
       headline: "Create donation landing page",
       src: "/assets/images/carousel/medical.jpg",
       text: "Need funds for Medical?",
-      callToActionText: "Create Campaign"
+      callToActionText: "Create Campaign",
+      linkToAction: "/campaigns/edit"
     },
     {
       headline: "Raising money has never been so easy",
       src: "/assets/images/carousel/business.jpg",
       text: "Need funds for Business?",
-      callToActionText: "Create Project"
+      callToActionText: "Create Project",
+      linkToAction: "campaigns/edit"
     },
     {
       headline: "Scholarship for brilliant students",
       src: "/assets/images/carousel/education.jpg",
       text: "Need funds for Education?",
-      callToActionText: "Join Scholarship Program"
+      callToActionText: "Join Scholarship Program",
+      linkToAction: "campaigns/edit"
     }
   ];
 
@@ -71,7 +74,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log("Home page")
     this.images.push("/assets/images/extras/list-icon.png")
   }
 
@@ -80,5 +82,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.carousel.onNextClick();
     });
+  }
+
+  slideActionClicked(event){
+    console.log(event);
+
+    this.router.navigate([event]);
   }
 }

@@ -1,5 +1,13 @@
 .navbar{
   z-index: 999;
+  background-color: transparent; 
+}
+
+.navbar .mat-toolbar-row{
+  background: #d70000;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #2217c5 60%, #9ef9d4c7);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #2217c5 60%, #9ef9d4c7);
+  color: white;
 }
 
 .version{
@@ -8,7 +16,7 @@
 
 a.pageLink, .nav-icon {
   padding: 0 14px;
-  color:#731539;  
+  color:#2217c5;  
 }
 
 button.mobPageLink {
@@ -31,12 +39,6 @@ button.mobPageLink {
     font-size:14px;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: white;
-  color: #731539;
-  border-radius: 5px;
-}
-
 form{
   font-size: 12px;
 }
@@ -47,7 +49,10 @@ a{
 }
 
 .sidebar{
-  background-color: #731539;
+  background: #2217c5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c5, #0eeba4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   position: absolute;
   right: 0;
   width: 245px;
@@ -65,13 +70,15 @@ a{
 }
 
 .left-drawer {
-  background-color: #731539;
+  background: #2217c5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #2217c5, #0eeba4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   position: absolute;
   left: 0;
   top: 0;
-  width: 245px !important;
+  width: 245px;
   height: 100%;
-  padding: 5%;
   z-index: 100;
   overflow: auto;
   // top: 20%;
@@ -240,4 +247,10 @@ mat-toolbar{
   -ms-transition: all 0.3s ease-out 0s;
   -o-transition: all 0.3s ease-out 0s;
   transition: all 0.3s ease-out 0s;
+}
+
+@media screen and (max-width: 480px) {
+  .mat-select.mobPageLink ::ng-deep .mat-select-value{    
+    color: white;  
+  }
 }

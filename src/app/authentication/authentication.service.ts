@@ -173,6 +173,12 @@ export class AuthenticationService {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('id', data.id);
       localStorage.setItem('iprr', data.iprr);
+
+      localStorage.setItem('dq', data.dq);
+      localStorage.setItem('aw', data.aw);
+      localStorage.setItem('curr_orbit', data.curr_orbit);
+      localStorage.setItem('tac', data.tac);
+      localStorage.setItem('taw', data.taw);
     } else {
       sessionStorage.setItem('token', data.token, );
       if(data.fbToken){
@@ -186,6 +192,12 @@ export class AuthenticationService {
       sessionStorage.setItem('isLoggedIn', 'true');
       sessionStorage.setItem('id', data.id);
       sessionStorage.setItem('iprr', data.iprr);
+
+      sessionStorage.setItem('dq', data.dq);
+      sessionStorage.setItem('aw', data.aw);
+      sessionStorage.setItem('curr_orbit', data.curr_orbit);
+      sessionStorage.setItem('tac', data.tac);
+      sessionStorage.setItem('taw', data.taw);
     }
     this.isLoggedIn.next(true);
   }

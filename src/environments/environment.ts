@@ -6,9 +6,9 @@ export const environment = {
   appName: "Good Act",
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
-  joiningCharges: 2200,
+  slotPrice: 220,
   baseurl: "http://localhost:4200/api",
-  
+  appUrl: "localhost:4200",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
     authDomain: "good-act.firebaseapp.com",

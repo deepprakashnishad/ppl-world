@@ -1,0 +1,30 @@
+<div class="container">
+	<div class="first-container" fxLayout.gt-sm="row" fxLayout.lt-md="column">
+		<div class="carousel-container" fxFlex=45>
+			<app-carousel [slides]="slides" [animationType]="'fade'" (outputEvent)="slideActionClicked($event)"></app-carousel>	
+		</div>
+		<div fxFlex="55">
+			<div class="title">{{campaign?.title}}</div>
+			<div class="summary">Campaign created at: <span>{{campaign?.createdAt | date: 'dd/MM/yyyy'}}</span></div>
+			<div class="summary" *ngIf="campaign?.ed && campaign?.ed>0">End Date: <span>{{campaign?.ed | date: 'dd/MM/yyyy'}}</span></div>
+			<div class="summary">Amount required: <span>{{campaign?.areqd | currency:'INR':'symbol-narrow' : '1.0-0'}}</span></div>
+			<div class="summary">Collection till date: <span>{{campaign?.cltd | currency:'INR':'symbol-narrow' : '1.0-0'}}</span></div>
+			<div class="summary">
+				Requirement is  
+				<span *ngIf="campaign?.reqf==='O'"> once in a lifetime</span>
+				<span *ngIf="campaign?.reqf==='W'"> weekly</span>
+				<span *ngIf="campaign?.reqf==='M'"> monthly</span>
+				<span *ngIf="campaign?.reqf==='Y'"> yearly</span>
+			</div>
+			<div class="summary">Category:<span> {{campaign?.cat | titlecase}}</span></div>
+			<div class="summary">Created By: <span>{{campaign?.owner?.name}}</span></div>
+			<div class="summary">Status: <span>{{campaign?.s}}</span></div>
+			<div fxLayout fxLayoutGap="16px" fxLayout.lt-md="column">
+				<button class="full-width" mat-raised-button color="primary" (click)="donateFromBank()">Donate from Bank Account</button>
+				<button class="full-width" mat-raised-button color="accent" (click)="donateFromGoodAct()">Donate From Good Act</button>
+				<button class="full-width" mat-raised-button color="warn" (click)="subscribeCampaign()">Subscribe</button>
+			</div>
+			<p class="desc">{{campaign?.desc}}</p>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, Output, EventEmitter } from "@angular/core";
 import { Slide } from "./carousel.interface";
 import { trigger, transition, useAnimation } from "@angular/animations";
 
@@ -58,26 +58,24 @@ export class CarouselComponent implements OnInit {
   @Input() slides: Slide[];
   @Input() animationType = AnimationType.Scale;
 
+  @Output() outputEvent = new EventEmitter<any>();
+
   currentSlide = 0;
 
   constructor() {
-    console.log("Haribol")
   }
 
   onPreviousClick() {
     const previous = this.currentSlide - 1;
     this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
-    console.log("previous clicked, new current slide is: ", this.currentSlide);
   }
 
   onNextClick() {
     const next = this.currentSlide + 1;
     this.currentSlide = next === this.slides.length ? 0 : next;
-    console.log("next clicked, new current slide is: ", this.currentSlide);
   }
 
   ngOnInit() {
-    console.log(this.slides)
     this.preloadImages(); // for the demo
   }
 
@@ -85,5 +83,9 @@ export class CarouselComponent implements OnInit {
     for (const slide of this.slides) {
       new Image().src = slide.src;
     }
+  }
+
+  actionClicked(route: string){
+    this.outputEvent.next(route);
   }
 }

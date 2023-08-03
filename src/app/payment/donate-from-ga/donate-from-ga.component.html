@@ -1,0 +1,15 @@
+<div class="m-container" fxLayout="column">
+	<h2>Donation Form</h2>
+	<h3>{{campaign.title}}</h3>
+	<mat-form-field>
+		<mat-label>Donation Amount</mat-label>
+		<input matInput placeholder="Donation Amount" type="number" [(ngModel)]="amount" class="form-control">
+	</mat-form-field>
+	<mat-label>Available amount in donation quota <b>{{availableDQ | currency: 'INR':'symbol-narrow'}}</b></mat-label>
+	<div><mat-checkbox [(ngModel)]="isAnonymous">Is Anonymous</mat-checkbox></div>
+	<div>
+		<button class="full-width" mat-raised-button color="primary" (click)="donate()">
+			Donate
+		</button>
+	</div>
+</div>

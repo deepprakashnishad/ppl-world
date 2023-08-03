@@ -1,6 +1,7 @@
 export interface Slide {
   headline?: string;
-  src: string;
+  src?: string;
   text?: string;
   callToActionText?: string;
+  linkToAction?: string;
 }

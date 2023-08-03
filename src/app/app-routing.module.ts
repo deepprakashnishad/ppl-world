@@ -17,6 +17,8 @@ import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
+import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view-campaign.component';
+import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
@@ -51,6 +53,16 @@ const routes: Routes = [
 		path: 'campaigns/edit/:id', 
 		component: CreateCampaignComponent,
 		data: { title: 'Create Component', permissions: []}
+	},
+	{
+		path: 'campaigns/view/:id', 
+		component: ViewCampaignComponent,
+		data: { title: 'View Component', permissions: []}
+	},
+	{
+		path: 'wall-of-fame', 
+		component: WallOfFameComponent,
+		data: { title: 'Wall of fame', permissions: []}
 	},
 	{
 		path: 'faq', 

@@ -12,8 +12,9 @@
 				<div class="sub-title">Status: {{person.status}}</div>
 				<!-- <app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment> -->
 				<a mat-link-button [routerLink]="'/reset-password'">Reset Password</a>
-				<button mat-raised-button (click)="openShareBottomSheet()">Share <mat-icon>share</mat-icon></button>
-				<button mat-raised-button (click)="requestNotification()">Request Updates</button>
+				<button mat-raised-button color="primary" (click)="openShareBottomSheet()">Share <mat-icon>share</mat-icon></button>
+				<button mat-raised-button  color="accent"  (click)="requestNotification()">Request Updates</button>
+				<button mat-raised-button  color="warn"  (click)="navigateTo('/explore')">View Campaigns</button>
 			</div>	
 		</div>
 		<div class="right-container" fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
@@ -21,38 +22,35 @@
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
 				      <mat-panel-title>
-				        Personal 10X Community Details
+				        {{'PROFILE.P10X' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
 				    <div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-						<div class="">Team Size: {{person.teamSize}}</div>
-						<div class="">Direct Downlines: {{person.directDownlines?.length}}</div>
-						<div class="">Referred By: {{person.referrer?.n}}</div>
-						<div class="">Current Orbit: {{person.currOrbit}}</div>
+						<div class="">{{'PROFILE.TEAM_SIZE' | translate}}: {{person.teamSize}}</div>
+						<div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div>
+						<div class="">{{'PROFILE.REFERRED_BY' | translate}}: {{person.referrer?.n}}</div>
+						<div class="">{{'PROFILE.SLOTS' | translate}}: {{person.currOrbit}}</div>
 					</div>
-					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-						<div class="">Total Collection: {{person.totalAmountCollected}}</div>
-						<div class="">Amount Withdrawable: {{person.amtWithdrawable}}</div>
-						<div class="">Amount Withdrawn: {{person.totalAmountWithdrawnTillDate}}</div>
-						<div class="">Collection for next level: {{person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0}}</div>
-					</div>
-
-					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-						<div class="">Donation Quota: {{person.donationQuota}}</div>
+					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayoutGap="8px" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+						<div class="">{{'PROFILE.TC' | translate}}:<br>{{person.totalAmountCollected | currency: 'INR':'symbol-narrow'}}</div>
+						<div class="">{{ 'PROFILE.WITHDRAWABLE' | translate }}:<br>{{person.amtWithdrawable | currency: 'INR':'symbol-narrow'}}</div>
+						<div class="">{{'PROFILE.TAW' | translate}}:<br>{{person.totalAmountWithdrawnTillDate|currency: 'INR':'symbol-narrow'}}</div>
+						<!-- <div class="">{{'PROFILE.ACNL' | translate}}:<br>{{(person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0) | currency: 'INR':'symbol-narrow'}}</div> -->
+						<div class="">{{'PROFILE.DQ' | translate}}:<br>{{person.donationQuota | currency: 'INR':'symbol-narrow'}}</div>
 					</div>
 				</mat-expansion-panel>
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
 				      <mat-panel-title>
-				        Levelwise &amp; Orbitwise Downlines
+				        {{'PROFILE.LEVELWISE' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
 				    <table>
 						<tr>
 							<th></th>
-							<th>Total</th>
-							<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">Orbit {{i+1}}</th>
+							<th>{{'TOTAL' | translate}}</th>
+							<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">{{'ORBIT' | translate}} {{i+1}}</th>
 						</tr>
 						<tr *ngFor="let key of keys">
 							<td class="table-header">Level {{key}}</td>
@@ -66,23 +64,30 @@
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Approve New Joinee</mat-panel-title>
+						<mat-panel-title>{{'PROFILE.BUY_SLOTS' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="newPersonSelected($event)" [type]="'generic'"></app-person-exact-match>
+						<mat-form-field>
+							<mat-label>{{'PROFILE.SLOT_COUNT' | translate}}</mat-label>
+							<button matPrefix mat-icon-button (click)="slotCount=slotCount-1; slotCountUpdated(slotCount)"><mat-icon>remove</mat-icon></button>
+							<input style="text-align:center;" matInput placeholder="{{'PROFILE.SLOT_COUNT' | translate}}" type="number" [(ngModel)]="slotCount" class="form-control" (keyup)="slotCountUpdated($event)" (change)="slotCountUpdated($event)">
+							<button matSuffix mat-icon-button (click)="slotCount=slotCount+1;slotCountUpdated(slotCount)"><mat-icon>add</mat-icon></button>
+						</mat-form-field>
+						<h5>{{totalAmountForSlots | currency: 'INR':'symbol-narrow'}}</h5>
+						<app-person-exact-match (personSelected)="newPersonSelected($event)" [type]="'generic'" #boughtForSearchBox></app-person-exact-match>
 						<button 
 							mat-raised-button 
 							color="primary"
-							[disabled]="!selectedPersonForApproval || selectedPersonForApproval.s !== 'APPROVAL_PENDING'"
+							[disabled]="buyButtonDisabled"
 							(click)="approve()">
-							Donate {{joiningCharges}} coins &amp; Approve
+							Donate {{totalAmountForSlots | currency: 'INR':'symbol-narrow'}} &amp; Approve
 						</button>
 					</div>
 				</mat-expansion-panel>
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Upload Images</mat-panel-title>
+						<mat-panel-title>{{'PROFILE.UPLOAD_IMAGES' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="row wrap" fxLayoutAlign="space-between center">
 						<div fxLayout="column">
@@ -113,19 +118,19 @@
 
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
-						<mat-panel-title>Transfer credits</mat-panel-title>
+						<mat-panel-title>{{'PROFILE.TRANSFER_CREDITS' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'"></app-person-exact-match>
+						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'" #beneficiary></app-person-exact-match>
 						<mat-form-field>
-							<mat-label>Credits</mat-label>
+							<mat-label>{{'PROFILE.CREDITS' | translate}}</mat-label>
 							<input matInput placeholder="number" type="text" [(ngModel)]="transferAmt" class="form-control">
 						</mat-form-field>
 						<button 
 							mat-raised-button 
 							color="primary"
 							(click)="transfer()">
-							Transfer
+							{{'PROFILE.TRANSFER' | translate}}
 						</button>
 					</div>
 				</mat-expansion-panel>
