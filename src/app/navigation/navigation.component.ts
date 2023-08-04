@@ -51,7 +51,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	elementPosition: any;
 	pwa: PwaService;
 
-	selectedLanguage: string = "en";
+	selectedLanguage: any;
+
+	langs = [
+		{displayName: "हिंदी", mValue:"hi"},
+		{displayName: "English", mValue:"en"}
+	];
 
 	constructor(
 	private authenticationService: AuthenticationService,
@@ -65,12 +70,24 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   ) {
   	this.pwa = this.pwaService;
   	this.mTranslate = translate;
+  	var langCodes = [];
+  	for(var i=0;i<this.langs.length;i++){
+  		langCodes.push(this.langs[i].mValue);
+  	}
+  	translate.addLangs(langCodes);
 
-  	translate.addLangs(['en', 'hi']);
-  	translate.setDefaultLang('en');
+  	var selectedLang = this.authenticationService.getTokenOrOtherStoredData("selectedLang");
+  	if(selectedLang){
+  		this.selectedLanguage = JSON.parse(selectedLang);
+  		translate.setDefaultLang(this.selectedLanguage.mValue);	
+  	}else{
+  		this.selectedLanguage = this.langs[0];
+  		translate.setDefaultLang(this.selectedLanguage.mValue);	
+  	}
+  	
 
-  	const browserLang = translate.getBrowserLang();
-  	translate.use(browserLang.match(/en|hi/) ? browserLang:'en');
+  	// const browserLang = translate.getBrowserLang();
+  	// translate.use(browserLang.match(/en|hi/) ? browserLang:'en');
   }
 
   ngAfterViewInit() {
@@ -143,5 +160,11 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   installPwa(): void {
   	this.isLeftBarOpen = false;
     this.pwaService.promptEvent.prompt();
+  }
+
+  updateLanguage(e){
+  	var lang = e.value;
+  	this.authenticationService.storeValue("selectedLang", JSON.stringify(lang), "LOCAL_STORAGE");
+  	this.mTranslate.use(lang.mValue)
   }
 }

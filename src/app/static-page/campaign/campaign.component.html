@@ -12,20 +12,20 @@
 			<button mat-raised-button color="primary" (click)="navigateToCreateCampaign()">Create New Campaign</button>
 		</div>
 		<div *ngIf="campaigns.length > 0" fxLayout="row wrap">
-			<mat-card class="campaign-card" *ngFor="let campaign of campaigns" fxLayout="column" fxLayoutAlign="center center">
+			<mat-card class="campaign-card" *ngFor="let campaign of campaigns" fxLayout="column" fxLayoutAlign="space-between center">
 				<img class="card-img" mat-card-image *ngIf="!campaign?.assets?.length>0 || !campaign?.assets[0]?.downloadUrl" src="/assets/images/campaigns/generic.png"/>
 
 				<img class="card-img" mat-card-image *ngIf="campaign?.assets?.length>0 && campaign?.assets[0]?.downloadUrl" [src]="campaign?.assets[0]?.downloadUrl"/>
 				<mat-card-content fxFlexAlign="start">
 					<mat-card-header>{{campaign.title}}</mat-card-header>
-					<p>
+					<p class="description">
 						{{campaign.desc}}
 					</p>
 				</mat-card-content>
-				<mat-card-actions fxLayout fxLayoutAlign="space-between center">
-					<button mat-icon-button color="primary" fxFlexAlign="start" *ngIf="campaign.owner===userId" (click)="navigateToCreateCampaign(campaign.id, 'edit')"><mat-icon>edit</mat-icon></button>
-					<button mat-icon-button color="accent" fxFlexAlign="start" (click)="navigateToCreateCampaign(campaign.id)"><mat-icon>visibility</mat-icon></button>
-					<button mat-icon-button color="warn" fxFlexAlign="end"><mat-icon>payments</mat-icon></button>
+				<mat-card-actions fxLayout fxLayoutAlign="space-between center" fxFlexAlign="end">
+					<button mat-raised-button color="primary" fxFlexAlign="start" *ngIf="campaign.owner===userId" (click)="navigateToCreateCampaign(campaign.id, 'edit')">Edit <mat-icon>edit</mat-icon></button>
+					<button mat-raised-button color="accent" fxFlexAlign="start" (click)="navigateToCreateCampaign(campaign.id)">View <mat-icon>visibility</mat-icon></button>
+					<!-- <button mat-icon-button color="warn" fxFlexAlign="end"><mat-icon>payments</mat-icon></button> -->
 				</mat-card-actions>
 			</mat-card>
 		</div>

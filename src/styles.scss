@@ -136,10 +136,11 @@ strong{
     text-align: center;
   }
 
-  .title{
-    font-weight: bold;
-    font-size: large;
-  }
+.title{
+  font-weight: bold;
+  font-size: 1.3em;
+  color: #001a7e;
+}
 
   .primary-title{
     color: #f93a04;
@@ -166,6 +167,14 @@ strong{
     right: 30px;
     bottom: 15px;
   }
+
+p.desc{
+  font-size: 18px;
+  color: grey;
+  padding: 8px;
+  text-align: justify;
+  background: white;
+}
 
 .arrow-container{
   height:40px;

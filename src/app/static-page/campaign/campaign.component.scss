@@ -12,12 +12,14 @@ mat-form-field{
 }
 
 mat-card{
-	max-width: 400px;
+	max-width: 250px;
+	max-height: 500px;
 	padding: 16px;
 }
 
 .card-img{
-	width: 250px;
+	object-fit: contain;
+	width: 100%;
 	height: auto;
 }
 
@@ -29,6 +31,7 @@ mat-card{
 
 mat-card-content {
     overflow: hidden;
+    text-align: justify;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -42,4 +45,12 @@ mat-card-content {
 
 .campaign-card{
 	margin: 12px;
+}
+
+.description{
+	overflow: hidden;
+    width:inherit;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

@@ -1,0 +1,10 @@
+
+<div class="container">
+	<div fxLayout="column" fxLayoutAlign="center center">
+		<h2 fxFlexAlign="center">{{bettingPartnerName}}</h2>
+		<img [src]="bettingPartnerLogo" height="250" width="250">
+		<h3>{{prod_desc}}</h3>
+		<button mat-raised-button color="primary" (click)="placeOrder(razorpay)">Pay {{amount | currency: 'INR':'symbol-narrow'}}</button>	
+	</div>
+</div>
+

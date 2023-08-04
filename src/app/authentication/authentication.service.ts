@@ -159,6 +159,17 @@ export class AuthenticationService {
     this.isLoggedIn.next(false);
   }
 
+  storeValue(key, value, storageType): void{
+    if(storageType === "LOCAL_STORAGE"){
+      localStorage.setItem(key, value);
+    }else if(storageType === "SESSION_STORAGE"){
+      sessionStorage.setItem(key, value);
+    }else{
+      localStorage.setItem(key, value);
+      sessionStorage.setItem(key, value);
+    }
+  }
+
   storeLocalData(data: any, storageType): void {
     if (storageType === "LOCAL_STORAGE") {
       localStorage.setItem('token', data.token, );

@@ -36,8 +36,8 @@
 				</button>
 				<button mat-button [matMenuTriggerFor]="reports">Reports</button>
 
-				<mat-select fxFlex="10" #langSelect (selectionChange)="mTranslate.use(langSelect.value)">
-					<mat-option *ngFor="let lang of mTranslate.getLangs()" [value]="lang">{{lang}}</mat-option>
+				<mat-select fxFlex="10" class="big-navbar-select" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
+					<mat-option *ngFor="let lang of langs" [value]="lang">{{lang.displayName}}</mat-option>
 				</mat-select>
 
 				<mat-menu #reports="matMenu">
@@ -84,14 +84,6 @@
 	</mat-toolbar-row>
 </mat-toolbar>
 <div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
-	<!-- <div class="social" fxLayout="row">
-			<ul>
-			   <li><a href="https://www.facebook.com/deepway-112254153865584" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
-			   <li><a href="https://twitter.com/deepwayin" target="_blank"><i class="fa fa-twitter"></i></a></li>
-			   <li><a href="https://www.youtube.com/channel/UCMrdibmQe_aUHm6kdRvX8NQ/" target="_blank"><i class="fa fa-youtube"></i></a></li>
-			   <li><a href="https://www.linkedin.com/company/deepwayin/?viewAsMember=true" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-			</ul>
-	</div> -->
 	<div fxLayout="column" fxLayoutGap="16px">
 		<button mat-button class="mobPageLink" (click)="navigateTo('/')">
 			Home
@@ -126,8 +118,8 @@
 		<button mat-button *ngIf="pwa.promptEvent" class="mobPageLink" (click)="installPwa()">
 			Install App
 		</button>
-		<mat-select class="mobPageLink"  #langSelect [(value)]="selectedLanguage" (selectionChange)="this.isLeftBarOpen = false; mTranslate.use(langSelect.value)">
-			<mat-option *ngFor="let lang of mTranslate.getLangs()" [value]="lang">{{lang}}</mat-option>
+		<mat-select fxFlex="10" class="mobPageLink" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
+			<mat-option *ngFor="let lang of langs" [value]="lang">{{lang.displayName}}</mat-option>
 		</mat-select>
 		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
 			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>

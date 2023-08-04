@@ -12,6 +12,9 @@
     }, {
       "source": "/api/:path*",
       "destination": "https://goodact.onrender.com/:path"
+    }, {
+      "source": "/allpay/:path*",
+      "destination": "https://node-allpay.onrender.com/:path"
     }],
     "ignore": [
       "firebase.json",

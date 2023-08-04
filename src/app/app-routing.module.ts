@@ -22,6 +22,7 @@ import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
+import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
 
 const routes: Routes = [
 	 {
@@ -43,6 +44,11 @@ const routes: Routes = [
 		path: 'explore', 
 		component: CampaignComponent,
 		data: { title: 'Explore', permissions: []}
+	},
+	{
+		path: 'payment', 
+		component: DummyPaymentComponent,
+		data: { title: 'Payment', permissions: []}
 	},
 	{
 		path: 'campaigns/edit', 
@@ -157,13 +163,7 @@ const routes: Routes = [
 			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
 				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},
 		]
-	},
-	
-	/* {path: 'person', loadChildren: './person/person.module#PersonModule', canLoad: [AuthGuardService],
-		data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}}, */
-
-	/* {path: 'admin', loadChildren: './admin/admin.module#AdminModule', canLoad: [AuthGuardService],
-		data:{title: 'Admin', resources: []}}, */
+	}
 ];
 
 @NgModule({

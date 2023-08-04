@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -26,6 +26,15 @@ export class PaymentService {
         catchError(this.handleError('Add payment', null)));
   }
 
+  createDummyOrder(poid, amount): Observable<Payment>{
+    return this.http.post<Payment>(this.paymentUrl+"/createDummyOrder", {
+      "poid": poid,
+      "amount": amount
+    })
+    .pipe(
+        catchError(this.handleError('Add payment', null)));
+  }
+
   checkOrderPayment( order_id, payment_id, transaction_id, pg_order_id, channel): Observable<any> {
   	return this.http.get<any>(`${this.paymentUrl}/checkPayment?order_id=${order_id}&payment_id=${payment_id}&transaction_id=${transaction_id}&pg_order_id=${pg_order_id}&channel=${channel}`)
   		.pipe(
@@ -36,6 +45,25 @@ export class PaymentService {
   	return this.http.post<any>(`${this.paymentUrl}/verifyRazorpayPayment`, data)
   		.pipe(
   			catchError(this.handleError('Verify Razorpay payment', null)));
+  }
+
+  verifyRazorpayPaymentFromAllPayServer(data): Observable<any> {
+    return this.http.post<any>(`${environment.allpayurl}/payment/verifyRazorpayPayment`, data)
+      .pipe(
+        catchError(this.handleError('Verify Razorpay payment', null)));
+  }
+
+  postTransactionToAllPayServer(data): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Bearer ' + environment.mtoken,
+        AuthInterceptorSkipHeader:''
+      })
+    };
+    return this.http.post<any>(`${environment.allpayurl}/transaction`, data, httpOptions)
+      .pipe(
+        catchError(this.handleError('Create Transaction', null)));
   }
 
   retryPayment(data): Observable<any> {

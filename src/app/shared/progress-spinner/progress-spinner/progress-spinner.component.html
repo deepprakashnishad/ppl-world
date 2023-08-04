@@ -6,11 +6,11 @@
     </div>
 </div>
 
-<div class="wrapper" *ngIf="show && loaderType==='overlay-spinner'">
+<div class="wrapper" fxLayout="column" *ngIf="show && loaderType==='overlay-spinner'">
     <div class="loader">
         <span>Loading...</span>
-      </div>
-    <!-- <div class="spinner-overlay">
-        <mat-spinner mode="indeterminate" color="primary"></mat-spinner>
-    </div> -->
+    </div>
+    <div class="message-container">
+        <div class="message" [@valueChanged]="i" [innerHTML]="messages[i]"></div>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaymentComponent } from './payment.component';
+import { DummyPaymentComponent } from './dummy-payment/dummy-payment.component';
 import { DonateFromGAComponent } from './donate-from-ga/donate-from-ga.component';
 import { MaterialModule } from '../material.module';
 import { FormsModule } from '@angular/forms';
@@ -17,10 +18,11 @@ import { RazorpayButtonComponent } from './razorpay-payment-button/razorpay-paym
   declarations: [
     PaymentComponent,
     RazorpayButtonComponent,
-    DonateFromGAComponent
+    DonateFromGAComponent,
+    DummyPaymentComponent
   ],
   exports: [
-    PaymentComponent, RazorpayButtonComponent
+    PaymentComponent, RazorpayButtonComponent, DummyPaymentComponent
   ]
 })
 export class PaymentModule { }
