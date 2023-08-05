@@ -9,6 +9,8 @@ export const environment = {
   slotPrice: 220,
   baseurl: "http://localhost:4200/api",
   allpayurl: "http://localhost:4200/allpay",
+  mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IlkzYkFqSWR4czAxekJBSVdZaVJ5cEdEdSIsIm1pZCI6IjY0YjdjNzk0NGJmNTdkNGFiY2Q4Njk3OCIsIndlYnNpdGUiOiJodHRwczovL2FzdHJhdGVjaHN5c3RlbXMuY29tL2luZGV4LnBocC9jaGVja291dCIsImlhdCI6MTY5MDYzNTgwNiwiZXhwIjoxNzc3MDM1ODA2fQ.e_SNSIxxZ_w9igCJMXzTf_hMNk8O3xBNoP4ff4icrOo",
+  mid: "64b7c7944bf57d4abcd86978",
   appUrl: "localhost:4200",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
@@ -24,8 +26,6 @@ export const environment = {
     keyId: "rzp_test_OhtTwkr00dbNU1"
   },
   recaptcha_site_key: "6LdbScYcAAAAAMy3OZigFtko17jK8DiQvEy7YzV4",
-  mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IlkzYkFqSWR4czAxekJBSVdZaVJ5cEdEdSIsIm1pZCI6IjY0YjdjNzk0NGJmNTdkNGFiY2Q4Njk3OCIsIndlYnNpdGUiOiJodHRwczovL2FzdHJhdGVjaHN5c3RlbXMuY29tL2luZGV4LnBocC9jaGVja291dCIsImlhdCI6MTY5MDYzNTgwNiwiZXhwIjoxNzc3MDM1ODA2fQ.e_SNSIxxZ_w9igCJMXzTf_hMNk8O3xBNoP4ff4icrOo",
-  mid: "64b7c7944bf57d4abcd86978"
 };
 
 export var EXTRAS = {

@@ -160,6 +160,7 @@ export class DummyPaymentComponent implements OnInit {
           phone: this.userphone, 
           email: this. useremail,
           amount: this.amount,
+          paymentGateway: this.pg,
           paymentGatewayId: this.pgid,
           paymentMode: result['pd']['method'],
           extra_info: this.extra_info,

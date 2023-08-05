@@ -3,7 +3,11 @@ export const environment = {
   production: true,
   slotPrice: 220,
   appUrl: "good-act.web.app",
+  mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IlkzYkFqSWR4czAxekJBSVdZaVJ5cEdEdSIsIm1pZCI6IjY0YjdjNzk0NGJmNTdkNGFiY2Q4Njk3OCIsIndlYnNpdGUiOiJodHRwczovL2FzdHJhdGVjaHN5c3RlbXMuY29tL2luZGV4LnBocC9jaGVja291dCIsImlhdCI6MTY5MDYzNTgwNiwiZXhwIjoxNzc3MDM1ODA2fQ.e_SNSIxxZ_w9igCJMXzTf_hMNk8O3xBNoP4ff4icrOo",
+  mid: "64b7c7944bf57d4abcd86978",
   baseurl: "https://goodact.onrender.com",
+  allpayurl: "https://node-allpay.onrender.com",
+  pincodeUrl: "https://api.postalpincode.in/pincode",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
     authDomain: "good-act.firebaseapp.com",
