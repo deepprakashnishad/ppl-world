@@ -46,7 +46,7 @@ export class CampaignComponent implements OnInit {
 
 		this.campaignService.getCampaignsByCategory(this.selectedCategory)
 		.subscribe(result=>{
-			this.campaigns = result;
+			this.campaigns = Campaign.fromJSONArray(result);
 		});
 	}
 

@@ -64,8 +64,7 @@ export class CreateCampaignComponent implements OnInit {
 			this.uploadPath = `/campaigns/${campaignId}/`;
 
 			this.expiryDateCntl.setValue(new Date(this.campaign.expiryDate*1000));
-
-			if(this.campaign.id && this.campaign.owner!==this.userId){
+			if(this.campaign.id && (this.campaign.owner.id!==this.userId && this.campaign.owner!==this.userId)){
 				this.enableEditMode = false;
 			}
 		});
@@ -94,13 +93,14 @@ export class CreateCampaignComponent implements OnInit {
 			return;
 		}
 		if(this.campaign.id){
+			delete this.campaign['createdAt'];
+			console.log(this.campaign);
 			this.campaignService.updateCampaign(this.campaign).subscribe(result=>{
 				this.campaign = Campaign.fromJSON(result);
 				this.notifier.notify("success", "Campaign updated successfully");
 			});
 		}else{
 			this.campaignService.postCampaign(this.campaign).subscribe(result=>{
-				console.log(result);
 				if(result.success){
 					this.campaign = Campaign.fromJSON(result);
 					this.uploadPath = `/campaigns/${this.campaign.id}`;
@@ -127,6 +127,8 @@ export class CreateCampaignComponent implements OnInit {
 		}else{
 			this.campaign.assets.push(event);	
 		}
+
+		delete this.campaign.createdAt;
 		
 		this.campaignService.updateCampaign(this.campaign).subscribe(result=>{
 			this.campaign = Campaign.fromJSON(result);

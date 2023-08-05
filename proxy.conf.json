@@ -1,13 +1,13 @@
 {
     "/api/*":{
-      "target": "http://localhost:1338",
+      "target": "http://localhost:1337",
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {"^/api": ""},
       "logLevel": "debug"
     },
     "/allpay/*":{
-      "target": "http://localhost:1337",
+      "target": "http://localhost:1338",
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {"^/allpay": ""},

@@ -33,8 +33,8 @@ img{
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  object-fit: cover;
+  height: 100%;
+  object-fit: fit;
   // zoom effect on hover
   transition: transform 150ms cubic-bezier(0.25, 0.46, 0.45, 0.84);
   border-radius: 0.5em;
@@ -114,7 +114,7 @@ img{
   font-size: 5vw;
   font-weight: bold;
   color: white;
-  margin: 2.5vw;
+  margin-top: 0.5vw;
 }
 
 .text-container{
@@ -126,5 +126,4 @@ img{
   font-weight: bold;
   color: white;
   text-decoration: underline; 
-  margin: 4.5vw;
 }
