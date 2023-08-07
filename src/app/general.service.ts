@@ -11,9 +11,11 @@ import { NotifierService } from 'angular-notifier';
 export class GeneralService {
 
   private genericUrl:string;
+  private tagUrl: string;
 
   constructor(private http: HttpClient, private notifier: NotifierService){
     this.genericUrl = environment.baseurl+'/generic';  
+    this.tagUrl = environment.baseurl+'/tag';  
   }
   
   updateFirebaseMessagingToken(token: string): Observable<any>{
@@ -26,6 +28,22 @@ export class GeneralService {
     return this.http.post<any>(this.genericUrl+"/submit-contact-details", data)
       .pipe(
         catchError(this.handleError('Save Contact Details', null)));
+  }
+
+  getTags(key): Observable<any> {
+    return this.http.get<any>(`${this.tagUrl}?key=${key}`)
+      .pipe(
+        catchError(this.handleError('List tags', null)));
+  }
+
+  updateTag(key, tags): Observable<any> {
+   return this.http.patch<any>(this.tagUrl, 
+   {
+    "key": key,
+    "tags": tags
+   })
+      .pipe(
+        catchError(this.handleError('Update tags', null))); 
   }
 
 

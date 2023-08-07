@@ -1,0 +1,9 @@
+<mat-form-field class="example-full-width">
+	<input #itemInput #itemInputTrigger matInput placeholder="Item" aria-label="Item" [matAutocomplete]="auto" [formControl]="itemCtrl" (keyup.enter)="addOption()">
+	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event.option)">
+	  <mat-option *ngFor="let item of filteredItems | async" [value]="item">
+	    <span>{{ item }}</span>
+	  </mat-option>
+	</mat-autocomplete>
+	<button *ngIf="showAddButton && itemCtrl.value" matSuffix mat-button mat-icon-button (click)="addOption()"><mat-icon matTooltip='Add "{{itemCtrl.value}}"'>add</mat-icon></button>
+</mat-form-field>

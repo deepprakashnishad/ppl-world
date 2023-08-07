@@ -68,15 +68,8 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.getPersonDetail().subscribe(result=>{
       this.person = Person.fromJSON(result);
-      /*if(this.person.status==="APPROVAL_PENDING" && this.person.currOrbit===0){
-        this.order = {
-          amount: environment.joiningCharges, 
-          person: this.person.id, 
-          product: "Starter Plan Activation"
-        }
-      }*/
 
-      this.uploadPath = this.person.id;
+      this.uploadPath = `person/this.person.id`;
       
       this.keys = Object.keys(this.person.lwdlc);
       for(var i=0;i < this.keys.length;i++){

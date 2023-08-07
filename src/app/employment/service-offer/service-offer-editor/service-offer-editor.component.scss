@@ -1,0 +1,15 @@
+.selectable{
+  margin: 5px 16px;
+  padding: 5px 10px;
+  border: 2px solid;
+  border-radius: 20%;
+  border-color: #2217c5;
+  cursor: pointer;
+}
+
+.selected{
+	color: white;
+	background: #2217c5;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);
+	background: linear-gradient(to right, #2217c5, #0eeba4);
+}

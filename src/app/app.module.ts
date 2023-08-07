@@ -38,6 +38,8 @@ import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of
 import { SubscriptionComponent } from './static-page/campaign/subscription/subscription.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
+import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
+import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -103,7 +105,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SubscriptionComponent,
     DailyReportComponent,
     TransactionReportComponent,
-    GlobalEarningReportComponent
+    GlobalEarningReportComponent,
+    ServiceOfferEditorComponent,
+    ServiceDetailFormComponent
    ],
   imports: [
     BrowserModule,

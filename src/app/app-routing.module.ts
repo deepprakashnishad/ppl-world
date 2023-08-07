@@ -22,6 +22,8 @@ import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
+import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
+
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
 
 const routes: Routes = [
@@ -58,12 +60,21 @@ const routes: Routes = [
 	{
 		path: 'campaigns/edit/:id', 
 		component: CreateCampaignComponent,
-		data: { title: 'Create Component', permissions: []}
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Create Component', permissions: [], isLoggedIn: true}
 	},
 	{
 		path: 'campaigns/view/:id', 
 		component: ViewCampaignComponent,
 		data: { title: 'View Component', permissions: []}
+	},
+	{
+		path: 'service-offer-editor', 
+		component: ServiceOfferEditorComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Service Offer Editor', permissions: [], isLoggedIn: true}
 	},
 	{
 		path: 'wall-of-fame', 

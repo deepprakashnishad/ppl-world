@@ -1,0 +1,18 @@
+.example-month-picker .mat-calendar-period-button {
+  pointer-events: none;
+}
+
+.example-month-picker .mat-calendar-arrow {
+  display: none;
+}
+
+.container{
+  background: white;
+  padding: 12px;
+}
+
+.skill-card{
+  background: #00af1533;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #00af1533, #d9b70657);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #00af1533, #d9b70657);
+}

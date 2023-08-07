@@ -1,0 +1,47 @@
+<div class="container">
+	<div fxLayout.lt-md="column" fxLayout.gt-sm="row" fxLayoutGap="8px">
+	  <app-autocomplete-with-add [formControl]="lastUsedDateCntl" [selectedItem]="skillSet['selectedSkill']" [key]="key" (tagSelected)="skillSelected($event)"></app-autocomplete-with-add>
+	  <div fxLayout fxLayoutGap="8px">
+	  	<mat-form-field>
+	  		<mat-label>Years of experience</mat-label>
+	  		<input matInput max="50" min="0" placeholder="Years of experience" type="number" [(ngModel)]="skillSet.expYears" />
+	  	</mat-form-field>
+	  	<mat-form-field>
+	  		<mat-label>Months of experience</mat-label>
+	  		<input matInput max="12" min="0" placeholder="Months of experience" type="number" [(ngModel)]="skillSet.expMonths" />
+	  	</mat-form-field>
+	  </div>
+	  	<mat-form-field>
+	  		<mat-label>Profeciency Level</mat-label>
+	  		<mat-select [(ngModel)]="skillSet.profLevel">
+	  			<mat-option value="1">Novice</mat-option>
+	  			<mat-option value="2">Advanced Beginner</mat-option>
+	  			<mat-option value="3">Competent</mat-option>
+	  			<mat-option value="4">Proficient</mat-option>
+	  			<mat-option value="5">Expert</mat-option>
+	  		</mat-select>
+	  	</mat-form-field>
+	  	<mat-form-field class="example-full-width">
+		  <mat-label>Choose last used date</mat-label>
+		  <input matInput [matDatepickerFilter]="noFutureDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="lastUsedDateChange($event)" [formControl]="lastUsedDateCntl">
+		  <mat-hint>MM/DD/YYYY</mat-hint>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+		<div><button fxHide.lt-md mat-mini-fab color="primary" (click)="acceptData()"><mat-icon>check</mat-icon></button></div>
+		<div><button class="full-width" fxHide.gt-sm mat-raised-button color="primary" (click)="acceptData()">Done</button></div>
+  	</div>
+  	<div class="container" fxLayout="column" fxLayoutGap="12px">
+		<mat-card class="skill-card" *ngFor="let mSkillSet of skillList; let i=index" fxLayout="row wrap" fxLayoutAlign="space-between center">
+			<div>{{mSkillSet['skill']}}</div>
+			<div>{{mSkillSet['expYears']}} Years {{mSkillSet['expMonths']}} Months</div>
+			<div>{{profeciencyLevelSet[mSkillSet['profLevel']]}}</div>
+			<div *ngIf="mSkillSet['lastUsedDate']">{{mSkillSet['lastUsedDate'].getDate()}}/{{mSkillSet['lastUsedDate'].getMonth()+1}}/{{mSkillSet['lastUsedDate'].getFullYear()}}</div>
+			<div fxLayout fxLayoutGap="12px">
+				<button mat-icon-button color="primary" (click)="editSkill(skillList[i])"><mat-icon>edit</mat-icon></button>
+				<button mat-icon-button color="warn" (click)="skillList.splice(index, 1)"><mat-icon>delete</mat-icon></button>	
+			</div>
+			
+		</mat-card>
+		<button class="full-width" mat-raised-button (click)="saveSkillSet()">Save</button>
+  	</div>
+</div>

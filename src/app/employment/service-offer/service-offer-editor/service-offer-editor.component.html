@@ -1,0 +1,25 @@
+<div class="container">
+	<h3>Select services that you can work in</h3>
+	<mat-tab-group [selectedIndex]="selectedTabIndex">
+	  <mat-tab label="Select work areas">
+	    <mat-accordion>
+		  <mat-expansion-panel  *ngFor="let category of categories">
+		    <mat-expansion-panel-header>
+		      <mat-panel-title>
+		        {{category._id}}
+		      </mat-panel-title>
+		    </mat-expansion-panel-header>
+		    <div fxLayout="row wrap">
+		    	<div [@selection]="isCategorySelected(subCat)?'selected':'unselected'"  class="selectable" *ngFor="let subCat of category.cat" (click)="toggleSelection(subCat, category._id)">
+		    		{{subCat.name}}
+		    	</div>
+		    </div>
+		  </mat-expansion-panel>
+		</mat-accordion>
+	  </mat-tab>
+	  <mat-tab *ngFor="let tab of getKeys(selectedCategories);" [label]="selectedCategories[tab]['subCat']['name']">
+	    <app-service-detail-form [key]="tab"></app-service-detail-form>
+	  </mat-tab>
+
+	</mat-tab-group>
+</div>
