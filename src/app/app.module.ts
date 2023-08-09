@@ -41,6 +41,7 @@ import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 
+
 const notifierDefaultOptions: NotifierOptions = {
   position: {
       horizontal: {
@@ -114,6 +115,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
+    
     AuthenticationModule,
     NotifierModule.withConfig(notifierDefaultOptions),
     AppRoutingModule,

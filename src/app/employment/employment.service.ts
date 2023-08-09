@@ -40,10 +40,24 @@ export class EmploymentService {
         catchError(this.handleError('Update person work', null))); 
   }
 
-  getPersonWork(key){
-    return this.http.get<any>(`${this.employmentUrl}?key=${key}`)
+  getPersonWork(key?: string){
+    var url = this.employmentUrl;
+    if(key){
+      url = `${this.employmentUrl}?key=${key}`;
+    }
+    return this.http.get<any>(url)
     .pipe(
         catchError(this.handleError('Get person work', null)));  
+  }
+
+  deleteWork(key: string, personId?: string){
+    var url = `${this.employmentUrl}?key=${key}`;
+    if(personId){
+      url = `${this.employmentUrl}?key=${key}&personId=${personId}`;
+    }
+    return this.http.delete<any>(url)
+    .pipe(
+        catchError(this.handleError('Delete person work', null)));  
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

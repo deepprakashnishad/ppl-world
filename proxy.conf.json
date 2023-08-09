@@ -1,4 +1,11 @@
 {
+    "/api-pincode/*": {
+      "target": "https://api.postalpincode.in",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {"^/api-pincode": "/pincode"},
+      "logLevel": "debug"
+    },
     "/api/*":{
       "target": "http://localhost:1337",
       "secure": false,
@@ -12,13 +19,5 @@
       "changeOrigin": true,
       "pathRewrite": {"^/allpay": ""},
       "logLevel": "debug"
-    },
-    "/api-pincode": {
-      "target": "https://api.postalpincode.in/pincode",
-      "secure": true,
-      "changeOrigin": true,
-      "pathRewrite": {
-        "^/api-pincode": ""
-      }
     }
 }

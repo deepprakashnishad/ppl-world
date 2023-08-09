@@ -16,3 +16,23 @@
   background: -webkit-linear-gradient(to right, #00af1533, #d9b70657);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, #00af1533, #d9b70657);
 }
+
+div.button, .button-selected{
+  text-align: center;
+  padding: 4px 8px;
+  border: 1px solid;
+  border-radius: 15px;
+  border-color: #20bf55;
+  margin: 0px 0px;
+  cursor: pointer;
+}
+
+.button-selected{
+  background: #01baef;
+  color: white;
+}
+
+.uploader-card-image{
+    padding: 8px;
+    margin: 2px 4px;
+  }

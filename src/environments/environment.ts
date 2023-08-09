@@ -26,6 +26,7 @@ export const environment = {
     keyId: "rzp_test_OhtTwkr00dbNU1"
   },
   recaptcha_site_key: "6LdbScYcAAAAAMy3OZigFtko17jK8DiQvEy7YzV4",
+  google_api_key: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs"
 };
 
 export var EXTRAS = {

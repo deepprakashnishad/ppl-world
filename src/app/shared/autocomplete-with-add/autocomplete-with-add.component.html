@@ -1,5 +1,5 @@
 <mat-form-field class="example-full-width">
-	<input #itemInput #itemInputTrigger matInput placeholder="Item" aria-label="Item" [matAutocomplete]="auto" [formControl]="itemCtrl" (keyup.enter)="addOption()">
+	<input #itemInput #itemInputTrigger matInput [placeholder]="label" aria-label="Item" [matAutocomplete]="auto" [formControl]="itemCtrl" (keyup.enter)="addOption()">
 	<mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event.option)">
 	  <mat-option *ngFor="let item of filteredItems | async" [value]="item">
 	    <span>{{ item }}</span>

@@ -1,0 +1,4 @@
+ <div fxLayout fxLayoutAlign="space-between center">
+      <mat-label>[Latitude: {{lat}}, Longitude: {{lng}}]</mat-label>
+      <button mat-raised-button color="primary" (click)=getLocation() [disabled]="!showResetLoc">Reset Location</button>
+</div>

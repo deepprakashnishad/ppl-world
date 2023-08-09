@@ -1,7 +1,10 @@
 <div class="container">
 	<h3>Select services that you can work in</h3>
 	<mat-tab-group [selectedIndex]="selectedTabIndex">
-	  <mat-tab label="Select work areas">
+		<mat-tab label="Address">
+			<app-address></app-address>
+		</mat-tab>
+	  	<mat-tab label="Select work types">
 	    <mat-accordion>
 		  <mat-expansion-panel  *ngFor="let category of categories">
 		    <mat-expansion-panel-header>
@@ -16,10 +19,10 @@
 		    </div>
 		  </mat-expansion-panel>
 		</mat-accordion>
-	  </mat-tab>
-	  <mat-tab *ngFor="let tab of getKeys(selectedCategories);" [label]="selectedCategories[tab]['subCat']['name']">
-	    <app-service-detail-form [key]="tab"></app-service-detail-form>
-	  </mat-tab>
+	  	</mat-tab>
+	  	<mat-tab *ngFor="let tab of getKeys(selectedCategories);" [label]="selectedCategories[tab]['subCat']['name']">
+	    	<app-service-detail-form [data]="selectedCategories[tab]" [key]="tab" (workDeleted)="workRemoved($event)"></app-service-detail-form>
+	  	</mat-tab>
 
 	</mat-tab-group>
 </div>

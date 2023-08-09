@@ -1,47 +1,138 @@
 <div class="container">
-	<div fxLayout.lt-md="column" fxLayout.gt-sm="row" fxLayoutGap="8px">
-	  <app-autocomplete-with-add [formControl]="lastUsedDateCntl" [selectedItem]="skillSet['selectedSkill']" [key]="key" (tagSelected)="skillSelected($event)"></app-autocomplete-with-add>
-	  <div fxLayout fxLayoutGap="8px">
-	  	<mat-form-field>
-	  		<mat-label>Years of experience</mat-label>
-	  		<input matInput max="50" min="0" placeholder="Years of experience" type="number" [(ngModel)]="skillSet.expYears" />
-	  	</mat-form-field>
-	  	<mat-form-field>
-	  		<mat-label>Months of experience</mat-label>
-	  		<input matInput max="12" min="0" placeholder="Months of experience" type="number" [(ngModel)]="skillSet.expMonths" />
-	  	</mat-form-field>
-	  </div>
-	  	<mat-form-field>
-	  		<mat-label>Profeciency Level</mat-label>
-	  		<mat-select [(ngModel)]="skillSet.profLevel">
-	  			<mat-option value="1">Novice</mat-option>
-	  			<mat-option value="2">Advanced Beginner</mat-option>
-	  			<mat-option value="3">Competent</mat-option>
-	  			<mat-option value="4">Proficient</mat-option>
-	  			<mat-option value="5">Expert</mat-option>
-	  		</mat-select>
-	  	</mat-form-field>
-	  	<mat-form-field class="example-full-width">
-		  <mat-label>Choose last used date</mat-label>
-		  <input matInput [matDatepickerFilter]="noFutureDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="lastUsedDateChange($event)" [formControl]="lastUsedDateCntl">
-		  <mat-hint>MM/DD/YYYY</mat-hint>
-		  <mat-datepicker #picker></mat-datepicker>
-		</mat-form-field>
-		<div><button fxHide.lt-md mat-mini-fab color="primary" (click)="acceptData()"><mat-icon>check</mat-icon></button></div>
-		<div><button class="full-width" fxHide.gt-sm mat-raised-button color="primary" (click)="acceptData()">Done</button></div>
-  	</div>
-  	<div class="container" fxLayout="column" fxLayoutGap="12px">
-		<mat-card class="skill-card" *ngFor="let mSkillSet of skillList; let i=index" fxLayout="row wrap" fxLayoutAlign="space-between center">
-			<div>{{mSkillSet['skill']}}</div>
-			<div>{{mSkillSet['expYears']}} Years {{mSkillSet['expMonths']}} Months</div>
-			<div>{{profeciencyLevelSet[mSkillSet['profLevel']]}}</div>
-			<div *ngIf="mSkillSet['lastUsedDate']">{{mSkillSet['lastUsedDate'].getDate()}}/{{mSkillSet['lastUsedDate'].getMonth()+1}}/{{mSkillSet['lastUsedDate'].getFullYear()}}</div>
-			<div fxLayout fxLayoutGap="12px">
-				<button mat-icon-button color="primary" (click)="editSkill(skillList[i])"><mat-icon>edit</mat-icon></button>
-				<button mat-icon-button color="warn" (click)="skillList.splice(index, 1)"><mat-icon>delete</mat-icon></button>	
-			</div>
-			
-		</mat-card>
-		<button class="full-width" mat-raised-button (click)="saveSkillSet()">Save</button>
-  	</div>
+	<mat-accordion>
+		<mat-expansion-panel>
+		  	<mat-expansion-panel-header>
+		  		<mat-expansion-panel-title>Work Summary</mat-expansion-panel-title>
+		  	</mat-expansion-panel-header>
+		  	<div fxLayout.gt-sm="row" fxLayout fxLayoutGap="12px">
+		  		<mat-form-field class="full-width">
+			  		<mat-label>Work title</mat-label>
+			  		<input matInput maxlength="200" placeholder="Title" type="text" [(ngModel)]="ws.t" />
+			  	</mat-form-field>
+			  	<app-autocomplete-with-add [label]="'Role'" [selectedItem]="ws['r']" [key]="key+'.r'" (tagSelected)="tagSelected($event, 'role')"></app-autocomplete-with-add>
+			  	<mat-form-field>
+			  		<mat-label>Total Work Experience(Years)</mat-label>
+			  		<input matInput placeholder="Total Experience" type="number" [(ngModel)]="ws.twe" />
+			  	</mat-form-field>
+			  	<mat-form-field>
+			  		<mat-label>Relevant Work Experience(Years)</mat-label>
+			  		<input matInput placeholder="Relevant Experience" type="number" [(ngModel)]="ws.rwe" />
+			  	</mat-form-field>
+		  	</div>
+		  	<div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutGap="12px">
+		  		<mat-form-field>
+			  		<mat-label>Monthly Rate(INR)</mat-label>
+			  		<input matInput min="0" placeholder="Monthly Rate" type="number" [(ngModel)]="rl.ms" />
+			  	</mat-form-field>
+				<mat-form-field>
+			  		<mat-label>Hourly Rate(INR)</mat-label>
+			  		<input matInput min="0" placeholder="Weekly Rate" type="number" [(ngModel)]="rl.hr" />
+			  	</mat-form-field>
+			  	<div>
+				  	<mat-button-toggle-group #statusBtn="matButtonToggleGroup" [(ngModel)]="ws.s" name="fontStyle" aria-label="Font Style">
+					    <mat-button-toggle [value]="true">Active</mat-button-toggle>
+					    <mat-button-toggle [value]="false">Inactive</mat-button-toggle>
+					</mat-button-toggle-group>
+				</div>
+		  	</div>
+		  	<button class="full-width" mat-raised-button color="primary" (click)="saveWorkDetail('summary')">Save</button>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel>
+	    <mat-expansion-panel-header>
+	      <mat-panel-title>
+	        Skill List
+	      </mat-panel-title>
+	    </mat-expansion-panel-header>
+	    <div fxLayout.lt-md="column" fxLayout.gt-sm="row" fxLayoutGap="8px">
+	  		<app-autocomplete-with-add [label]="'Skill'" [selectedItem]="skillSet['selectedSkill']" [key]="key" (tagSelected)="tagSelected($event, 'skill')"></app-autocomplete-with-add>
+			  <div fxLayout fxLayoutGap="8px">
+			  	<mat-form-field>
+			  		<mat-label>Years of experience</mat-label>
+			  		<input matInput max="50" min="0" placeholder="Years of experience" type="number" [(ngModel)]="skillSet.expYears" />
+			  	</mat-form-field>
+			  	<mat-form-field>
+			  		<mat-label>Months of experience</mat-label>
+			  		<input matInput max="12" min="0" placeholder="Months of experience" type="number" [(ngModel)]="skillSet.expMonths" />
+			  	</mat-form-field>
+			  </div>
+			  	<mat-form-field>
+			  		<mat-label>Profeciency Level</mat-label>
+			  		<mat-select [(ngModel)]="skillSet.profLevel">
+			  			<mat-option value="1">Novice</mat-option>
+			  			<mat-option value="2">Advanced Beginner</mat-option>
+			  			<mat-option value="3">Competent</mat-option>
+			  			<mat-option value="4">Proficient</mat-option>
+			  			<mat-option value="5">Expert</mat-option>
+			  		</mat-select>
+			  	</mat-form-field>
+			  	<mat-form-field class="example-full-width">
+				  <mat-label>Choose last used date</mat-label>
+				  <input matInput [matDatepickerFilter]="noFutureDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="lastUsedDateChange($event)" [formControl]="lastUsedDateCntl">
+				  <mat-hint>MM/DD/YYYY</mat-hint>
+				  <mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+				<div><button fxHide.lt-md mat-mini-fab color="primary" (click)="acceptData()"><mat-icon>check</mat-icon></button></div>
+				<div><button class="full-width" fxHide.gt-sm mat-raised-button color="primary" (click)="acceptData()">Done</button></div>
+		  	</div>
+	  	<div class="container" fxLayout="column" fxLayoutGap="12px">
+			<mat-card class="skill-card" *ngFor="let mSkillSet of skillList; let i=index" fxLayout="row wrap" fxLayoutAlign="space-between center">
+				<div>{{mSkillSet['selectedSkill']}}</div>
+				<div>{{mSkillSet['expYears']}} Years {{mSkillSet['expMonths']}} Months</div>
+				<div>{{profeciencyLevelSet[mSkillSet['profLevel']]}}</div>
+				<div *ngIf="mSkillSet['lastUsedDate']">{{mSkillSet['lastUsedDate'].getDate()}}/{{mSkillSet['lastUsedDate'].getMonth()+1}}/{{mSkillSet['lastUsedDate'].getFullYear()}}</div>
+				<div fxLayout fxLayoutGap="12px">
+					<button mat-icon-button color="primary" (click)="editSkill(skillList[i])"><mat-icon>edit</mat-icon></button>
+					<button mat-icon-button color="warn" (click)="skillList.splice(index, 1)"><mat-icon>delete</mat-icon></button>	
+				</div>
+				
+			</mat-card>
+			<button class="full-width" mat-raised-button color="primary" (click)="saveWorkDetail('skill')">Save</button>
+	  	</div>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel *ngIf="id">
+	  	<mat-expansion-panel-header>
+	  		<mat-expansion-panel-title>Images</mat-expansion-panel-title>
+	  	</mat-expansion-panel-header>
+	  	<app-uploader [maxAllowedFileSize]="50" [uploadPath]="profilePicUploadPath" [isMultiple]="false" (imageUploaded)="imagesUploaded($event, 'profile')" [newFilename]="'wp_pic'" [header]="'Work Profile Image'"></app-uploader>
+	  	<mat-card class="uploader-card-image" *ngIf="ws.p && ws.p['downloadUrl']">
+	  		<img [src]="ws.p['downloadUrl']"  width="150px" height="auto" />
+	  	</mat-card>
+
+		<app-uploader [maxAllowedFileSize]="50" [uploadPath]="workImageUploadPath" [isMultiple]="true" (imageUploaded)="imagesUploaded($event, 'work')" [header]="'Work Images'"></app-uploader>	  	
+		<div fxLayout>
+			<mat-card class="uploader-card-image" *ngFor="let image of ws.wi">
+				<img *ngIf="image && image['downloadUrl']" [src]="image['downloadUrl']" width="150px" height="auto" />
+			</mat-card>
+		</div>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel>
+	  	<mat-expansion-panel-header>
+	  		<mat-expansion-panel-title>Work Location</mat-expansion-panel-title>
+	  	</mat-expansion-panel-header>
+	  	<div fxLayout="row" fxLayoutGap="12px">
+  			<div (click)="locationTypeSelected(key)" [ngClass]="selectedLocationType===key?'button-selected':'button'" 
+  			*ngFor="let key of workLocationKeys">{{workLocationOptions[key]}}</div>
+  		</div>
+  		<div fxLayout="column" fxLayoutGap="12px;" *ngIf="loc.t==='d'">
+  			<mat-form-field>
+		  		<mat-label>Distance(Kms)</mat-label>
+		  		<input matInput placeholder="Distance(Kms)" type="number" [(ngModel)]="loc.d" />
+		  	</mat-form-field>
+		  	<app-location-coordinates [lngLat]="latLng" (locationSelected)="locationSelected($event)" [autoFetch]="false"></app-location-coordinates>
+		  	<button class="full-width" mat-raised-button color="primary" (click)="saveWorkDetail('location')">Save</button>
+  		</div>
+	  </mat-expansion-panel>
+
+	  <mat-expansion-panel>
+	  	<mat-expansion-panel-header>
+	  		<mat-expansion-panel-title>Danger Zone</mat-expansion-panel-title>
+	  	</mat-expansion-panel-header>
+	  	<div fxLayout="row" fxLayoutGap="12px">
+  			<button mat-raised-button color="warn" (click)="deleteWork()">Delete/Remove My Work</button>
+  		</div>
+	  </mat-expansion-panel>
+	</mat-accordion>
 </div>

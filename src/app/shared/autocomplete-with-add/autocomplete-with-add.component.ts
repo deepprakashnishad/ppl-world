@@ -24,10 +24,12 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
 
   @Input("selectedItem") selectedItem: any;
 
+  @Input("label") label: string = "Item";
+
   @Input("filterKey") filterKey: string;
   @Input("key") key: string;
   @Output("tagSelected") tagSelected: EventEmitter<any> = new EventEmitter();;
-  items: Array<any> = [];
+  @Input("items") items: Array<any> = [];
 
   @ViewChild('itemInput') itemInput: ElementRef<HTMLInputElement>;
   @ViewChild('itemInputTrigger', {read: MatAutocompleteTrigger}) itemInputTrigger: MatAutocompleteTrigger;
@@ -45,6 +47,9 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
       for (let propName in changes) {
         let changedProp = changes[propName];
+        if(propName === "items" && changedProp.currentValue !== undefined){
+          this.subscribeInput();
+        }
         if(propName.toLowerCase() === "key" && changedProp.currentValue !== undefined){
           this.fetchTags(); 
         }
@@ -54,7 +59,6 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
           }else{
             this.itemCtrl.setValue(changedProp.currentValue);
           }
-          
         }
       }
   }
@@ -92,10 +96,17 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
   }
 
   fetchTags(){
-    this.generalService.getTags(this.key).subscribe(result=>{
-      this.items = result.tags[this.selectedLanguage];
-      this.subscribeInput();
-    });
+    if(this.key){
+      this.generalService.getTags(this.key).subscribe(result=>{
+        if(result.success && result.tags && result.tags[this.selectedLanguage]){
+          this.items = result.tags[this.selectedLanguage];  
+        }else{
+          this.items = [];
+        }
+        
+        this.subscribeInput();
+      });
+    }
   }
 
   filterItems(name: string) {

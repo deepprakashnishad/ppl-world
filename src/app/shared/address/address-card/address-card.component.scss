@@ -1,0 +1,32 @@
+mat-card-content{
+    padding: 2px 0px;
+    margin:0px;
+}
+mat-card.selected{
+    background-color: #ffc107;
+    transform: scale(1.1);
+}
+
+mat-card{
+    margin: 8px;
+    padding: 4px;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+}
+
+.address-line{
+    font-size: 10px
+}
+
+mat-card-title.title{
+    font-size: 12px;
+    margin: 8px;
+}
+
+.title{
+    font-size: 12px;
+}
+
+mat-icon {
+  font-size: 12px;
+}

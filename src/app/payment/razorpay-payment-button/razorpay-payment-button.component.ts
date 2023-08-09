@@ -26,7 +26,7 @@ export class RazorpayButtonComponent {
     "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
     "name": environment.appName,
-    "description": "Healthy & pure products from everything satvik",
+    "description": "Each one help one while being helped by one, to make the world a better place live.",
     "image": this.storeSettings?.logo?.downloadUrl, //environment.logoUrl,
     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": this.razorPayCallbackHandler.bind(this),
@@ -39,7 +39,7 @@ export class RazorpayButtonComponent {
       "address": ""
     },
     "theme": {
-      "color": "#731539"
+      "color": "#17b7d9"
     }
   }
 
@@ -60,6 +60,7 @@ export class RazorpayButtonComponent {
     var usermob = this.authenticationService.getTokenOrOtherStoredData("mobile").toString();
     this.razorPayOptions.key = environment.razorpay.keyId;
     this.razorPayOptions.amount = this.paymentDetail['amount'];
+    this.razorPayOptions.image = environment.baseurl+"/assets/images/logo.png";
     this.razorPayOptions.prefill.name = this.authenticationService.getTokenOrOtherStoredData("name");
     this.razorPayOptions.prefill.email = this.authenticationService.getTokenOrOtherStoredData("email");
     this.razorPayOptions.prefill.contact = usermob;

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {MaterialModule} from './../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AgmCoreModule } from '@agm/core';
+
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner/progress-spinner.component';
 import { AssignRevokePermissionsComponent } from '../admin/permission/assign-revoke-permissions/assign-revoke-permissions.component';
@@ -25,6 +27,14 @@ import { PersonModule } from '../person/person.module';
 import { PaymentModule } from '../payment/payment.module';
 import { PaymentComponent } from '../payment/payment.component';
 import { LazyImgDirective } from '../directives/lazy-img.directive';
+import { AddressCardComponent } from './address/address-card/address-card.component';
+import { AddEditAddressComponent } from './address/add-edit-address/add-edit-address.component';
+import { AddressComponent } from './address/address.component';
+import {MyGoogleMapComponent} from './my-google-maps/my-google-maps.component';
+import {LocationCoordinatesComponent} from './my-google-maps/location-coordinates/location-coordinates.component';
+
+
+import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -44,7 +54,12 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     UploaderComponent,
     CarouselComponent,
     ShareComponent,
-    AutocompleteWithAddComponent
+    AutocompleteWithAddComponent,
+    AddressCardComponent,
+    AddEditAddressComponent,
+    AddressComponent,
+    MyGoogleMapComponent,
+    LocationCoordinatesComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +69,10 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     FormsModule,
     PaymentModule,
     ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs",
+      libraries: ['places']
+    }),
   ],
   exports:[
   	ConfirmDialogComponent, 
@@ -77,7 +96,12 @@ import { LazyImgDirective } from '../directives/lazy-img.directive';
     CarouselComponent,
     PaymentComponent,
     ShareComponent,
-    AutocompleteWithAddComponent
+    AddressCardComponent,
+    AddEditAddressComponent,
+    AddressComponent,
+    AutocompleteWithAddComponent,
+    MyGoogleMapComponent,
+    LocationCoordinatesComponent
   ],
   entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

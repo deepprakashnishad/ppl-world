@@ -51,7 +51,7 @@ export class DummyPaymentComponent implements OnInit {
     "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
     "name": environment.appName,
-    "description": "Healthy & pure products from everything satvik",
+    "description": "",
     "image": this.storeSettings?.logo?.downloadUrl, //environment.logoUrl,
     "order_id": "", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
     "handler": this.razorPayCallbackHandler.bind(this),
@@ -64,7 +64,7 @@ export class DummyPaymentComponent implements OnInit {
         "address": ""
     },
     "theme": {
-      "color": "#731539"
+      "color": "#17b7d9"
     }
   }
 
@@ -81,7 +81,6 @@ export class DummyPaymentComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe(params => {
-      console.log(params);
       this.poid = params['partner_orderid'];
       this.puid = params['partner_orderid'];
       this.amount = params['amount'];
@@ -127,6 +126,8 @@ export class DummyPaymentComponent implements OnInit {
   initiateRazorpayForm(result) {
     var usermob = this.authenticationService.getTokenOrOtherStoredData("mobile").toString();
     this.orderId = result['id'];
+    this.razorPayOptions.name = this.bettingPartnerName;
+    this.razorPayOptions.image = this.bettingPartnerLogo;
     this.razorPayOptions.key = environment.razorpay.keyId;
     this.razorPayOptions.amount = result['amount'];
     this.razorPayOptions.prefill.name = this.username;
@@ -136,7 +137,8 @@ export class DummyPaymentComponent implements OnInit {
     this.razorPayOptions.handler = this.razorPayCallbackHandler.bind(this);
     var rzp1 = new Razorpay(this.razorPayOptions);
     rzp1.on('payment.failed', function(response){
-      alert(response.error.reason);
+      console.log(response);
+      this.notifier.notify("error", "Payment failed");
     });
     rzp1.open();
   }
@@ -150,8 +152,14 @@ export class DummyPaymentComponent implements OnInit {
       razorpay_signature: response.razorpay_signature
     }).subscribe((result)=>{
       if(result.success){
+        this.sendResponseToAllPay(result);
+        this.postSuccessProcess(result);  
+      }
+    });
+  }
 
-        this.paymentService.postTransactionToAllPayServer({
+  sendResponseToAllPay(result){
+    this.paymentService.postTransactionToAllPayServer({
           bpid: this.bpid,
           partnerOrderId: this.poid,
           partnerUserId: this.puid,
@@ -180,10 +188,6 @@ export class DummyPaymentComponent implements OnInit {
         }).subscribe(result=>{
           this.notifier.notify("success", "Transaction completed successfully");
         });
-        this.postSuccessProcess(result);  
-      }
-      
-    });
   }
 
   postSuccessProcess(result){

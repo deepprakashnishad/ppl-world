@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild, Input } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, Input, SimpleChange, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
@@ -6,7 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import { EmploymentService } from './../../../employment.service';
-import { SkillSet } from './../../../employment';
+import { SkillSet, WorkSummary, RateList, WorkLocation } from './../../../employment';
 
 export const MY_FORMATS = {
   parse: {
@@ -31,10 +31,15 @@ export class ServiceDetailFormComponent implements OnInit {
   @Input() data: any;
 
   skillList: Array<SkillSet> = [];
+  ws: WorkSummary = new WorkSummary();
+  rl: RateList = new RateList();
+  loc: WorkLocation = new WorkLocation;
 
   profeciencyLevelSet: any = {1: "Novice", 2: "Advanced Beginner", 3: "Competent", 4: "Proficient", 5: "Expert"};
 
   skillSet: SkillSet = new SkillSet();
+
+  id: string;
 
   noFutureDates = (d: Date | null): boolean => {
     var currDate = new Date();
@@ -48,18 +53,70 @@ export class ServiceDetailFormComponent implements OnInit {
 
   lastUsedDateCntl: FormControl;
 
+  @Output("workDeleted") workDeleted: EventEmitter<any> = new EventEmitter();
+
+  workLocationOptions = {
+    // "nlc": "Anywhere in the world",
+    // "c": "Selected countries",
+    // "s": "Selected states",
+    // "ci": "Selected cities",
+    // "p": "Selected Pincodes",
+    "wfh": "Work from home",
+    "d": "Within x kms",    
+  };
+
+  workLocationKeys: Array<String>=[];
+
+  selectedLocationType: string = "wfh";
+
+  latLng: any;
+
+  profilePicUploadPath: string;
+
+  workImageUploadPath: string;
+
+  personId: string;
+
   constructor(
     private notifier: NotifierService,
     private employmentService: EmploymentService,
   ){
+    this.personId = sessionStorage.getItem("id");
   }
 
-  skillSelected(newTag){
-    this.skillSet.selectedSkill = newTag;
+  tagSelected(newTag, type){
+    if(type==="skill"){
+      this.skillSet.selectedSkill = newTag;  
+    }else if(type==="role"){
+      this.ws.r = newTag;
+    }
   }
 
   ngOnInit(){
-    this.fetchSkills();
+    this.workLocationKeys = Object.keys(this.workLocationOptions);
+  }
+
+  ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+    for (let propName in changes) {
+      let changedProp = changes[propName];
+      if(propName.toLowerCase() === "data" && changedProp.currentValue !== undefined){
+        var data = changedProp.currentValue;
+        console.log(data);
+        if(data.workDetail){
+          this.id = data.workDetail.id;
+          this.workImageUploadPath = `person/${this.personId}/work-images/${this.id}`;
+          this.profilePicUploadPath = `person/${this.personId}/work-profile/${this.id}`;
+          this.skillList = SkillSet.fromJSONArray(data.workDetail.ss);
+          this.ws = WorkSummary.fromJSON(data.workDetail.ws);
+          this.rl = RateList.fromJSON(data.workDetail.rl);
+          this.loc = WorkLocation.fromJSON(data.workDetail.l);
+          if(this.loc && this.loc.t==="d"){
+            this.selectedLocationType = this.loc.t;
+            this.latLng = this.loc.c.ll;
+          }
+        }        
+      }
+    }
   }
 
   acceptData(){
@@ -69,31 +126,127 @@ export class ServiceDetailFormComponent implements OnInit {
     }else{
       this.skillList[index] = this.skillSet;
     }
+
+    this.skillSet = new SkillSet();
   }
 
   lastUsedDateChange(event: MatDatepickerInputEvent<Date>) {
     this.skillSet.lastUsedDate = event.value;
   }
 
-  fetchSkills(){
+  fetchWorkDetails(){
     this.employmentService.getPersonWork(this.key).subscribe(result=>{
       if(result.success){
+        this.id = result.data.id;
+        this.workImageUploadPath = `person/${this.personId}/work-images/${this.id}`;
+        this.profilePicUploadPath = `person/${this.personId}/work-profile/${this.id}`;
         this.skillList = SkillSet.fromJSONArray(result.data.ss);
+        this.ws = WorkSummary.fromJSON(result.ws);
+        this.rl = RateList.fromJSON(result.rl);
+        this.loc = WorkLocation.fromJSON(result.l);
+
+        if(this.loc && this.loc.t==="d"){
+          this.selectedLocationType = this.loc.t;
+          this.latLng = this.loc.c.ll;
+        }
+      }else{
+        this.notifier.notify("error", "Could not fetch work details");
       }
     });
   }
 
-  saveSkillSet(){
-    this.employmentService.updatePersonWork(this.key, {ss: SkillSet.toJSONArray(this.skillList)}).subscribe(result=>{
-      if(result.success){
-        this.notifier.notify("success", "Skills updated successfully")
+  saveWorkDetail(type){
+    var data;
+    if(type==="skill"){
+      data = {ss: SkillSet.toJSONArray(this.skillList)};
+    }else if(type==="summary"){
+      data = {"ws": this.ws, rl: this.rl};
+    }else if(type==="location"){
+      if(this.loc.t==="wfh"){
+        this.loc.d = undefined;
+        this.loc.c = undefined;
+      }else if(type==="d" && (!this.loc.d || !this.loc.c || !this.loc.c.ll)){
+        this.notifier.notify("error", "Distance and location details required");
+        return;
       }
-    });
+
+      data = {"l": {"t": this.loc.t, "c": this.loc.c, "d": this.loc.d}};
+    }else{
+      return;
+    }
+
+    this.employmentService.updatePersonWork(this.key, data).subscribe(result=>{
+      if(result.success){
+        this.notifier.notify("success", "Work detail updated successfully");
+      }else{
+        this.notifier.notify("error", "Failed to update work detail");
+      }
+    }); 
   }
 
   editSkill(mSkillSet){
-    console.log(mSkillSet);
     this.skillSet = mSkillSet;
     this.lastUsedDateCntl = new FormControl(new Date(this.skillSet.lastUsedDate));
+  }
+
+  locationTypeSelected(key){
+    this.selectedLocationType = key;
+    this.loc.t = key;
+  }
+
+  locationSelected(event){
+    this.loc.c = event;
+  }
+
+  deleteWork(){
+    this.employmentService.deleteWork(this.key).subscribe(result=>{
+      if(result.success){
+        this.notifier.notify("success", "Work deleted successfully");
+        this.workDeleted.emit(this.key);
+      }
+    });
+  }
+
+  imagesUploaded_session(event, type){
+    console.log(event);
+    var data = {};
+    var workImages = sessionStorage.getItem("work-images");
+    if(workImages){
+      data = JSON.parse(workImages);
+      if(data[this.id]){
+        if(type==="profile"){
+          data[this.id][type] = event;    
+        }else{
+          data[this.id][type] = data[this.id][type].push(...event);    
+        }
+      }else{
+        data[this.id] = {};
+        data[this.id][type] = event;
+      }
+    }else{
+      data[this.id] = {};
+      data[this.id][type] = event;
+    } 
+    sessionStorage.setItem("work-images", JSON.stringify(data));
+     
+  }
+
+  imagesUploaded(event, type){
+    console.log(event);
+    if(type==="profile"){
+      this.ws.p = event;
+    }else{
+      if(!this.ws.wi){
+        this.ws.wi = [];
+      }
+      this.ws.wi.push(event);
+    }    
+    this.employmentService.updatePersonWork(this.key, {"ws": this.ws}).subscribe(result=>{
+      if(result.success){
+        this.notifier.notify("success", "Work images uploaded successfully");
+      }else{
+        this.notifier.notify("error", "Failed to update work detail");
+      }
+    }); 
   }
 }
