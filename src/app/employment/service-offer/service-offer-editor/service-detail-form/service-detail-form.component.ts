@@ -7,6 +7,8 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 import {MatDatepickerInputEvent, MatDatepickerModule} from '@angular/material/datepicker';
 import { EmploymentService } from './../../../employment.service';
 import { SkillSet, WorkSummary, RateList, WorkLocation } from './../../../employment';
+import { MyIdbService } from 'src/app/my-idb.service';
+import { GeneralService } from 'src/app/general.service';
 
 export const MY_FORMATS = {
   parse: {
@@ -56,11 +58,6 @@ export class ServiceDetailFormComponent implements OnInit {
   @Output("workDeleted") workDeleted: EventEmitter<any> = new EventEmitter();
 
   workLocationOptions = {
-    // "nlc": "Anywhere in the world",
-    // "c": "Selected countries",
-    // "s": "Selected states",
-    // "ci": "Selected cities",
-    // "p": "Selected Pincodes",
     "wfh": "Work from home",
     "d": "Within x kms",    
   };
@@ -77,23 +74,31 @@ export class ServiceDetailFormComponent implements OnInit {
 
   personId: string;
 
+  selectedLanguage: string;
+
   constructor(
     private notifier: NotifierService,
     private employmentService: EmploymentService,
+    private idbService: MyIdbService,
+    private generalService: GeneralService
   ){
     this.personId = sessionStorage.getItem("id");
   }
 
   tagSelected(newTag, type){
     if(type==="skill"){
-      this.skillSet.selectedSkill = newTag;  
+      this.skillSet.selectedSkill = newTag.tagId;  
     }else if(type==="role"){
-      this.ws.r = newTag;
+      this.ws.r = newTag.tagId;
     }
   }
 
   ngOnInit(){
     this.workLocationKeys = Object.keys(this.workLocationOptions);
+
+    this.generalService.selectedLanguage.subscribe(lang => {
+      this.selectedLanguage = lang;
+    })
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
@@ -107,6 +112,8 @@ export class ServiceDetailFormComponent implements OnInit {
           this.workImageUploadPath = `person/${this.personId}/work-images/${this.id}`;
           this.profilePicUploadPath = `person/${this.personId}/work-profile/${this.id}`;
           this.skillList = SkillSet.fromJSONArray(data.workDetail.ss);
+
+          this.getSkillTagsByTagId();
           this.ws = WorkSummary.fromJSON(data.workDetail.ws);
           this.rl = RateList.fromJSON(data.workDetail.rl);
           this.loc = WorkLocation.fromJSON(data.workDetail.l);
@@ -119,8 +126,20 @@ export class ServiceDetailFormComponent implements OnInit {
     }
   }
 
-  acceptData(){
+  async getSkillTagsByTagId(){
+    console.log(this.skillList);
+    for(var i=0;i< this.skillList.length; i++){
+      var result = await this.idbService.getTagDetail(this.skillList[i]['selectedSkill']);
+      this.skillList[i]['skillTag'] = result['tags'];  
+
+      console.log(this.skillList);
+    }
+  }
+
+  async acceptData(){
     var index = this.skillList.findIndex(ele => ele.selectedSkill === this.skillSet.selectedSkill);
+    var result = await this.idbService.getTagDetail(this.skillSet['selectedSkill']);
+    this.skillSet['skillTag'] = result.tags;
     if(index === -1){
       this.skillList.push(this.skillSet);
     }else{
@@ -141,6 +160,9 @@ export class ServiceDetailFormComponent implements OnInit {
         this.workImageUploadPath = `person/${this.personId}/work-images/${this.id}`;
         this.profilePicUploadPath = `person/${this.personId}/work-profile/${this.id}`;
         this.skillList = SkillSet.fromJSONArray(result.data.ss);
+
+        this.getSkillTagsByTagId();
+
         this.ws = WorkSummary.fromJSON(result.ws);
         this.rl = RateList.fromJSON(result.rl);
         this.loc = WorkLocation.fromJSON(result.l);

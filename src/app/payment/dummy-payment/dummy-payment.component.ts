@@ -41,6 +41,7 @@ export class DummyPaymentComponent implements OnInit {
   bettingPartnerName: string;
   bettingPartnerLogo: string;
   bpRedirectionLink: string;
+  allpayCallbackUrl: string;
 
   private subs: Subscription;
 
@@ -85,17 +86,18 @@ export class DummyPaymentComponent implements OnInit {
       this.puid = params['partner_orderid'];
       this.amount = params['amount'];
       this.username = params['username'];
-      this.userphone = params['userphone']
-      this.useremail = params['useremail']
-      this.mid = params['mid']
-      this.pg = params['pg']
-      this.pgid = params['pgid']
-      this.bpid = params['bpid']
-      this.prod_desc = params['prod_desc']
-      this.extra_info = params['extra_info']
-      this.bettingPartnerName = params['betting_partner_name']
-      this.bettingPartnerLogo = params['betting_partner_logo']
-      this.bpRedirectionLink = params['redirection_url']
+      this.userphone = params['userphone'];
+      this.useremail = params['useremail'];
+      this.mid = params['mid'];
+      this.pg = params['pg'];
+      this.pgid = params['pgid'];
+      this.bpid = params['bpid'];
+      this.prod_desc = params['prod_desc'];
+      this.extra_info = params['extra_info'];
+      this.bettingPartnerName = params['betting_partner_name'];
+      this.bettingPartnerLogo = params['betting_partner_logo'];
+      this.bpRedirectionLink = params['redirection_url'];
+      this.allpayCallbackUrl = params['allpayCallbackUrl'];
     });
   }
 
@@ -173,6 +175,7 @@ export class DummyPaymentComponent implements OnInit {
           paymentMode: result['pd']['method'],
           extra_info: this.extra_info,
           status: result['pd']['status'],
+          allpayCallbackUrl: this.allpayCallbackUrl,
           paymentDetails: {
             pg_orderid: result['pd']['order_id'],
             pg_txn_id: result['pd']['id'],
@@ -193,11 +196,11 @@ export class DummyPaymentComponent implements OnInit {
   postSuccessProcess(result){
     this.zone.run(() => {
       if (result['success']) {
-        if(this.bpRedirectionLink){
+        /*if(this.bpRedirectionLink){
           window.location.href = this.bpRedirectionLink;
         }else{
           window.location.href = 'https://google.co.in';  
-        }                
+        } */               
       } else {
         this.notifier.notify("error", result['msg']);
       }     

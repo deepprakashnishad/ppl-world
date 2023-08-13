@@ -20,6 +20,9 @@ import { FirestorageUploaderComponent } from './firestorage-uploader/firestorage
 import { UploaderComponent } from './uploader/uploader.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { AutocompleteWithAddComponent } from './autocomplete-with-add/autocomplete-with-add.component';
+import { TagAutocompleteComponent } from './tag-autocomplete/tag-autocomplete.component';
+import { TagEditorComponent } from './tag-autocomplete/tag-editor/tag-editor.component';
+import { TagChipInputComponent } from './tag-chip-input/tag-chip-input.component';
 import { ShareComponent } from './share/share.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
 import { NotifierModule } from 'angular-notifier';
@@ -59,7 +62,10 @@ import { environment } from '../../environments/environment';
     AddEditAddressComponent,
     AddressComponent,
     MyGoogleMapComponent,
-    LocationCoordinatesComponent
+    LocationCoordinatesComponent,
+    TagChipInputComponent,
+    TagAutocompleteComponent,
+    TagEditorComponent
   ],
   imports: [
     CommonModule,
@@ -101,9 +107,12 @@ import { environment } from '../../environments/environment';
     AddressComponent,
     AutocompleteWithAddComponent,
     MyGoogleMapComponent,
-    LocationCoordinatesComponent
+    LocationCoordinatesComponent,
+    TagChipInputComponent,
+    TagAutocompleteComponent,
+    TagEditorComponent
   ],
-  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent],
+  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent, TagEditorComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

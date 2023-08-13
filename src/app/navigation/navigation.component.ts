@@ -6,7 +6,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 import { environment } from '../../environments/environment';
 import { StorageService } from '../storage.service';
 import { PwaService } from './../pwa.service';
-
+import { GeneralService } from './../general.service';
 import {TranslateService} from '@ngx-translate/core';
 
 
@@ -53,16 +53,14 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
 	selectedLanguage: any;
 
-	langs = [
-		{displayName: "हिंदी", mValue:"hi"},
-		{displayName: "English", mValue:"en"}
-	];
+	langs = environment.langs;
 
 	constructor(
 	private authenticationService: AuthenticationService,
 	private router: Router,
 	private pwaService: PwaService,
 	private storageService: StorageService,
+	private generalService: GeneralService,
 	private translate: TranslateService,
 	private titleService: Title,
 	private renderer: Renderer2,
@@ -164,6 +162,7 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
   updateLanguage(e){
   	var lang = e.value;
+  	this.generalService.updateLanguage(lang);
   	this.authenticationService.storeValue("selectedLang", JSON.stringify(lang), "LOCAL_STORAGE");
   	this.mTranslate.use(lang.mValue)
   }

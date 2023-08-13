@@ -57,9 +57,12 @@ export class AddressService {
   }
 
   getPincodeDetail(pincode: string) : Observable<Array<Address>> {
-  	return this.http.get<any>(window.location.origin+"/api-pincode/"+pincode)
+    return this.http.get<Address>(`${this.addressUrl}/getPincodeDetail?pincode=${pincode}`)
+      .pipe(
+        catchError(this.handleError('Get Token', null)));
+  	/*return this.http.get<any>(environment.pincodeUrl+"/pincode/"+pincode)
   		.pipe(
-  			catchError(this.handleError('Get Token', null)));
+  			catchError(this.handleError('Get Token', null)));*/
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

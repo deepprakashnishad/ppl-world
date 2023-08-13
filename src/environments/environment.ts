@@ -9,7 +9,8 @@ export const environment = {
   slotPrice: 220,
   baseurl: "http://localhost:4200/api",
   allpayurl: "http://localhost:4200/allpay",
-  mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IlkzYkFqSWR4czAxekJBSVdZaVJ5cEdEdSIsIm1pZCI6IjY0YjdjNzk0NGJmNTdkNGFiY2Q4Njk3OCIsIndlYnNpdGUiOiJodHRwczovL2FzdHJhdGVjaHN5c3RlbXMuY29tL2luZGV4LnBocC9jaGVja291dCIsImlhdCI6MTY5MDYzNTgwNiwiZXhwIjoxNzc3MDM1ODA2fQ.e_SNSIxxZ_w9igCJMXzTf_hMNk8O3xBNoP4ff4icrOo",
+  pincodeUrl: "http://localhost:4200/api-pincode",
+  mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IjZuUGM1QnR6YkZtSnRVNGVUTjFsY2FPdiIsIm1pZCI6IjY0YjdjODg5NzkwY2EwMDhiY2Y2ZTU4ZiIsIndlYnNpdGUiOiJodHRwczovL2dvb2QtYWN0LndlYi5hcHAvcGF5bWVudCIsImlhdCI6MTY5MTc0MzA0OSwiZXhwIjoxNzc4MTQzMDQ5fQ.VFM-2DkpgFmX_I_OgfFTLsJb_83BOhnnWqHSKvZCcp8",
   mid: "64b7c7944bf57d4abcd86978",
   appUrl: "localhost:4200",
   firebase: {
@@ -26,7 +27,13 @@ export const environment = {
     keyId: "rzp_test_OhtTwkr00dbNU1"
   },
   recaptcha_site_key: "6LdbScYcAAAAAMy3OZigFtko17jK8DiQvEy7YzV4",
-  google_api_key: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs"
+  google_api_key: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs",
+
+  langs: [
+    {displayName: "हिंदी", mValue:"hi"},
+    {displayName: "English", mValue:"en"}
+  ],
+  defaultLang: "en" 
 };
 
 export var EXTRAS = {

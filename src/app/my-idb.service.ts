@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { openDB } from 'idb';
 import { noop } from 'rxjs';
 
-export const ITEM_STORE = "item";
-export const PRICE_STORE = "price";
-export const STORE_SETTINGS_STORE = "storeSettings";
-export const TS_STORE = "ts_store";
+export const TAG = "tag";
 
 @Injectable({
   providedIn: 'root'
@@ -19,12 +16,10 @@ export class MyIdbService {
 
   async upgradeDB(){
     if(MyIdbService.db===undefined){
-      MyIdbService.db = await openDB("mydb", 2, {
+      MyIdbService.db = await openDB("mydb", 1, {
         upgrade(db){
-          db.createObjectStore(ITEM_STORE);
-          db.createObjectStore(PRICE_STORE);
-          db.createObjectStore(STORE_SETTINGS_STORE);
-          db.createObjectStore(TS_STORE);
+          var objectStore = db.createObjectStore(TAG);
+          objectStore.createIndex("workCatIndex", "key", { unique: false });
         }
       });
     }
@@ -79,5 +74,20 @@ export class MyIdbService {
     }
     var promise = MyIdbService.db.getAll(storeName);
     return promise;
+  }
+
+  async getTagDetail(tagId){
+    return this.getValue(TAG, tagId);
+  }
+
+  sanitizeByKey(key, list){
+    var result = [];
+
+    list.forEach(ele=>{
+      if(ele.key===key){
+        result.push(ele);
+      }
+      return result;
+    });    
   }
 }

@@ -303,3 +303,15 @@ h4{
   background: linear-gradient(to right, #00af15, #d9b706);
   color: white !important;
 }
+
+.mat-button-toggle-checked.inactive{
+  background: #d70000;
+  background: -webkit-linear-gradient(to right, #d70000, #f9c040);
+  background: linear-gradient(to right, #d70000, #f9c040); 
+  color: white !important;
+}
+
+.mat-button-toggle-group {
+  height: 28px;
+  align-items: center;
+}

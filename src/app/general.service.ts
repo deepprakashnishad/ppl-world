@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
+import { BehaviorSubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,32 @@ export class GeneralService {
   private genericUrl:string;
   private tagUrl: string;
 
-  constructor(private http: HttpClient, private notifier: NotifierService){
+  selectedLanguage: BehaviorSubject<string> = new BehaviorSubject<string>("en");
+
+  constructor(
+    private http: HttpClient, 
+    private notifier: NotifierService,
+  ){
     this.genericUrl = environment.baseurl+'/generic';  
     this.tagUrl = environment.baseurl+'/tag';  
+  }
+
+  updateLanguage(selectedLang){
+    if(selectedLang.mValue){
+      this.selectedLanguage.next(selectedLang.mValue);
+    }
+  }
+
+  getLanguage(){
+    var selectedLang = localStorage.getItem("selectedLang");
+    if(selectedLang){
+      selectedLang = JSON.parse(selectedLang)["mValue"];
+    }else{
+      selectedLang = environment.defaultLang;
+    }
+
+    return selectedLang;
+
   }
   
   updateFirebaseMessagingToken(token: string): Observable<any>{
@@ -36,16 +61,23 @@ export class GeneralService {
         catchError(this.handleError('List tags', null)));
   }
 
-  updateTag(key, tags): Observable<any> {
+  updateTag(key, tagId, newTag, lang): Observable<any> {
    return this.http.patch<any>(this.tagUrl, 
    {
     "key": key,
-    "tags": tags
+    "tagId": tagId,
+    "newTag": newTag,
+    "lang": lang
    })
       .pipe(
         catchError(this.handleError('Update tags', null))); 
   }
 
+  getRecentlyUpdatedTags(lastTimestamp){
+    return this.http.get<any>(`${this.tagUrl}/getRecentlyUpdatedTags?lastTimestamp=${lastTimestamp}`)
+      .pipe(
+        catchError(this.handleError('Newly updated tags', null)));
+  }
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

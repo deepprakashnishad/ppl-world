@@ -7,7 +7,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { StorageService } from './storage.service';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { map, mergeMap, startWith, mergeMapTo } from 'rxjs/operators';
-
+import { MyIdbService, TAG } from './my-idb.service';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     private pwaService: PwaService,
     private afMessaging: AngularFireMessaging,
     private generalService: GeneralService,
+    private idbService: MyIdbService,
     private authenticationService: AuthenticationService,
     private storageService: StorageService
   ) {
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit {
         }
       }
     );
-
+    this.updateLocalTags();
     // this.requestPermission();
   }
 
@@ -71,5 +72,31 @@ export class AppComponent implements OnInit {
   listen() {
     this.afMessaging.messages
       .subscribe((message) => { console.log(message); });
+  }
+
+  updateLocalTags(){
+    this.idbService.getValue(TAG, "lastTimestamp").then(lastTimestamp=>{
+      if(!lastTimestamp){
+        lastTimestamp = 0;
+      }
+      this.generalService.getRecentlyUpdatedTags(lastTimestamp).subscribe(result=>{
+        var data = {};
+        result.tags.forEach(ele=>{
+          var tid = ele['tid'];
+          delete ele['id'];
+          delete ele['uat'];
+          delete ele['tid']
+          data[tid] = ele;
+        });
+
+        console.log(data);
+
+        this.idbService.setValue(TAG, data).then(result1=>{
+          this.idbService.setValue(TAG, {lastTimestamp: result['lastTimestamp']});
+        });
+        
+      })  
+    });
+    
   }
 }

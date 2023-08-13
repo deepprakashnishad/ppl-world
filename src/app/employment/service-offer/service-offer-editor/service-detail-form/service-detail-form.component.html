@@ -5,11 +5,18 @@
 		  		<mat-expansion-panel-title>Work Summary</mat-expansion-panel-title>
 		  	</mat-expansion-panel-header>
 		  	<div fxLayout.gt-sm="row" fxLayout fxLayoutGap="12px">
+		  		<div>
+				  	<mat-button-toggle-group #statusBtn="matButtonToggleGroup" [(ngModel)]="ws.s" name="fontStyle" aria-label="Font Style">
+					    <mat-button-toggle [value]="true">Active</mat-button-toggle>
+					    <mat-button-toggle class="inactive" [value]="false">Inactive</mat-button-toggle>
+					</mat-button-toggle-group>
+				</div>
 		  		<mat-form-field class="full-width">
 			  		<mat-label>Work title</mat-label>
 			  		<input matInput maxlength="200" placeholder="Title" type="text" [(ngModel)]="ws.t" />
 			  	</mat-form-field>
-			  	<app-autocomplete-with-add [label]="'Role'" [selectedItem]="ws['r']" [key]="key+'.r'" (tagSelected)="tagSelected($event, 'role')"></app-autocomplete-with-add>
+			  	<app-tag-autocomplete [label]="'Role'" [selectedTagId]="ws['r']" [key]="key+'.r'" (tagSelected)="tagSelected($event, 'role')" [displayKey]="'tagname'"></app-tag-autocomplete>
+			  	<!-- <app-autocomplete-with-add [label]="'Role'" [selectedItem]="ws['r']" [key]="key+'.r'" (tagSelected)="tagSelected($event, 'role')"></app-autocomplete-with-add> -->
 			  	<mat-form-field>
 			  		<mat-label>Total Work Experience(Years)</mat-label>
 			  		<input matInput placeholder="Total Experience" type="number" [(ngModel)]="ws.twe" />
@@ -28,12 +35,6 @@
 			  		<mat-label>Hourly Rate(INR)</mat-label>
 			  		<input matInput min="0" placeholder="Weekly Rate" type="number" [(ngModel)]="rl.hr" />
 			  	</mat-form-field>
-			  	<div>
-				  	<mat-button-toggle-group #statusBtn="matButtonToggleGroup" [(ngModel)]="ws.s" name="fontStyle" aria-label="Font Style">
-					    <mat-button-toggle [value]="true">Active</mat-button-toggle>
-					    <mat-button-toggle [value]="false">Inactive</mat-button-toggle>
-					</mat-button-toggle-group>
-				</div>
 		  	</div>
 		  	<button class="full-width" mat-raised-button color="primary" (click)="saveWorkDetail('summary')">Save</button>
 	  </mat-expansion-panel>
@@ -45,7 +46,8 @@
 	      </mat-panel-title>
 	    </mat-expansion-panel-header>
 	    <div fxLayout.lt-md="column" fxLayout.gt-sm="row" fxLayoutGap="8px">
-	  		<app-autocomplete-with-add [label]="'Skill'" [selectedItem]="skillSet['selectedSkill']" [key]="key" (tagSelected)="tagSelected($event, 'skill')"></app-autocomplete-with-add>
+	    	<app-tag-autocomplete [label]="'Skill'" [selectedTagId]="skillSet['selectedSkill']" [key]="key" (tagSelected)="tagSelected($event, 'skill')"></app-tag-autocomplete>
+	  		<!-- <app-autocomplete-with-add [label]="'Skill'" [selectedItem]="skillSet['selectedSkill']" [key]="key" (tagSelected)="tagSelected($event, 'skill')"></app-autocomplete-with-add> -->
 			  <div fxLayout fxLayoutGap="8px">
 			  	<mat-form-field>
 			  		<mat-label>Years of experience</mat-label>
@@ -77,7 +79,7 @@
 		  	</div>
 	  	<div class="container" fxLayout="column" fxLayoutGap="12px">
 			<mat-card class="skill-card" *ngFor="let mSkillSet of skillList; let i=index" fxLayout="row wrap" fxLayoutAlign="space-between center">
-				<div>{{mSkillSet['selectedSkill']}}</div>
+				<div *ngIf="mSkillSet['skillTag'] && mSkillSet['skillTag'][selectedLanguage]">{{mSkillSet['skillTag'][selectedLanguage]}}</div>
 				<div>{{mSkillSet['expYears']}} Years {{mSkillSet['expMonths']}} Months</div>
 				<div>{{profeciencyLevelSet[mSkillSet['profLevel']]}}</div>
 				<div *ngIf="mSkillSet['lastUsedDate']">{{mSkillSet['lastUsedDate'].getDate()}}/{{mSkillSet['lastUsedDate'].getMonth()+1}}/{{mSkillSet['lastUsedDate'].getFullYear()}}</div>
@@ -125,6 +127,16 @@
 		  	<button class="full-width" mat-raised-button color="primary" (click)="saveWorkDetail('location')">Save</button>
   		</div>
 	  </mat-expansion-panel>
+
+	  <!-- <mat-expansion-panel>
+	  	<mat-expansion-panel-header>
+	  		<mat-expansion-panel-title>Upload Resume</mat-expansion-panel-title>
+	  	</mat-expansion-panel-header>
+	  	<app-uploader [maxAllowedFileSize]="50" [uploadPath]="profilePicUploadPath" [isMultiple]="false" (imageUploaded)="imagesUploaded($event, 'resume')" [newFilename]="'resume'" [header]="'Work Profile Image'"></app-uploader>
+	  	<mat-card class="uploader-card-image" *ngIf="ws.p && ws.p['downloadUrl']">
+	  		<img [src]="ws.p['downloadUrl']"  width="150px" height="auto" />
+	  	</mat-card>
+	  </mat-expansion-panel> -->
 
 	  <mat-expansion-panel>
 	  	<mat-expansion-panel-header>

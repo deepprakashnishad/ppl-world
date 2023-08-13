@@ -1,10 +1,9 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef, ViewChild, SimpleChange } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent, MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
-
-import { Observable } from 'rxjs/Observable';
-import { startWith } from 'rxjs/operators/startWith';
-import { map } from 'rxjs/operators/map';
+import { TagEditorComponent } from '../tag-autocomplete/tag-editor/tag-editor.component';
+import { Observable } from 'rxjs';
+import { map, startWith, switchMap, filter } from 'rxjs/operators';
 import { GeneralService } from '../../general.service';
 
 /**
@@ -25,17 +24,22 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
   @Input("selectedItem") selectedItem: any;
 
   @Input("label") label: string = "Item";
-
+  @Input("displayKey") displayKey: string;
   @Input("filterKey") filterKey: string;
   @Input("key") key: string;
   @Output("tagSelected") tagSelected: EventEmitter<any> = new EventEmitter();;
   @Input("items") items: Array<any> = [];
+  @Input("enableAdd") enableAdd: boolean = true;
+
+  @Input("addTagEnabled") addTagEnabled:boolean = false;
 
   @ViewChild('itemInput') itemInput: ElementRef<HTMLInputElement>;
   @ViewChild('itemInputTrigger', {read: MatAutocompleteTrigger}) itemInputTrigger: MatAutocompleteTrigger;
   @ViewChild('auto') itemAuto: MatAutocomplete;
 
-  constructor(private generalService: GeneralService) {
+  constructor(
+    private generalService: GeneralService,
+  ) {
     this.itemCtrl = new FormControl();
     /*this.filteredItems = this.itemCtrl.valueChanges
       .pipe(
@@ -60,6 +64,18 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
             this.itemCtrl.setValue(changedProp.currentValue);
           }
         }
+        if(propName === "filterKey" && changedProp.currentValue !== undefined){
+          if(!this.displayKey){
+            this.displayKey = this.filterKey;
+          }
+        }
+        if(propName === "displayKey" && changedProp.currentValue !== undefined){
+          if(!this.filterKey){
+            this.filterKey = this.displayKey;
+          }
+        }
+        console.log(changedProp);
+        console.log(this.displayKey);
       }
   }
 
@@ -67,7 +83,7 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
     this.filteredItems = this.itemCtrl.valueChanges.pipe(
       startWith(''),
       map((filterStr: string) => {
-        var list = this._filter(filterStr, this.items)
+        var list = this._filter(filterStr, this.items);
         return list;
       }));
   }
@@ -130,16 +146,39 @@ export class AutocompleteWithAddComponent implements AfterViewInit {
   }
 
   addOption() {
-    // let option = this.removePromptFromOption(this.itemCtrl.value);
+    if(this.itemCtrl && this.itemCtrl.value && this.itemCtrl.value.length<=0){
+      return;
+    }
     if (!this.items.some(entry => entry === this.itemCtrl.value)) {
       const index = this.items.push(this.itemCtrl.value) - 1;
       this.itemCtrl.setValue(this.items[index]);
-
-      this.generalService.updateTag(this.key, [this.itemCtrl.value]).subscribe(result=>{
-        console.log(result);
-      });
+      /*if(!this.enableAdd){
+        this.generalService.updateTag(this.key, [this.itemCtrl.value]).subscribe(result=>{
+          console.log(result);
+        });
+      }*/
     }
   }
+
+  displayFn(obj){
+    if(!obj){
+      return "";
+    }
+    if(this.displayKey){
+      return obj[this.displayKey]?obj[this.displayKey]:"";
+    }else{
+      return obj;
+    }    
+  }
+
+  /*openTagEditorDialog(){
+    const dialogRef = this.dialog.open(TagEditorComponent, {
+      data: {
+        key: this.key,
+        items: this.items
+      }
+    })
+  }*/
 
   /*removePromptFromOption(option) {
     if (option.startsWith(this.prompt)) {

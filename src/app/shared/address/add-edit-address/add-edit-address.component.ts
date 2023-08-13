@@ -44,7 +44,6 @@ export class AddEditAddressComponent implements OnInit, AfterViewInit {
     if(this.data && this.data!==null){
       this.address = this.data;
       if(this.address.loc && this.address.loc.ll){
-        console.log(this.address.loc.ll);
         this.latLng = this.address.loc.ll;
         
         this.autoFetchCoordinates = false;
@@ -104,15 +103,12 @@ export class AddEditAddressComponent implements OnInit, AfterViewInit {
   }
 
   getPincodeDetail() {
-    this.latLng = [4, 5];
-    return;
     if (!this.address.pc.match("^[0-9]{6,6}$")) {
       this.notifier.notify("error", "Invalid pincode");
       return;
     }
     
     this.addressService.getPincodeDetail(this.address.pc).subscribe(result=>{
-      console.log(result)
      if(result[0]['Status']==='Success'){
        var postOffices = result[0]['PostOffice'];
        this.address.s = postOffices[0]['State'];
@@ -120,7 +116,8 @@ export class AddEditAddressComponent implements OnInit, AfterViewInit {
        this.address.ci = postOffices[0]['District'];
 
        this.availableAreas = postOffices.map(ele=>ele.Name)
-       console.log(this.address);
+
+       console.log(this.availableAreas);
      }
     });
   }
@@ -151,7 +148,6 @@ export class AddEditAddressComponent implements OnInit, AfterViewInit {
   }
 */
   areaSelected(event){
-    console.log(event);
     this.address.ar = event;
   }
 }

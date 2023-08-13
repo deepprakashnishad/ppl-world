@@ -3,10 +3,9 @@
 		<input #itemInput #itemInputTrigger matInput [placeholder]="label" aria-label="Item" [matAutocomplete]="auto" [formControl]="itemCtrl" (keyup.enter)="addOption()">
 		<mat-autocomplete #auto="matAutocomplete" (optionSelected)="optionSelected($event.option)" [displayWith]="displayFn.bind(this)">
 		  <mat-option *ngFor="let item of filteredItems | async" [value]="item">
-		    <span *ngIf="!displayKey">{{ item }}</span>
-		    <span *ngIf="displayKey">{{ item[displayKey] }}</span>
+		    <span>{{ item.tagname }}</span>
 		  </mat-option>
 		</mat-autocomplete>
-		<button *ngIf="showAddButton" matSuffix mat-button mat-icon-button (click)="addOption()"><mat-icon matTooltip='Add'>add</mat-icon></button>
 	</mat-form-field>
+	<button *ngIf="enableAdd" mat-icon-button color="primary" (click)="openTagEditorDialog()"><mat-icon>add</mat-icon></button>
 </div>

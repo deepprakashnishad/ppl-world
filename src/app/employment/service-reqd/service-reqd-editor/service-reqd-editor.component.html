@@ -1,0 +1,117 @@
+<div class="mcontainer" fxLayout="column" fxLayoutGap="12px">
+	<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="12px">
+		<div (click)="workTypeSelected('st')" [ngClass]="sr.wt==='st'?'button-selected':'button'">Short Term Tasks</div>
+		<div (click)="workTypeSelected('wb')" [ngClass]="sr.wt==='wb'?'button-selected':'button'">Project/Work Based</div>
+		<div (click)="workTypeSelected('cs')" [ngClass]="sr.wt==='cs'?'button-selected':'button'">Contract Salaried</div>
+		<div (click)="workTypeSelected('ps')" [ngClass]="sr.wt==='ps'?'button-selected':'button'">Permanent Salaried</div>
+	</div>
+	<div>
+	  	<mat-button-toggle-group #statusBtn="matButtonToggleGroup" [(ngModel)]="sr.s">
+		    <mat-button-toggle [value]="true">Active</mat-button-toggle>
+		    <mat-button-toggle class="inactive" [value]="false">Inactive</mat-button-toggle>
+		</mat-button-toggle-group>
+	</div>
+	<mat-form-field class="full-width">
+  		<mat-label>Job title</mat-label>
+  		<input matInput maxlength="200" placeholder="Title" type="text" [(ngModel)]="sr.t" />
+  	</mat-form-field>
+  	<mat-form-field class="full-width" *ngIf="sr.wt!=='st'">
+  		<mat-label>Job Description</mat-label>
+  		<textarea matInput maxlength="500" (ngModel)="sr.jd" placeholder="Job Description" type="text" >{{sr.jd}}</textarea>
+  	</mat-form-field>
+  	<mat-form-field>
+	    <mat-label>Work Categories</mat-label>
+	    <input type="text"
+	           matInput       
+	           [formControl]="catCntl"    
+	           required
+	           [matAutocomplete]="catAuto">
+        <mat-autocomplete #catAuto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="workDomainSelected($event.option.value)">
+	        <mat-optgroup *ngFor="let domain of filteredWorkDomains | async" [label]="domain._id">
+	          <mat-option *ngFor="let cat of domain.cat" [value]="cat">
+	            {{cat.name}}
+	          </mat-option>
+	    	</mat-optgroup>
+	    </mat-autocomplete>
+	</mat-form-field>
+	<app-tag-chip-input [inputLabel]="'Type skills required'" [inputTags]="skills[selectedWorkDomainId]" (selectedTagEmitter)="selectedTagModified($event)" [key]="selectedWorkDomainId"></app-tag-chip-input>
+	<div fxLayout fxLayoutGap="12px">
+		<mat-form-field class="full-width">
+	  		<mat-label>Daily Work Hours</mat-label>
+	  		<input matInput max="16" placeholder="Daily work hours" type="number" [(ngModel)]="sr.wh" />
+	  	</mat-form-field>
+	</div>
+	<div fxLayout="column">
+		<h3>Experience in years</h3>
+		<div fxLayout fxLayoutGap="12px">
+			<mat-form-field class="full-width">
+		  		<mat-label>Min</mat-label>
+		  		<input matInput min=0 max="30" placeholder="Min Experience" type="number" [(ngModel)]="sr.mne" />
+		  	</mat-form-field>
+			<mat-form-field class="full-width">
+		  		<mat-label>Max</mat-label>
+		  		<input matInput min=0 max="30" placeholder="Max Experience" type="number" [(ngModel)]="sr.mxe" />
+		  	</mat-form-field>	
+		</div>
+  	</div>
+  	<div fxLayout fxLayoutGap="12px">
+  		<mat-form-field class="full-width">
+	  		<mat-label>Min Salary</mat-label>
+	  		<span matPrefix>₹ </span>
+	  		<input matInput max="1000000" placeholder="Min Salary" type="number" [(ngModel)]="sr.mns" />
+	  	</mat-form-field>
+		<mat-form-field class="full-width">
+	  		<mat-label>Max Salary</mat-label>
+	  		<span matPrefix>₹ </span>
+	  		<input matInput max="1000000" placeholder="Max Salary" type="number" [(ngModel)]="sr.mxs" />
+	  	</mat-form-field>
+  	</div>
+  	<div>
+  		<mat-label>Salary Frequency</mat-label>
+  		<mat-select [(ngModel)]="sr.pt">
+  			<mat-option value="o">One Time</mat-option>
+  			<mat-option value="p">Project Based</mat-option>
+  			<mat-option value="d">Daily Wage</mat-option>
+  			<mat-option value="w">Weekly Package</mat-option>
+  			<mat-option value="m">Monthly Package</mat-option>
+  			<mat-option value="y">Annual Package</mat-option>
+  		</mat-select>
+  	</div>
+  	<div>
+  		<h3>Work Location</h3>
+
+  		<div fxLayout="column">
+  			<div fxLayout fxLayoutGap="12px">
+				<div (click)="locationSelected('wfh', 'location_type')" [ngClass]="sr.wlt==='wfh'?'button-selected':'button'">Work from home</div>
+				<div (click)="locationSelected('wop', 'location_type')" [ngClass]="sr.wlt==='wop'?'button-selected':'button'">Work On Premise</div>
+			</div>
+			<div *ngIf="sr.wlt==='wop'">
+				<mat-form-field class="full-width">
+			  		<mat-label>Pincode</mat-label>
+			  		<input matInput placeholder="Pincode" type="text" [(ngModel)]="sr.pc" (change)="getPincodeDetail()" (keydown.enter)="getPincodeDetail()"/>
+			  		<button matSuffix mat-icon-button color="accent" (click)=getPincodeDetail()><mat-icon>refresh</mat-icon></button>
+			  	</mat-form-field>
+			  	<app-autocomplete-with-add [enableAdd]="false" [items]="availableAreas" [label]="'Area'" [selectedItem]="sr.ar" (tagSelected)="areaSelected($event)"></app-autocomplete-with-add>
+			  	<h5>{{sr.ci}}, {{sr.st}}, {{sr.c}}</h5>
+			  	<app-location-coordinates [lngLat]="latLng" (locationSelected)="locationSelected($event, 'coordinates')" [autoFetch]="true"></app-location-coordinates>	
+			</div>
+  		</div>
+  	</div>
+  	<div>
+  		<h3>Contact Details</h3>
+  		<mat-form-field class="full-width">
+	  		<mat-label>Name</mat-label>
+	  		<input matInput placeholder="Name" type="text" [(ngModel)]="sr.cn" />
+	  	</mat-form-field>
+		<mat-form-field class="full-width">
+	  		<mat-label>Mobile</mat-label>
+	  		<input matInput placeholder="Mobile" type="text" [(ngModel)]="sr.cm" />
+	  	</mat-form-field>	
+	  	<mat-form-field class="full-width">
+	  		<mat-label>Email</mat-label>
+	  		<input matInput placeholder="Email" type="text" [(ngModel)]="sr.ce" />
+	  	</mat-form-field>	
+  	</div>
+
+  	<button mat-raised-button (click)="saveWorkRequirement()" color="primary">Save</button>
+</div>

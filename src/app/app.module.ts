@@ -9,6 +9,7 @@ import {SharedModule} from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './http-interceptors/index';
 import { NavigationComponent } from './navigation/navigation.component';
@@ -40,6 +41,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
+import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
 
 
 const notifierDefaultOptions: NotifierOptions = {
@@ -108,7 +110,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TransactionReportComponent,
     GlobalEarningReportComponent,
     ServiceOfferEditorComponent,
-    ServiceDetailFormComponent
+    ServiceDetailFormComponent,
+    ServiceReqdEditorComponent
    ],
   imports: [
     BrowserModule,
@@ -128,6 +131,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireMessagingModule,
     AngularFireStorageModule,
+    AngularFireFunctionsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

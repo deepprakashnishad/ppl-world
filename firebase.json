@@ -1,20 +1,19 @@
 {
   "hosting": {
     "public": "dist",
-    "redirects": [ {
-      "source": "**/api-pincode/:path",
-      "destination": "https://api.postalpincode.in/pincode/:path",
-      "type": 301
-    }],
+    "redirects": [],
     "rewrites":[{
-      "source": "**",
-      "destination": "/index.html"
-    }, {
       "source": "/api/:path*",
       "destination": "https://goodact.onrender.com/:path"
     }, {
       "source": "/allpay/:path*",
       "destination": "https://node-allpay.onrender.com/:path"
+    }, {
+      "source": "/api-pincode/:path*",
+      "destination": "https://api.postalpincode.in/pincode/:path"
+    }, {
+      "source": "**",
+      "destination": "/index.html"
     }],
     "ignore": [
       "firebase.json",

@@ -11,12 +11,14 @@ import { environment } from 'src/environments/environment';
 export class EmploymentService {
   categoryUrl: string;
   employmentUrl: string;
+  serviceRequirementUrl: string;
 
   constructor(
   	private http: HttpClient,
   ) {
      this.categoryUrl = environment.baseurl+'/category';
      this.employmentUrl = environment.baseurl+'/employment';
+     this.serviceRequirementUrl = environment.baseurl+'/serviceRequirement';
   }
 
   addCategory(data): Observable<any>{
@@ -58,6 +60,12 @@ export class EmploymentService {
     return this.http.delete<any>(url)
     .pipe(
         catchError(this.handleError('Delete person work', null)));  
+  }
+
+  createServiceRequirement(data){
+    return this.http.post<any>(this.serviceRequirementUrl, data)
+    .pipe(
+        catchError(this.handleError('Add service requirement', null))); 
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

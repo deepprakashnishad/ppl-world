@@ -23,6 +23,7 @@ import { DailyReportComponent } from './reports/daily-report/daily-report.compon
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
+import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
 
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
 
@@ -75,6 +76,13 @@ const routes: Routes = [
 		canActivate: [AuthGuardService], 
 		canDeactivate:[CanDeactivateGuardService],
 		data: { title: 'Service Offer Editor', permissions: [], isLoggedIn: true}
+	},
+	{
+		path: 'service-reqd-editor', 
+		component: ServiceReqdEditorComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Service Required Editor', permissions: [], isLoggedIn: true}
 	},
 	{
 		path: 'wall-of-fame', 

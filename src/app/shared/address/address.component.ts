@@ -38,7 +38,6 @@ export class AddressComponent implements OnInit {
   fetchAddress(){
     this.addressService.get(this.forId).subscribe(result=>{
       this.addresses = Address.fromJSON(result);
-      console.log(this.addresses);
       this.addressSelected.emit(this.addresses[0]);
       this.selectedAddress = this.addresses[0];
       sessionStorage.setItem("selectedAddress", JSON.stringify(this.addresses[0]));
@@ -55,7 +54,6 @@ export class AddressComponent implements OnInit {
       }
       this.fetchAddress();
     }
-    console.log(changes);
     if(changes['forId'] && changes['forId']['currentValue']){
       this.forId = changes['forId']['currentValue'];
       this.fetchAddress();
@@ -111,5 +109,4 @@ export class AddressComponent implements OnInit {
       sessionStorage.setItem("selectedAddress", JSON.stringify(address));
     }    
   }
-
 }

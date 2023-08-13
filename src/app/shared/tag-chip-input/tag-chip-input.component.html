@@ -1,0 +1,28 @@
+<mat-form-field class="full-width">
+	<mat-chip-list #inputList>
+	    <mat-chip
+	      *ngFor="let tag of selectedTags"
+	      [selectable]="false"
+	      removable="true"
+	      (removed)="remove(tag)">
+	      {{tag.tagname}}
+	      <mat-icon matChipRemove>cancel</mat-icon>
+	    </mat-chip>
+  	</mat-chip-list>
+	<input
+		matInput
+      [placeholder]="inputLabel"
+      #tagInput
+      #itemInputTrigger
+      [formControl]="inputCntl"
+      [matAutocomplete]="tagAuto"
+      [matChipInputFor]="inputList"
+      (focus)="openPanel()"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="true" />
+		
+	<mat-autocomplete #tagAuto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn.bind(this)">
+	    <mat-option *ngFor="let tag of tagFilteredList | async" [value]="tag">{{tag.tagname}}</mat-option>
+	</mat-autocomplete>
+	<button matSuffix mat-icon-button (click)="openTagEditorDialog()"><mat-icon>add</mat-icon></button>
+</mat-form-field>
