@@ -106,7 +106,6 @@ export class ServiceDetailFormComponent implements OnInit {
       let changedProp = changes[propName];
       if(propName.toLowerCase() === "data" && changedProp.currentValue !== undefined){
         var data = changedProp.currentValue;
-        console.log(data);
         if(data.workDetail){
           this.id = data.workDetail.id;
           this.workImageUploadPath = `person/${this.personId}/work-images/${this.id}`;
@@ -127,12 +126,9 @@ export class ServiceDetailFormComponent implements OnInit {
   }
 
   async getSkillTagsByTagId(){
-    console.log(this.skillList);
     for(var i=0;i< this.skillList.length; i++){
       var result = await this.idbService.getTagDetail(this.skillList[i]['selectedSkill']);
       this.skillList[i]['skillTag'] = result['tags'];  
-
-      console.log(this.skillList);
     }
   }
 
@@ -230,7 +226,6 @@ export class ServiceDetailFormComponent implements OnInit {
   }
 
   imagesUploaded_session(event, type){
-    console.log(event);
     var data = {};
     var workImages = sessionStorage.getItem("work-images");
     if(workImages){
@@ -254,7 +249,6 @@ export class ServiceDetailFormComponent implements OnInit {
   }
 
   imagesUploaded(event, type){
-    console.log(event);
     if(type==="profile"){
       this.ws.p = event;
     }else{

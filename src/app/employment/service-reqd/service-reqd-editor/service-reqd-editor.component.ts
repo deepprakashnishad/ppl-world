@@ -86,7 +86,6 @@ export class ServiceReqdEditorComponent implements OnInit {
       })
       console.log(this.skills);*/
       this.generalService.getTags(this.selectedWorkDomainId).subscribe(result=>{
-        console.log(result);
         if(result.length>0){
           this.skills[selectedWorkDomain.id] = result;  
         }else{

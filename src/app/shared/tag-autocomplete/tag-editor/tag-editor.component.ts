@@ -57,7 +57,6 @@ export class TagEditorComponent {
         tagname: tag.tags[event.value]? tag.tags[event.value]: tag.tags[environment.defaultLang]
       };
     });
-    console.log(this.selectedLangItems);
   }
 
   tagExistsModified(event){}

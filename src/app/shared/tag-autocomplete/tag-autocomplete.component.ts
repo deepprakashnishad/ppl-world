@@ -46,7 +46,6 @@ export class TagAutocompleteComponent {
 
     this.generalService.selectedLanguage.subscribe(value=>{
       this.selectedLanguage = value;
-      console.log(this.keyTags);
       if(this.keyTags){
         this.items = this.keyTags.map(tag=>{
          return {
@@ -129,7 +128,6 @@ export class TagAutocompleteComponent {
        };
       });
 
-    console.log(this.items);
     this.subscribeInput();
   }
 
@@ -144,7 +142,6 @@ export class TagAutocompleteComponent {
 
   filterItems(name: string) {
     let results = this.items.filter(item =>{
-      console.log(item);
       item.toLowerCase().indexOf(name.toLowerCase()) === 0;
     });
 

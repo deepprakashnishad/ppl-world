@@ -147,24 +147,6 @@ export class TagChipInputComponent implements OnInit {
     if(!this.key || value.length===0){
     	return;
     }
-
-    console.log(value);
-    
-    
-
-    /*if (value.trim() !== "" && this.selectedTags.indexOf(value)===-1) {
-      	this.selectedTags.push(value);
-      	this.selectedTagEmitter.emit(this.selectedTags);
-    }
-
-    if(value.trim() !== "" && this.tags.indexOf(value)===-1){
-    	this.tags.push(value);
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }*/
 	}
 
 	openPanel(){
