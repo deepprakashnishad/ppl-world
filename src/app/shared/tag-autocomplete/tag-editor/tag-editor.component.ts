@@ -34,6 +34,8 @@ export class TagEditorComponent {
 
   keyTags: any;
 
+  label: string="tag";
+
 
   constructor(
     private notifier: NotifierService,
@@ -48,6 +50,12 @@ export class TagEditorComponent {
       this.key = data.key;
       this.keyTags = data.items
     }
+
+    if(data.label){
+      this.label = data.label;
+    }
+
+    console.log(this.label);
   }
 
   existingTagLanguageSelected(event){

@@ -131,7 +131,6 @@ export class LoginComponent implements OnInit{
       if(username.indexOf("@")<0){
         username = "+91"+username;
       }
-      console.log(username);
       this.authService.login(
         { username: username, password: password }
       ).subscribe((authResponse) => {

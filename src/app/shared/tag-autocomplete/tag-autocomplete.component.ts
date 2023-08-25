@@ -178,7 +178,8 @@ export class TagAutocompleteComponent {
     const dialogRef = this.dialog.open(TagEditorComponent, {
       data: {
         key: this.key,
-        items: this.keyTags
+        items: this.keyTags,
+        label: this.label
       }
     });
 

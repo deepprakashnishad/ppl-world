@@ -11,6 +11,7 @@ import {FormControl} from '@angular/forms';
 import {PersonService} from './../person.service';
 import { NotifierService } from 'angular-notifier';
 import { MatDialog } from '@angular/material/dialog';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-person-exact-match',
@@ -27,7 +28,7 @@ export class PersonExactMatchComponent implements OnInit {
 
   @Input() isMandatory: boolean = true;
 
-  @Input() errorLabel: string = "Please select a referrer";  
+  @Input() errorLabel: string = "Please select a person";  
 
   person: any = {n:"", m:"", s:"", e: "", p:"", co: ""};
 
@@ -38,7 +39,8 @@ export class PersonExactMatchComponent implements OnInit {
 
   constructor(
     private personService: PersonService,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private translate: TranslateService
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class PersonExactMatchComponent implements OnInit {
 
   fetchPersonList(){
     if(!this.mobileNumber || this.mobileNumber.length!=10){
-      this.notifier.notify("error", "Please enter a valid mobileNumber");
+      this.notifier.notify("error", this.translate.instant("VALID_MOBILE_PROMPT"));
       return;
     }
     this.personService.fetchReferrer(`+91${this.mobileNumber}`, this.detail, this.type)

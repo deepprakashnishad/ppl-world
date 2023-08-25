@@ -97,6 +97,21 @@ export class AuthenticationService {
   		);
   }
 
+  createUserOnBehalf(registrationData): Observable<AuthResponse> {
+    const mRegistrationData = {
+      n: registrationData.name,
+      m: registrationData.mobile,
+      e: registrationData.email,
+      p: registrationData.parent.id
+    };
+    return this.http.post<AuthResponse>(
+      this.signupUrl+"/createUserOnBehalf", mRegistrationData)
+      .pipe(
+        retry(0),
+        catchError(this.handleError('Masquerade user creation', null))
+      );
+  }
+
   login(credentials): Observable<AuthResponse> {
     const httpOptions = {
       headers: new HttpHeaders({

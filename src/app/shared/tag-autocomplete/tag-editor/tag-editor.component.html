@@ -1,22 +1,22 @@
 <div class="bContainer" fxLayout="column" fxLayoutGap="12px">
 	<mat-checkbox [(ngModel)]="tagExists" (change)="tagExistsModified($event)">Tag exists in other language</mat-checkbox>
 	<div *ngIf="tagExists">
-		<mat-select [(ngModel)]="selectedFromLang" (selectionChange)="existingTagLanguageSelected($event)" placeholder="Language of existing tag">
+		<mat-select [(ngModel)]="selectedFromLang" (selectionChange)="existingTagLanguageSelected($event)" [placeholder]="'Language of existing '+ label">
 			<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 		</mat-select>
 
-		<app-autocomplete-with-add [items]="selectedLangItems" (tagSelected)="existingTagSelected($event)" [enableAdd]="false" [label]="'Select existing tag'" [displayKey]="'tagname'"></app-autocomplete-with-add>
+		<app-autocomplete-with-add [items]="selectedLangItems" (tagSelected)="existingTagSelected($event)" [enableAdd]="false" [label]="'Select existing '+label" [displayKey]="'tagname'"></app-autocomplete-with-add>
 	</div>
 	
 	<mat-form-field>
 		<mat-label>Select Language</mat-label>
-		<mat-select [(ngModel)]="selectedToLang" placeholder="Language of new tag">
+		<mat-select [(ngModel)]="selectedToLang" [placeholder]="'Language of new '+label">
 			<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 		</mat-select>	
 	</mat-form-field>
 	<mat-form-field>
-		<mat-label>New Tag</mat-label>
-		<input matInput placeholder="New Tag" [(ngModel)]="newTag" />
+		<mat-label>New {{label}}</mat-label>
+		<input matInput [placeholder]="'New '+label" [(ngModel)]="newTag" />
 	</mat-form-field>
 	<button mat-raised-button color="primary" (click)="save()">Save</button>
 </div>

@@ -19,6 +19,7 @@ import {
 })
 export class FamilyDetailComponent implements OnInit {
 
+  @Input("title") title: string = "Family Member Form";
   fd: any = {};
   @Output("familyDetailUpdated") familyDetailUpdated: EventEmitter<any> = new EventEmitter();
 

@@ -51,7 +51,11 @@
 			<div>
 				<div class="title">Partner/Spouse Preferences</div>
 				<div class="summary">Height Range: {{mp.pref.minH}} cms to {{mp.pref.maxH}} cms </div>
-				<div class="summary">Birthdate between: {{getBirthdate(mp.pref.minDoB) | date: 'dd/MM/yyyy'}} to {{getBirthdate(mp.pref.maxDoB) | date: 'dd/MM/yyyy'}} </div>
+				<div class="summary">Birthdate between: 
+					<span *ngIf="mp.pref && mp.pref.minDoB">{{getBirthdate(mp.pref.minDoB) | date: 'dd/MM/yyyy'}}</span> 
+					to 
+					<span *ngIf="mp.pref && mp.pref.maxDoB">{{getBirthdate(mp.pref.maxDoB) | date: 'dd/MM/yyyy'}} </span>
+				</div>
 
 				<div class="summary" *ngIf="mp.pref.e && mp.pref.e.length > 0">Education: <span *ngFor="let tid of mp.pref.e">{{tid | getTagById | async}}, </span></div>
 

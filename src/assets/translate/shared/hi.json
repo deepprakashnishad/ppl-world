@@ -1,4 +1,8 @@
 {
 	"TOTAL": "कुल",
-	"ORBIT": "कक्षा"
+	"ORBIT": "कक्षा",
+	"SAVE": "जमा करे",
+	"SELECT_PERSON_PROMPT": "कृपया एक व्यक्ति का चयन करें",
+	"SEARCH": "खोजे",
+	"VALID_MOBILE_PROMPT":"कृपया एक वैध मोबाइल नंबर दर्ज करें"
 }

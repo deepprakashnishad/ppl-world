@@ -8,6 +8,7 @@ import {Router, RoutesRecognized} from '@angular/router';
 import { NotifierService } from 'angular-notifier';
 import { ProfileService } from './profile.service';
 import { GeneralService } from './../general.service';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Person } from  './../person/person';
 import { environment } from './../../environments/environment';
 import { AngularFireMessaging } from '@angular/fire/messaging';
@@ -19,6 +20,8 @@ import {
   MatBottomSheetModule,
   MatBottomSheetRef,
 } from '@angular/material/bottom-sheet';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
   selector: 'app-profile',
@@ -47,9 +50,12 @@ export class ProfileComponent implements OnInit {
 
   buyButtonDisabled: boolean = false;
 
+  np: any = {};
+
   @ViewChild('boughtForSearchBox') boughtFor: PersonExactMatchComponent;
 
   @ViewChild('beneficiary') beneficiary: PersonExactMatchComponent;
+  @ViewChild('referrerCntl') referrerCntl: PersonExactMatchComponent;
 
   constructor(
     private profileService: ProfileService,
@@ -57,7 +63,9 @@ export class ProfileComponent implements OnInit {
     private router: Router,
     private generalService: GeneralService,
     private _bottomSheet: MatBottomSheet,
-    private notifier: NotifierService
+    private notifier: NotifierService,
+    private authService: AuthenticationService,
+    private translate: TranslateService
   ){
 
   }
@@ -166,11 +174,17 @@ export class ProfileComponent implements OnInit {
     this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
   }
 
-  transferCreditsToSelected($event){
-    this.transferCreditsTo = $event; 
-    if(this.transferCreditsTo.id === this.person.id){
-      this.notifier.notify("error", "Cannot transfer funds to self");
-      this.beneficiary.reset();
+  personSelected($event, selectionType){
+    if(selectionType === "CREDIT_TRANSFER"){
+      this.transferCreditsTo = $event; 
+      if(this.transferCreditsTo.id === this.person.id){
+        this.notifier.notify("error", "Cannot transfer funds to self");
+        this.beneficiary.reset();
+      }  
+    }else if(selectionType === "SLOT_PURCHASE"){
+      this.selectedPersonForApproval = $event;
+    }else if(selectionType === "REFERRER"){
+      this.np.parent = $event;
     }
   }
 
@@ -212,5 +226,34 @@ export class ProfileComponent implements OnInit {
 
   navigateTo(url){
     this.router.navigate([url]);
+  }
+
+  saveNewPerson(){
+    if(!this.np.name || !this.np.mobile){
+      this.notifier.notify("error", this.translate.instant("SIGNUP_FORM.NAME_MOB_MISS_PROMPT"));
+      return;
+    }
+    if(this.np.mobile.length!==10){
+      this.notifier.notify("error", this.translate.instant("VALID_MOBILE_PROMPT"));
+      return; 
+    }else{
+      var mobile = "+91" + this.np.mobile;
+    }
+    if(!this.np.parent){
+      return this.notifier.notify("error", this.translate.instant("REF_MISS_PROMPT"));
+    }
+
+    this.authService.createUserOnBehalf(
+      {
+        name: this.np.name, password: undefined, email: this.np.email, mobile: mobile, parent: this.np.parent}
+    ).subscribe((authResponse) =>  {
+      if (authResponse) {
+        this.notifier.notify("success", this.translate.instant('SIGNUP_FORM.CREATION_SUCCESS_MSG'));
+        this.np = {};
+        this.referrerCntl.reset();
+      }
+    }, error => {
+      this.notifier.notify("error", error.error.msg);
+    });
   }
 }

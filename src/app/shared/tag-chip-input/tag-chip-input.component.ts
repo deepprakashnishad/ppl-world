@@ -150,7 +150,8 @@ export class TagChipInputComponent implements OnInit {
 		const dialogRef = this.dialog.open(TagEditorComponent, {
       data: {
         key: this.key,
-        items: this.inputTags
+        items: this.inputTags,
+        label: this.inputLabel
       }
     });
 

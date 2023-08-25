@@ -1,4 +1,8 @@
 {
 	"TOTAL": "Total",
-	"ORBIT": "Orbit"
+	"ORBIT": "Orbit",
+	"SAVE": "Save",
+	"SELECT_PERSON_PROMPT": "Please select a person",
+	"SEARCH": "Search",
+	"VALID_MOBILE_PROMPT":"Please enter a valid mobile number"
 }

@@ -19,5 +19,19 @@
 		"TRANSFER": "Transfer",
 		"SLOT_COUNT": "Enter no. of slots to purchase",
 		"SLOTS": "Slots"
+	},
+
+	"SIGNUP_FORM":{
+		"ADD_NEW_PERSON": "Add New Person",
+		"NAME": "Enter name",
+		"MOBILE": "Enter name",
+		"EMAIL": "Enter name",
+		"PASSWORD": "Password",
+		"CONFIRM_PASSWORD": "Confirm Password",
+		"REFERRER": "Enter referrer mobile number and search",
+		"CREATION_SUCCESS_MSG": "User successfully created",
+		"CREATION_FAILURE_MSG": "Failed to create user",
+		"NAME_MOB_MISS_PROMPT": "Name or mobile are missing",
+		"REF_MISS_PROMPT": "Referrer missing"
 	}
 }

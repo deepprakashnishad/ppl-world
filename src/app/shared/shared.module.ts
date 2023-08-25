@@ -4,6 +4,10 @@ import {MaterialModule} from './../material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
+import {HttpClientModule, HttpClient } from '@angular/common/http';
+
 
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner/progress-spinner.component';
@@ -37,8 +41,14 @@ import { AddressComponent } from './address/address.component';
 import {MyGoogleMapComponent} from './my-google-maps/my-google-maps.component';
 import {LocationCoordinatesComponent} from './my-google-maps/location-coordinates/location-coordinates.component';
 
-
 import { environment } from '../../environments/environment';
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new MultiTranslateHttpLoader(httpClient, [
+      {prefix: "./assets/translate/core/", suffix: ".json"},
+      {prefix: "./assets/translate/shared/", suffix: ".json"},
+  ]);
+}
 
 @NgModule({
   declarations: [
@@ -75,11 +85,19 @@ import { environment } from '../../environments/environment';
     FlexLayoutModule,
     FileUploadModule,
     FormsModule,
+    HttpClientModule,
     PaymentModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs",
       libraries: ['places']
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
     }),
   ],
   exports:[
@@ -91,6 +109,7 @@ import { environment } from '../../environments/environment';
   	MaterialModule,
   	CommonModule,
     FileUploadModule,
+    TranslateModule,
   	AssignRevokePermissionsComponent,
   	AddEditPermissionComponent,
   	ViewPermissionComponent,

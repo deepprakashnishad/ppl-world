@@ -76,7 +76,7 @@
 							<button matSuffix mat-icon-button (click)="slotCount=slotCount+1;slotCountUpdated(slotCount)"><mat-icon>add</mat-icon></button>
 						</mat-form-field>
 						<h5>{{totalAmountForSlots | currency: 'INR':'symbol-narrow'}}</h5>
-						<app-person-exact-match (personSelected)="newPersonSelected($event)" [type]="'generic'" #boughtForSearchBox></app-person-exact-match>
+						<app-person-exact-match (personSelected)="personSelected($event, 'SLOT_PURCHASE')" [type]="'generic'" #boughtForSearchBox></app-person-exact-match>
 						<button 
 							mat-raised-button 
 							color="primary"
@@ -123,10 +123,10 @@
 						<mat-panel-title>{{'PROFILE.TRANSFER_CREDITS' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
 					<div fxLayout="column" fxLayoutGap="8px">
-						<app-person-exact-match (personSelected)="transferCreditsToSelected($event)" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'" #beneficiary></app-person-exact-match>
+						<app-person-exact-match (personSelected)="personSelected($event, 'CREDIT_TRANSFER')" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'" #beneficiary></app-person-exact-match>
 						<mat-form-field>
 							<mat-label>{{'PROFILE.CREDITS' | translate}}</mat-label>
-							<input matInput placeholder="number" type="text" [(ngModel)]="transferAmt" class="form-control">
+							<input matInput placeholder="Credits" type="number" [(ngModel)]="transferAmt" class="form-control">
 						</mat-form-field>
 						<button 
 							mat-raised-button 
@@ -134,6 +134,28 @@
 							(click)="transfer()">
 							{{'PROFILE.TRANSFER' | translate}}
 						</button>
+					</div>
+				</mat-expansion-panel>
+
+				<mat-expansion-panel>
+					<mat-expansion-panel-header>
+						<mat-panel-title>{{'SIGNUP_FORM.ADD_NEW_PERSON' | translate}}</mat-panel-title>
+					</mat-expansion-panel-header>
+					<div fxLayout="column" fxLayoutGap="8px">
+						<mat-form-field>
+							<mat-label>{{'SIGNUP_FORM.NAME' | translate}}</mat-label>
+							<input matInput [(ngModel)]="np.name" placeholder="{{'SIGNUP_FORM.NAME' | translate}}">
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>{{'SIGNUP_FORM.MOBILE' | translate}}</mat-label>
+							<input matInput [(ngModel)]="np.mobile" placeholder="{{'SIGNUP_FORM.MOBILE' | translate}}">
+						</mat-form-field>
+						<mat-form-field>
+							<mat-label>{{'SIGNUP_FORM.EMAIL' | translate}}</mat-label>
+							<input matInput [(ngModel)]="np.email" placeholder="{{'SIGNUP_FORM.EMAIL' | translate}}">
+						</mat-form-field>
+						<app-person-exact-match (personSelected)="personSelected($event, 'REFERRER')" [type]="'generic'" inputLabel="{{'SIGNUP_FORM.REFERRER'|translate}}" errorLabel="{{'SELECT_PERSON_PROMPT'|translate}}" #referrerCntl></app-person-exact-match>
+						<button mat-raised-button color="primary" (click)="saveNewPerson()">{{'SAVE' | translate}}</button>
 					</div>
 				</mat-expansion-panel>
 			</mat-accordian>

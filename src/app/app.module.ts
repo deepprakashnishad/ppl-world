@@ -1,5 +1,4 @@
 import { NgModule, NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import {HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
@@ -39,8 +38,6 @@ import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view-campaign.component';
 import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
 import { SubscriptionComponent } from './static-page/campaign/subscription/subscription.component';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
@@ -91,13 +88,6 @@ const notifierDefaultOptions: NotifierOptions = {
   }
 };
 
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new MultiTranslateHttpLoader(httpClient, [
-      {prefix: "./assets/translate/core/", suffix: ".json"},
-      {prefix: "./assets/translate/shared/", suffix: ".json"},
-  ]);
-}
-
 @NgModule({
   declarations: [				
     AppComponent,
@@ -128,9 +118,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CommonModule,
-    HttpClientModule,
-    
+    CommonModule,    
     AuthenticationModule,
     NotifierModule.withConfig(notifierDefaultOptions),
     AppRoutingModule,
@@ -144,15 +132,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AngularFireModule.initializeApp(environment.firebase, environment.firebase.projectId),
     AngularFireMessagingModule,
     AngularFireStorageModule,
-    AngularFireFunctionsModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
-    }),
-    
+    AngularFireFunctionsModule,    
     ServiceWorkerModule.register('combined-sw.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

@@ -97,7 +97,10 @@ export class ProfileViewerComponent implements OnInit {
 
   getEmploymentType(value){
     var et = EmploymentType.find(ele=>ele.value===value);
-    return et.displayName;
+    if(et){
+      return et.displayName;  
+    }
+    return "";
   }
 
   getBirthdate(mTimeStamp){
