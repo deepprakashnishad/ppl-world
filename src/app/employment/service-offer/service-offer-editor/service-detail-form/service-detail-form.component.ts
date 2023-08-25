@@ -98,7 +98,7 @@ export class ServiceDetailFormComponent implements OnInit {
 
     this.generalService.selectedLanguage.subscribe(lang => {
       this.selectedLanguage = lang;
-    })
+    });
   }
 
   ngOnChanges(changes: {[propKey: string]: SimpleChange}) {

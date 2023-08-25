@@ -24,5 +24,5 @@
 	<mat-autocomplete #tagAuto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn.bind(this)">
 	    <mat-option *ngFor="let tag of tagFilteredList | async" [value]="tag">{{tag.tagname}}</mat-option>
 	</mat-autocomplete>
-	<button matSuffix mat-icon-button (click)="openTagEditorDialog()"><mat-icon>add</mat-icon></button>
+	<button matSuffix mat-icon-button color="primary" (click)="openTagEditorDialog()"><mat-icon>add</mat-icon></button>
 </mat-form-field>

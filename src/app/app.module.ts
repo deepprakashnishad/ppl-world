@@ -22,6 +22,8 @@ import { PersonModule } from './person/person.module';
 import { Navigation } from 'swiper';
 import { SwiperModule } from 'swiper/angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -43,6 +45,11 @@ import { ServiceOfferEditorComponent } from './employment/service-offer/service-
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
 
+import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
+import { FamilyDetailComponent } from './marriage/family-detail/family-detail.component';
+import { ViewFamilyDetailsComponent } from './marriage/view-family-details/view-family-details.component';
+import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
+import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -111,7 +118,12 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     GlobalEarningReportComponent,
     ServiceOfferEditorComponent,
     ServiceDetailFormComponent,
-    ServiceReqdEditorComponent
+    ServiceReqdEditorComponent,
+    ProfileEditorComponent,
+    ProfileListComponent,
+    FamilyDetailComponent,
+    ViewFamilyDetailsComponent,
+    ProfileViewerComponent
    ],
   imports: [
     BrowserModule,
@@ -125,6 +137,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AdminModule,
     PersonModule,
     SharedModule,
+    NgxMaterialTimepickerModule,
     // ShareButtonsModule,
     // ShareIconsModule,
     // QuillModule.forRoot(),

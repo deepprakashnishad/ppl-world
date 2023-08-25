@@ -1,9 +1,15 @@
 <div class="carousel" ngStyle.gt-sm="min-height: 300px" ngStyle.lt-md="min-height: 200px">
   <ng-container class="img-wrapper" *ngFor="let slide of slides; let i = index">
     <img
-      *ngIf="i === currentSlide"
+      *ngIf="i === currentSlide && slideSize==='full-size-slide'"
       [src]="slide.src"
-      class="slide"
+      class="full-size-slide"
+      [@slideAnimation]="animationType"
+    />
+    <img
+      *ngIf="i === currentSlide  && slideSize==='natural'"
+      [src]="slide.src"
+      class="slide center"
       [@slideAnimation]="animationType"
     />
     <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType">

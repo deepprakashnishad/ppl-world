@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
       if(!lastTimestamp){
         lastTimestamp = 0;
       }
-      this.generalService.getRecentlyUpdatedTags(lastTimestamp).subscribe(result=>{
+      this.generalService.getRecentlyUpdatedTags(lastTimestamp, true).subscribe(result=>{
         var data = {};
         result.tags.forEach(ele=>{
           var tid = ele['tid'];
@@ -88,8 +88,6 @@ export class AppComponent implements OnInit {
           delete ele['tid']
           data[tid] = ele;
         });
-
-        console.log(data);
 
         this.idbService.setValue(TAG, data).then(result1=>{
           this.idbService.setValue(TAG, {lastTimestamp: result['lastTimestamp']});

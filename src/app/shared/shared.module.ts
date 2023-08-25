@@ -16,6 +16,7 @@ import { CapitalizeDirective } from '../directives/capitalize.directive';
 import { MyFilterPipe } from './pipes/my-filter.pipe';
 import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { GetTagByIdPipe } from './pipes/get-tag-by-id.pipe';
 import { FirestorageUploaderComponent } from './firestorage-uploader/firestorage-uploader.component';
 import { UploaderComponent } from './uploader/uploader.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -53,6 +54,7 @@ import { environment } from '../../environments/environment';
     MyFilterPipe, 
     SafeHtmlPipe, 
     SafeUrlPipe,
+    GetTagByIdPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
     CarouselComponent,
@@ -97,6 +99,7 @@ import { environment } from '../../environments/environment';
   	MyFilterPipe,
   	SafeHtmlPipe,
   	SafeUrlPipe,
+    GetTagByIdPipe,
     FirestorageUploaderComponent,
     UploaderComponent,
     CarouselComponent,

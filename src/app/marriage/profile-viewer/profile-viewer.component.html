@@ -1,0 +1,68 @@
+<div class="bContainer">
+	<div class="first-container" fxLayout.gt-sm="row" fxLayout.lt-md="column">
+		<div class="carousel-container" fxFlex.gt-sm=45>
+			<app-carousel [slides]="slides" [animationType]="'fade'" [slideSize]="'natural'"></app-carousel>	
+		</div>
+		<div fxFlex.gt-sm="55">
+			<div class="title">Basic Information</div>
+			<div class="summary">{{mp?.n}}</div>
+			<div class="summary">Date of Birth: <span>{{dateOfBirth | date: 'dd/MM/yyyy'}}</span></div>
+			<div class="summary">Gender: <span>{{mp.g}}</span></div>
+
+			<div class="summary">Marital Status: <span>{{mp.ms | getTagById | async}}</span></div>			
+
+			<div class="summary">Height: <span>{{mp.ht}} cms</span></div>
+			<div class="summary">Gender: <span>{{mp.g}}</span></div>
+			<div class="summary">Mother Tongue: <span>{{mp.mt | getTagById | async}}</span></div>
+			<div class="summary" *ngIf="mp.ol && mp.ol.length > 0">Other Languages: <span *ngFor="let lang of mp.ol">{{lang | getTagById | async}}, </span></div>
+			<div class="summary">Skin Color: <span>{{mp.col | getTagById | async}}</span></div>
+			<div class="summary">Hair Color: <span>{{mp.hc | getTagById | async}}</span></div>
+			<div class="summary">Eye Color: <span>{{mp.ec | getTagById | async}}</span></div>
+			<div class="summary" *ngIf="mp.h && mp.h.length > 0">Hobbies: <span *ngFor="let hobby of mp.h">{{hobby | getTagById | async}}, </span></div>
+			<div class="summary">Food Type: <span>{{mp.ft | getTagById | async}}</span></div>
+			<div class="summary">Smoke: <span>{{mp.s | getTagById | async}}</span></div>
+			<div class="summary">Drink: <span>{{mp.d | getTagById | async}}</span></div>
+
+			<div class="summary">Is Manglik: <span>{{mp.m | getTagById | async}}</span></div>
+			<div class="summary">Varna: <span>{{mp.v | getTagById | async}}</span></div>
+			<div class="summary">Gotra: <span>{{mp.g | getTagById | async}}</span></div>
+			<div class="summary">Religion: <span>{{mp.r | getTagById | async}}</span></div>
+
+			<mat-divider></mat-divider>
+			<div class="title">Family Details</div>
+			<app-view-family-details [enableEdit]="false" [memberList]="mp.fd" [showAnnualIncome]="false"></app-view-family-details>
+
+			<mat-divider></mat-divider>
+			<div>
+				<div class="title">Education</div>
+				<div class="summary">Degree: {{mp.e.d | getTagById | async}}</div>
+				<div class="summary">College/University: {{mp.e.c | getTagById | async}}</div>
+				<div class="summary">Passing Year: {{mp.e.py}}</div>
+			</div>
+			<mat-divider></mat-divider>
+			<div>
+				<div class="title">Professional Information</div>
+				<div class="summary">Employment Type: {{getEmploymentType(mp.pr.et)}}</div>
+				<div class="summary">Designation: {{mp.pr.d | getTagById | async}}</div>
+				<div class="summary">Company: {{mp.pr.c | getTagById | async}}</div>
+				<div class="summary">Experience: {{mp.pr.e}}</div>
+			</div>
+			<mat-divider></mat-divider>
+			<div>
+				<div class="title">Partner/Spouse Preferences</div>
+				<div class="summary">Height Range: {{mp.pref.minH}} cms to {{mp.pref.maxH}} cms </div>
+				<div class="summary">Birthdate between: {{getBirthdate(mp.pref.minDoB) | date: 'dd/MM/yyyy'}} to {{getBirthdate(mp.pref.maxDoB) | date: 'dd/MM/yyyy'}} </div>
+
+				<div class="summary" *ngIf="mp.pref.e && mp.pref.e.length > 0">Education: <span *ngFor="let tid of mp.pref.e">{{tid | getTagById | async}}, </span></div>
+
+				<div class="summary" *ngIf="mp.pref.col && mp.pref.col.length > 0">Color: <span *ngFor="let tid of mp.pref.col">{{tid | getTagById | async}}, </span></div>
+
+				<div class="summary" *ngIf="mp.pref.s && mp.pref.s.length > 0">Smoke: <span *ngFor="let tid of mp.pref.s">{{tid | getTagById | async}}, </span></div>
+
+				<div class="summary" *ngIf="mp.pref.d && mp.pref.d.length > 0">Drink: <span *ngFor="let tid of mp.pref.d">{{tid | getTagById | async}}, </span></div>
+
+				<div class="summary" *ngIf="mp.pref.ft && mp.pref.ft.length > 0">Food Type: <span *ngFor="let tid of mp.pref.ft">{{tid | getTagById | async}}, </span></div>
+			</div>
+		</div>
+	</div>
+</div>

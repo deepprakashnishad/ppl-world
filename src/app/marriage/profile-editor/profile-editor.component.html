@@ -1,0 +1,211 @@
+<div class="mContainer">
+	<mat-accordion>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+		  		<mat-expansion-panel-title>Basic Information</mat-expansion-panel-title>
+		  	</mat-expansion-panel-header>
+		  	<div fxLayout="row wrap" fxLayoutGap="12px">
+		  		<app-tag-autocomplete [label]="'Profile For'" [selectedTagId]="mp.mf" [key]="'profile_for'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'mf')"></app-tag-autocomplete>
+				<mat-form-field>
+					<mat-label>Name</mat-label>
+					<input matInput placeholder="Name" type="text" [(ngModel)]="mp.n" />
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Gender</mat-label>
+					<mat-select [(ngModel)]="mp.gen">
+						<mat-option value="M">Male</mat-option>
+						<mat-option value="F">Female</mat-option>
+						<mat-option value="O">Other</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<!-- <mat-form-field>
+					<mat-label>Mother's Name</mat-label>
+					<input matInput placeholder="Mother's Name" [(ngModel)]="mp.mn" />
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Father's Name</mat-label>
+					<input matInput placeholder="Father's Name" [(ngModel)]="mp.fn" />
+				</mat-form-field> -->
+				<mat-form-field class="example-full-width">
+				  <mat-label>Date of birth</mat-label>
+				  <input matInput [matDatepickerFilter]="past18YearsDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="dobChange($event, 'date')" [formControl]="dobDateCntl">
+				  <mat-hint>MM/DD/YYYY</mat-hint>
+				  <mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Birth Time</mat-label>
+					<input matInput placeholder="Birth Time" aria-label="Birth Time" [value]="birthTime" [ngxTimepicker]="birthTimePicker"  readonly>
+					<ngx-material-timepicker #birthTimePicker (timeSet)="dobChange($event, 'time')"></ngx-material-timepicker>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Height(In cms)</mat-label>
+					<input matInput placeholder="Height(In cms)" type="number" [(ngModel)]="mp.ht" />
+				</mat-form-field>
+
+				<app-tag-autocomplete [label]="'Mother Tongue'" [selectedTagId]="mp.mt" [key]="'lang'" (tagSelected)="tagSelected($event, 'mt')"></app-tag-autocomplete>
+
+				<app-tag-chip-input [inputLabel]="'Other Known Languages'" [selectedTags]="mp.ol" (selectedTagEmitter)="selectedTagChipsModified($event, 'ol')" [key]="'lang'"></app-tag-chip-input>
+
+				<app-tag-autocomplete [label]="'Complexion'" [selectedTagId]="mp.col" [key]="'skincomp'" (tagSelected)="tagSelected($event, 'col')"></app-tag-autocomplete>						
+				<app-tag-autocomplete [label]="'Eye Color'" [selectedTagId]="mp.ec" [key]="'color'" (tagSelected)="tagSelected($event, 'ec')"></app-tag-autocomplete>		
+				<app-tag-autocomplete [label]="'Hair Color'" [selectedTagId]="mp.hc" [key]="'color'" (tagSelected)="tagSelected($event, 'hc')"></app-tag-autocomplete>		
+				<app-tag-chip-input [inputLabel]="'Food Types'" [selectedTags]="mp.ft" (selectedTagEmitter)="selectedTagChipsModified($event, 'ft')" [key]="'foodtype'"></app-tag-chip-input>	
+
+				<app-tag-chip-input [inputLabel]="'Hobbies'" [selectedTags]="mp.h" (selectedTagEmitter)="selectedTagChipsModified($event, 'h')" [key]="'hobs'"></app-tag-chip-input>			
+
+				<app-tag-autocomplete [label]="'Smoke'" [selectedTagId]="mp.s" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 's')"></app-tag-autocomplete>		
+
+				<app-tag-autocomplete [label]="'Drinking Liquor'" [selectedTagId]="mp.d" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>		
+
+				<app-tag-autocomplete [label]="'Marital Status'" [selectedTagId]="mp.ms" [key]="'maritalst'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'ms')"></app-tag-autocomplete>	
+
+				<app-tag-autocomplete [label]="'Is Manglik'" [selectedTagId]="mp.m" [key]="'yesno'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'm')"></app-tag-autocomplete>	
+
+				<app-tag-autocomplete [label]="'Gotra'" [selectedTagId]="mp.g" [key]="'gotra'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'g')"></app-tag-autocomplete>
+
+				<app-tag-autocomplete [label]="'Varna'" [selectedTagId]="mp.v" [key]="'varna'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'v')"></app-tag-autocomplete>	
+
+				<app-tag-autocomplete [label]="'Religion'" [selectedTagId]="mp.r" [key]="'religion'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
+
+				<!--
+					Caste section to be added
+				-->
+				<div>
+					<button mat-raised-button color="primary" (click)="save()">Save <mat-icon>save</mat-icon></button>	
+				</div>
+				
+		  	</div>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel *ngIf="mp.id">
+		  	<mat-expansion-panel-header>
+		  		<mat-expansion-panel-title>Pictures/Photos</mat-expansion-panel-title>
+		  	</mat-expansion-panel-header>
+		  	<app-uploader [maxAllowedFileSize]="50" [uploadPath]="profilePicUploadPath" [isMultiple]="false" (imageUploaded)="imagesUploaded($event, 'profile')" [newFilename]="'mp_pic'" [header]="'Main Profile Photo'"></app-uploader>
+		  	<mat-card class="uploader-card-image" *ngIf="mp.pp && mp.pp['downloadUrl']">
+		  		<img [src]="mp.pp['downloadUrl']"  width="150px" height="auto" />
+		  	</mat-card>
+
+			<app-uploader [maxAllowedFileSize]="50" [uploadPath]="otherImageUploadPath" [isMultiple]="true" (imageUploaded)="imagesUploaded($event, 'others')" [header]="'Other Extra Photos'"></app-uploader>	  	
+			<div fxLayout>
+				<mat-card class="uploader-card-image" *ngFor="let image of mp.ap">
+					<img *ngIf="image && image['downloadUrl']" [src]="image['downloadUrl']" width="150px" height="auto" />
+				</mat-card>
+			</div>
+        </mat-expansion-panel>
+
+		<mat-expansion-panel> 
+			<mat-expansion-panel-header>
+				<mat-expansion-panel-title>Education</mat-expansion-panel-title>
+			</mat-expansion-panel-header>
+			
+			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
+				<app-tag-autocomplete [label]="'Degree'" [selectedTagId]="mp.e.d" [key]="'degree'" (tagSelected)="eduTagSelected($event, 'd')"></app-tag-autocomplete>
+
+				<app-tag-autocomplete [label]="'College'" [selectedTagId]="mp.e.c" [key]="'clg'" (tagSelected)="eduTagSelected($event, 'c')"></app-tag-autocomplete>
+
+				<mat-form-field>
+					<mat-label>Year of passing</mat-label>
+					<input matInput placeholder="Year of passing" min="1980" minlength="4" maxlength="4" type="number" [(ngModel)]="mp.e.py" />
+				</mat-form-field>
+				<div>
+					<button mat-raised-button color="primary" (click)="save()">Save <mat-icon>save</mat-icon></button>	
+				</div>
+			</div>	
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-expansion-panel-title>Family Details</mat-expansion-panel-title>
+			</mat-expansion-panel-header>
+			<!-- <button mat-raised-button color="primary" (click)="openFamilyDetailEditor()">Add <mat-icon>person_add</mat-icon></button> -->
+
+			<app-view-family-details [memberList]="mp.fd" (saveMembers)="save($event)"></app-view-family-details>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-expansion-panel-title>Professional Details</mat-expansion-panel-title>
+			</mat-expansion-panel-header>
+			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="12px">
+				<mat-form-field>
+					<mat-label>Employment Type</mat-label>
+					<mat-select [(ngModel)]="mp.pr.et" placeholder="Employment Type">
+						<mat-option *ngFor="let et of employmentTypes" [value]="et.value">{{et.displayName}}</mat-option>
+					</mat-select>
+				</mat-form-field>
+				<app-tag-autocomplete [label]="'Designation'" [selectedTagId]="mp.pr.d" [key]="'desg'" (tagSelected)="profTagSelected($event, 'd')"></app-tag-autocomplete>
+
+				<app-tag-autocomplete [label]="'Company'" [selectedTagId]="mp.pr.c" [key]="'comp'" (tagSelected)="profTagSelected($event, 'c')"></app-tag-autocomplete>
+
+				<mat-form-field>
+					<mat-label>Total years of experience</mat-label>
+					<input matInput placeholder="Total years of experience" type="number" [(ngModel)]="mp.pr.e" />
+				</mat-form-field>
+
+				<mat-form-field>
+					<mat-label>Total Annual Income</mat-label>
+					<input matInput placeholder="Total annual income" type="number" [(ngModel)]="mp.pr.ai" />
+				</mat-form-field>
+				<div><button color="primary" mat-raised-button (click)="save()">Save</button></div>
+			</div>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>Location</mat-expansion-panel-header>
+			<app-address (addressSelected)="addressSelected($event)"></app-address>
+		</mat-expansion-panel>
+
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>Mandatory Requirement</mat-expansion-panel-header>
+			<div fxLayout="row wrap" fxLayoutGap="12px">
+
+				<div fxLayout fxLayoutGap="12px">
+					<mat-form-field>
+						<mat-label>Minimum Height(In cms)</mat-label>
+						<input matInput placeholder="Minimum Height(In cms)" [(ngModel)]="mp.pref.minH" type="number" min="90" max="250">
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-label>Maximum Height(In cms)</mat-label>
+						<input matInput placeholder="Maximum Height(In cms)" [(ngModel)]="mp.pref.maxH" type="number" min="90" max="250">
+					</mat-form-field>
+				</div>
+				
+				<div fxLayout fxLayoutGap="12px">
+					<mat-form-field class="example-full-width">
+					  <mat-label>Minimum Spouse Birth Date</mat-label>
+					  <input matInput [matDatepickerFilter]="past18YearsDates" [matDatepicker]="prefMinpicker" (focus)="prefMinpicker.open()" (dateChange)="prefDateChange($event, 'minDoB')" [formControl]="prefMinDobDateCntl">
+					  <mat-hint>MM/DD/YYYY</mat-hint>
+					  <mat-datepicker #prefMinpicker></mat-datepicker>
+					</mat-form-field>
+
+					<mat-form-field class="example-full-width">
+					  <mat-label>Maximum Spouse Birth Date</mat-label>
+					  <input matInput [matDatepickerFilter]="past18YearsDates" [matDatepicker]="prefMaxpicker" (focus)="prefMaxpicker.open()" (dateChange)="prefDateChange($event, 'maxDoB')" [formControl]="prefMaxDobDateCntl">
+					  <mat-hint>MM/DD/YYYY</mat-hint>
+					  <mat-datepicker #prefMaxpicker></mat-datepicker>
+					</mat-form-field>
+				</div>
+
+				<mat-form-field>
+					<mat-label>Minimum Annual Income</mat-label>
+					<input matInput placeholder="Minimum Annual Income" [(ngModel)]="mp.pref.minI" type="number">
+				</mat-form-field>
+
+				<app-tag-chip-input [inputLabel]="'Spouse Education'" [selectedTags]="mp.pref.e" (selectedTagEmitter)="selectedPrefTagChipsModified($event, 'e')" [key]="'degree'"></app-tag-chip-input>
+
+				<app-tag-chip-input [inputLabel]="'Spouse Complexion'" [selectedTags]="mp.pref.col" (selectedTagEmitter)="selectedPrefTagChipsModified($event, 'col')" [key]="'color'"></app-tag-chip-input>
+
+				<app-tag-chip-input [inputLabel]="'Spouse Smoking Habits'" [selectedTags]="mp.pref.s" (selectedTagEmitter)="selectedPrefTagChipsModified($event, 's')" [key]="'freq'"></app-tag-chip-input>
+
+				<app-tag-chip-input [inputLabel]="'Spouse Drinking Habits'" [selectedTags]="mp.pref.d" (selectedTagEmitter)="selectedPrefTagChipsModified($event, 'd')" [key]="'freq'"></app-tag-chip-input>
+
+				<app-tag-chip-input [inputLabel]="'Spouse Food Types'" [selectedTags]="mp.pref.ft" (selectedTagEmitter)="selectedPrefTagChipsModified($event, 'ft')" [key]="'foodtype'"></app-tag-chip-input>	
+			</div>
+			<div class="full-width" style="text-align: center;">
+				<button class="full-width" style="max-width: 250px" mat-raised-button color="primary" (click)="save()">Save</button>
+			</div>
+		</mat-expansion-panel>
+	</mat-accordion>
+</div>

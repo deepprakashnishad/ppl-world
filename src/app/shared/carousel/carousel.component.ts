@@ -57,6 +57,7 @@ import {
 export class CarouselComponent implements OnInit {
   @Input() slides: Slide[];
   @Input() animationType = AnimationType.Scale;
+  @Input() slideSize = "full-size-slide";
 
   @Output() outputEvent = new EventEmitter<any>();
 

@@ -315,3 +315,20 @@ h4{
   height: 28px;
   align-items: center;
 }
+
+.mat-table thead{
+  tr th{
+    font-size: 16px;
+    color: white;
+  }
+}
+
+.table-wrapper{
+  overflow-x: auto;
+}
+
+.mat-divider{
+  margin-top: 8px !important;;
+  margin-bottom: 8px !important;;
+  border-top-color:#41dbe187;
+}

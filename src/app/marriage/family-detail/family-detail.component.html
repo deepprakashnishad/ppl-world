@@ -1,0 +1,25 @@
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>{{title}}</mat-card-title>
+	</mat-card-header>
+	<div fxLayout="column">
+		<mat-form-field>
+			<mat-label>Name</mat-label>
+			<input matInput placeholder="Name" type="text" [(ngModel)]="fd.n">
+		</mat-form-field>
+
+		<app-tag-autocomplete [label]="'Relation'" [selectedTagId]="fd.r" [key]="'rel'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
+
+		<app-tag-autocomplete [label]="'Designation'" [selectedTagId]="fd.d" [key]="'desg'" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>	
+
+		<app-tag-autocomplete [label]="'Company'" [selectedTagId]="fd.c" [key]="'comp'" (tagSelected)="tagSelected($event, 'c')"></app-tag-autocomplete>
+
+		<mat-form-field>
+			<mat-label>Annual Income</mat-label>
+			<input matInput placeholder="Annual Income" type="number" [(ngModel)]="fd.i">
+		</mat-form-field>
+		<div>
+			<button color="primary" mat-raised-button (click)="done()">Done <mat-icon>check</mat-icon></button>
+		</div>
+	</div>	
+</mat-card>

@@ -57,15 +57,32 @@ export class TagChipInputComponent implements OnInit {
 
 	sanitizeInputTags(){
 		this.tags=[];
+    if(!this.inputTags){
+      this.inputTags = [];
+    }
 		this.inputTags.forEach(ele => {
 			this.tags.push({tid: ele.tid, tagname: ele.tags[this.selectedLanguage]});
 		});
 		this.subscribeInput();
 	}
 
+  sanitizeSelectedTags(){
+    if(!this.selectedTags){
+      this.selectedTags = [];
+    }
+    if(this.tags && this.tags.length>0){
+      this.selectedTags = this.selectedTags.map(ele=>{
+        return this.tags.find(tag=>tag.tid===ele);
+      });  
+    }    
+  }
+
 	ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
     for (let propName in changes) {
       let changedProp = changes[propName];
+      if(propName.toLowerCase() === "key" && changedProp.currentValue !== undefined){
+        this.fetchTags(); 
+      }
       if(propName === "inputTags" && changedProp.currentValue !== undefined){
       	this.sanitizeInputTags();
       }
@@ -79,6 +96,25 @@ export class TagChipInputComponent implements OnInit {
         	this.displayKey = this.filterKey;
         }
       }
+      if(propName === "selectedTags" && changedProp.currentValue === undefined){
+        this.selectedTags = [];
+      }else{
+        this.sanitizeSelectedTags();
+      }
+    }
+  }
+
+  fetchTags(){
+    if(this.key){
+      this.generalService.getTags(this.key).subscribe(result=>{
+        if(result.length>0){
+          this.inputTags = result;
+        }else{
+          // this.items = [];
+        }
+        this.sanitizeInputTags();
+        this.sanitizeSelectedTags();
+      });
     }
   }
 
@@ -97,7 +133,6 @@ export class TagChipInputComponent implements OnInit {
 			this.selectedTags.push(event.option.value);
 	    this.inputCntl.setValue(null);
 	    this.tagInput.nativeElement.value='';
-
 	    this.selectedTagEmitter.emit(this.selectedTags);
 		}
 	}

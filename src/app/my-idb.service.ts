@@ -80,6 +80,15 @@ export class MyIdbService {
     return this.getValue(TAG, tagId);
   }
 
+  async getTagByIdAndLanguage(tagId, lang:string ="en"){
+    var tag = await this.getValue(TAG, tagId);
+    if(tag){
+      return tag['tags'][lang];
+    }else{
+      return undefined;
+    }
+  }
+
   sanitizeByKey(key, list){
     var result = [];
 

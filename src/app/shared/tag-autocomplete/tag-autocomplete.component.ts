@@ -113,6 +113,7 @@ export class TagAutocompleteComponent {
           this.keyTags = result;
           this.mapKeyTagsToItems();
         }else{
+          this.keyTags = [];
           this.items = [];
         }
         this.subscribeInput();
@@ -184,7 +185,7 @@ export class TagAutocompleteComponent {
     dialogRef.afterClosed().subscribe(result=>{
       var foundFlag = false;
       for(var i=0;i<this.keyTags.length;i++){
-        if(this.keyTags[i]['tid']===result['tid']){
+        if(this.keyTags[i]['tid']===result['tid'] && result){
           this.keyTags[i]['uat'] = result['uat'];
           this.keyTags[i]['tags'][result['lang']] = result['newTag'];
           foundFlag = true;
@@ -192,7 +193,7 @@ export class TagAutocompleteComponent {
         }
       }
 
-      if(!foundFlag){
+      if(!foundFlag && result){
         var data = {tid: result['tid'], uat: result['uat'], tags: {}};
         data['tags'][result['lang']] = result['newTag'];
         this.keyTags.push(data);

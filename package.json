@@ -54,6 +54,7 @@
     "ngx-color-picker": "^11.0.0",
     "ngx-image-zoom": "^0.6.0",
     "ngx-json-viewer": "^3.0.2",
+    "ngx-material-timepicker": "^5.5.3",
     "ngx-quill": "^13.2.0",
     "ngx-translate-multi-http-loader": "^3.0.0",
     "npm": "^6.4.1",

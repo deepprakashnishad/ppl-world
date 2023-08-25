@@ -1,0 +1,18 @@
+<div class="bContainer" fxLayout="row wrap">
+	<mat-card class="row-wrap-card" *ngFor="let mp of mps">
+		<mat-card-content>
+			<img *ngIf="mp.pp && mp.pp.downloadUrl" [src]="mp.pp.downloadUrl" width="200" />
+			<img *ngIf="!mp.pp || !mp.pp.downloadUrl" src="/assets/images/profile/profile.png" width="200" />
+			<div>Name: {{mp.n}}</div>
+			<div>Age: {{mp.age}}</div>
+		</mat-card-content>
+		<mat-actions align="end" *ngIf="profileOwner">
+			<button mat-icon-button color="warn" (click)="delete('marriage-profile-editor', mp.id)"><mat-icon>delete</mat-icon></button>
+			<button mat-icon-button color="accent" (click)="navigateTo('marriage-profile-editor', mp.id)"><mat-icon>edit</mat-icon></button>
+			<button mat-icon-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)"><mat-icon>visibility</mat-icon></button>
+		</mat-actions>
+		<mat-actions align="end" *ngIf="!profileOwner">
+			<button class="full-width" mat-raised-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)">View</button>
+		</mat-actions>
+	</mat-card>
+</div>

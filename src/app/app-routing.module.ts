@@ -24,6 +24,9 @@ import { TransactionReportComponent } from './reports/transaction-report/transac
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
+import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
+import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
+import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
 
@@ -85,9 +88,38 @@ const routes: Routes = [
 		data: { title: 'Service Required Editor', permissions: [], isLoggedIn: true}
 	},
 	{
+		path: 'marriage-profile-editor', 
+		component: ProfileEditorComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Marriage Profile Editor', permissions: [], isLoggedIn: true}
+	},
+	{
+		path: 'marriage-profile-editor/:id', 
+		component: ProfileEditorComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Marriage Profile Editor', permissions: [], isLoggedIn: true}
+	},
+	{
 		path: 'wall-of-fame', 
 		component: WallOfFameComponent,
 		data: { title: 'Wall of fame', permissions: []}
+	},
+	{
+		path: 'marriage-profile-list', 
+		component: ProfileListComponent,
+		data: { title: 'Marriage Profiles', permissions: []}
+	},
+	{
+		path: 'marriage-profile-list/:profileOwner', 
+		component: ProfileListComponent,
+		data: { title: 'Marriage Profiles', permissions: []}
+	},
+	{
+		path: 'marriage-profile-viewer/:id', 
+		component: ProfileViewerComponent,
+		data: { title: 'Marriage Profile', permissions: []}
 	},
 	{
 		path: 'faq', 
