@@ -14,43 +14,64 @@
 			</div>
 			<div class="nav-menu-container" fxLayout="row" fxFlex="80" fxLayoutAlign="center">
 				<button mat-button (click)="navigateTo('/')">
-					Home
+					{{"NAV.HOME" | translate}}
 				</button>
 				<button mat-button (click)="navigateTo('/about-us')">
-					About Us
+					{{"NAV.ABOUT_US" | translate}}
 				</button>
 				<button mat-button (click)="navigateTo('/explore')">
-					Explore
+					{{"NAV.CAMPAIGNS" | translate}}
+				</button>
+				<button mat-button [matMenuTriggerFor]="services">
+					{{"NAV.SERVICES" | translate}}
 				</button>
 				<button mat-button (click)="navigateTo('/faq')">
-					FAQ
+					{{"NAV.FAQ" | translate}}
 				</button>
 				<button mat-button (click)="navigateTo('/contact')">
-					Contact
+					{{"NAV.CONTACT" | translate}}
 				</button>
-				<button mat-button (click)="navigateTo('/downloads')">
+				<!-- <button mat-button (click)="navigateTo('/downloads')">
 					Download
-				</button>
+				</button> -->
 				<button mat-button (click)="navigateTo('/profile')">
-					Profile
+					{{"NAV.PROFILE" | translate}}
 				</button>
-				<button mat-button [matMenuTriggerFor]="reports">Reports</button>
+
+				<button mat-button [matMenuTriggerFor]="reports">
+					{{"NAV.REPORTS" | translate}}
+				</button>
 
 				<mat-select fxFlex="10" class="big-navbar-select" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
-					<mat-option *ngFor="let lang of langs" [value]="lang">{{lang.displayName}}</mat-option>
+					<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 				</mat-select>
 
 				<mat-menu #reports="matMenu">
-				  <button mat-menu-item (click)="navigateTo('/transaction-report')">Transaction</button>
-				  <button mat-menu-item (click)="navigateTo('/global-earning-report')">Global Earning</button>
+				  <button mat-menu-item (click)="navigateTo('/transaction-report')">{{"NAV.TRANS_REP" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/global-earning-report')">{{"NAV.GLOBAL_REP" | translate}}</button>
 				</mat-menu>
+
+				<mat-menu #services="matMenu">
+				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.MORNING_KIRTAN" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.EDU" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/service-reqd-editor')">{{"NAV.NEED_SERVICE" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/marriage-profile-list')">{{"NAV.SEARCH_SPOUSE" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.GRP_MARRIAGE" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
+				</mat-menu>
+
 				<!-- <button mat-button (click)="navigateTo('/daily-report')">
 					Daily Report
 				</button> -->
 			 </div>
 			<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
-				<button mat-button (click)="toggleLoginStatus(isLoggedIn)">
-					{{isLoggedIn?'Logout':'Sign In/New User? Sign Up'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+				<button mat-button (click)="toggleLoginStatus(isLoggedIn)" *ngIf="isLoggedIn">
+					{{"NAV.LOGOUT" | translate}} <mat-icon aria-label="{{'NAV.LOGOUT' | translate}}">logout</mat-icon>
+				</button>
+				<button mat-button (click)="toggleLoginStatus(isLoggedIn)" *ngIf="!isLoggedIn">
+					{{"NAV.LOGIN" | translate}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">lock</mat-icon>
 				</button>
 			</div>
 		</mat-toolbar-row>
@@ -85,47 +106,82 @@
 </mat-toolbar>
 <div [hidden]="isLeftBarOpen" [@openClose]="isLeftBarOpen?'open':'closed'" class="left-drawer" fxLayout="column" fxLayoutGap="16px" fxHide.gt-sm>
 	<div fxLayout="column" fxLayoutGap="16px">
+		<div>
+			<button style="margin-left: 5%;" mat-icon-button class="mobPageLink-close" (click)="toggleLeftDrawer()">
+			{{"CLOSE" | translate}} <mat-icon>close</mat-icon>
+		</button>
+		</div>
 		<button mat-button class="mobPageLink" (click)="navigateTo('/')">
-			Home
+			{{"NAV.HOME" | translate}}
 		</button>
 		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/profile')">
-			My Profile
+			{{"NAV.PROFILE" | translate}}
 		</button>
-		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/transaction-report')">
-			Transaction Report
+		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="displayReportMenu = !displayReportMenu">
+			{{"NAV.REPORTS" | translate}} 
+			<span fxFlexAlign="center"> 
+				<mat-icon *ngIf="!displayReportMenu">expand_more</mat-icon>
+				<mat-icon *ngIf="displayReportMenu">expand_less</mat-icon>
+			</span>
 		</button>
-		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/global-earning-report')">
-			Global Earning Report
-		</button>
+		<div *ngIf="displayReportMenu" class="mob-sub-menu" [@toggleMenu]>
+			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/transaction-report')">
+			{{"NAV.TRANS_REP" | translate}}
+			</button>
+			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/global-earning-report')">
+				{{"NAV.GLOBAL_REP" | translate}}
+			</button>
+		</div>
 		<!-- <button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/daily-report')">
 			Daily Report
 		</button> -->
 		<button mat-button class="mobPageLink" (click)="navigateTo('/about-us')">
-			About Us
+			{{"NAV.ABOUT_US" | translate}}
 		</button>
 		<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">
-			Explore
+			{{"NAV.CAMPAIGNS" | translate}}
 		</button>
+		<button mat-button class="mobPageLink" (click)="displayServicesMenu=!displayServicesMenu">
+			{{"NAV.SERVICES" | translate}}
+			<span fxFlexAlign="center"> 
+				<mat-icon *ngIf="!displayServicesMenu">expand_more</mat-icon>
+				<mat-icon *ngIf="displayServicesMenu">expand_less</mat-icon>
+			</span>
+		</button>
+		<div class="mob-sub-menu" *ngIf="displayServicesMenu" [@toggleMenu]>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.MORNING_KIRTAN" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.EDU" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/service-reqd-editor')">{{"NAV.NEED_SERVICE" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/marriage-profile-list')">{{"NAV.SEARCH_SPOUSE" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.GRP_MARRIAGE" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
+		</div>
 		<button mat-button class="mobPageLink" (click)="navigateTo('/faq')">
-			FAQ
+			{{"NAV.FAQ" | translate}}
 		</button>
 		<button mat-button class="mobPageLink" (click)="navigateTo('/contact')">
-			Contact
+			{{"NAV.CONTACT" | translate}}
 		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
+		<!-- <button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
 			Download
-		</button>
+		</button> -->
 		<button mat-button *ngIf="pwa.promptEvent" class="mobPageLink" (click)="installPwa()">
-			Install App
+			{{"NAV.INSTALL" | translate}}
 		</button>
 		<mat-select fxFlex="10" class="mobPageLink" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
-			<mat-option *ngFor="let lang of langs" [value]="lang">{{lang.displayName}}</mat-option>
+			<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 		</mat-select>
-		<button class="mobPageLink" mat-button (click)="toggleLoginStatus(isLoggedIn)">
-			{{isLoggedIn?'Logout':'Login'}} <mat-icon aria-label="isLoggedIn?:'Logout':'Login/Sign Up'">{{isLoggedIn?'logout':'lock'}}</mat-icon>
+		<button class="mobPageLink" *ngIf="!isLoggedIn" mat-button (click)="toggleLoginStatus(isLoggedIn)">
+			{{"NAV.LOGIN" | translate}} <mat-icon>lock</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.3</div>
+		<button class="mobPageLink" *ngIf="isLoggedIn" mat-button (click)="toggleLoginStatus(isLoggedIn)">
+			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
+		</button>
+
+		<div class="version" fxFlexAlign="start">Version 1.0.4</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

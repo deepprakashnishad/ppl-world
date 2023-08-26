@@ -17,7 +17,7 @@ import {TranslateService} from '@ngx-translate/core';
 	animations: [
 		trigger('openClose', [
 			state('open', style({
-				width: '245px',
+				width: '100%',
 				padding: "5%",
         opacity: 1,
         display: "block"
@@ -34,6 +34,17 @@ import {TranslateService} from '@ngx-translate/core';
 			transition('closed => open', [
 				animate('200ms')
 			]),
+		]),
+
+		trigger('toggleMenu', [
+			transition(':enter', [
+        style({transform: 'translateX(100%)', opacity: 0}),
+        animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({transform: 'translateX(0)', opacity: 1}),
+        animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+      ])
 		])
 	]
 })
@@ -54,6 +65,9 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 	selectedLanguage: any;
 
 	langs = environment.langs;
+
+	displayReportMenu: boolean = false;
+	displayServicesMenu: boolean = false;
 
 	constructor(
 	private authenticationService: AuthenticationService,
@@ -76,14 +90,14 @@ export class NavigationComponent implements OnInit, AfterViewInit {
 
   	var selectedLang = this.authenticationService.getTokenOrOtherStoredData("selectedLang");
   	if(selectedLang){
-  		this.selectedLanguage = JSON.parse(selectedLang);
-  		translate.setDefaultLang(this.selectedLanguage.mValue);	
+  		this.selectedLanguage = JSON.parse(selectedLang).mValue;
+  		translate.setDefaultLang(this.selectedLanguage);	
   	}else{
-  		this.selectedLanguage = this.langs[0];
-  		translate.setDefaultLang(this.selectedLanguage.mValue);	
+  		this.selectedLanguage = this.langs[0].mValue;
+  		translate.setDefaultLang(this.selectedLanguage);	
   	}
   	
-
+  	console.log(this.selectedLanguage);
   	// const browserLang = translate.getBrowserLang();
   	// translate.use(browserLang.match(/en|hi/) ? browserLang:'en');
   }
@@ -163,7 +177,8 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   updateLanguage(e){
   	var lang = e.value;
   	this.generalService.updateLanguage(lang);
-  	this.authenticationService.storeValue("selectedLang", JSON.stringify(lang), "LOCAL_STORAGE");
-  	this.mTranslate.use(lang.mValue)
+  	var mLang = this.langs.find(ele=>ele.mValue===lang);
+  	this.authenticationService.storeValue("selectedLang", JSON.stringify(mLang), "LOCAL_STORAGE");
+  	this.mTranslate.use(lang)
   }
 }

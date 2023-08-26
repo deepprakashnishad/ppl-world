@@ -27,6 +27,20 @@ button.mobPageLink {
   padding: 0 14px;
   color: white;
   align-self:flex-start;
+  font-size: 18px;
+  font-weight: 800;
+  width: 100%;
+  text-align: left;
+}
+
+button.mobPageLink-close {
+  padding: 0 14px;
+  color: white;
+  align-self:flex-start;
+  font-size: 18px;
+  font-weight: 800;
+  width: 100%;
+  text-align: right;
 }
 
 .example-spacer {
@@ -81,7 +95,7 @@ a{
   position: absolute;
   left: 0;
   top: 0;
-  width: 245px;
+  max-width: 99%;
   height: 100%;
   z-index: 100;
   overflow: auto;
@@ -257,4 +271,8 @@ mat-toolbar{
   .mat-select.mobPageLink ::ng-deep .mat-select-value{    
     color: white;  
   }
+}
+
+div.mob-sub-menu{
+  padding-left: 12px; 
 }

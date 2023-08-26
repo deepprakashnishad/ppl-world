@@ -23,15 +23,49 @@
 
 	"SIGNUP_FORM":{
 		"ADD_NEW_PERSON": "Add New Person",
+		"LOGIN": "Login",
+		"EXISTING_USER": "Existing User",
+		"NEW_USER": "New User",
+		"MOB_MAIL": "Phone Number or Mail ID",
+		"REMEMBER_ME": "Remember Me",
+		"FORGOT_PASSWORD": "Forgot Password",
+		"SIGNUP": "Sign up",
 		"NAME": "Enter name",
-		"MOBILE": "Enter name",
-		"EMAIL": "Enter name",
+		"MOBILE": "Enter mobile",
+		"EMAIL": "Enter email",
 		"PASSWORD": "Password",
 		"CONFIRM_PASSWORD": "Confirm Password",
 		"REFERRER": "Enter referrer mobile number and search",
 		"CREATION_SUCCESS_MSG": "User successfully created",
 		"CREATION_FAILURE_MSG": "Failed to create user",
 		"NAME_MOB_MISS_PROMPT": "Name or mobile are missing",
-		"REF_MISS_PROMPT": "Referrer missing"
+		"REF_MISS_PROMPT": "Referrer missing",
+		"REGISTER": "Register"
+	},
+
+	"NAV": {
+		"HOME": "Home",
+		"ABOUT_US": "About Us",
+		"CAMPAIGNS": "Campaigns",
+		"SERVICES": "Services",
+		"MORNING_KIRTAN": "Morning Nagar Kirtan",
+		"EDU": "Education for all",
+		"WORK": "Work",
+		"UNEMPLOYED": "Looking for job?",
+		"NEED_SERVICE": "Need Service?",
+		"MARRY": "Marriage",
+		"SEARCH_SPOUSE": "Search for a spouse",
+		"GRP_MARRIAGE": "Group Marriage",
+		"FFL": "Food fod life",
+		"ENVIRONMENT": "Nature Care",
+		"INSTALL": "Install App",
+		"CONTACT": "Contact Us",
+		"PROFILE": "My Profile",
+		"REPORTS": "Reports",
+		"TRANS_REP": "Transaction Report",
+		"GLOBAL_REP": "Global Distribution Report",
+		"FAQ": "FAQ",
+		"LOGIN": "Sign In/New User? Sign Up",
+		"LOGOUT": "Logout"
 	}
 }

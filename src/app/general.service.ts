@@ -26,8 +26,8 @@ export class GeneralService {
   }
 
   updateLanguage(selectedLang){
-    if(selectedLang.mValue){
-      this.selectedLanguage.next(selectedLang.mValue);
+    if(selectedLang){
+      this.selectedLanguage.next(selectedLang);
     }
   }
 
