@@ -2,66 +2,47 @@
     <div class="first-container">
       <app-carousel [slides]="slides" [animationType]="'fade'" (outputEvent)="slideActionClicked($event)"></app-carousel>
     </div>
-    <div class="second-container" fxLayout fxLayoutAlign.gt-sm="space-between center" fxLayout.lt-md="column">
+    <div class="second-container" fxLayout="column">
         <div fxLayout="column" fxLayoutAlign="center center" fxFlex>
-            <div class="sub-title">Cause you can donate for!</div>
-            <div class="title">Top Categories</div>
-            <p class="desc">GoodAct is built for donation based crowdfunding campaigns. We accept donations to support all kind of campaigns like Health, Education, Startup Idea, Farmer, Personal cause and more.</p>    
+            <div class="sub-title">{{"HOME.WHAT-GOODACT"|translate}}</div>
+            <p class="desc">{{"HOME.WHAT-GOODACT-ANS"|translate}}</p>    
         </div>
-        <div fxFlex>
-            <div fxLayout="column">
-                <div fxLayout fxLayoutAlign="center center">
-                    <mat-card class="category zoom">
-                        <mat-icon>memory</mat-icon>
-                        <p class="icon-title">Technology</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>business_center</mat-icon>
-                        <p class="icon-title">Startup</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>school</mat-icon>
-                        <p class="icon-title">Educaton</p>
-                    </mat-card>        
-                </div>
-                <div fxLayout fxLayoutAlign="center center">
-                    <mat-card class="category zoom">
-                        <mat-icon>medical_services</mat-icon>
-                        <p class="icon-title">Medical</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>styler</mat-icon>
-                        <p class="icon-title">Fashion</p>
-                    </mat-card>
-                    <mat-card class="category zoom">
-                        <mat-icon>movie_edit</mat-icon>
-                        <p class="icon-title">Films &amp; Videos</p>
-                    </mat-card>        
-                </div>
+        <div fxLayout="column">
+            <div class="sub-title">{{"HOME.WHY-GOODACT"|translate}}</div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="center">
+                <mat-card fxLayout="column" class="join-card" *ngFor="let cause of goodActReasons">
+                    <mat-card-header>
+                        <mat-card-title class="center">{{cause.title | translate}}</mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image [src]="cause.img">
+                    <mat-card-content fxFlex="grow">{{cause.content | translate}}</mat-card-content>
+                    <button mat-raised-button color="primary" class="full-width" (click)="navigateTo('/login')">{{"JOIN_NOW" | translate}}</button>
+                </mat-card>    
             </div>
             
         </div>
     </div>
     <div class="third-container" fxLayout="column" fxLayoutAlign="space-between center" fxLayoutGap="36px">
         <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center">
-            <div class="my-title">Ready to Raise Funds for Ideas?</div>
+            <div class="my-title">{{"HOME.READY_RAISE_FUNDS" | translate}}</div>
             <div class="call-to-action-dark">Make It Happen</div>
         </div>
         <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
-            <div class="my-title">Want to fulfill your dreams?</div>
-            <div class="call-to-action-dark">Join Us</div>
+            <div class="my-title">{{"HOME.FULLFILL_DREAMS" | translate}}</div>
+            <div class="call-to-action-dark">{{"JOIN_NOW" | translate}}</div>
         </div>
         <div class="full-width" fxLayout fxLayoutAlign="space-between center" fxLayout.lt-md="column">
-            <div class="my-title">Want to help others?</div>
+            <div class="my-title">{{"HOME.HELP_OTHERS" | translate}}</div>
             <div class="call-to-action-dark">Donate</div>
         </div>
-        <div class="small-title">Trusted by more than 12000 fundraisers & counting more</div>
+        <div class="small-title">{{"HOME.TRUST_COUNT" | translate}}</div>
     </div>
     <div class="fourth-container">
         <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-            <div class="small-title">Power of Unity</div>
-            <div class="my-title">Together more creativity as full energy of inidividual is brought out</div>
-            <div class="call-to-action-dark">START A PROJECT</div>    
+            <div class="small-title">{{"HOME.POWER_OF_UNITY" | translate}}</div>
+            <div class="my-title">{{"HOME.UNITY_MSG" | translate}}</div>
+            <div class="call-to-action-dark">{{"HOME.START_PROJECT" | translate}}</div>    
         </div>
         <div class="dark-overlay"></div>
     </div>

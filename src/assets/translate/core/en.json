@@ -54,6 +54,7 @@
 		"UNEMPLOYED": "Looking for job?",
 		"NEED_SERVICE": "Need Service?",
 		"MARRY": "Marriage",
+		"CREATE_MARRIAGE_PROFILE": "Create marriage profile",
 		"SEARCH_SPOUSE": "Search for a spouse",
 		"GRP_MARRIAGE": "Group Marriage",
 		"FFL": "Food fod life",
@@ -66,6 +67,105 @@
 		"GLOBAL_REP": "Global Distribution Report",
 		"FAQ": "FAQ",
 		"LOGIN": "Sign In/New User? Sign Up",
-		"LOGOUT": "Logout"
+		"LOGOUT": "Logout",
+		"PRIVACY": "Privacy Policy",
+		"TNC": "Terms of Use"
+	},
+
+	"HOME": {
+		"WHAT-GOODACT": "What is Good-Act?",
+		"WHAT-GOODACT-ANS": "GoodAct is a platform built by Shri Shri Radha Govind Sewa Dham Trust for connecting the people around the globe with the purpose of increasing devotion towards God, helping common people by educating their kids, developing sources income, feeding poor people, helping in calamities, protecting environment etc.",
+		"WHY-GOODACT": "Why should you join Good-Act?",
+
+		"NEED-JOB": "Need a Job",
+		"MORE-CUST": "More Customers",
+		"RAISE-FUNDS": "Raise Funds",
+		"FREE-GURUKUL": "Free Gurukul",
+		"LOCAL": "Local Centers",
+		"NAGAR-KIRTAN": "Nagar Sankirtan",
+		"FOOD": "Food for all",
+		"AID": "Financial Aid",
+		"OLD": "Old people care",
+		"UNEMPLOYMENT": "Unemployment",
+		"ENV": "Environment care",
+		"GRP-MRG": "Group Marriages",
+		"MATCH-MAKING": "Match Making",
+		"GOVT": "Government Schemes",
+
+		"NEED-JOB-DET": "Good-Act is a platform which helps all kinds of people to get job as per your education, skills and capabilities.",
+		"MORE-CUST-DET": "Good-Act is a marketing platform which helps to reach out more and more customers",
+		"RAISE-FUNDS-DET": "Good-Act aims at solving problem on large scale. We help you raise funds for any cause after any verifying guininity of the cause.",
+		"FREE-GURUKUL-DET": "Good-Act is strongly dedicated towards education and strong character build up for new generation.",
+		"LOCAL-DET": "Good-Act aims at building local centers for educating under-priviledged kids. Help people get connected to government schemes. Promotes spiritual programs for locals.",
+		"NAGAR-KIRTAN-DET": "We believe holy name can purify and solve problems of entire world. Contact us to start nagar sankirtan in your area.",
+		"FOOD-DET": "We believe no one should sleep hungry. People interested in feeding extremely poor people can contact us.",
+		"AID-DET": "Good-Act gets money for helping businesses and in turn money is utilized for giving financial aid to needy people.",
+		"OLD-DET": "Our society has reached such pathetic condition that on large scale old people are being ignored and in many cases thrown out of house.  Help us to maintain them.",
+		"UNEMPLOYMENT-DET": "We are dedicated towards vocational training centers and promoting handmade goods. More automation more unemployment. Join and help us in eradicating unemployment.",
+		"ENV-DET": "We promote plantation. We encourage and provide training and facilities to increase greenary on earth.",
+		"GRP-MRG-DET": "We help financially weak, differently disabled girls and boys get married & settle in life. We need your assistance. It's an opportunity for you to do Kanya daan.",
+		"MATCH-MAKING-DET": "Our platform supports for searching partners. So if you are looking for a partner then join Good Act.",
+		"GOVT-DET": "We help people to connect to government schemes so that they can get completed benefit of government schemes.",
+	
+		"READY_RAISE_FUNDS": "Ready to Raise Funds for Ideas?",
+		"FULLFILL_DREAMS": "Want to fulfill your dreams?",
+		"HELP_OTHERS": "Want to help others?",
+		"TRUST_COUNT": "Trusted by more than 12000 fundraisers & counting more",
+
+		"POWER_OF_UNITY": "Power of Unity",
+		"UNITY_MSG": "Together more creativity as full energy of inidividual is brought out",
+		"START_PROJECT": "START A PROJECT"
+	},
+
+	"FOOTER":{
+		"NOTE": "Good Act is an open fundraising platform created by Shri Shri Radha Govind Sewa Dham Trust with the sole purpose of connecting people for the benefit of common public. Other NGO's and common man can also raise funds for their causes. We are non-profit organization working solely for the benefit of public."
+	},
+
+	"ABOUT_US":{
+		"PARA1":"GoodAct, a platform offered by Shri Shri Radha Govind Sewa Dham Trust allows fundraising for different causes that is run by NGO or any other indidual or by SHRI SHRI RADHA GOVIND SEWA DHAM TRUST itself. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. GoodAct platform is created for humanity, social causes and helping purpose not for earning.",
+		"DISCOVER_MSG": "Discover how to plan, create and manage your crowdfunding campaign",
+		"ENROLL_MSG": "Enroll into GoodAct community and spread to boost crowdfunding for your cause.",
+
+		"TRUSTEES": "TRUSTEES",
+		"DEEP": "Deep P. Nishad",
+		"UMESH": "Umesh Kumar",
+		"NAKUL": "Nakul Prasad",
+		"SUBHAS": "Subhas C. Yadav",
+		"CHHAVI": "Chhavi",
+		"VIJAY": "Vijaylaxmi",
+
+		"DEEP_DET": "Worked for 10 years in IT industry, then seeing the precarious situation of the society dedicated his life towards the development of poor and week section of the society.",
+		"UMESH_DET": "Seeing precarious condition of poor Mr. Umesh Kumar has been working hard for the benefit of poor people. He has been playing key role in numerous organisation for the benefit of poor.",
+		"NAKUL_DET": "From his childhood, he is dedicated to helping people in general. He has been personally conducting Jagrata for Maa Durga for many years in his society, leading and educating people for plantation.",
+		"SUBHAS_DET": "Simple but intelligent, hard working down to earth person guiding and helping on ground level. With his expert knowledge and experience of village he has been guiding people in farming and animal husbandary.",
+		"CHHAVI_DET": "Chhavi is dedicated towards education of poor kids and she is teaching under-priviledged kids free of cost since many years. She also facilitates teaching scriptures for strong character build up of students.",
+		"VIJAY_DET": "Vijaylaxmi a simple housewife run a small beauty parlor and has helped many in girls in earning livlihood by training them in sewing and knitting courses. She is very passionate about seeing woman stand on their own feet.",
+
+		"MPARA1": "Goodact is unique and innovative invention, popularly known as 'Community-Sharing Crowd-Funding' which has started giving a whole new dimension to the model of traditional crowd-funding. We focus, not just on the cause, but also on how to make it easy for the people to fund that cause, in the simplest and smoothest ways possible. It's just like reverse engineering, where we reproduce a quick path towards the plan implementation and finally accomplishment of the goal that you have in sight.",
+		"MPARA2": "Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual donors. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.",
+		"MPARA3": "You can donate for causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..",
+
+		"VPARA1": "Our vision is of establishing Varnashrama System in long run. So that people can get engaged in work as per their nature and be satisfied and happy in life. We desire to establish Ram Rajya keeping Lord Rama in center in which each and every individual is happy and satisfied in his life. We do not want even one individual to feel left out in the society. We want people to lead a happy life as per vedic scriptures and after leaving this body they go Back Home Back to Godhead.",
+		"VPARA2": "We want each and every individual be engaged as per his nature and skill. We want each child to be educated in his field of interest and well versed with Dharma, so that when he/she grows they stand on their own legs and are happy, satisfied and have strong character which will make our nation strong. We want that not even one sleeps hungry in our country.",
+		"VPARA3": "Everyone on the planet is connected to each other. In case anyone needs help other person can provide help easily and instantly. Let's not allow anyone to suffer because in this world around the globe still humanity is alive and many are there like yourself ready to help the society.",
+
+		"HPARA1": "Meanwhile, crowdfunding is quickly becoming the internet's most exciting social trend for raising funds, by providing a convenient website platform that allows people to support any project that you create, simply by sharing it on various social media platforms like Facebook, Twitter, LinkedIn etc. Backed with innovative technology and efficient payment gateways, getting contributions from millions of people for your innovative projects or social campaigns is just a matter of a few clicks now.",
+		"HPARA2": "We connect campaign owners to funders in a way that is productive and engaging. When creative people work together, amazing things happen. We understand the difficulties of raising money, and we are passionate about providing an alternative funding source for startups, charities, and personal causes. We believe in the power of community support and sharing your story with the world. Ultimately, we want to build great company, have fun, and help people in a meaningful way.",
+		"HPARA3": "You can fund causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..",
+	
+		"EXP_FREE": "Experience Freedom",
+		"EFPARA1": "There's no easier way to share your story and attract support. Raise funds and grow your community with a crowdfunding campaign. Share with Family & Friends as our built-in connections to Facebook, Twitter & Email make sharing a breeze.",
+		"EFPARA2": "Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.",
+		"EFPARA3": "You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..",
+
+		"MARKET_TOOL": "It serves as marketing tool",
+		"MTPARA1": "An active crowdfunding campaign is a good way to introduce a venture's overall mission and vision to the market, as it is a free and easy way to reach numerous channels. Our crowdfunding platforms incorporate social media mechanisms, making it painless to get referral traffic to your website and other social media pages.",
+		"MTPARA2": "Typically, this allows ventures to receive thousands of organic visits from unique users and potential funders. These users are also important for viral marketing, as they have the ability to share and spread the word to their connections.",
+
+		"FREE": "It's 100% free",
+
+		"FP1": "The momentum created by successful crowdfunding campaigns attracts potential investment from traditional channels and attention from media outlets.",
+		"FP2": "Success stories make for interesting reading, and reporters are always hungry for them. Crowdfunding is a unique and hot industry these days, and countless entrepreneurs who have been successful with it have seen larger success and exposure as a result.",
+		"FP3": "It provides the opportunity of pre-selling. Launching a crowdfunding campaign gives an entrepreneur the ability to pre-sell a product or concept that they haven't yet taken to market. This is a good way to gauge user reaction and analyze the market in order to decide whether to pursue or pivot on a given concept."
 	}
 }

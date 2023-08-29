@@ -12,10 +12,10 @@
             <mat-icon>payments</mat-icon>
             <p class="icon-title">Payments</p>
         </mat-card>   
-        <mat-card class="category zoom" [ngClass]="selectedCategory=='ga10comm'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='ga10comm'">
+        <!-- <mat-card class="category zoom" [ngClass]="selectedCategory=='ga10comm'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='ga10comm'">
             <mat-icon>local_library</mat-icon>
             <p class="icon-title">10X Community</p>
-        </mat-card>
+        </mat-card> -->
         <mat-card class="category zoom" [ngClass]="selectedCategory=='legal'? 'selected-cat' : 'unselected-cat'" (click)="selectedCategory='legal'">
             <mat-icon>policy</mat-icon>
             <p class="icon-title">Legal</p>
@@ -111,7 +111,9 @@
 	        Does the raised amount reach individual directly?
 	      </mat-panel-title>
 	    </mat-expansion-panel-header>
-	    Yes, fundraiser can recieve all contribution in his bank account directly or GoodAct platform account and later from there he/she can transfer fund to their bank account as per need.
+	    No, Money is collected in SHRI SHRI RADHA GOVIND SEWA DHAM TRUST. In case of NGO, on pre-decided date entire money is transferred to NGO account. On request, this amount can also be transferred before campaign expiry date.
+
+	    For individual, amount collected on campaigns is directly paid to hospitals, college etc directly to avoid mis-utilization of funds.
 	  </mat-expansion-panel>
 	</mat-accordian>
 
@@ -132,6 +134,8 @@
 	      </mat-panel-title>
 	    </mat-expansion-panel-header>
 	    	No! GoodAct doesn't charge any amount to create campaign page, it's 100% free.
+
+	    	But some amount of the donation goes to SHRI SHRI RADHA GOVIND SEWA DHAM TRUST for the maintainance of the platform. This includes payment-gateway charges, server charges, maintenance charges, bank handling charges etc. This amount is payable by the beneficiary. This generally remains between 5% to 8% but in any case it won't exceed 10% of the donated amount.
 	  	</mat-expansion-panel>
 
 	  	<mat-expansion-panel >
@@ -152,21 +156,12 @@
 	    	Yes, you can share your campaign link around the world  and raise funds. In this case transfer charges will be deducted as per country norms.
 	  	</mat-expansion-panel>
 
-	  	<mat-expansion-panel >
-	    <mat-expansion-panel-header>
-	      <mat-panel-title>
-	        How can I boost my campaign & fundraising?
-	      </mat-panel-title>
-	    </mat-expansion-panel-header>
-	    	If your contribution and fundraising not goes well as you thought, you can enrol in GoodAct 10X Community.
-	  	</mat-expansion-panel>
-
-	  	<mat-expansion-panel >
-	    <mat-expansion-panel-header>
-	      <mat-panel-title>
-	        What Goal values should I fill in Campaign form?
-	      </mat-panel-title>
-	    </mat-expansion-panel-header>
+	  	<mat-expansion-panel>
+		    <mat-expansion-panel-header>
+		      <mat-panel-title>
+		        What Goal values should I fill in Campaign form?
+		      </mat-panel-title>
+		    </mat-expansion-panel-header>
 			The values are not fixed and there is no limits on goal amount, but you should keep real required value.
 	  	</mat-expansion-panel>
 
@@ -191,14 +186,21 @@
 
 	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='payments'">
 		<mat-expansion-panel >
-	    <mat-expansion-panel-header>
-	      <mat-panel-title>
-	        How do I receive contribution?
-	      </mat-panel-title>
-	    </mat-expansion-panel-header>
-	    	GoodAct platform provide you campaign landing page where you can recieve fund directly in your bank account via UPI, NEFT, IMPS or GoodAct account and later transfer to your account.
+		    <mat-expansion-panel-header>
+		      <mat-panel-title>
+		        Can I get my donated amount back?
+		      </mat-panel-title>
+		    </mat-expansion-panel-header>
+	    	NO, Once you have made any donation, you can't get it back. Once donation is done, it's done. There is no refund on donation.
+	  	</mat-expansion-panel>
 
-	    	In case you are not a member of 10X community then you can recieve contribution in GoodAct account and on withdrawl community deducts 2% for maintenance of platform and system.
+		<mat-expansion-panel >
+		    <mat-expansion-panel-header>
+		      <mat-panel-title>
+		        How do I receive contribution?
+		      </mat-panel-title>
+		    </mat-expansion-panel-header>
+	    	GoodAct platform provide you campaign landing page where you can recieve fund directly in your bank account via UPI, NEFT, IMPS or GoodAct account and later transfer to your account.
 	  	</mat-expansion-panel>
 
 	  	<mat-expansion-panel >
@@ -229,7 +231,7 @@
 	  	</mat-expansion-panel>
 	</mat-accordian>
 
-	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='ga10comm'">
+	<!-- <mat-accordian fxLayout="column" *ngIf="selectedCategory==='ga10comm'">
 		<mat-expansion-panel >
 	    <mat-expansion-panel-header>
 	      <mat-panel-title>
@@ -283,7 +285,7 @@
 	    </mat-expansion-panel-header>
 	    	No! GoodAct 10X community is created for endless fundraisng, without any limits.
 	  	</mat-expansion-panel>
-	</mat-accordian>
+	</mat-accordian> -->
 
 	<mat-accordian fxLayout="column" *ngIf="selectedCategory==='legal'">
 		<mat-expansion-panel >
@@ -307,10 +309,10 @@
 	  	<mat-expansion-panel >
 	    <mat-expansion-panel-header>
 	      <mat-panel-title>
-        	Is GoodAct.io Legal platform?
+        	Is good-act.web.app a legal platform?
 	      </mat-panel-title>
 	    </mat-expansion-panel-header>
-	    	Yes! Goodact is not an company nor a central authority, its an open community of fundraisers & 12 programmers, situated around the world, and open for all, you can also donate your skills to become mamber of programmer community, you may call as Self Help Group, it is created for work without company, without investment, without product.
+	    	Yes! Goodact is a platform owned by SHRI SHRI RADHA GOVIND SEWA DHAM TRUST. This platform is open to all individual and NGO's for raising funds. We do not aim for any profit from this, rather we only aim to help and serve society at large.
 	  	</mat-expansion-panel>
 	</mat-accordian>
 

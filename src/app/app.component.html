@@ -22,12 +22,21 @@
 	</div> -->
 		<!-- Footer -->
 		<mat-toolbar class="footer" fxLayout="column" fxLayoutAlign="space-around center">
-			<div class="footer-text">Good Act is an open fundraising platform for all fundraiser, Raise fund for any cause Worldwide.</div>
-			<div fxLayout fxLayoutAlign="space-between center">
-				<button mat-icon-button><mat-icon>facebook</mat-icon></button>
-				<button mat-icon-button><i class="fab fa-twitter"></i></button>
-				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
+			<div class="footer-text">{{"FOOTER.NOTE" | translate}}</div>
+			<div class="full-width" fxLayout fxLayoutAlign="space-between center">
+				<div fxLayout fxLayoutAlign="start center" fxLayoutGap="16px">
+					<a class="footer-link" href="/privacy">{{"NAV.PRIVACY" | translate}}</a>
+					<a class="footer-link" href="/tnc">{{"NAV.TNC" | translate}}</a>
+					<a class="footer-link" href="/faq">{{"NAV.FAQ" | translate}}</a>
+					<a class="footer-link" href="/contact">{{"NAV.CONTACT" | translate}}</a>
+				</div>
+				<div fxLayout fxLayoutAlign="space-between center">
+					<button mat-icon-button><mat-icon>facebook</mat-icon></button>
+					<button mat-icon-button><i class="fab fa-twitter"></i></button>
+					<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
+				</div>
 			</div>
+			
 		</mat-toolbar>	
 	</main>
 

@@ -14,6 +14,7 @@ import {AboutUsComponent} from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './static-page/faq/faq.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
+import { TNCComponent } from './static-page/tnc/tnc.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
@@ -130,6 +131,11 @@ const routes: Routes = [
 		path: 'privacy', 
 		component: PrivacyComponent,
 		data: { title: 'Privacy', permissions: []}
+	},
+	{
+		path: 'tnc', 
+		component: TNCComponent,
+		data: { title: 'Terms & Conditions', permissions: []}
 	},
 	{
 		path: 'contact', 

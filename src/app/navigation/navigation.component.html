@@ -25,12 +25,6 @@
 				<button mat-button [matMenuTriggerFor]="services">
 					{{"NAV.SERVICES" | translate}}
 				</button>
-				<button mat-button (click)="navigateTo('/faq')">
-					{{"NAV.FAQ" | translate}}
-				</button>
-				<button mat-button (click)="navigateTo('/contact')">
-					{{"NAV.CONTACT" | translate}}
-				</button>
 				<!-- <button mat-button (click)="navigateTo('/downloads')">
 					Download
 				</button> -->
@@ -57,6 +51,7 @@
 				  <button mat-menu-item (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
 				  <button mat-menu-item (click)="navigateTo('/service-reqd-editor')">{{"NAV.NEED_SERVICE" | translate}}</button>
 				  <button mat-menu-item (click)="navigateTo('/marriage-profile-list')">{{"NAV.SEARCH_SPOUSE" | translate}}</button>
+				  <button mat-menu-item (click)="navigateTo('/marriage-profile-list/self')">{{"NAV.CREATE_MARRIAGE_PROFILE" | translate}}</button>
 				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.GRP_MARRIAGE" | translate}}</button>
 				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
 				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
@@ -158,12 +153,6 @@
 			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
 			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
 		</div>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/faq')">
-			{{"NAV.FAQ" | translate}}
-		</button>
-		<button mat-button class="mobPageLink" (click)="navigateTo('/contact')">
-			{{"NAV.CONTACT" | translate}}
-		</button>
 		<!-- <button mat-button class="mobPageLink" (click)="navigateTo('/downloads')">
 			Download
 		</button> -->

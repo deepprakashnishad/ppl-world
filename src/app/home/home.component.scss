@@ -67,9 +67,28 @@ a{
 }
 
 .second-container{
+  background-image: url('https://images.squarespace-cdn.com/content/v1/56d02d1245bf211cff50b2c2/97c6d371-4e7e-4579-9c79-c11b0e701415/small+Right+wall1.jpg?format=1500w');
   padding: 50px;
   color: white;
-  margin-bottom: 50px;
+  min-height: 100vh;
+  background-size:cover;
+  background-repeat: repeat;
+  -webkit-animation: slidein 100s;
+  animation: slidein 100s;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
+
+.join-card{
+  max-width: 250px;
+  margin: 16px;
 }
 
 h1.header{
@@ -100,7 +119,7 @@ mat-card.category{
 }
 
 .my-title{
-  font-size: 6vw;
+  font-size: 3vw;
   font-weight: bold;
 }
 
@@ -132,26 +151,9 @@ mat-card.category{
 }
 
 .small-title{
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   text-align: center;
-}
-
-.main-container{
-    background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
-    background-size:cover;
-    background-repeat: repeat;
-        -webkit-animation: slidein 100s;
-        animation: slidein 100s;
-
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
-
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
-
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
 }
 
 @-webkit-keyframes slidein {
@@ -172,7 +174,6 @@ to {background-position: -100px 0px;background-size:2750px;}
   position: static;
   padding: 15px 80px;
   color: white;
-  margin-bottom: 20px;
   .small-title{
     background-color: black;
     padding: 16px;

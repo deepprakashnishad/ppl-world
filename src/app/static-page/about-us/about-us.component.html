@@ -4,21 +4,93 @@
 		<div fxLayout="row" fxLayout.lt-md="column">
 			<div fxFlex fxFlexOrder.lt-md="2">
 				<h2>Introduction</h2>
-				<p class="top-section">GoodAct provides fundraising platform with the intelligence, technology and human expertise. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. There are no central authority of this program, this concept is created by an group of programars and developers situated arround the world, you can also join our technical community and donate your skills. GoodAct platform is created for humanity, social causes and helping purpose not for earning.</p>
+				<p class="top-section">{{"ABOUT_US.PARA1" | translate}}</p>
 				<div fxLayout="column" fxLayoutGap="24px">
 					<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="12px">
 						<div style="padding-top: 12px"><mat-icon>check_box</mat-icon></div>
-						<h3>Discover how to plan, create and manage your crowdfunding campaign</h3>
+						<h3>{{"ABOUT_US.DISCOVER_MSG" | translate}}</h3>
 					</div>
 					<div fxLayout fxLayoutGap="12px">
 						<div style="padding-top: 12px"><mat-icon>check_box</mat-icon></div>
-						<h3>Enroll into GoodAct 10X community, it will help you to boost your fundraising</h3>
+						<h3>{{"ABOUT_US.ENROLL_MSG" | translate}}</h3>
 					</div>
 				</div>
 			</div>
 			<div fxFlex fxFlexOrder.lt-md="1">
 				<img class="title-img" src="/assets/images/about-us.jpg"/>
 			</div>
+		</div>
+	</div>
+
+	<div class="bContainer">
+		<div class="center"><h2>{{"ABOUT_US.TRUSTEES" | translate}}</h2></div>
+
+		<div fxLayout="row wrap" fxLayoutAlign="center center" style="margin:12px">
+			<mat-card fxLayout="column" fxLayoutAlign="start center" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.DEEP" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/trustees/deep.png">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">Software Engineer(Computers), Social Reformer</div>
+	            	<p>{{"ABOUT_US.DEEP_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
+
+	        <mat-card fxLayout="column" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.UMESH" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/trustees/umesh.jpeg">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">M.Com, Businessman & Social Worker</div>
+	            	<p>{{"ABOUT_US.UMESH_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
+
+	        <mat-card fxLayout="column" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.NAKUL" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/trustees/nakul.jpeg">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">Retired Foreman from IOCL, Social Reformer</div>
+	            	<p>{{"ABOUT_US.NAKUL_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
+
+	        <mat-card fxLayout="column" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.SUBHAS" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/profile/profile.png">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">Social Worker</div>
+	            	<p>{{"ABOUT_US.SUBHAS_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
+
+	        <mat-card fxLayout="column" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.CHHAVI" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/trustees/chhavi.jpeg">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">Masters in Education, Social Worker</div>
+	            	<p>{{"ABOUT_US.CHHAVI_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
+
+	        <mat-card fxLayout="column" class="join-card">
+	            <mat-card-header>
+	                <mat-card-title class="center">{{"ABOUT_US.VIJAY" | translate}}</mat-card-title>
+	            </mat-card-header>
+	            <img mat-card-image src="/assets/images/profile/profile.png">
+	            <mat-card-content fxFlex="grow">
+	            	<div class="sub-title">Bachelor of Arts, Social Worker</div>
+	            	<p>{{"ABOUT_US.VIJAY_DET" | translate}}</p>
+	            </mat-card-content>
+	        </mat-card>
 		</div>
 	</div>
 
@@ -49,72 +121,49 @@
 			</div>
 			<div fxFlex>
 				<div class="desc" *ngIf="selectedText=='mission'">
-					<p>Goodact is unique and innovative invention, popularly known as 'Community-Sharing Crowd-Funding' which has started giving a whole new dimension to the model of traditional crowd-funding. We focus, not just on the cause, but also on how to make it easy for the people to fund that cause, in the simplest and smoothest ways possible. It's just like reverse engineering, where we reproduce a quick path towards the plan implementation and finally accomplishment of the goal that you have in sight.</p>
-
-					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
-
-					<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+					<p>{{"ABOUT_US.MPARA1" | translate}}</p>
+					<p>{{"ABOUT_US.MPARA2" | translate}}</p>
+					<p>{{"ABOUT_US.MPARA3" | translate}}</p>
 				</div>
 				<div class="desc" *ngIf="selectedText=='vision'">
-					<p>Over the past few years, thousands of people have successfully used our platform to raise huge sums of money for their personal causes as well as for social causes and at the same time these thousands of people have experienced the exciting innovations of our platform and given it a big thumbs up. We continue to grow and we continue to build on our innovations to bring you excitements every now and then, because, we believe that once you start loving what you do, you give the best! We promise that with us, you'll raise more money for your cause, get your money right away, and keep whatever you raise since there are no mandatory goal requirements or campaign deadlines with us.</p>
-					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
-					<p>
-						You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..
-					</p>
+					<p>{{"ABOUT_US.VPARA1" | translate}}</p>
+					<p>{{"ABOUT_US.VPARA2" | translate}}</p>
+					<p>{{"ABOUT_US.VPARA3" | translate}}</p>
 				</div>
 				<div class="desc" *ngIf="selectedText=='history'">
-					<p>
-						Meanwhile, crowdfunding is quickly becoming the internet's most exciting social trend for raising funds, by providing a convenient website platform that allows people to support any project that you create, simply by sharing it on various social media platforms like Facebook, Twitter, LinkedIn etc. Backed with innovative technology and efficient payment gateways, getting contributions from millions of people for your innovative projects or social campaigns is just a matter of a few clicks now.
-					</p>
-					<p>We connect campaign owners to funders in a way that is productive and engaging. When creative people work together, amazing things happen. We understand the difficulties of raising money, and we are passionate about providing an alternative funding source for startups, charities, and personal causes. We believe in the power of community support and sharing your story with the world. Ultimately, we want to build great company, have fun, and help people in a meaningful way.</p>
-					<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
-					<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+					<p>{{"ABOUT_US.HPARA1" | translate}}</p>
+					<p>{{"ABOUT_US.HPARA2" | translate}}</p>
+					<p>{{"ABOUT_US.HPARA3" | translate}}</p>
 				</div>
 			</div>
 		</div>
 	</div>	
 	
 	<div class="second-container" fxLayout="column" fxLayoutAlign="center center">
-		<h1>Experience Freedom</h1>
+		<h1>{{"ABOUT_US.EXP_FREE" | translate}}</h1>
 		<div class="desc">
-			<p>There's no easier way to share your story and attract support. Raise funds and grow your community with a crowdfunding campaign. Share with Family & Friends as our built-in connections to Facebook, Twitter & Email make sharing a breeze.</p>
-
-			<p>Crowdfunding is a method of raising funds through the collective effort of friends, family, fans, customers and individual funders. This approach taps into the collective efforts of a large pool of individuals-primarily online via social media and crowdfunding platforms-and leverages their networks for greater reach and exposure.</p>
-
-			<p>You can fund ideas (want to write a book or create a music album/ movie/ app etc , fund a new product), causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..</p>
+			<p>{{"ABOUT_US.EFPARA1" | translate}}</p>
+			<p>{{"ABOUT_US.EFPARA2" | translate}}</p>
+			<p>{{"ABOUT_US.EFPARA3" | translate}}</p>
 		</div>
-		<h2 fxFlexAlign="start">How is crowdfunding different?</h2>
+		
+		<h2 fxFlexAlign="start">{{"ABOUT_US.MARKET_TOOL" | translate}}</h2>
 		<div class="desc">
-			<p>Crowdfunding is essentially the opposite of the mainstream approach to business funding. Traditionally, if you want to raise funds to start a business or launch a new product or fund a charity you would need to put together a business plan in place, do your market research, get a prototype ready (for products) or get a pitch note in place for charities etc and then sell your story to a limited pool or wealthy individuals or institutions whom you know. These funding sources included HNI's, corporates, banks, angel investors and venture capital firms thus limiting your options to a few key players. You can think of this fundraising approach as a funnel, with you and your campaign story at the wide end & your audience of probable funders at the narrow end. This is a very time consuming approach with massive geographical constraints and allows you to only meet 2 to 3 funders on a daily basis.</p>
-
-			<p>A Crowdfunding platform like GoodAct on the other hand, turns that funnel upside down. We give you (You can be a individual or an organisation) a single platform to build & showcase your campaign story to a large set of funders including your friends /family /fan base in a much quicker period of time. It transcends borders & making a pitch globally. Its fast, efficient, transparent and effective.</p>
-
-			<p>As a crowdfunding platform Goodact gives you tools to tell your story well. We help you curate your story with our happiness team & give you tools, tips and advice to promote it on Social media. We give you software & an elaborate dashboard to monitor progress of the funding through a backend tool, which also gives you key analytics. This approach dramatically streamlines the traditional model. Traditionally, you'd spend months sifting through your personal network, vetting potential funders and spending your own time and money to get in front of them. With crowdfunding, it's much easier for you to get your story in front.</p>
+			<p>{{"ABOUT_US.MTPARA1" | translate}}</p>
+			<p>{{"ABOUT_US.MTPARA2" | translate}}</p>
 		</div>
-		<h2 fxFlexAlign="start">It serves as marketing tool</h2>
+		<h2 fxFlexAlign="start"><p>{{"ABOUT_US.FREE" | translate}}</p></h2>
 		<div class="desc">
-			<p>An active crowdfunding campaign is a good way to introduce a venture's overall mission and vision to the market, as it is a free and easy way to reach numerous channels. Our crowdfunding platforms incorporate social media mechanisms, making it painless to get referral traffic to your website and other social media pages.</p>
-
-
-
-			<p>Typically, this allows ventures to receive thousands of organic visits from unique users and potential funders. These users are also important for viral marketing, as they have the ability to share and spread the word to their connections.</p>
-		</div>
-		<h2 fxFlexAlign="start">It's 100% free</h2>
-		<div class="desc">
-			<p>The momentum created by successful crowdfunding campaigns attracts potential investment from traditional channels and attention from media outlets.</p>
-
-
-			<p>Success stories make for interesting reading, and reporters are always hungry for them. Crowdfunding is a unique and hot industry these days, and countless entrepreneurs who have been successful with it have seen larger success and exposure as a result.</p>
-
-
-			<p>It provides the opportunity of pre-selling. Launching a crowdfunding campaign gives an entrepreneur the ability to pre-sell a product or concept that they haven't yet taken to market. This is a good way to gauge user reaction and analyze the market in order to decide whether to pursue or pivot on a given concept.</p>
+			<p>{{"ABOUT_US.FP1" | translate}}</p>
+			<p>{{"ABOUT_US.FP2" | translate}}</p>
+			<p>{{"ABOUT_US.FP3" | translate}}</p>
 		</div>
 	</div>
 	<div class="fourth-container">
 		<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="10px">
-            <div class="small-title">Power of Unity</div>
-            <div class="my-title">Together more creativity as full energy of inidividual is brought out</div>
-            <div class="call-to-action-dark">START A PROJECT</div>    
+            <div class="small-title">{{"HOME.POWER_OF_UNITY" | translate}}</div>
+            <div class="my-title">{{"HOME.UNITY_MSG" | translate}}</div>
+            <div class="call-to-action-dark">{{"HOME.START_PROJECT" | translate}}</div>    
         </div>
         <div class="dark-overlay"></div>
 	</div>

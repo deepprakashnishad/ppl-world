@@ -30,6 +30,7 @@ import { FaqComponent } from './static-page/faq/faq.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
+import { TNCComponent } from './static-page/tnc/tnc.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
@@ -98,6 +99,7 @@ const notifierDefaultOptions: NotifierOptions = {
     FaqComponent,
     ContactUsComponent,
     PrivacyComponent,
+    TNCComponent,
     CampaignComponent,
     CreateCampaignComponent,
     ViewCampaignComponent,

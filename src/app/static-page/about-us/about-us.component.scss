@@ -21,6 +21,17 @@
 	padding: 16px 64px;
 }
 
+
+.join-card{
+  max-width: 250px;
+  margin: 16px;
+}
+
+.sub-title{
+  font-weight: bold;
+  font-size: 14px;
+}
+
 @media screen and (max-width: 760px) {
   .second-container{
     padding: 16px 8px;  
@@ -133,4 +144,8 @@ li{
 .small-title{
   font-size: 36px;
   font-weight: bold;
+}
+
+.mat-card-image{
+  height: 200px;
 }

@@ -4,7 +4,7 @@
 
 mat-card.category{
   border: 2.5px solid;
-  border-color: teal;
+  border-color: #2217c5;
   color: white;
   text-align: center;
   vertical-align: center;
@@ -16,11 +16,12 @@ mat-card.category{
 }
 
 .selected-cat{
-	background-color: teal;
+	background: #2217c5;  /* fallback for old browsers */
 }
 
 .unselected-cat{
-	background-color: #0080806e;	
+	background-color: #172ec54d;
+  color: black !important;	
 }
 
 .zoom{
