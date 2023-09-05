@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { EmploymentService } from './../../employment.service';
 import { NotifierService } from 'angular-notifier';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import {GeneralService } from 'src/app/general.service';
 
 
 @Component({
@@ -36,13 +37,21 @@ export class ServiceOfferEditorComponent implements OnInit {
 
   selectedTabIndex: number = 0;
 
+  selectedLang: string;
+
   constructor(
     private notifier: NotifierService,
+    private gService: GeneralService,
     private employmentService: EmploymentService,
   ){}
 
   ngOnInit(){
     this.fetchCategories();
+
+    this.gService.selectedLanguage.subscribe(lang => {
+      this.selectedLang = lang;
+      this.updateDisplayName();
+    });
   }
 
   getPersonWorkDetails(){
@@ -66,7 +75,37 @@ export class ServiceOfferEditorComponent implements OnInit {
     this.employmentService.listCategory().subscribe(result=>{
       this.categories = result;
       this.getPersonWorkDetails();
+      this.updateDisplayName();
     })
+  }
+
+  updateDisplayName(){
+    var result = this.categories;
+    if(this.selectedLang!=="en"){
+      for(var i=0;i<result.length;i++){
+        if(result[i]['cat'][0]['tr'][this.selectedLang]['b']){
+          result[i]['dn'] = result[i]['cat'][0]['tr'][this.selectedLang]['b'];  
+        }else{
+          result[i]['dn'] = result[i]['_id'];
+        }
+        
+        for(var j=0;j<result[i]['cat'].length;j++){
+          if(result[i]['cat'][j]['tr'][this.selectedLang]['n']){
+            result[i]['cat'][j]['dn'] = result[i]['cat'][j]['tr'][this.selectedLang]['n'];
+          }else{
+            result[i]['cat'][j]['dn'] = result[i]['cat'][j]['name'];
+          }
+        }
+      }
+    }else{
+      for(var i=0;i<result.length;i++){
+        result[i]['dn'] = result[i]['_id'];
+        for(var j=0;j<result[i]['cat'].length;j++){
+          result[i]['cat'][j]['dn'] = result[i]['cat'][j]['name'];
+        }
+      }
+    }
+    this.categories = result;
   }
 
   isCategorySelected(subCat){

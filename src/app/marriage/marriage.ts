@@ -18,7 +18,7 @@ export class MarriageProfile{
 
 	m: boolean; //Is Manglik
 	v: number; // Varna
-	c: Caste; //Caste, Sub-caste
+	c: any; //Caste, Sub-caste
 	g: number; // Gotra
 	r: number; //Religion
 

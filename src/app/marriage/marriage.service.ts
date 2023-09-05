@@ -36,9 +36,20 @@ export class MarriageService {
   }
 
   updateProfile(data:any){
+    if(data.c && (data.c._id || data.c.id)){
+      data.c = data.c._id;
+    }
     return this.http.patch<any>(this.marriageUrl, data)
     .pipe(
         catchError(this.handleError('Update profile', null))); 
+  }
+
+  fetchFilteredCasteList(strQuery: any, limit: number, offset: number): Observable<Array<any>> {
+    var mUrl = `${this.marriageUrl}/getCaste?strQuery=${strQuery}&limit=${limit}&offset=${offset}`;  
+    
+    return this.http.get<any>(mUrl)
+      .pipe(
+        catchError(this.handleError('Get Caste', null)));
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

@@ -11,12 +11,12 @@
 				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>
 				<div class="sub-title">Status: {{person.status}}</div>
 				<!-- <app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment> -->
-				<a mat-link-button [routerLink]="'/reset-password'">Reset Password</a>
-				<button mat-raised-button color="primary" (click)="openShareBottomSheet()">Share <mat-icon>share</mat-icon></button>
-				<button mat-raised-button  color="accent"  (click)="requestNotification()">Request Updates</button>
-				<button mat-raised-button  color="warn"  (click)="navigateTo('/explore')">View Campaigns</button>
-				<button mat-raised-button color="primary" (click)="navigateTo('/service-offer-editor')">Services you offer <mat-icon>payments</mat-icon></button>
-				<button mat-raised-button color="accent" (click)="navigateTo('/service-reqd-editor')">Service you need <mat-icon>payments</mat-icon></button>
+				<a mat-link-button [routerLink]="'/reset-password'">{{'PROFILE.RESET_PASS' | translate}}</a>
+				<button mat-raised-button color="primary" (click)="openShareBottomSheet()">{{'SHARE' | translate}} <mat-icon>share</mat-icon></button>
+				<button mat-raised-button  color="accent"  (click)="requestNotification()">{{'NOTIFICATION' | translate}}</button>
+				<button mat-raised-button  color="warn"  (click)="navigateTo('/explore')">{{'VIEW_CAMP' | translate}}</button>
+				<button mat-raised-button color="primary" (click)="navigateTo('/service-offer-editor')">{{'NAV.UNEMPLOYED' | translate}} <mat-icon>payments</mat-icon></button>
+				<button mat-raised-button color="accent" (click)="navigateTo('/service-reqd-editor')">{{'NAV.NEED_SERVICE' | translate}} <mat-icon>payments</mat-icon></button>
 			</div>	
 		</div>
 		<div class="right-container" fxFlex="grow" fxLayout="column" fxLayoutGap="8px">

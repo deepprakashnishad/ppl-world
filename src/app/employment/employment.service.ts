@@ -42,6 +42,19 @@ export class EmploymentService {
         catchError(this.handleError('Update person work', null))); 
   }
 
+  listCategoryRawFormat():Observable<any>{
+    return this.http.get<any>(this.categoryUrl+"/listRawFormat")
+    .pipe(
+        catchError(this.handleError('List Category', null))); 
+  }
+
+  deleteCategory(id):Observable<any>{
+    return this.http.delete<any>(this.categoryUrl+"/"+id)
+    .pipe(
+        catchError(this.handleError('Delete Category', null))); 
+  }
+
+
   getPersonWork(key?: string){
     var url = this.employmentUrl;
     if(key){
@@ -66,6 +79,12 @@ export class EmploymentService {
     return this.http.post<any>(this.serviceRequirementUrl, data)
     .pipe(
         catchError(this.handleError('Add service requirement', null))); 
+  }
+
+  saveCategory(data){
+    return this.http.post<any>(this.categoryUrl, data)
+    .pipe(
+        catchError(this.handleError('Update Category', null))); 
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

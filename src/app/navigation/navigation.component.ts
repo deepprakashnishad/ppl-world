@@ -91,13 +91,12 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   	var selectedLang = this.authenticationService.getTokenOrOtherStoredData("selectedLang");
   	if(selectedLang){
   		this.selectedLanguage = JSON.parse(selectedLang).mValue;
-  		translate.setDefaultLang(this.selectedLanguage);	
+  		// translate.setDefaultLang(this.selectedLanguage);	
   	}else{
   		this.selectedLanguage = this.langs[0].mValue;
-  		translate.setDefaultLang(this.selectedLanguage);	
   	}
-  	
-  	console.log(this.selectedLanguage);
+  	translate.setDefaultLang(this.selectedLanguage);
+  	this.generalService.updateLanguage(this.selectedLanguage);
   	// const browserLang = translate.getBrowserLang();
   	// translate.use(browserLang.match(/en|hi/) ? browserLang:'en');
   }

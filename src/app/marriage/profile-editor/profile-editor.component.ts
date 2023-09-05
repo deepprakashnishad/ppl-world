@@ -108,6 +108,11 @@ export class ProfileEditorComponent implements OnInit {
 
   }
 
+  casteSelected(event){
+    console.log(event);
+    this.mp.c = event;
+  }
+
   dobChange(event, type){
     if(type==="date"){
       this.birthdateTimestamp = new Date(event.value).getTime()/60000;
@@ -127,7 +132,11 @@ export class ProfileEditorComponent implements OnInit {
   }
 
   save(){
-    if(this.mp.o !== this.personId){
+    if(!this.personId){
+      this.notifier.notify("error", "Unauthorized access. Please login.");
+      this.router.navigate(['/login'])
+    }
+    if(this.mp.o && this.mp.o !== this.personId){
       this.notifier.notify("error", "Unauthorized access");
       return;
     }

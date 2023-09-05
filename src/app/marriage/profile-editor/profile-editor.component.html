@@ -2,20 +2,20 @@
 	<mat-accordion>
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-		  		<mat-expansion-panel-title>Basic Information</mat-expansion-panel-title>
+		  		<mat-expansion-panel-title>{{'MARRIAGE.BASIC_INFO' | translate}}</mat-expansion-panel-title>
 		  	</mat-expansion-panel-header>
 		  	<div fxLayout="row wrap" fxLayoutGap="12px">
 		  		<app-tag-autocomplete [label]="'Profile For'" [selectedTagId]="mp.mf" [key]="'profile_for'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'mf')"></app-tag-autocomplete>
 				<mat-form-field>
-					<mat-label>Name</mat-label>
-					<input matInput placeholder="Name" type="text" [(ngModel)]="mp.n" />
+					<mat-label>{{'MARRIAGE.NAME' | translate}}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.NAME' | translate}}" type="text" [(ngModel)]="mp.n" />
 				</mat-form-field>
 				<mat-form-field>
-					<mat-label>Gender</mat-label>
+					<mat-label>{{'MARRIAGE.GENDER' | translate}}</mat-label>
 					<mat-select [(ngModel)]="mp.gen">
-						<mat-option value="M">Male</mat-option>
-						<mat-option value="F">Female</mat-option>
-						<mat-option value="O">Other</mat-option>
+						<mat-option value="M">{{'MARRIAGE.MALE' | translate}}</mat-option>
+						<mat-option value="F">{{'MARRIAGE.FEMALE' | translate}}</mat-option>
+						<mat-option value="O">{{'MARRIAGE.OTHER' | translate}}</mat-option>
 					</mat-select>
 				</mat-form-field>
 				<!-- <mat-form-field>
@@ -27,49 +27,49 @@
 					<input matInput placeholder="Father's Name" [(ngModel)]="mp.fn" />
 				</mat-form-field> -->
 				<mat-form-field class="example-full-width">
-				  <mat-label>Date of birth</mat-label>
-				  <input matInput [matDatepickerFilter]="past18YearsDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="dobChange($event, 'date')" [formControl]="dobDateCntl">
+				  <mat-label>{{'MARRIAGE.DOB' | translate}}</mat-label>
+				  <input placeholder="{{'MARRIAGE.DOB' | translate}}" matInput [matDatepickerFilter]="past18YearsDates" [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="dobChange($event, 'date')" [formControl]="dobDateCntl">
 				  <mat-hint>MM/DD/YYYY</mat-hint>
 				  <mat-datepicker #picker></mat-datepicker>
 				</mat-form-field>
 				<mat-form-field>
-					<mat-label>Birth Time</mat-label>
-					<input matInput placeholder="Birth Time" aria-label="Birth Time" [value]="birthTime" [ngxTimepicker]="birthTimePicker"  readonly>
+					<mat-label>{{'MARRIAGE.BIRTH_TIME' | translate}}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.BIRTH_TIME' | translate}}" aria-label="Birth Time" [value]="birthTime" [ngxTimepicker]="birthTimePicker"  readonly>
 					<ngx-material-timepicker #birthTimePicker (timeSet)="dobChange($event, 'time')"></ngx-material-timepicker>
 				</mat-form-field>
+				<div class="full-width">
+					<app-caste-search (casteSelected)="casteSelected($event)" [selectedCaste]="mp.c"></app-caste-search>	
+				</div>
+				
 				<mat-form-field>
-					<mat-label>Height(In cms)</mat-label>
-					<input matInput placeholder="Height(In cms)" type="number" [(ngModel)]="mp.ht" />
+					<mat-label>{{'MARRIAGE.HEIGHT' | translate}}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.HEIGHT' | translate}}" type="number" [(ngModel)]="mp.ht" />
 				</mat-form-field>
 
-				<app-tag-autocomplete [label]="'Mother Tongue'" [selectedTagId]="mp.mt" [key]="'lang'" (tagSelected)="tagSelected($event, 'mt')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.MOTHER_TONGUE' | translate}}" [selectedTagId]="mp.mt" [key]="'lang'" (tagSelected)="tagSelected($event, 'mt')"></app-tag-autocomplete>
 
-				<app-tag-chip-input [inputLabel]="'Other Known Languages'" [selectedTags]="mp.ol" (selectedTagEmitter)="selectedTagChipsModified($event, 'ol')" [key]="'lang'"></app-tag-chip-input>
+				<app-tag-chip-input inputLabel="{{'MARRIAGE.OTHER_LANG' | translate}}" [selectedTags]="mp.ol" (selectedTagEmitter)="selectedTagChipsModified($event, 'ol')" [key]="'lang'"></app-tag-chip-input>
 
-				<app-tag-autocomplete [label]="'Complexion'" [selectedTagId]="mp.col" [key]="'skincomp'" (tagSelected)="tagSelected($event, 'col')"></app-tag-autocomplete>						
-				<app-tag-autocomplete [label]="'Eye Color'" [selectedTagId]="mp.ec" [key]="'color'" (tagSelected)="tagSelected($event, 'ec')"></app-tag-autocomplete>		
-				<app-tag-autocomplete [label]="'Hair Color'" [selectedTagId]="mp.hc" [key]="'color'" (tagSelected)="tagSelected($event, 'hc')"></app-tag-autocomplete>		
-				<app-tag-chip-input [inputLabel]="'Food Types'" [selectedTags]="mp.ft" (selectedTagEmitter)="selectedTagChipsModified($event, 'ft')" [key]="'foodtype'"></app-tag-chip-input>	
+				<app-tag-autocomplete label="{{'MARRIAGE.COMPLEXION' | translate }}" [selectedTagId]="mp.col" [key]="'skincomp'" (tagSelected)="tagSelected($event, 'col')"></app-tag-autocomplete>						
+				<app-tag-autocomplete label="{{'MARRIAGE.EYE_COL' | translate }}" [selectedTagId]="mp.ec" [key]="'color'" (tagSelected)="tagSelected($event, 'ec')"></app-tag-autocomplete>		
+				<app-tag-autocomplete label="{{'MARRIAGE.HAIR_COL' | translate }}" [selectedTagId]="mp.hc" [key]="'color'" (tagSelected)="tagSelected($event, 'hc')"></app-tag-autocomplete>		
+				<app-tag-chip-input inputLabel="{{'MARRIAGE.FOOD_TYPE' | translate }}" [selectedTags]="mp.ft" (selectedTagEmitter)="selectedTagChipsModified($event, 'ft')" [key]="'foodtype'"></app-tag-chip-input>	
 
-				<app-tag-chip-input [inputLabel]="'Hobbies'" [selectedTags]="mp.h" (selectedTagEmitter)="selectedTagChipsModified($event, 'h')" [key]="'hobs'"></app-tag-chip-input>			
+				<app-tag-chip-input inputLabel="{{'MARRIAGE.HOBBIES' | translate }}" [selectedTags]="mp.h" (selectedTagEmitter)="selectedTagChipsModified($event, 'h')" [key]="'hobs'"></app-tag-chip-input>			
 
-				<app-tag-autocomplete [label]="'Smoke'" [selectedTagId]="mp.s" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 's')"></app-tag-autocomplete>		
+				<app-tag-autocomplete label="{{'MARRIAGE.SMOKE' | translate }}" [selectedTagId]="mp.s" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 's')"></app-tag-autocomplete>		
 
-				<app-tag-autocomplete [label]="'Drinking Liquor'" [selectedTagId]="mp.d" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>		
+				<app-tag-autocomplete label="{{'MARRIAGE.DRINK' | translate }}" [selectedTagId]="mp.d" [key]="'freq'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>		
 
-				<app-tag-autocomplete [label]="'Marital Status'" [selectedTagId]="mp.ms" [key]="'maritalst'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'ms')"></app-tag-autocomplete>	
+				<app-tag-autocomplete label="{{'MARRIAGE.MARITAL_STATUS' | translate }}" [selectedTagId]="mp.ms" [key]="'maritalst'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'ms')"></app-tag-autocomplete>	
 
-				<app-tag-autocomplete [label]="'Is Manglik'" [selectedTagId]="mp.m" [key]="'yesno'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'm')"></app-tag-autocomplete>	
+				<app-tag-autocomplete label="{{'MARRIAGE.MANGLIK' | translate }}" [selectedTagId]="mp.m" [key]="'yesno'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'm')"></app-tag-autocomplete>	
 
-				<app-tag-autocomplete [label]="'Gotra'" [selectedTagId]="mp.g" [key]="'gotra'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'g')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.GOTRA' | translate }}" [selectedTagId]="mp.g" [key]="'gotra'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'g')"></app-tag-autocomplete>
 
-				<app-tag-autocomplete [label]="'Varna'" [selectedTagId]="mp.v" [key]="'varna'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'v')"></app-tag-autocomplete>	
+				<app-tag-autocomplete label="{{'MARRIAGE.VARNA' | translate }}" [selectedTagId]="mp.v" [key]="'varna'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'v')"></app-tag-autocomplete>	
 
-				<app-tag-autocomplete [label]="'Religion'" [selectedTagId]="mp.r" [key]="'religion'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
-
-				<!--
-					Caste section to be added
-				-->
+				<app-tag-autocomplete label="{{'MARRIAGE.RELIGION' | translate }}" [selectedTagId]="mp.r" [key]="'religion'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
 				<div>
 					<button mat-raised-button color="primary" (click)="save()">Save <mat-icon>save</mat-icon></button>	
 				</div>
@@ -79,14 +79,14 @@
 
 		<mat-expansion-panel *ngIf="mp.id">
 		  	<mat-expansion-panel-header>
-		  		<mat-expansion-panel-title>Pictures/Photos</mat-expansion-panel-title>
+		  		<mat-expansion-panel-title>{{'PIC' | translate}}</mat-expansion-panel-title>
 		  	</mat-expansion-panel-header>
-		  	<app-uploader [maxAllowedFileSize]="50" [uploadPath]="profilePicUploadPath" [isMultiple]="false" (imageUploaded)="imagesUploaded($event, 'profile')" [newFilename]="'mp_pic'" [header]="'Main Profile Photo'"></app-uploader>
+		  	<app-uploader [maxAllowedFileSize]="50" [uploadPath]="profilePicUploadPath" [isMultiple]="false" (imageUploaded)="imagesUploaded($event, 'profile')" [newFilename]="'mp_pic'" header="{{'PROFILE_PIC'|translate}}"></app-uploader>
 		  	<mat-card class="uploader-card-image" *ngIf="mp.pp && mp.pp['downloadUrl']">
 		  		<img [src]="mp.pp['downloadUrl']"  width="150px" height="auto" />
 		  	</mat-card>
 
-			<app-uploader [maxAllowedFileSize]="50" [uploadPath]="otherImageUploadPath" [isMultiple]="true" (imageUploaded)="imagesUploaded($event, 'others')" [header]="'Other Extra Photos'"></app-uploader>	  	
+			<app-uploader [maxAllowedFileSize]="50" [uploadPath]="otherImageUploadPath" [isMultiple]="true" (imageUploaded)="imagesUploaded($event, 'others')" header="{{'OTHER_PIC'|translate}}"></app-uploader>	  	
 			<div fxLayout>
 				<mat-card class="uploader-card-image" *ngFor="let image of mp.ap">
 					<img *ngIf="image && image['downloadUrl']" [src]="image['downloadUrl']" width="150px" height="auto" />
@@ -96,17 +96,17 @@
 
 		<mat-expansion-panel> 
 			<mat-expansion-panel-header>
-				<mat-expansion-panel-title>Education</mat-expansion-panel-title>
+				<mat-expansion-panel-title>{{'MARRIAGE.EDU' | translate }}</mat-expansion-panel-title>
 			</mat-expansion-panel-header>
 			
 			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="16px">
-				<app-tag-autocomplete [label]="'Degree'" [selectedTagId]="mp.e.d" [key]="'degree'" (tagSelected)="eduTagSelected($event, 'd')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.DEG' | translate }}" [selectedTagId]="mp.e.d" [key]="'degree'" (tagSelected)="eduTagSelected($event, 'd')"></app-tag-autocomplete>
 
-				<app-tag-autocomplete [label]="'College'" [selectedTagId]="mp.e.c" [key]="'clg'" (tagSelected)="eduTagSelected($event, 'c')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.COLLEGE' | translate }}" [selectedTagId]="mp.e.c" [key]="'clg'" (tagSelected)="eduTagSelected($event, 'c')"></app-tag-autocomplete>
 
 				<mat-form-field>
-					<mat-label>Year of passing</mat-label>
-					<input matInput placeholder="Year of passing" min="1980" minlength="4" maxlength="4" type="number" [(ngModel)]="mp.e.py" />
+					<mat-label>{{'MARRIAGE.PY' | translate }}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.PY' | translate }}" min="1980" minlength="4" maxlength="4" type="number" [(ngModel)]="mp.e.py" />
 				</mat-form-field>
 				<div>
 					<button mat-raised-button color="primary" (click)="save()">Save <mat-icon>save</mat-icon></button>	
@@ -116,7 +116,7 @@
 
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-expansion-panel-title>Family Details</mat-expansion-panel-title>
+				<mat-expansion-panel-title>{{'MARRIAGE.FAMILY_DET' | translate }}</mat-expansion-panel-title>
 			</mat-expansion-panel-header>
 			<!-- <button mat-raised-button color="primary" (click)="openFamilyDetailEditor()">Add <mat-icon>person_add</mat-icon></button> -->
 
@@ -125,39 +125,39 @@
 
 		<mat-expansion-panel>
 			<mat-expansion-panel-header>
-				<mat-expansion-panel-title>Professional Details</mat-expansion-panel-title>
+				<mat-expansion-panel-title>{{'MARRIAGE.PROF_DET' | translate }}</mat-expansion-panel-title>
 			</mat-expansion-panel-header>
 			<div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="12px">
 				<mat-form-field>
-					<mat-label>Employment Type</mat-label>
-					<mat-select [(ngModel)]="mp.pr.et" placeholder="Employment Type">
+					<mat-label>{{'MARRIAGE.EMP_TYPE' | translate }}</mat-label>
+					<mat-select [(ngModel)]="mp.pr.et" placeholder="{{'MARRIAGE.EMP_TYPE' | translate }}">
 						<mat-option *ngFor="let et of employmentTypes" [value]="et.value">{{et.displayName}}</mat-option>
 					</mat-select>
 				</mat-form-field>
-				<app-tag-autocomplete [label]="'Designation'" [selectedTagId]="mp.pr.d" [key]="'desg'" (tagSelected)="profTagSelected($event, 'd')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.DESG' | translate }}" [selectedTagId]="mp.pr.d" [key]="'desg'" (tagSelected)="profTagSelected($event, 'd')"></app-tag-autocomplete>
 
-				<app-tag-autocomplete [label]="'Company'" [selectedTagId]="mp.pr.c" [key]="'comp'" (tagSelected)="profTagSelected($event, 'c')"></app-tag-autocomplete>
+				<app-tag-autocomplete label="{{'MARRIAGE.COMP' | translate }}" [selectedTagId]="mp.pr.c" [key]="'comp'" (tagSelected)="profTagSelected($event, 'c')"></app-tag-autocomplete>
 
 				<mat-form-field>
-					<mat-label>Total years of experience</mat-label>
-					<input matInput placeholder="Total years of experience" type="number" [(ngModel)]="mp.pr.e" />
+					<mat-label>{{'MARRIAGE.TOT_EXP' | translate }}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.TOT_EXP' | translate }}" type="number" [(ngModel)]="mp.pr.e" />
 				</mat-form-field>
 
 				<mat-form-field>
-					<mat-label>Total Annual Income</mat-label>
-					<input matInput placeholder="Total annual income" type="number" [(ngModel)]="mp.pr.ai" />
+					<mat-label>{{'MARRIAGE.TOT_ANNUAL_INC' | translate }}</mat-label>
+					<input matInput placeholder="{{'MARRIAGE.TOT_ANNUAL_INC' | translate }}" type="number" [(ngModel)]="mp.pr.ai" />
 				</mat-form-field>
 				<div><button color="primary" mat-raised-button (click)="save()">Save</button></div>
 			</div>
 		</mat-expansion-panel>
 
 		<mat-expansion-panel>
-			<mat-expansion-panel-header>Location</mat-expansion-panel-header>
+			<mat-expansion-panel-header>{{'ADDR.LOC' | translate }}</mat-expansion-panel-header>
 			<app-address (addressSelected)="addressSelected($event)"></app-address>
 		</mat-expansion-panel>
 
 		<mat-expansion-panel>
-			<mat-expansion-panel-header>Mandatory Requirement</mat-expansion-panel-header>
+			<mat-expansion-panel-header>{{'MARRIAGE.MANDATORY_REQ' | translate }}</mat-expansion-panel-header>
 			<div fxLayout="row wrap" fxLayoutGap="12px">
 
 				<div fxLayout fxLayoutGap="12px">

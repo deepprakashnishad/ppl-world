@@ -6,5 +6,11 @@
 	"SEARCH": "Search",
 	"VALID_MOBILE_PROMPT":"Please enter a valid mobile number",
 	"CLOSE": "Close",
-	"JOIN_NOW": "JOIN NOW"
+	"JOIN_NOW": "JOIN NOW",
+	"SHARE": "Share",
+	"VIEW_CAMP": "View Campaigns",
+	"NOTIFICATION": "Notification",
+	"PIC": "Pictures/Photos",
+	"PROFILE_PIC": "Profile Pictures/Photos",
+	"OTHER_PIC": "Other Pictures/Photos"
 }

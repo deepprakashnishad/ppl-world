@@ -18,7 +18,8 @@
 		"CREDITS": "Credits",
 		"TRANSFER": "Transfer",
 		"SLOT_COUNT": "Enter no. of slots to purchase",
-		"SLOTS": "Slots"
+		"SLOTS": "Slots",
+		"RESET_PASS": "Reset Password"
 	},
 
 	"SIGNUP_FORM":{
@@ -167,5 +168,59 @@
 		"FP1": "The momentum created by successful crowdfunding campaigns attracts potential investment from traditional channels and attention from media outlets.",
 		"FP2": "Success stories make for interesting reading, and reporters are always hungry for them. Crowdfunding is a unique and hot industry these days, and countless entrepreneurs who have been successful with it have seen larger success and exposure as a result.",
 		"FP3": "It provides the opportunity of pre-selling. Launching a crowdfunding campaign gives an entrepreneur the ability to pre-sell a product or concept that they haven't yet taken to market. This is a good way to gauge user reaction and analyze the market in order to decide whether to pursue or pivot on a given concept."
+	},
+
+	"MARRIAGE": {
+		"BASIC_INFO": "Basic Information",
+		"NAME": "Name",
+		"GENDER": "Gender",
+		"MALE": "Male",
+		"FEMALE": "Female",
+		"OTHER": "Other",
+		"DOB": "Date of birth",
+		"BIRTH_TIME": "",
+		"HEIGHT": "Height",
+		"MOTHER_TONGUE": "Mother Tongue",
+		"OTHER_LANG": "Other Known Languages",
+		"COMPLEXION": "Complexion",
+		"EYE_COL": "Eye Color",
+		"HAIR_COL": "Hair Color",
+		"FOOD_TYPE": "Food Type",
+		"HOBBIES": "Hobbies",
+		"SMOKE": "Smoke",
+		"DRINK": "Drinking Liquor",
+		"MARITAL_STATUS": "Marital Status",
+		"MANGLIK": "Is Manglik",
+		"GOTRA": "Gotra",
+		"VARNA": "Varna",
+		"RELIGION": "Religion",
+		"EDU": "Education",
+		"DEG": "Degree",
+		"COLLEGE": "College",
+		"PY": "Year of passing",
+		"FAMILY_DET": "Family Details",
+		"PROF_DET": "Professional Details",
+		"EMP_TYPE": "Employment Type",
+		"DESG": "Designation",
+		"COMP": "Company",
+		"TOT_EXP": "Total Experience",
+		"TOT_ANNUAL_INC": "Total Annual Income",
+		"MANDATORY_REQ": "Mandatory Requirements In Life Partner",
+		"TYPE_CASTE": "Type Caste or subcaste",
+		"SELECT_CASTE": "Select Caste/Sub-Caste",
+		"FDF": "Family Detail Form",
+		"REL": "Relation"
+	},
+
+	"ADDR": {
+		"LOC": "Location",
+		"PIN": "Pincode",
+		"AREA": "Area",
+		"CITY": "City/Village",
+		"STATE": "State",
+		"COUNTRY": "Country",
+		"AL": "Address Line",
+		"LANDMARK": "Landmark",
+		"MOB": "Mobile"
 	}
 }

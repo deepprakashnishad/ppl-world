@@ -65,13 +65,13 @@ export class ViewFamilyDetailsComponent implements OnInit {
     var bottomSheet = this._bottomSheet.open(FamilyDetailComponent, {data: familyDetail});
 
     bottomSheet.afterDismissed().subscribe(result=>{
-      if(index===-1){
+      if(index===-1 && result){
         if(!this.memberList){
           this.memberList = [];
         }
         this.memberList.push(result);
         this.dataSource.data = this.memberList;
-      }else{
+      }else if(result){
         this.memberList[index] = result;
       }
 

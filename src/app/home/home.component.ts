@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       content: "HOME.NAGAR-KIRTAN-DET",
       actionLink: "",
       actionText: "Join Now",
-      img: "/assets/images/carousel/Nagar_kirtan.JPG"
+      img: "/assets/images/carousel/Nagar_Kirtan.jpg"
     }, {
       title: "HOME.FOOD",
       content: "HOME.FOOD-DET",

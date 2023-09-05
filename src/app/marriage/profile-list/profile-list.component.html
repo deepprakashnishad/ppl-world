@@ -15,4 +15,7 @@
 			<button class="full-width" mat-raised-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)">View</button>
 		</mat-actions>
 	</mat-card>
+	<button *ngIf="profileOwner==='self'" class="btn-fab" mat-fab (click)="navigateTo('marriage-profile-editor')">
+        <mat-icon>add</mat-icon>
+    </button>
 </div>

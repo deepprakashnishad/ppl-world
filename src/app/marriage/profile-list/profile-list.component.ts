@@ -13,7 +13,7 @@ import { MarriageProfile } from './../marriage';
 @Component({
   selector: 'app-profile-list',
   templateUrl: './profile-list.component.html',
-  styleUrls: [],
+  styles: ['.btn-fab{position: absolute; right: 24px; bottom: 12px; z-index:100}'],
   animations: [
     trigger('selection', [
       state('selected', style({
@@ -81,6 +81,10 @@ export class ProfileListComponent implements OnInit {
   }
 
   navigateTo(url, id){
-  	this.router.navigate([url, id]);
+    if(id){
+      this.router.navigate([url, id]);
+    }else{
+      this.router.navigate([url]);  
+    }  	
   }
 }

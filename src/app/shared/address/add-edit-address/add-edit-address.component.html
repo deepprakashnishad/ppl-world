@@ -3,34 +3,34 @@
     <mat-form-field>
       <input type="text" matInput (change)="getPincodeDetail()"
              formControlName="cntlPincode" required
-             [(ngModel)]="address.pc" placeholder="Pincode" />
+             [(ngModel)]="address.pc" placeholder="{{'ADDR.PIN' | translate }}" />
        <button matSuffix mat-icon-button color="accent" (click)=getPincodeDetail()><mat-icon>refresh</mat-icon></button>
     </mat-form-field>
-    <app-autocomplete-with-add [items]="availableAreas" [label]="'Area'" [selectedItem]="address.ar" (tagSelected)="areaSelected($event)"></app-autocomplete-with-add>
+    <app-autocomplete-with-add [items]="availableAreas" label="{{'ADDR.AREA' | translate }}" [selectedItem]="address.ar" (tagSelected)="areaSelected($event)"></app-autocomplete-with-add>
     <mat-form-field>
-      <input type="text" matInput formControlName="cntlCity" required [(ngModel)]="address.ci" placeholder="City" />
+      <input type="text" matInput formControlName="cntlCity" required [(ngModel)]="address.ci" placeholder="{{'ADDR.CITY' | translate }}" />
     </mat-form-field>
     <mat-form-field>
-      <input type="text" matInput formControlName="cntlState" required [(ngModel)]="address.s" placeholder="State" />
+      <input type="text" matInput formControlName="cntlState" required [(ngModel)]="address.s" placeholder="{{'ADDR.STATE' | translate }}" />
     </mat-form-field>
     <mat-form-field class="country">
-      <input type="text" matInput formControlName="cntlCountry" required [(ngModel)]="address.c" placeholder="Country" />
+      <input type="text" matInput formControlName="cntlCountry" required [(ngModel)]="address.c" placeholder="{{'ADDR.COUNTRY' | translate }}" />
     </mat-form-field>
 
     <mat-form-field>
-      <input type="text" maxlength="50" matInput formControlName="cntlLine1" [(ngModel)]="address.al" placeholder="Address Line" />
+      <input type="text" maxlength="50" matInput formControlName="cntlLine1" [(ngModel)]="address.al" placeholder="{{'ADDR.AL' | translate }}" />
     </mat-form-field>
     <mat-form-field>
-      <input type="text" maxlength="40" matInput formControlName="cntlLandmark" [(ngModel)]="address.lm" placeholder="Landmark" />
+      <input type="text" maxlength="40" matInput formControlName="cntlLandmark" [(ngModel)]="address.lm" placeholder="{{'ADDR.LANDMARK' | translate }}" />
     </mat-form-field>
     <mat-form-field>
       <span matPrefix>(+91)</span>
-      <input type="number" maxlength="10" matInput formControlName="cntlMob1" required [(ngModel)]="address.mb" placeholder="Mobile" />
+      <input type="number" maxlength="10" matInput formControlName="cntlMob1" required [(ngModel)]="address.mb" placeholder="{{'ADDR.MOB' | translate }}" />
     </mat-form-field>
     <app-location-coordinates [lngLat]="latLng" (locationSelected)="locationSelected($event)" [autoFetch]="autoFetchCoordinates"></app-location-coordinates>
   </form>
   <mat-dialog-actions fxLayoutAlign="center start">
-    <button mat-raised-button [disabled]="!addressForm.valid" color="accent" (click)="save()">Save <mat-icon>save</mat-icon></button>
+    <button mat-raised-button [disabled]="!addressForm.valid" color="accent" (click)="save()">{{'SAVE' | translate }} <mat-icon>save</mat-icon></button>
     <button mat-raised-button color="accent" (click)="close()">Close <mat-icon>close</mat-icon></button>
   </mat-dialog-actions>
 </div>

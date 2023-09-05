@@ -1,22 +1,23 @@
 <mat-card>
 	<mat-card-header>
-		<mat-card-title>{{title}}</mat-card-title>
+		<mat-card-title>{{'MARRIAGE.FDF' | translate}}</mat-card-title>
 	</mat-card-header>
 	<div fxLayout="column">
 		<mat-form-field>
-			<mat-label>Name</mat-label>
-			<input matInput placeholder="Name" type="text" [(ngModel)]="fd.n">
+			<mat-label>{{'MARRIAGE.NAME' | translate}}</mat-label>
+			<input matInput placeholder="{{'MARRIAGE.NAME' | translate}}" type="text" [(ngModel)]="fd.n">
 		</mat-form-field>
 
-		<app-tag-autocomplete [label]="'Relation'" [selectedTagId]="fd.r" [key]="'rel'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
+		<app-tag-autocomplete label="{{'MARRIAGE.REL' | translate}}" [selectedTagId]="fd.r" [key]="'rel'" [enableAdd]="true" (tagSelected)="tagSelected($event, 'r')"></app-tag-autocomplete>	
 
-		<app-tag-autocomplete [label]="'Designation'" [selectedTagId]="fd.d" [key]="'desg'" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>	
+		<app-tag-autocomplete label="{{'MARRIAGE.DESG' | translate}}" [selectedTagId]="fd.d" [key]="'desg'" (tagSelected)="tagSelected($event, 'd')"></app-tag-autocomplete>	
 
-		<app-tag-autocomplete [label]="'Company'" [selectedTagId]="fd.c" [key]="'comp'" (tagSelected)="tagSelected($event, 'c')"></app-tag-autocomplete>
+		<app-tag-autocomplete label="{{'MARRIAGE.COMP' | translate}}" [selectedTagId]="fd.c" [key]="'comp'" (tagSelected)="tagSelected($event, 'c')"></app-tag-autocomplete>
 
 		<mat-form-field>
-			<mat-label>Annual Income</mat-label>
-			<input matInput placeholder="Annual Income" type="number" [(ngModel)]="fd.i">
+			<mat-label>{{'MARRIAGE.TOT_ANNUAL_INC' | translate}}(INR)</mat-label>
+			<span matPrefix><mat-icon>currency_rupee</mat-icon></span>
+			<input matInput placeholder="₹ {{'MARRIAGE.TOT_ANNUAL_INC' | translate}}" type="number" [(ngModel)]="fd.i">
 		</mat-form-field>
 		<div>
 			<button color="primary" mat-raised-button (click)="done()">Done <mat-icon>check</mat-icon></button>

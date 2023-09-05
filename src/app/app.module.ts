@@ -42,13 +42,14 @@ import { SubscriptionComponent } from './static-page/campaign/subscription/subsc
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
+import { ServiceCategoryEditorComponent } from './employment/category/service-category-editor.component';
 
 import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
 import { FamilyDetailComponent } from './marriage/family-detail/family-detail.component';
 import { ViewFamilyDetailsComponent } from './marriage/view-family-details/view-family-details.component';
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
-
+import { CasteSearchComponent } from './marriage/caste/caste-search.component';
 const notifierDefaultOptions: NotifierOptions = {
   position: {
       horizontal: {
@@ -115,7 +116,9 @@ const notifierDefaultOptions: NotifierOptions = {
     ProfileListComponent,
     FamilyDetailComponent,
     ViewFamilyDetailsComponent,
-    ProfileViewerComponent
+    ProfileViewerComponent,
+    CasteSearchComponent,
+    ServiceCategoryEditorComponent
    ],
   imports: [
     BrowserModule,
