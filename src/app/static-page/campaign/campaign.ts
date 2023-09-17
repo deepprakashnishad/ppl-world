@@ -8,10 +8,10 @@ export class Campaign{
 	owner: any;
 	cat: string; //Category
 	expiryDate: number;
-  reqf: string;
-  assets: any;
-  createdAt: any;
-
+      reqf: string;
+      assets: any;
+      createdAt: any;
+    b: any;
 
 	constructor(){
 		this.title = "";
@@ -33,6 +33,7 @@ export class Campaign{
     campaign.reqf = data['reqf'];
     campaign.expiryDate = data['expiryDate'];
     campaign.assets = data['assets'];
+      campaign.b = data['b'];
     if(data['createdAt']){
       campaign.createdAt = new Date(data['createdAt']);
     }

@@ -63,11 +63,6 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  scrollToTopFunc(event) {
-    var scrollElem= document.querySelector('#moveTop');
-    console.log(scrollElem);
-    scrollElem.scrollIntoView({ behavior: "smooth"});
-  }
 
   listen() {
     this.afMessaging.messages

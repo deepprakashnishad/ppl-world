@@ -1,44 +1,34 @@
-<div class="main-container" fxLayout="column" fxLayoutGap="2px" fxLayoutAlign="space-between">
+<div class="main-container" fxLayout="column" >
 	<header>
 		<!-- <button *ngIf="pwa.promptEvent" (click)="installPwa()">
 			Install
 		</button> -->
 		<app-progress-spinner [loaderType]="'overlay-spinner'"></app-progress-spinner>
+		<div  id="moveTop"></div>
+		<div><app-navigation *ngIf="isShowNavigation"></app-navigation></div>
 	</header>
 	<!-- Main -->
-	<main class="main-container" fxFlex="grow" fxLayout="column" fxLayoutAlign="start">
-		<div  id="moveTop"></div>
-		<app-navigation *ngIf="isShowNavigation"></app-navigation>
-		<!--<app-navigation *ngIf="isShowNavigation"></app-navigation>-->
-		<router-outlet></router-outlet>
-
-		<notifier-container class="notifier-container"></notifier-container>
-		<!-- <button class="scroll-top-button" mat-fab (click)="scrollToTopFunc($event)">
-	        <mat-icon>arrow_upward</mat-icon>
-	    </button> -->
-		<!-- <app-sidenav #mSidebar fxFlex="auto"></app-sidenav> -->
-		<!-- <div class="content-container-without-sidenav" *ngIf="!isSidenav" fxFlex="auto">
-		<router-outlet #m="outlet"></router-outlet>
-	</div> -->
-		<!-- Footer -->
-		<mat-toolbar class="footer" fxLayout="column" fxLayoutAlign="space-around center">
-			<div class="footer-text">{{"FOOTER.NOTE" | translate}}</div>
-			<div class="full-width" fxLayout fxLayoutAlign="space-between center">
-				<div fxLayout fxLayoutAlign="start center" fxLayoutGap="16px">
-					<a class="footer-link" href="/privacy">{{"NAV.PRIVACY" | translate}}</a>
-					<a class="footer-link" href="/tnc">{{"NAV.TNC" | translate}}</a>
-					<a class="footer-link" href="/faq">{{"NAV.FAQ" | translate}}</a>
-					<a class="footer-link" href="/contact">{{"NAV.CONTACT" | translate}}</a>
-				</div>
-				<div fxLayout fxLayoutAlign="space-between center">
-					<button mat-icon-button><mat-icon>facebook</mat-icon></button>
-					<button mat-icon-button><i class="fab fa-twitter"></i></button>
-					<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
-				</div>
-			</div>
-			
-		</mat-toolbar>	
+	<main fxLayout="column" fxFlex>
+		<router-outlet></router-outlet>			
 	</main>
-
+	<!-- Footer -->
+	<div class="footer" fxLayout="column" fxLayoutAlign="space-around center">
+		<notifier-container class="notifier-container"></notifier-container>
+		<div class="footer-text">{{"FOOTER.NOTE" | translate}}</div>
+		<div class="full-width" fxLayout fxLayout.lt-md="column" fxLayoutAlign="space-between center">
+			<div fxLayout fxLayoutAlign="start center" fxLayoutGap="16px">
+				<a class="footer-link" href="/privacy">{{"NAV.PRIVACY" | translate}}</a>
+				<a class="footer-link" href="/tnc">{{"NAV.TNC" | translate}}</a>
+				<a class="footer-link" href="/faq">{{"NAV.FAQ" | translate}}</a>
+				<a class="footer-link" href="/contact">{{"NAV.CONTACT" | translate}}</a>
+			</div>
+			<div fxLayout fxLayoutAlign="space-between center">
+				<button mat-icon-button><mat-icon>facebook</mat-icon></button>
+				<button mat-icon-button><i class="fab fa-twitter"></i></button>
+				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
+			</div>
+			<div class="version" fxFlexAlign="end">Version 1.0.5</div>
+		</div>
+	</div>
 </div>
 

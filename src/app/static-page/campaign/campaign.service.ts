@@ -59,6 +59,29 @@ export class CampaignService {
         catchError(this.handleError('Subscribe Campaign', null))); 
   }
 
+  updateBeneficiary(beneficiaryData: any, cid: string, chid?: string){
+    return this.http.post<any>(`${this.campaignUrl}/updateBeneficiary`, {
+      "beneficiary": beneficiaryData,
+      "cid": cid,
+      "chid": chid
+    })
+        .pipe(
+        catchError(this.handleError('Update beneficiary', null))); 
+  }
+
+  getBeneficiaries(bids: any){
+    return this.http.get<any>(`${this.campaignUrl}/getBeneficiaries?bids=${bids}`)
+      .pipe(
+        catchError(this.handleError('Get beneficiaries', null))); 
+  }
+    
+    getBeneficiarySummary(cid: string, type: string = "campaign"){
+        return this.http.get<any>(`${this.campaignUrl}/getBeneficiarySummary?cid=${cid}&type=${type}`)
+          .pipe(
+            catchError(this.handleError('Get beneficiaries', null))); 
+    } 
+    
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

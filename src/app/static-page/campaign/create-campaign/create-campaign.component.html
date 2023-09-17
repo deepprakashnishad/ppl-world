@@ -59,6 +59,21 @@
 			</div>
 		</div>
 	</div>
-	<button fxFlexAlign="center" mat-raised-button (click)="saveCampaign()" color="primary" *ngIf="enableEditMode"
-	ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Submit</button>
+	<div fxLayout fxLayout.lt-md="column" fxLayoutGap="12px">
+		<button fxFlexAlign="center" mat-raised-button (click)="saveCampaign()" color="primary" *ngIf="enableEditMode"
+		ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Submit</button>
+		
+		<button fxFlexAlign="center" mat-raised-button (click)="navigateTo('beneficiaries')" color="warn" *ngIf="enableEditMode"
+		ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Beneficiaries</button>	
+
+		<button fxFlexAlign="center" mat-raised-button color="accent" *ngIf="enableEditMode"
+		ngClass.lt-md="full-width" ngClass.gt-sm="quarter-wide">Add Activity Summary</button>
+	</div>
+	
+	<mat-expansion-panel *ngIf="campaign.b.length>0">
+		<mat-expansion-panel-header>
+			Total Beneficiaries - {{campaign.b.length}}
+		</mat-expansion-panel-header>
+		<app-beneficiary [campaignId]="campaign.id" [bids]="campaign.b"></app-beneficiary>
+	</mat-expansion-panel>
 </div>

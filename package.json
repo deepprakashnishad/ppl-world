@@ -10,7 +10,7 @@
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0 --port 4200 --proxy-config proxy.conf.json",
     "build": "ng build",
-    "build-prod": "ng build --prod --base-href ./ --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer && tar -zcvf archive.tar.gz dist/*",
+    "build-prod": "ng build --prod --base-href / --aot --vendor-chunk --common-chunk --delete-output-path --build-optimizer && tar -zcvf archive.tar.gz dist/*",
     "dist": "electron-builder",
     "distp": "npm run build-prod && npm run dist",
     "test": "ng test",

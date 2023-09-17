@@ -1,20 +1,27 @@
-<div class="bContainer" fxLayout="row wrap">
-	<mat-card class="row-wrap-card" *ngFor="let mp of mps">
-		<mat-card-content>
-			<img *ngIf="mp.pp && mp.pp.downloadUrl" [src]="mp.pp.downloadUrl" width="200" />
-			<img *ngIf="!mp.pp || !mp.pp.downloadUrl" src="/assets/images/profile/profile.png" width="200" />
-			<div>Name: {{mp.n}}</div>
-			<div>Age: {{mp.age}}</div>
-		</mat-card-content>
-		<mat-actions align="end" *ngIf="profileOwner">
-			<button mat-icon-button color="warn" (click)="delete('marriage-profile-editor', mp.id)"><mat-icon>delete</mat-icon></button>
-			<button mat-icon-button color="accent" (click)="navigateTo('marriage-profile-editor', mp.id)"><mat-icon>edit</mat-icon></button>
-			<button mat-icon-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)"><mat-icon>visibility</mat-icon></button>
-		</mat-actions>
-		<mat-actions align="end" *ngIf="!profileOwner">
-			<button class="full-width" mat-raised-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)">View</button>
-		</mat-actions>
-	</mat-card>
+<div class="bContainer" fxLayoutAlign="center center">
+	<div fxLayout="row wrap">
+		<mat-card class="row-wrap-card" *ngFor="let mp of mps">
+			<mat-card-content>
+				<img *ngIf="mp.pp && mp.pp.downloadUrl" [src]="mp.pp.downloadUrl" width="200" />
+				<img *ngIf="!mp.pp || !mp.pp.downloadUrl" src="/assets/images/profile/profile.png" width="200" />
+				<div>Name: {{mp.n}}</div>
+				<div>Age: {{mp.age}}</div>
+			</mat-card-content>
+			<mat-actions align="end" *ngIf="profileOwner">
+				<button mat-icon-button color="warn" (click)="delete('marriage-profile-editor', mp.id)"><mat-icon>delete</mat-icon></button>
+				<button mat-icon-button color="accent" (click)="navigateTo('marriage-profile-editor', mp.id)"><mat-icon>edit</mat-icon></button>
+				<button mat-icon-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)"><mat-icon>visibility</mat-icon></button>
+			</mat-actions>
+			<mat-actions align="end" *ngIf="!profileOwner">
+				<button class="full-width" mat-raised-button color="primary" (click)="navigateTo('marriage-profile-viewer', mp.id)">View</button>
+			</mat-actions>
+		</mat-card>
+	</div>
+	<div fxLayout="column" fxLayoutAlign="center center">
+		<h4 *ngIf="mps.length<1">Sorry, no marriage profiles found.</h4>
+		<div><button *ngIf="profileOwner==='self' && mps.length<1" mat-raised-button color="primary" (click)="navigateTo('marriage-profile-editor')">Create New Profile</button></div>	
+	</div>
+	
 	<button *ngIf="profileOwner==='self'" class="btn-fab" mat-fab (click)="navigateTo('marriage-profile-editor')">
         <mat-icon>add</mat-icon>
     </button>

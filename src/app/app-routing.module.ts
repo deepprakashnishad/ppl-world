@@ -17,6 +17,7 @@ import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { TNCComponent } from './static-page/tnc/tnc.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
+import { BeneficiaryComponent } from './static-page/campaign/beneficiary/beneficiary.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
 import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view-campaign.component';
 import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
@@ -29,8 +30,9 @@ import { ServiceReqdEditorComponent } from './employment/service-reqd/service-re
 import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
-
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
+
+
 
 const routes: Routes = [
 	 {
@@ -74,6 +76,11 @@ const routes: Routes = [
 		path: 'campaigns/view/:id', 
 		component: ViewCampaignComponent,
 		data: { title: 'View Component', permissions: []}
+	},
+	{
+		path: 'beneficiaries/:campaignid', 
+		component: BeneficiaryComponent,
+		data: { title: 'Beneficiaries', permissions: []}
 	},
 	{
 		path: 'service-offer-editor', 

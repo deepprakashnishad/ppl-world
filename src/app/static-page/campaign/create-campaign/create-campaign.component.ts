@@ -25,7 +25,8 @@ export class CreateCampaignComponent implements OnInit {
 	uploadPath: string;
 
 	constructor(
-		private router: ActivatedRoute,
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
 		private notifier: NotifierService,
 		private campaignService: CampaignService
 	){
@@ -47,7 +48,7 @@ export class CreateCampaignComponent implements OnInit {
 	}
 
 	ngOnInit(){
-		this.router.params.subscribe(params=>{
+		this.activatedRoute.params.subscribe(params=>{
 			if(params['id']){
 				this.getCampaignDetail(params['id']);	
 			}
@@ -134,5 +135,9 @@ export class CreateCampaignComponent implements OnInit {
 			this.campaign = Campaign.fromJSON(result);
 			this.notifier.notify("success", "Campaign updated successfully");
 		});
+	}
+
+	navigateTo(url){
+		this.router.navigate([url, this.campaign.id])
 	}
 }

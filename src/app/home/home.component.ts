@@ -189,4 +189,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   navigateTo(event){
     this.router.navigate([event]);
   }
+
+  scrollToTopFunc(event) {
+    var scrollElem= document.querySelector('#moveTop');
+    console.log(scrollElem);
+    scrollElem.scrollIntoView({ behavior: "smooth"});
+  }
 }

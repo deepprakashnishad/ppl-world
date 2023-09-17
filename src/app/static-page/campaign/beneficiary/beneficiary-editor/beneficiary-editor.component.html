@@ -1,0 +1,68 @@
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>Beneficiary</mat-card-title>
+	</mat-card-header>
+	<div fxLayout="column">
+		<mat-form-field>
+			<mat-label>{{'MARRIAGE.NAME' | translate}}</mat-label>
+			<input matInput placeholder="{{'MARRIAGE.NAME' | translate}}" type="text" [(ngModel)]="beneficiary.n">
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>{{'MARRIAGE.GENDER' | translate}}</mat-label>
+			<mat-select [(ngModel)]="beneficiary.g"  placeholder="{{'MARRIAGE.GENDER' | translate}}">
+				<mat-option value="m">Male</mat-option>
+				<mat-option value="f">Female</mat-option>
+				<mat-option value="o">Other</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field class="example-full-width">
+		  <mat-label>{{'MARRIAGE.DOB' | translate}}</mat-label>
+		  <input placeholder="{{'MARRIAGE.DOB' | translate}}" matInput [matDatepicker]="picker" (focus)="picker.open()" (dateChange)="dobChange($event, 'date')" [formControl]="dobDateCntl">
+		  <mat-hint>MM/DD/YYYY</mat-hint>
+		  <mat-datepicker #picker></mat-datepicker>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Govt. Id</mat-label>
+			<mat-select [(ngModel)]="beneficiary.gid.t">
+				<mat-option value="adh">Aadhar</mat-option>
+				<mat-option value="rc">Ration Card</mat-option>
+				<mat-option value="pan">Pancard</mat-option>
+				<mat-option value="v">Voter Id</mat-option>
+				<mat-option value="p">Passport</mat-option>
+				<mat-option value="dl">Driving License</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Govt. Id</mat-label>
+			<input matInput placeholder="Govt. Id" type="text" [(ngModel)]="beneficiary.gid.v">
+		</mat-form-field>
+        
+        <div *ngIf="beneficiary.id">
+            <div fxLayout="column">
+                <app-uploader [maxAllowedFileSize]="512" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'pic')" [header]="'Profile Pic Image'" [newFilename]="'pic'"></app-uploader>
+
+                <img class="rectangular-img" *ngIf="beneficiary.pic" [src]="beneficiary.pic" height="150" width="150"/>
+            </div>
+            <div fxLayout="column">
+                <app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'idf')" [header]="'Aadhaar Front Image'" [newFilename]="'idf'"></app-uploader>
+                <img class="rectangular-img" *ngIf="beneficiary.idf" [src]="beneficiary.idf" height="150" width="300" alt="Aadhar Front"/>
+            </div>
+
+            <div fxLayout="column">
+                <app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'idb')" [header]="'Aadhaar Back Image'" [newFilename]="'idb'"></app-uploader>
+
+                <img class="rectangular-img" *ngIf="beneficiary.idb" [src]="beneficiary.idb" height="150" width="300"/>
+            </div>
+        </div>
+        
+		<div>
+			<button color="primary" mat-raised-button (click)="save()">Save <mat-icon>save</mat-icon></button>
+            
+            <button color="primary" mat-raised-button (click)="close()">Close <mat-icon>close</mat-icon></button>
+		</div>
+	</div>	
+</mat-card>

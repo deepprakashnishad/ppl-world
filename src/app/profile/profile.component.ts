@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
     this.profileService.getPersonDetail().subscribe(result=>{
       this.person = Person.fromJSON(result);
 
-      this.uploadPath = `person/this.person.id`;
+      this.uploadPath = `person/${this.person.id}`;
       
       this.keys = Object.keys(this.person.lwdlc);
       for(var i=0;i < this.keys.length;i++){

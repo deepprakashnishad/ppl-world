@@ -13,4 +13,10 @@ export class AboutUsComponent implements OnInit {
 	ngOnInit(){
 
 	}
+
+	scrollToTopFunc(event) {
+    var scrollElem= document.querySelector('#moveTop');
+    console.log(scrollElem);
+    scrollElem.scrollIntoView({ behavior: "smooth"});
+  }
 }

@@ -57,6 +57,22 @@ export class GeneralService {
       return `${years} Years`;
     }
   }
+
+  formatDate(mDate: Date, format: string){
+    var years = mDate.getFullYear();
+    var months = mDate.getMonth()+1;
+    var date = mDate.getDate();
+
+    var formattedDate = format.replace("yyyy", years.toString())
+                        .replace('mm', months.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}).toString())
+                        .replace('dd', date.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}).toString());
+
+    return formattedDate;
+  }
+
+  formatDateWithTimestamp(timestamp: number, format: string){
+    return this.formatDate(new Date(timestamp), format);
+  }
   
   updateFirebaseMessagingToken(token: string): Observable<any>{
     return this.http.patch<any>(this.genericUrl+"/update-firebase-token", {token: token})

@@ -29,6 +29,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { FaqComponent } from './static-page/faq/faq.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
+import { BeneficiaryComponent } from './static-page/campaign/beneficiary/beneficiary.component';
+import { BeneficiaryEditorComponent } from './static-page/campaign/beneficiary/beneficiary-editor/beneficiary-editor.component';
 import { PrivacyComponent } from './static-page/privacy/privacy.component';
 import { TNCComponent } from './static-page/tnc/tnc.component';
 import { CreateCampaignComponent } from './static-page/campaign/create-campaign/create-campaign.component';
@@ -50,6 +52,10 @@ import { ViewFamilyDetailsComponent } from './marriage/view-family-details/view-
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 import { CasteSearchComponent } from './marriage/caste/caste-search.component';
+
+import {APP_BASE_HREF} from '@angular/common';
+
+
 const notifierDefaultOptions: NotifierOptions = {
   position: {
       horizontal: {
@@ -103,6 +109,8 @@ const notifierDefaultOptions: NotifierOptions = {
     TNCComponent,
     CampaignComponent,
     CreateCampaignComponent,
+    BeneficiaryComponent,
+    BeneficiaryEditorComponent,
     ViewCampaignComponent,
     WallOfFameComponent,
     SubscriptionComponent,
