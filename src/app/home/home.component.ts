@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     },
     {
       headline: "Help us in spreading holy name and making life blissful",
-      src: "/assets/images/carousel/Nagar_kirtan.JPG",
+      src: "/assets/images/carousel/Nagar_Kirtan.jpg",
       text: "Call us to conduct kirtan in your locality",
       callToActionText: "Connect to start kirtan in your locality",
       linkToAction: "campaigns/edit"
@@ -74,19 +74,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
     {
       title: "HOME.NEED-JOB",
       content: "HOME.NEED-JOB-DET",
-      actionLink: "",
+      actionLink: "/login",
       actionText: "Join Now",
       img: "/assets/images/why-good-act/job-crisis.avif"
     }, {
       title: "HOME.MORE-CUST",
       content: "HOME.MORE-CUST-DET",
-      actionLink: "",
+      actionLink: "/login",
       actionText: "Join Now",
       img: "/assets/images/why-good-act/crowd1.jpg"
     }, {
       title: "HOME.RAISE-FUNDS",
       content: "HOME.RAISE-FUNDS-DET",
-      actionLink: "",
+      actionLink: "/login",
       actionText: "Join Now",
       img: "/assets/images/why-good-act/raise-funds.webp"
     }, {

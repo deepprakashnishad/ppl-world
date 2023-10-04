@@ -25,6 +25,9 @@
 				<button mat-button [matMenuTriggerFor]="services">
 					{{"NAV.SERVICES" | translate}}
 				</button>
+                <button mat-button (click)="navigateTo('/store')">
+					{{"NAV.STORE" | translate}}
+				</button>
 				<!-- <button mat-button (click)="navigateTo('/downloads')">
 					Download
 				</button> -->
@@ -35,7 +38,7 @@
 				<button mat-button [matMenuTriggerFor]="reports">
 					{{"NAV.REPORTS" | translate}}
 				</button>
-
+                
 				<mat-select fxFlex="10" class="big-navbar-select" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
 					<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 				</mat-select>
@@ -171,7 +174,7 @@
 			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.5</div>
+		<div class="version" fxFlexAlign="start">Version 1.0.6</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

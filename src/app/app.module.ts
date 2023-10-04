@@ -52,9 +52,8 @@ import { ViewFamilyDetailsComponent } from './marriage/view-family-details/view-
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 import { CasteSearchComponent } from './marriage/caste/caste-search.component';
-
+import { StoreComponent } from './static-page/store/store.component';
 import {APP_BASE_HREF} from '@angular/common';
-
 
 const notifierDefaultOptions: NotifierOptions = {
   position: {
@@ -126,7 +125,8 @@ const notifierDefaultOptions: NotifierOptions = {
     ViewFamilyDetailsComponent,
     ProfileViewerComponent,
     CasteSearchComponent,
-    ServiceCategoryEditorComponent
+    ServiceCategoryEditorComponent,
+      StoreComponent
    ],
   imports: [
     BrowserModule,

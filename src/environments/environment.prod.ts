@@ -5,7 +5,7 @@ export const environment = {
   appUrl: "good-act.web.app",
   mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IjZuUGM1QnR6YkZtSnRVNGVUTjFsY2FPdiIsIm1pZCI6IjY0YjdjODg5NzkwY2EwMDhiY2Y2ZTU4ZiIsIndlYnNpdGUiOiJodHRwczovL2dvb2QtYWN0LndlYi5hcHAvcGF5bWVudCIsImlhdCI6MTY5MTc0MzA0OSwiZXhwIjoxNzc4MTQzMDQ5fQ.VFM-2DkpgFmX_I_OgfFTLsJb_83BOhnnWqHSKvZCcp8",
   mid: "64b7c7944bf57d4abcd86978",
-  baseurl: "https://goodact.onrender.com",
+  baseurl: "https://goodact-vcm3.onrender.com",
   allpayurl: "https://node-allpay.onrender.com",
   pincodeUrl: "http://localhost:5000/api-pincode",
   // pincodeUrl: "https://api.postalpincode.in",

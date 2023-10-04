@@ -4,7 +4,7 @@
     "redirects": [],
     "rewrites":[{
       "source": "/api/:path*",
-      "destination": "https://goodact.onrender.com/:path"
+      "destination": "https://goodact-vcm3.onrender.com/:path"
     }, {
       "source": "/allpay/:path*",
       "destination": "https://node-allpay.onrender.com/:path"

@@ -52,6 +52,7 @@ export class MarriageProfile{
 		this.pr['et'] = "emp";
 		this.fd = [];
 		this.pref={};
+		this.c={};
 	}
 
 	static fromJSON(data: any){

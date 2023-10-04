@@ -12,5 +12,6 @@
 	"NOTIFICATION": "Notification",
 	"PIC": "Pictures/Photos",
 	"PROFILE_PIC": "Profile Pictures/Photos",
-	"OTHER_PIC": "Other Pictures/Photos"
+	"OTHER_PIC": "Other Pictures/Photos",
+	"TOTAL_BENEFICIARIES": "Total Beneficiaries"
 }

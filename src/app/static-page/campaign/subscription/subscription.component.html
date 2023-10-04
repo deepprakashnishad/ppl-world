@@ -1,6 +1,14 @@
 <div class="m-container" fxLayout="column">
 	<h2>Campaign Subscription Form</h2>
 	<h3>{{campaign.title}}</h3>
+    <div *ngIf="canSubscribeOtherDonors">
+        <mat-label>Subscribe for</mat-label>
+        <mat-radio-group aria-label="Subscribe for" [(ngModel)]="subscriptionForSelf">
+          <mat-radio-button [value]="true">Self</mat-radio-button>
+          <mat-radio-button [value]="false">Others</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    
 	<mat-form-field class="full-width">
 		<mat-label>Donation Amount</mat-label>
 		<input matInput placeholder="Donation Amount" type="number" [(ngModel)]="amount" class="form-control" min="25">
@@ -22,6 +30,7 @@
 	  <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
 	  <mat-datepicker #startDatePicker></mat-datepicker>
     </mat-form-field>
+  	<app-person-exact-match (personSelected)="inspirationSelected($event, 'inspiredBy')" [type]="'generic'" [inputLabel]="'Enter inspiring person mobile number'"></app-person-exact-match>
 	<div class="full-width"><mat-checkbox [(ngModel)]="isAnonymous">Is Anonymous</mat-checkbox></div>
 	<div>
 		<button class="full-width" class="full-width" mat-raised-button color="primary" (click)="subscribeToCampaign()">

@@ -31,7 +31,7 @@ import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
-
+import { StoreComponent } from './static-page/store/store.component';
 
 
 const routes: Routes = [
@@ -181,6 +181,11 @@ const routes: Routes = [
 		path: 'global-earning-report', 
 		component: GlobalEarningReportComponent,
 		data: { title: 'Transactions', permissions: []}
+	},
+    {
+		path: 'store', 
+		component: StoreComponent,
+		data: { title: 'Store', permissions: []}
 	},
 	{
 		path: 'admin', 

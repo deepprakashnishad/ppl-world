@@ -16,6 +16,9 @@
 				<span *ngIf="campaign?.reqf==='M'"> monthly</span>
 				<span *ngIf="campaign?.reqf==='Y'"> yearly</span>
 			</div>
+			<div class="summary" *ngIf="campaign && campaign.b && campaign.b.length>0">
+				{{"TOTAL_BENEFICIARIES" | translate}}: <span>{{campaign.b.length}}</span>
+			</div>
 			<div class="summary">Category:<span> {{campaign?.cat | titlecase}}</span></div>
 			<div class="summary">Created By: <span>{{campaign?.owner?.name}}</span></div>
 			<div class="summary">Status: <span>{{campaign?.s}}</span></div>
@@ -30,7 +33,7 @@
 		<p class="desc">{{campaign?.desc}}</p>
 	</div>
     
-    <mat-expansion-panel *ngIf="campaign.b.length>0">
+    <mat-expansion-panel *ngIf="campaign.b && campaign.b.length>0">
 		<mat-expansion-panel-header>
 			Total Beneficiaries - {{campaign.b.length}}
 		</mat-expansion-panel-header>

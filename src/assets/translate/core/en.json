@@ -70,7 +70,8 @@
 		"LOGIN": "Sign In/New User? Sign Up",
 		"LOGOUT": "Logout",
 		"PRIVACY": "Privacy Policy",
-		"TNC": "Terms of Use"
+		"TNC": "Terms of Use",
+        "STORE": "Store"
 	},
 
 	"HOME": {

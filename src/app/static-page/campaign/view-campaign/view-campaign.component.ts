@@ -24,7 +24,7 @@ import {
 })
 export class ViewCampaignComponent implements OnInit {
 
-	campaign: Campaign;
+	campaign: Campaign = new Campaign();
 
 	@ViewChild(CarouselComponent) carousel: CarouselComponent;
 

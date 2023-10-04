@@ -41,17 +41,31 @@ export class CampaignService {
         catchError(this.handleError('Get Token', null)));
   }
 
-  getSubscription(cid, amount, frequency, isAnonymous, startDate): Observable<any>{
+  getSubscription(cid, amount, frequency, isAnonymous, startDate, inspiration): Observable<any>{
     return this.http.post<any>(`${this.campaignUrl}/getSubscription`, {
       "cid": cid,
       "amount": amount,
       "freq": frequency,
       "isAnonymous": isAnonymous,
-      "startDate": startDate
+      "startDate": startDate,
+        "inspiration": inspiration
     })
       .pipe(
         catchError(this.handleError('Subscribe Campaign', null)));
   }
+    
+    subscribeDonor(cid, amount, frequency, isAnonymous, startDate, subscriptionFor): Observable<any>{
+        return this.http.post<any>(`${environment.baseurl}/DonorSubscription/subscribeOtherPerson`, {
+          "cid": cid,
+          "amount": amount,
+          "freq": frequency,
+          "isAnonymous": isAnonymous,
+          "startDate": startDate,
+            "subscriberId": subscriptionFor
+        })
+          .pipe(
+            catchError(this.handleError('Subscribe Campaign', null)));
+    }
 
   getRegularDonors(limit:number = 50, offset:number = 0): Observable<any>{
     return this.http.get<any>(`${this.campaignUrl}/getRegularDonors?limit=${limit}&offset=${offset}`)

@@ -66,6 +66,11 @@ export class ProfileEditorComponent implements OnInit {
         this.marraigeService.getProfileDetail(params.id).subscribe(result=>{
           if(result.success){
             this.mp = MarriageProfile.fromJSON(result.data);  
+
+            if(this.mp.o !== this.personId){
+              this.router.navigate(['/marriage-profile-viewer', this.mp.id]);
+            }
+            
             if(this.mp.dob && this.mp.dob>0){
               this.birthTimeTimestamp = this.mp.dob%(24*60);
               this.birthdateTimestamp = this.mp.dob - this.birthTimeTimestamp;
@@ -91,10 +96,6 @@ export class ProfileEditorComponent implements OnInit {
 
             if(this.mp.pref.maxDoB){
               this.prefMaxDobDateCntl.setValue(new Date(this.mp.pref.maxDoB*60*1000));
-            }
-
-            if(this.mp.o !== this.personId){
-              this.router.navigate(['/marriage-profile-viewer', this.mp.id]);
             }
           }else{
             this.notifier.notify("error", "Failed to get profile details")

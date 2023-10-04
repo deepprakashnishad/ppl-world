@@ -5,8 +5,10 @@
 	      [selectable]="false"
 	      removable="true"
 	      (removed)="remove(tag)">
-	      {{tag.tagname}}
-	      <mat-icon matChipRemove>cancel</mat-icon>
+	      <div *ngIf="tag">
+		      <span>{{tag.tagname}}</span>
+		      <mat-icon matChipRemove>cancel</mat-icon>
+		  </div>
 	    </mat-chip>
   	</mat-chip-list>
 	<input

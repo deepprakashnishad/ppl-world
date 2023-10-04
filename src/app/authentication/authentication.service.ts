@@ -66,15 +66,15 @@ export class AuthenticationService {
     if (sessionStorage.getItem(key)) {
       return sessionStorage.getItem(key);
     } else if (localStorage.getItem(key)) {
-      let data = {
+      /*let data = {
         token  : localStorage.getItem('token'),
         name : localStorage.getItem('name'),
         mobile : localStorage.getItem('mobile'),
         email : localStorage.getItem('email'),
         role : localStorage.getItem('role'),
         permissions : localStorage.getItem('permissions')
-      }
-      this.storeLocalData(data, "SESSION_STORAGE")
+      }*/
+      // this.storeLocalData(data, "SESSION_STORAGE")
       return localStorage.getItem(key);
     } else {
       return '';
@@ -187,7 +187,9 @@ export class AuthenticationService {
 
   storeLocalData(data: any, storageType): void {
     if (storageType === "LOCAL_STORAGE") {
-      localStorage.setItem('token', data.token, );
+      if(data.token){
+        localStorage.setItem('token', data.token );
+      }
       if(data.fbToken){
         sessionStorage.setItem('fbToken', data.fbToken);
       }
@@ -206,7 +208,9 @@ export class AuthenticationService {
       localStorage.setItem('tac', data.tac);
       localStorage.setItem('taw', data.taw);
     } else {
-      sessionStorage.setItem('token', data.token, );
+      if(data.token){
+        sessionStorage.setItem('token', data.token );
+      }
       if(data.fbToken){
         sessionStorage.setItem('fbToken', data.fbToken);
       }

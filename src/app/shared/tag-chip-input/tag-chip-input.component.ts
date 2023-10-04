@@ -8,6 +8,7 @@ import { map, startWith, switchMap, filter } from 'rxjs/operators';
 import { GeneralService } from 'src/app/general.service';
 import {MatDialog} from '@angular/material/dialog';
 import {TagEditorComponent} from './../tag-autocomplete/tag-editor/tag-editor.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-tag-chip-input',
@@ -42,9 +43,12 @@ export class TagChipInputComponent implements OnInit {
 	) { }
 
 	ngOnInit() {
-  	this.generalService.selectedLanguage.subscribe(result=>{
-  		this.selectedLanguage = result;
-  	});
+    this.generalService.selectedLanguage.subscribe(value=>{
+      this.selectedLanguage = value;
+
+      this.sanitizeInputTags();
+      this.sanitizeSelectedTags();
+    });
 	}
 
 	subscribeInput(){
@@ -61,7 +65,7 @@ export class TagChipInputComponent implements OnInit {
       this.inputTags = [];
     }
 		this.inputTags.forEach(ele => {
-			this.tags.push({tid: ele.tid, tagname: ele.tags[this.selectedLanguage]});
+			this.tags.push({tid: ele.tid, tagname: ele.tags[this.selectedLanguage]? ele.tags[this.selectedLanguage]: ele.tags[environment.defaultLang]});
 		});
 		this.subscribeInput();
 	}
@@ -72,8 +76,11 @@ export class TagChipInputComponent implements OnInit {
     }
     if(this.tags && this.tags.length>0){
       this.selectedTags = this.selectedTags.map(ele=>{
-        return this.tags.find(tag=>tag.tid===ele);
-      });  
+        return this.tags.find(tag=>{
+          return tag.tid===ele || tag.tid===ele.tid;
+        });
+      }); 
+      console.log(this.selectedTags)
     }    
   }
 
@@ -193,6 +200,7 @@ export class TagChipInputComponent implements OnInit {
     if(!obj){
       return "";
     }
+    console.log(obj);
     return obj[this.displayKey];
   }
 

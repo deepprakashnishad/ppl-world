@@ -1,0 +1,10 @@
+<div fxLayout="row wrap" fxLayoutAlign="center start" class="bContainer">
+    <div *ngFor="let aLink of amazonLinks">
+        <mat-card class="prod-card" (click)="navigateTo(aLink.link)">
+            <mat-card-header>
+                <mat-card-title>{{aLink.title[lang]}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="aLink.img" [alt]="aLink.title[lang]">
+        </mat-card>
+    </div>
+</div>
