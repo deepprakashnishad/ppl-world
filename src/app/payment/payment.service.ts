@@ -85,6 +85,22 @@ export class PaymentService {
        catchError(this.handleError('Retry Payment', null))); 
   }
 
+  collectDonationFromOthers(campaignId, campaignTitle, amount, isAnonymous, donor, modeOfPayment, paymentDetails): Observable<any>{
+    return this.http.post<any>(`${this.paymentUrl}/collectDonationOnBehalf`,
+      {
+        d: donor,
+        amt: amount,
+        cid: campaignId,
+        ct: campaignTitle,
+        anonymous: isAnonymous,
+        mop: modeOfPayment,
+        pd: paymentDetails
+      }
+    )
+    .pipe(
+       catchError(this.handleError('Retry Payment', null)));  
+  }
+
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       // Let the app keep running by returning an empty result.

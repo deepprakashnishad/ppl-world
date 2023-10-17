@@ -31,7 +31,7 @@ import { TagChipInputComponent } from './tag-chip-input/tag-chip-input.component
 import { ShareComponent } from './share/share.component';
 import { DropzoneDirective } from './uploader/dropzone.directive';
 import { NotifierModule } from 'angular-notifier';
-import { PersonModule } from '../person/person.module';
+// import { PersonModule } from '../person/person.module';
 import { PaymentModule } from '../payment/payment.module';
 import { PaymentComponent } from '../payment/payment.component';
 import { LazyImgDirective } from '../directives/lazy-img.directive';
@@ -86,6 +86,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FileUploadModule,
     FormsModule,
     HttpClientModule,
+    // PersonModule,
     PaymentModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
@@ -108,6 +109,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   	FlexLayoutModule, 
   	MaterialModule,
   	CommonModule,
+    // PersonModule,
     FileUploadModule,
     TranslateModule,
   	AssignRevokePermissionsComponent,

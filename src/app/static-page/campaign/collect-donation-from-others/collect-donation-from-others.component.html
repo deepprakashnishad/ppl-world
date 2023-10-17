@@ -1,0 +1,32 @@
+<div class="m-container" fxLayout="column">
+	<h2>Collect Donation</h2>    
+	<app-person-exact-match (personSelected)="donorSelected($event, 'd')" [type]="'generic'" [inputLabel]="'Donation Collected From'"></app-person-exact-match>
+	<mat-form-field class="full-width">
+		<mat-label>Donation Amount</mat-label>
+		<input matInput placeholder="Donation Amount" type="number" [(ngModel)]="amount" class="form-control" min="25">
+	</mat-form-field>
+	<div class="full-width">
+		<mat-checkbox [(ngModel)]="isAnonymous">Is Anonymous</mat-checkbox></div>
+	<div>
+	<mat-form-field>
+		<mat-label>Mode of Payment</mat-label>
+		<mat-select placeholder="Mode of payment" [(ngModel)]="modeOfPayment">
+			<mat-option value="CASH">CASH</mat-option>
+			<!-- <mat-option value="UPI">UPI</mat-option>
+			<mat-option value="NETBANKING">NETBANKING</mat-option>
+			<mat-option value="CC">CREDIT CARD</mat-option>
+			<mat-option value="DC">DEBIT CARD</mat-option>
+			<mat-option value="GA">GOODACT</mat-option> -->
+		</mat-select>
+	</mat-form-field>
+	<div *ngIf="modeOfPayment!=='CASH'">
+		<mat-form-field class="full-width">
+			<mat-label>Txn Reference Number</mat-label>
+			<input matInput placeholder="Txn Reference Number" type="number" [(ngModel)]="paymentDetails.txref" class="form-control">
+		</mat-form-field>
+	</div>
+	<button class="full-width" class="full-width" mat-raised-button color="primary" (click)="donate()">
+		Accept Donation
+	</button>
+	</div>
+</div>

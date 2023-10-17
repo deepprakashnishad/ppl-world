@@ -6,6 +6,8 @@ import {CampaignService} from './../campaign.service';
 import {Campaign} from './../campaign';
 import {SubscriptionComponent} from './../subscription/subscription.component';
 import { DonateFromGAComponent } from './../../../payment/donate-from-ga/donate-from-ga.component';
+import { CollectDonationFromOthersComponent } from './../collect-donation-from-others/collect-donation-from-others.component';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Slide } from "../../../shared/carousel/carousel.interface";
 import { AnimationType } from "../../../shared/carousel/carousel.animations";
 import { CarouselComponent } from "../../../shared/carousel/carousel.component";
@@ -30,12 +32,16 @@ export class ViewCampaignComponent implements OnInit {
 
   slides: Slide[] = [];
 
+  canCollectDonation:boolean = false;
+
 	constructor(
 		private router: ActivatedRoute,
 		private notifier: NotifierService,
     private _bottomSheet: MatBottomSheet,
-		private campaignService: CampaignService
+		private campaignService: CampaignService,
+		private authenticationService: AuthenticationService
 	){
+		this.canCollectDonation = this.authenticationService.authorizeUser(['CAN_COLLECT_DONATION']);
 	}
 
 	ngOnInit(){
@@ -67,7 +73,18 @@ export class ViewCampaignComponent implements OnInit {
   }
 
   donateFromBank(){
+		const bottomSheet = this._bottomSheet.open(DonateFromGAComponent, {data: this.campaign});
+    bottomSheet.afterDismissed().subscribe(result=>{
+      if(result.id){
+        this.notifier.notify("success", "Donation successfull");
+      }
+    });
+  }
 
+  collectFromOthers(){
+  	const bottomSheet = this._bottomSheet.open(CollectDonationFromOthersComponent, {data: this.campaign});
+    bottomSheet.afterDismissed().subscribe(result=>{
+    });	
   }
 
   subscribeCampaign(){

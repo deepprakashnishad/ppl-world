@@ -6,6 +6,8 @@ import { DonateFromGAComponent } from './donate-from-ga/donate-from-ga.component
 import { MaterialModule } from '../material.module';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+// import { PersonModule } from  'src/app/person/person.module';
+// import { SharedModule } from  'src/app/shared/shared.module';
 import { RazorpayButtonComponent } from './razorpay-payment-button/razorpay-payment-button.component';
 
 @NgModule({
@@ -13,13 +15,16 @@ import { RazorpayButtonComponent } from './razorpay-payment-button/razorpay-paym
     CommonModule,
     MaterialModule,
     FormsModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    // PersonModule
+    // SharedModule
   ],
   declarations: [
     PaymentComponent,
     RazorpayButtonComponent,
     DonateFromGAComponent,
-    DummyPaymentComponent
+    DummyPaymentComponent,
+    
   ],
   exports: [
     PaymentComponent, RazorpayButtonComponent, DummyPaymentComponent

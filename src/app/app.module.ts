@@ -45,6 +45,7 @@ import { ServiceOfferEditorComponent } from './employment/service-offer/service-
 import { ServiceDetailFormComponent } from './employment/service-offer/service-offer-editor/service-detail-form/service-detail-form.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
 import { ServiceCategoryEditorComponent } from './employment/category/service-category-editor.component';
+import { CollectDonationFromOthersComponent } from './static-page/campaign/collect-donation-from-others/collect-donation-from-others.component';
 
 import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
 import { FamilyDetailComponent } from './marriage/family-detail/family-detail.component';
@@ -126,7 +127,8 @@ const notifierDefaultOptions: NotifierOptions = {
     ProfileViewerComponent,
     CasteSearchComponent,
     ServiceCategoryEditorComponent,
-      StoreComponent
+    CollectDonationFromOthersComponent,
+    StoreComponent
    ],
   imports: [
     BrowserModule,
