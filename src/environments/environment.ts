@@ -6,7 +6,7 @@ export const environment = {
   appName: "Good Act",
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
-  slotPrice: 220,
+  slotPrice: 250,
   baseurl: "http://localhost:4200/api",
   allpayurl: "http://localhost:4200/allpay",
   pincodeUrl: "http://localhost:4200/api-pincode",

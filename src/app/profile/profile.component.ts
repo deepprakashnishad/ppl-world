@@ -99,15 +99,15 @@ export class ProfileComponent implements OnInit {
       this.slotCount = 11000;
     }
 
-    if(this.slotCount>0 && this.slotCount<=2){
-      this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 30);
-    }else if(this.slotCount >= 3 && this.slotCount <= 5){
-      this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 20);
-    }else if(this.slotCount >= 6 && this.slotCount <= 9){
-      this.totalAmountForSlots = this.slotCount*(environment.slotPrice + 10);
-    } else{
+    // if(this.slotCount>0 && this.slotCount<=2){
+    //   this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 30);
+    // }else if(this.slotCount >= 3 && this.slotCount <= 5){
+    //   this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 20);
+    // }else if(this.slotCount >= 6 && this.slotCount <= 9){
+    //   this.totalAmountForSlots = this.slotCount*(environment.slotPrice + 10);
+    // } else{
       this.totalAmountForSlots = this.slotCount*environment.slotPrice;
-    }
+    // }
   }
 
   approve(){

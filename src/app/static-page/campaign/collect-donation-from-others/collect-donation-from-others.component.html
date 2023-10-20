@@ -1,6 +1,6 @@
 <div class="m-container" fxLayout="column">
 	<h2>Collect Donation</h2>    
-	<app-person-exact-match (personSelected)="donorSelected($event, 'd')" [type]="'generic'" [inputLabel]="'Donation Collected From'"></app-person-exact-match>
+	<app-person-exact-match (personSelected)="donorSelected($event)" [type]="'generic'" [inputLabel]="'Donation Collected From'"></app-person-exact-match>
 	<mat-form-field class="full-width">
 		<mat-label>Donation Amount</mat-label>
 		<input matInput placeholder="Donation Amount" type="number" [(ngModel)]="amount" class="form-control" min="25">
