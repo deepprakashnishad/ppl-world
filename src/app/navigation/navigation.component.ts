@@ -93,7 +93,8 @@ export class NavigationComponent implements OnInit, AfterViewInit {
   		this.selectedLanguage = JSON.parse(selectedLang).mValue;
   		// translate.setDefaultLang(this.selectedLanguage);	
   	}else{
-  		this.selectedLanguage = this.langs[0].mValue;
+  		var defaultLanguage = this.langs.find(ele => ele.mValue===environment.defaultLang);
+  		this.selectedLanguage = defaultLanguage.mValue;
   	}
   	translate.setDefaultLang(this.selectedLanguage);
   	this.generalService.updateLanguage(this.selectedLanguage);

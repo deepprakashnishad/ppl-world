@@ -71,7 +71,9 @@
 		"LOGOUT": "Logout",
 		"PRIVACY": "Privacy Policy",
 		"TNC": "Terms of Use",
-        "STORE": "Store"
+        "STORE": "Store",
+        "REFUND": "Refund",
+        "SHIPPING": "Shipping & Delivery"
 	},
 
 	"HOME": {

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-tnc',
   templateUrl: './tnc.component.html',
-  styleUrls: []
+  styles: [".bContainer{padding: 32px;}"]
 })
 export class TNCComponent implements OnInit {
 

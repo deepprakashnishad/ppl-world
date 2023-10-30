@@ -1,4 +1,4 @@
-<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout fxLayoutAlign="center start">
+<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="32px">
 	<mat-card fxFlex.gt-md="50" fxFlex.gt-sm="80" >
 	  <form fxLayout="column" [formGroup]="cardForm">
 	    <p class="h4" fxFlexAlign.gt-xs="center">Write To Us</p>
@@ -31,5 +31,17 @@
 	      <button class="full-width" mat-raised-button type="submit"  [disabled]="cardForm.invalid" color="primary" (click)="submit();">Submit</button>
 	    </div>
 	  </form>
+	</mat-card>
+	<mat-card>
+		<mat-card-title>Contact Us:</mat-card-title>
+		<mat-card-content>
+			<div class="title">Last updated on Oct 30th 2023</div>
+			<p>You may contact us using the information below:</p>
+			<p>Merchant Legal entity name: Shri Shri Radha Govind Sewa Dham Trust</p>
+			<p>Registered Address: 335, Madauka Uparhar, Madauka Road, Prayagraj, Uttar Pradesh - 211007</p>
+			<p>Operational Address: H.N. 260/20 Chukhandi Keedganj, Police Station - Kydganj, Tahsil - Allahabad Sadar, District - Allahabad Allahabad UTTAR PRADESH 211003</p>
+			<p>Telephone No: +91-78808-73187</p>
+			<p>E-Mail ID: deep.prakash.nishad@gmail.com</p>
+		</mat-card-content>
 	</mat-card>
 </div>
