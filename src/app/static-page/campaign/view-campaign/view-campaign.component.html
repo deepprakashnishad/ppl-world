@@ -24,8 +24,8 @@
 			<div class="summary">Status: <span>{{campaign?.s}}</span></div>
 			<div fxLayout fxLayoutGap="16px" fxLayout.lt-md="column">
 				<button class="full-width" mat-raised-button color="primary" (click)="collectFromOthers()" *ngIf="canCollectDonation">Collect donation from others</button>
-				<button class="full-width" mat-raised-button color="primary" (click)="donateFromBank()">Donate from Bank Account</button>
-				<button class="full-width" mat-raised-button color="accent" (click)="donateFromGoodAct()">Donate From Good Act</button>
+				<button class="full-width" mat-raised-button color="error" (click)="donateFromBank()">Donate from Bank Account</button>
+				<!-- <button class="full-width" mat-raised-button color="accent" (click)="donateFromGoodAct()">Donate From Good Act</button> -->
 				<button class="full-width" mat-raised-button color="warn" (click)="subscribeCampaign()">Subscribe</button>
 			</div>
 		</div>

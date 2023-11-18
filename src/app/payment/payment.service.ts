@@ -53,6 +53,34 @@ export class PaymentService {
         catchError(this.handleError('Verify Razorpay payment', null)));
   }
 
+  initiatePhonepePaymentFromBackend(data): Observable<any>{
+    return this.http.post<any>(`${environment.baseurl}/phonepe/initiatePayment`, data)
+      .pipe(
+        catchError(this.handleError('Initiate Phonepe Payment', null))); 
+  } 
+
+  checkPhonepePaymentStatus(merchantTransactionId): Observable<any>{
+    return this.http.post<any>(`${environment.baseurl}/phonepe/checkPaymentStatus`, {
+      "merchantTransactionId": merchantTransactionId
+    })
+      .pipe(
+        catchError(this.handleError('Verify Phonepe Payment', null))); 
+  }
+
+  /*initiatePhonepePayment(payload, checksum): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'accept': 'application/json',
+        'X-Verify': checksum,
+        AuthInterceptorSkipHeader:''
+      })
+    };
+    return this.http.post<any>(environment.phonepeurl+environment.phonepe.payUrl, payload, httpOptions)
+    .pipe(
+        catchError(this.handleError('Call to phonepe url', null)));
+  }*/
+
   postTransactionToAllPayServer(data): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({

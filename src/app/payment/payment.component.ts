@@ -1,4 +1,4 @@
-import { Component, NgZone, OnInit, Input } from '@angular/core';
+import { Component, NgZone, OnInit, Input, Inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NotifierService } from 'angular-notifier';
@@ -7,6 +7,13 @@ import { environment } from 'src/environments/environment';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { Payment } from './payment';
 import { PaymentService } from './payment.service';
+import {
+  MatBottomSheet,
+  MatBottomSheetModule,
+  MatBottomSheetRef,
+  MAT_BOTTOM_SHEET_DATA
+} from '@angular/material/bottom-sheet';
+import { sha256 } from 'js-sha256';
 
 declare var Razorpay: any;
 
@@ -18,13 +25,18 @@ declare var Razorpay: any;
 export class PaymentComponent implements OnInit {
 
   readonly razorpay: string = "RAZORPAY";
+
+  readonly phonepe: string = "PHONEPE";
+
   @Input() action_name: string;
-  @Input() order: any;
+  @Input() order: any = {};
+  @Input() displayDetails: any = {};
 
   modeOfPayment: string = "online";
   orderId: string;
   payment: Payment = new Payment();
   instancePaymentComponent: PaymentComponent;
+  newAmount: number;
   amount: number;
 
   private subs: Subscription;
@@ -54,13 +66,28 @@ export class PaymentComponent implements OnInit {
   }
 
   constructor(
+    private _bottomSheetRef: MatBottomSheetRef<PaymentComponent>,
     private notifier: NotifierService,
     private authenticationService: AuthenticationService,
     private paymentService: PaymentService,
     private router: Router,
     private dialog: MatDialog,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
     private zone: NgZone
   ) { 
+    if(data.order){
+      this.order = data.order;
+    }
+
+    if(data.displayDetails){
+      this.displayDetails = data.displayDetails;
+    }
+
+    if(data.action_name){
+      this.action_name = data.action_name;
+    }
+
+    console.log(data);
   }
 
   ngOnInit() {
@@ -71,16 +98,28 @@ export class PaymentComponent implements OnInit {
       this.notifier.notify("success", "Order is created. Please check in my orders");
       this.postSuccessProcess({ success: true, msg: "Order is already placed" });
     }else{
+      this.order['paymentGateway'] = paymentGateway;
+
+      if(!this.order.amt || this.order.amt===undefined || this.order.amt===null){
+        this.order.amt = this.newAmount;
+      }
+
+      if(!this.order.amt || Number(this.order.amt.toString()) < 1){
+        return this.notifier.notify("error", "Amount cannot be less than 1");
+      } 
+
       this.paymentService.add(this.order).subscribe(result=>{
         if (result['success']) {
-          
           this.payment = Payment.fromJSON(result);
-
           // this.orderId = result['id'];
           
           this.amount = result['amount'];
-          this.initiateRazorpayForm(result);
-          
+          console.log("Initializing payment");
+          if(paymentGateway===this.phonepe){
+            this.initiatePhonepePaymentFromBackend(result);
+          }else if(paymentGateway===this.razorpay){
+            this.initiateRazorpayForm(result);
+          }
         } else {
           this.notifier.notify("error", "Failed to create order");
         }
@@ -96,6 +135,72 @@ export class PaymentComponent implements OnInit {
     if (this.subs) {
       this.subs.unsubscribe();
     }
+  }
+
+  initiatePhonepePaymentFromBackend(data){
+    if(!this.order.amt || this.order.amt===undefined || this.order.amt===null){
+      this.order.amt = this.newAmount;
+    }
+
+    if(!this.order.amt || Number(this.order.amt.toString()) < 1){
+      return this.notifier.notify("error", "Amount cannot be less than 1");
+    }    
+
+    var phonepeInputData = {
+      "merchantTransactionId": data.id,
+      "amount": data.amt,
+      "merchantUserId": this.authenticationService.getTokenOrOtherStoredData("id")?this.authenticationService.getTokenOrOtherStoredData("id"):"anonymous",
+      "redirectUrl": `${environment.appUrl}/payment-confirmation?merchantTransactionId=${data.id}&amount=${data.amt}`,
+      "redirectMode": "REDIRECT",
+      "callbackUrl": "https://goodact-vcm3.onrender.com/phonepe/callbackhandler",
+      "mobileNumber": this.authenticationService.getTokenOrOtherStoredData("mobile"),
+    }
+
+    this.paymentService.initiatePhonepePaymentFromBackend(phonepeInputData).subscribe(response=>{
+      if(response.success){
+        window.location = response.data.instrumentResponse.redirectInfo.url;
+      }``
+    });
+  }
+
+  initiatePhonepeForm(result){
+
+    /*if(!this.order.amt || this.order.amt===undefined || this.order.amt===null){
+      this.order.amt = this.newAmount;
+    }
+    console.log(this.order.amt);
+    if(!this.order.amt || Number(this.order.amt.toString()) < 1){
+      return this.notifier.notify("error", "Amount cannot be less than 1");
+    }
+    
+    var payload = {
+      "merchantId": environment.phonepe.merchantId,
+      "merchantTransactionId": "MT7850590068188104",
+      "amount": this.order.amt*100,
+      "merchantUserId": "TestUser123",
+      "redirectUrl": "http://localhost:4200/explore",
+      "redirectMode": "REDIRECT",
+      "callbackUrl": "https://goodact-vcm3.onrender.com/phonepe/callbackhandler",
+      "mobileNumber": "7880873187",
+      "paymentInstrument": {
+        "type": "PAY_PAGE"
+      }
+    }
+
+    var base64Payload = btoa(JSON.stringify(payload));
+    var endpoint = environment.phonepe.payUrl;
+    var saltKey=environment.phonepe.saltKey;
+    var saltIndex = environment.phonepe.saltIndex;
+
+    var sha256Payload = sha256(`${base64Payload}${endpoint}${saltKey}`);
+
+    var checksum = `${sha256Payload}###${saltIndex}`;
+
+    this.paymentService.initiatePhonepePayment({request: base64Payload}, checksum).subscribe(response=>{
+      if(response.success){
+        window.location = response.data.instrumentResponse.redirectInfo.url;
+      }
+    });*/
   }
 
   initiateRazorpayForm(result) {

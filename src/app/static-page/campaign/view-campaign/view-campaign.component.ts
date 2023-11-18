@@ -6,6 +6,7 @@ import {CampaignService} from './../campaign.service';
 import {Campaign} from './../campaign';
 import {SubscriptionComponent} from './../subscription/subscription.component';
 import { DonateFromGAComponent } from './../../../payment/donate-from-ga/donate-from-ga.component';
+import { PaymentComponent } from './../../../payment/payment.component';
 import { CollectDonationFromOthersComponent } from './../collect-donation-from-others/collect-donation-from-others.component';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { Slide } from "../../../shared/carousel/carousel.interface";
@@ -73,7 +74,19 @@ export class ViewCampaignComponent implements OnInit {
   }
 
   donateFromBank(){
-		const bottomSheet = this._bottomSheet.open(DonateFromGAComponent, {data: this.campaign});
+		const bottomSheet = this._bottomSheet.open(PaymentComponent, {
+			data: {
+				displayDetails: {
+					title: "Donation"
+				},
+				order: {
+					prod: this.campaign.title,
+					prodId: this.campaign.id,
+					prodDesc: this.campaign.desc
+				},
+				action_name: "Donate"
+			}
+		});
     bottomSheet.afterDismissed().subscribe(result=>{
       if(result.id){
         this.notifier.notify("success", "Donation successfull");

@@ -1,0 +1,13 @@
+<div fxLayout fxLayoutAlign="center center">
+	<div fxLayout="column" fxLayoutAlign="center center">
+		<div>
+			<img src="/assets/images/extras/loader.gif" height="250" width="250"  *ngIf="isPaymentSuccessful===0">
+			<img src="/assets/images/extras/success2.gif" height="250" width="250"  *ngIf="isPaymentSuccessful===1">
+			<img src="/assets/images/extras/failed2.gif" height="250"  width="250" *ngIf="isPaymentSuccessful===-1">	
+		</div>	
+		<div fxLayout="column" fxLayoutAlign="center center">
+			<h3>{{message1}}</h3>
+			<h2>{{message2}}</h2>
+		</div>
+	</div>
+</div>

@@ -16,5 +16,11 @@
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {"^/allpay": ""}
+    },
+    "/phonepe/*":{
+      "target": "https://api-preprod.phonepe.com/apis/pg-sandbox",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {"^/phonepe": ""}
     }
 }

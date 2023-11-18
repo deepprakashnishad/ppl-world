@@ -1,4 +1,4 @@
-<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="32px">
+<div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout fxLayout.lt-md="column" fxLayoutAlign="center start" fxLayoutGap="32px" *ngIf="currentRoute==='/contact-us'">
 	<mat-card fxFlex.gt-md="50" fxFlex.gt-sm="80" >
 	  <form fxLayout="column" [formGroup]="cardForm">
 	    <p class="h4" fxFlexAlign.gt-xs="center">Write To Us</p>
@@ -44,4 +44,15 @@
 			<p>E-Mail ID: deep.prakash.nishad@gmail.com</p>
 		</mat-card-content>
 	</mat-card>
+</div>
+
+<div class="bContainer" fxLayout="column" fxLayoutAlign="start start" *ngIf="currentRoute==='/refund-policy'">
+	<div class="title" fxFlexAlign="center">CANCELLATION &amp; REFUND POLICY</div>	
+	<h4>Last updated on Nov 13th 2023</h4>
+	<p>No cancellations and refunds are entertained.</p>
+</div>
+<div class="bContainer" fxLayout="column" fxLayoutAlign="start start"  *ngIf="currentRoute==='/shipping-policy'">
+	<div class="title" fxFlexAlign="center">Shipping &amp; Delivery Policy</div>	
+	<h4>Last updated on Nov 13th 2023</h4>
+	<p>Shipping and delivery not applicable for the business.</p>
 </div>

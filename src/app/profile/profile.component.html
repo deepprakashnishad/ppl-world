@@ -29,15 +29,15 @@
 				    </mat-expansion-panel-header>
 				    <div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
 						<div class="">{{'PROFILE.TEAM_SIZE' | translate}}: {{person.teamSize}}</div>
-						<div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div>
+						<!-- <div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div> -->
 						<div class="">{{'PROFILE.REFERRED_BY' | translate}}: {{person.referrer?.n}}</div>
 						<div class="">{{'PROFILE.SLOTS' | translate}}: {{person.currOrbit}}</div>
 					</div>
 					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayoutGap="8px" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
 						<div class="">{{'PROFILE.TC' | translate}}:<br>{{person.totalAmountCollected | currency: 'INR':'symbol-narrow'}}</div>
-						<div class="">{{ 'PROFILE.WITHDRAWABLE' | translate }}:<br>{{person.amtWithdrawable | currency: 'INR':'symbol-narrow'}}</div>
+						<!-- <div class="">{{ 'PROFILE.WITHDRAWABLE' | translate }}:<br>{{person.amtWithdrawable | currency: 'INR':'symbol-narrow'}}</div> -->
 						<div class="">{{'PROFILE.TAW' | translate}}:<br>{{person.totalAmountWithdrawnTillDate|currency: 'INR':'symbol-narrow'}}</div>
-						<!-- <div class="">{{'PROFILE.ACNL' | translate}}:<br>{{(person.amountCollectedForNextLevel?person.amountCollectedForNextLevel:0) | currency: 'INR':'symbol-narrow'}}</div> -->
+						<div class="">Total Donated Amount:<br>{{person.paidAmount|currency: 'INR':'symbol-narrow'}}</div>
 						<div class="">{{'PROFILE.DQ' | translate}}:<br>{{person.donationQuota | currency: 'INR':'symbol-narrow'}}</div>
 					</div>
 				</mat-expansion-panel>
@@ -82,7 +82,13 @@
 							color="primary"
 							[disabled]="buyButtonDisabled"
 							(click)="approve()">
-							Donate {{totalAmountForSlots | currency: 'INR':'symbol-narrow'}} &amp; Approve
+							Donate {{totalAmountForSlots | currency: 'INR':'symbol-narrow'}} using GoodAct Points
+						</button>
+						<button
+							mat-raised-button 
+							color="accent"
+							(click)="donate()">
+								Donate {{totalAmountForSlots | currency: 'INR':'symbol-narrow'}} via online
 						</button>
 					</div>
 				</mat-expansion-panel>

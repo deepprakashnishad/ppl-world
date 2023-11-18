@@ -30,7 +30,7 @@ export class CampaignComponent implements OnInit {
 	ngOnInit(){
 		this.categories = [
 			{key: "health", value: "Health/Medical"},
-			{key: "startup", value: "Entrepreneur"},
+			// {key: "startup", value: "Entrepreneur"},
 			{key: "education", value: "Education"},
 			{key: "adoption", value: "Adoption"},
 			{key: "agriculture", value: "Agriculture"},

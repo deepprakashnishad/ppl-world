@@ -9,6 +9,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // import { PersonModule } from  'src/app/person/person.module';
 // import { SharedModule } from  'src/app/shared/shared.module';
 import { RazorpayButtonComponent } from './razorpay-payment-button/razorpay-payment-button.component';
+import { PaymentConfirmationComponent } from './payment-confirmation/payment-confirmation.component';
 
 @NgModule({
   imports: [
@@ -24,10 +25,10 @@ import { RazorpayButtonComponent } from './razorpay-payment-button/razorpay-paym
     RazorpayButtonComponent,
     DonateFromGAComponent,
     DummyPaymentComponent,
-    
+    PaymentConfirmationComponent
   ],
   exports: [
-    PaymentComponent, RazorpayButtonComponent, DummyPaymentComponent
+    PaymentComponent, RazorpayButtonComponent, DummyPaymentComponent, PaymentConfirmationComponent
   ]
 })
 export class PaymentModule { }

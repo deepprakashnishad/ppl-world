@@ -111,6 +111,9 @@ export class ProfileComponent implements OnInit {
   }
 
   approve(){
+    this.notifier.notify("success", "Payment integration to be implemented");
+    return;
+    
     if(this.slotCount <=0 ){
       this.notifier.notify("error", "Slot count should be greater than 0");
       return;

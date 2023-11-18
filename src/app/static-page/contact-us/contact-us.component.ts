@@ -13,13 +13,15 @@ import { GeneralService } from './../../general.service';
 export class ContactUsComponent implements OnInit {
 
   cardForm: FormGroup;
+  currentRoute: string = "/contact-us";
 
   constructor(
     public fb: FormBuilder,
     private generalService: GeneralService,
     private notifier: NotifierService,
+    private router: Router
   ){
-
+    this.currentRoute = this.router.url;
   }
 
 	ngOnInit(){

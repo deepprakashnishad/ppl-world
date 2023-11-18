@@ -31,6 +31,7 @@ import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
+import { PaymentConfirmationComponent } from './payment/payment-confirmation/payment-confirmation.component';
 import { StoreComponent } from './static-page/store/store.component';
 
 
@@ -59,6 +60,11 @@ const routes: Routes = [
 		path: 'payment', 
 		component: DummyPaymentComponent,
 		data: { title: 'Payment', permissions: []}
+	},
+	{
+		path: 'payment-confirmation', 
+		component: PaymentConfirmationComponent,
+		data: { title: 'Payment Confirmation', permissions: []}
 	},
 	{
 		path: 'campaigns/edit', 
@@ -156,6 +162,16 @@ const routes: Routes = [
 		path: 'contact', 
 		component: ContactUsComponent,
 		data: { title: 'Contact-Us', permissions: []}
+	},
+	{
+		path: 'refund-policy', 
+		component: ContactUsComponent,
+		data: { title: 'Refund Policy', permissions: []}
+	},
+	{
+		path: 'shipping-policy', 
+		component: ContactUsComponent,
+		data: { title: 'Shipping Policy', permissions: []}
 	},
 	{
 		path: 'downloads', 

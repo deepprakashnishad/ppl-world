@@ -1,6 +1,6 @@
 {
-  "name": "com.aesm.store",
-  "displayName": "giriraj-store",
+  "name": "com.aesm.goodact",
+  "displayName": "ng-good-act",
   "version": "0.0.0",
   "description": "A sample Apache Cordova application that responds to the deviceready event.",
   "author": "Apache Cordova Team",
@@ -49,6 +49,7 @@
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",
     "idb": "^7.0.0",
+    "js-sha256": "^0.10.1",
     "ng2-dragula": "^2.1.1",
     "ng2-file-upload": "^1.3.0",
     "ngx-color-picker": "^11.0.0",

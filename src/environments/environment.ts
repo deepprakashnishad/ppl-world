@@ -8,11 +8,14 @@ export const environment = {
   production: false,
   slotPrice: 250,
   baseurl: "http://localhost:4200/api",
+  
   allpayurl: "http://localhost:4200/allpay",
+
+  phonepeurl: "http://localhost:4200/phonepe",
   pincodeUrl: "http://localhost:4200/api-pincode",
   mtoken: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXNzQ29kZSI6IjZuUGM1QnR6YkZtSnRVNGVUTjFsY2FPdiIsIm1pZCI6IjY0YjdjODg5NzkwY2EwMDhiY2Y2ZTU4ZiIsIndlYnNpdGUiOiJodHRwczovL2dvb2QtYWN0LndlYi5hcHAvcGF5bWVudCIsImlhdCI6MTY5MTc0MzA0OSwiZXhwIjoxNzc4MTQzMDQ5fQ.VFM-2DkpgFmX_I_OgfFTLsJb_83BOhnnWqHSKvZCcp8",
   mid: "64b7c7944bf57d4abcd86978",
-  appUrl: "localhost:4200",
+  appUrl: "http://localhost:4200",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
     authDomain: "good-act.firebaseapp.com",
@@ -26,6 +29,14 @@ export const environment = {
   razorpay: {
     keyId: "rzp_test_OhtTwkr00dbNU1"
   },
+
+  /*phonepe: {
+    payUrl: "/pg/v1/pay",
+    merchantId: "PGTESTPAYUAT93",
+    saltIndex: 1,
+    saltKey: "875126e4-5a13-4dae-ad60-5b8c8b629035"
+  },*/
+
   recaptcha_site_key: "6LdbScYcAAAAAMy3OZigFtko17jK8DiQvEy7YzV4",
   google_api_key: "AIzaSyBpqNa1E6nugGw6KMUU9YkXP49O2W1vDUEs",
 

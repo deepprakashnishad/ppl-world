@@ -1,1 +1,15 @@
-<button mat-raised-button color="primary" (click)="placeOrder(razorpay)">{{action_name}}</button>
+<div fxLayout="column">
+	<h2>{{displayDetails.title}}</h2>
+	<h3>{{order.prod}}</h3>	
+	<p>{{order.prodDesc}}</p>
+	<h4 *ngIf="order.amt">{{order.amt}}</h4>
+	<mat-form-field appearance="outline" *ngIf="!order.amt">
+	    <input matInput placeholder="Amount" type="number" id="inputAmtReqd" class="form-control" [(ngModel)]="newAmount">
+    </mat-form-field>
+
+	<button mat-raised-button color="primary" (click)="placeOrder(phonepe)">{{action_name}} using PhonePe</button>
+</div>
+
+
+<!-- <button mat-raised-button color="primary" (click)="placeOrder(razorpay)">{{action_name}} using RazorPay</button> -->
+

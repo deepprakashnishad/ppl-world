@@ -9,7 +9,7 @@
 		"TAW": "Amount WITHDRAWN",
 		"ACNL": "Collection for next orbit",
 		"DQ": "Donation Quota",
-		"P10X": "Personal 10X Community Details",
+		"P10X": "Personal Details",
 		"LEVELWISE": "Level wise & Orbit wise Downlines",
 		"APPROVE_NEW": "Approve New Joinee",
 		"BUY_SLOTS": "Donate & Get Slots",
@@ -17,7 +17,7 @@
 		"TRANSFER_CREDITS": "Transfer Credits",
 		"CREDITS": "Credits",
 		"TRANSFER": "Transfer",
-		"SLOT_COUNT": "Enter no. of slots to purchase",
+		"SLOT_COUNT": "Enter no. of slots",
 		"SLOTS": "Slots",
 		"RESET_PASS": "Reset Password"
 	},
@@ -111,14 +111,14 @@
 		"MATCH-MAKING-DET": "Our platform supports for searching partners. So if you are looking for a partner then join Good Act.",
 		"GOVT-DET": "We help people to connect to government schemes so that they can get completed benefit of government schemes.",
 	
-		"READY_RAISE_FUNDS": "Ready to Raise Funds for Ideas?",
+		"READY_RAISE_FUNDS": "Raise Funds for your campaign?",
 		"FULLFILL_DREAMS": "Want to fulfill your dreams?",
 		"HELP_OTHERS": "Want to help others?",
 		"TRUST_COUNT": "Trusted by more than 12000 fundraisers & counting more",
 
 		"POWER_OF_UNITY": "Power of Unity",
 		"UNITY_MSG": "Together more creativity as full energy of inidividual is brought out",
-		"START_PROJECT": "START A PROJECT"
+		"START_PROJECT": "START A CAMPAIGN"
 	},
 
 	"FOOTER":{
@@ -128,7 +128,7 @@
 	"ABOUT_US":{
 		"PARA1":"GoodAct, a platform offered by Shri Shri Radha Govind Sewa Dham Trust allows fundraising for different causes that is run by NGO or any other indidual or by SHRI SHRI RADHA GOVIND SEWA DHAM TRUST itself. We understand the difficulties of raising money, and we believe in the power of community support and sharing your story with the world. GoodAct platform is created for humanity, social causes and helping purpose not for earning.",
 		"DISCOVER_MSG": "Discover how to plan, create and manage your crowdfunding campaign",
-		"ENROLL_MSG": "Enroll into GoodAct community and spread to boost crowdfunding for your cause.",
+		"ENROLL_MSG": "Join GoodAct community and spread it for the benefit of the entire world.",
 
 		"TRUSTEES": "TRUSTEES",
 		"DEEP": "Deep P. Nishad",
@@ -154,7 +154,7 @@
 		"VPARA3": "Everyone on the planet is connected to each other. In case anyone needs help other person can provide help easily and instantly. Let's not allow anyone to suffer because in this world around the globe still humanity is alive and many are there like yourself ready to help the society.",
 
 		"HPARA1": "Meanwhile, crowdfunding is quickly becoming the internet's most exciting social trend for raising funds, by providing a convenient website platform that allows people to support any project that you create, simply by sharing it on various social media platforms like Facebook, Twitter, LinkedIn etc. Backed with innovative technology and efficient payment gateways, getting contributions from millions of people for your innovative projects or social campaigns is just a matter of a few clicks now.",
-		"HPARA2": "We connect campaign owners to funders in a way that is productive and engaging. When creative people work together, amazing things happen. We understand the difficulties of raising money, and we are passionate about providing an alternative funding source for startups, charities, and personal causes. We believe in the power of community support and sharing your story with the world. Ultimately, we want to build great company, have fun, and help people in a meaningful way.",
+		"HPARA2": "We connect campaign owners to funders in a way that is productive and engaging. When creative people work together, amazing things happen. We understand the difficulties of raising money, and we are passionate about providing an alternative funding source for charities and personal causes. We believe in the power of community support and sharing your story with the world. Ultimately, we want to build great company, have fun, and help people in a meaningful way.",
 		"HPARA3": "You can fund causes ( want to run a marathon to raise money for a cause you believe in ) , charities ( fund a NGO /charitable institution/non - profit) , events ( fund a music event , art show , marathon, concert ) & recoveries ( help people impacted by a flood, earthquake, cyclone etc)..",
 	
 		"EXP_FREE": "Experience Freedom",
