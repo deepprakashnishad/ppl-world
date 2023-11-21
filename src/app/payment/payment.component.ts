@@ -38,6 +38,8 @@ export class PaymentComponent implements OnInit {
   instancePaymentComponent: PaymentComponent;
   newAmount: number;
   amount: number;
+  extraInfo: any;
+  redirectUrl: string = "/";
 
   private subs: Subscription;
 
@@ -87,7 +89,17 @@ export class PaymentComponent implements OnInit {
       this.action_name = data.action_name;
     }
 
-    console.log(data);
+    if(data.order.amount){
+      this.order.amt = data.order.amount;
+    }
+
+    if(data.order.extraInfo){
+      this.order.extraInfo = data.order.extraInfo;
+    }
+
+    if(data.redirectUrl){
+      this.redirectUrl = data.redirectUrl;
+    }
   }
 
   ngOnInit() {
@@ -150,7 +162,7 @@ export class PaymentComponent implements OnInit {
       "merchantTransactionId": data.id,
       "amount": data.amt,
       "merchantUserId": this.authenticationService.getTokenOrOtherStoredData("id")?this.authenticationService.getTokenOrOtherStoredData("id"):"anonymous",
-      "redirectUrl": `${environment.appUrl}/payment-confirmation?merchantTransactionId=${data.id}&amount=${data.amt}`,
+      "redirectUrl": `${environment.appUrl}/payment-confirmation?merchantTransactionId=${data.id}&amount=${data.amt}&redirection_url=${this.redirectUrl}`,
       "redirectMode": "REDIRECT",
       "callbackUrl": "https://goodact-vcm3.onrender.com/phonepe/callbackhandler",
       "mobileNumber": this.authenticationService.getTokenOrOtherStoredData("mobile"),

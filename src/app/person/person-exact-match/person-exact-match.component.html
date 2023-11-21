@@ -1,6 +1,6 @@
 <mat-form-field class="full-width mFormField">
   <mat-label>{{inputLabel}}</mat-label>
-  <input matInput type="text" [(ngModel)]="mobileNumber" (keydown.enter)="fetchPersonList()">
+  <input matInput type="text" [(ngModel)]="mobileNumber" (keyup)="textChanged()" (keydown.enter)="fetchPersonList()">
   <button matSuffix mat-raised-button aria-label="Search" (click)="fetchPersonList()" color="primary">
     {{'SEARCH' | translate}} <mat-icon>search</mat-icon>
   </button>

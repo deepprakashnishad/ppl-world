@@ -14,6 +14,7 @@ import { environment } from './../../environments/environment';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { map, mergeMap, startWith, mergeMapTo } from 'rxjs/operators';
 import { ShareComponent } from './../shared/share/share.component';
+import { PaymentComponent } from './../payment/payment.component';
 import {PersonExactMatchComponent} from './../person/person-exact-match/person-exact-match.component';
 import {
   MatBottomSheet,
@@ -99,35 +100,30 @@ export class ProfileComponent implements OnInit {
       this.slotCount = 11000;
     }
 
-    // if(this.slotCount>0 && this.slotCount<=2){
-    //   this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 30);
-    // }else if(this.slotCount >= 3 && this.slotCount <= 5){
-    //   this.totalAmountForSlots = this.slotCount * (environment.slotPrice + 20);
-    // }else if(this.slotCount >= 6 && this.slotCount <= 9){
-    //   this.totalAmountForSlots = this.slotCount*(environment.slotPrice + 10);
-    // } else{
-      this.totalAmountForSlots = this.slotCount*environment.slotPrice;
-    // }
+    this.totalAmountForSlots = this.slotCount*environment.slotPrice;
   }
 
-  approve(){
-    this.notifier.notify("success", "Payment integration to be implemented");
-    return;
-    
+  validatePurchase(){
     if(this.slotCount <=0 ){
       this.notifier.notify("error", "Slot count should be greater than 0");
-      return;
+      return false;
     }
     if(this.totalAmountForSlots <=0 ){
       this.notifier.notify("error", "Amount should be greater than 0");
-      return;
+      return false;
     }
 
     if(!this.selectedPersonForApproval || !this.selectedPersonForApproval.id){
       this.notifier.notify("error", "Please select a person");
+      return false;
+    }
+    return true;
+  }
+
+  approve(){
+    if(!this.validatePurchase()){
       return;
     }
-
     if(this.person.amtWithdrawable < this.totalAmountForSlots){
       this.notifier.notify("error", `Insufficient balance. ${this.totalAmountForSlots - this.person.amtWithdrawable} more is required.`);
     }else{
@@ -155,6 +151,35 @@ export class ProfileComponent implements OnInit {
         this.buyButtonDisabled = false;
       });
     }
+  }
+
+  donate(){
+    if(!this.validatePurchase()){
+      return;
+    }
+    const bottomSheet = this._bottomSheet.open(PaymentComponent, {
+      data: {
+        displayDetails: {
+          title: "Donation"
+        },
+        order: {
+          prod: `Donation for ${this.slotCount} slots for ${this.selectedPersonForApproval.n} with mob no. ${this.selectedPersonForApproval.m}`,
+          prodId: "UExpSlots",
+          prodDesc: "",
+          amount: this.totalAmountForSlots,
+          extraInfo: {"buyerId": this.selectedPersonForApproval.id}
+        },
+        redirectUrl: "/profile",
+        action_name: "Donate Now"
+      }
+    });
+    bottomSheet.afterDismissed().subscribe(result=>{
+      if(result.id){
+        this.notifier.notify("success", "Donation successfull");
+      }else{
+        this.notifier.notify("error", "Some error occurred");
+      }
+    });
   }
 
   uploadCompleted(event, type){

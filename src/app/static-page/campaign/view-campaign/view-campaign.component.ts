@@ -84,6 +84,7 @@ export class ViewCampaignComponent implements OnInit {
 					prodId: this.campaign.id,
 					prodDesc: this.campaign.desc
 				},
+				redirectUrl: "/explore",
 				action_name: "Donate"
 			}
 		});

@@ -13,7 +13,13 @@ const MismatchPasswordValidator: ValidatorFn = (fg: FormGroup): ValidationErrors
   const pass = fg.get('materialFormCardPasswordEx');
   const confirmPass = fg.get('materialFormCardConfirmPass');
 
-  return pass && confirmPass && pass.value === confirmPass.value ? null : {passwordMismatched: true};
+  if (pass.pristine || confirmPass.pristine) {
+    return null;
+  }
+  var result = pass && confirmPass && pass.value === confirmPass.value ? null : {passwordMismatched: true};
+
+  confirmPass.setErrors(result);
+  return result;
 };
 
 
@@ -85,14 +91,14 @@ export class LoginComponent implements OnInit{
   onSubmit(): void {
     if (this.cardForm.valid) {
       this.errors = [];
-      const name = this.cardForm.get('materialFormCardNameEx').value;
+      const name = this.cardForm.get('materialFormCardNameEx').value.trim();
       const password = this.cardForm.get('materialFormCardPasswordEx').value;
-      const email = this.cardForm.get('materialFormCardEmailEx').value;
-      var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value;
+      const email = this.cardForm.get('materialFormCardEmailEx').value.trim();
+      var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value.trim();
 
-      if(!this.referrer){
+      /*if(!this.referrer){
         return this.notifier.notify("error", "Referrer missing");
-      }
+      }*/
 
       this.authService.signup(
         {name: name, password: password, email: email, mobile: mobile, parent: this.referrer}
@@ -102,7 +108,8 @@ export class LoginComponent implements OnInit{
             this.openSnackBar('User successfully created', 'Dismiss');
             this.storeData(this.authResponse);
             this.clearForm();
-            this.router.navigate(['']);
+            let redirectUrl = this.authService.redirectUrl && this.authService.redirectUrl.indexOf("login")===-1 ? this.authService.redirectUrl : '/profile';
+            this.router.navigate([redirectUrl]);
           }
         }, error => {
           this.notifier.notify("error", error.error.msg);
@@ -143,7 +150,7 @@ export class LoginComponent implements OnInit{
             this.notifier.notify("warning", "Please reset your password from profile page");
             this.router.navigate(["reset-password"]);  
           }
-          let redirectUrl = this.authService.redirectUrl && this.authService.redirectUrl.indexOf("login")===-1 ? this.authService.redirectUrl : '';
+          let redirectUrl = this.authService.redirectUrl && this.authService.redirectUrl.indexOf("login")===-1 ? this.authService.redirectUrl : '/profile';
           this.router.navigate([redirectUrl]);
         }
       }, (error) => {

@@ -26,6 +26,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { HomeComponent } from './home/home.component';
 import { AboutUsComponent } from './static-page/about-us/about-us.component';
 import { ProfileComponent } from './profile/profile.component';
+import { GuideComponent } from './guide/guide.component';
 import { FaqComponent } from './static-page/faq/faq.component';
 import { ContactUsComponent } from './static-page/contact-us/contact-us.component';
 import { CampaignComponent } from './static-page/campaign/campaign.component';
@@ -128,7 +129,8 @@ const notifierDefaultOptions: NotifierOptions = {
     CasteSearchComponent,
     ServiceCategoryEditorComponent,
     CollectDonationFromOthersComponent,
-    StoreComponent
+    StoreComponent,
+    GuideComponent
    ],
   imports: [
     BrowserModule,

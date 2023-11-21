@@ -87,7 +87,7 @@ export class AuthenticationService {
   		m: registrationData.mobile,
   		e: registrationData.email,
   		password: registrationData.password,
-      p: registrationData.parent.id
+      p: registrationData.parent?registrationData.parent.id: undefined
   	};
   	return this.http.post<AuthResponse>(
   		this.signupUrl, mRegistrationData, httpOptions)

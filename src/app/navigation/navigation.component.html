@@ -31,11 +31,11 @@
 				<!-- <button mat-button (click)="navigateTo('/downloads')">
 					Download
 				</button> -->
-				<button mat-button (click)="navigateTo('/profile')">
+				<button mat-button (click)="navigateTo('/profile')" *ngIf="isLoggedIn">
 					{{"NAV.PROFILE" | translate}}
 				</button>
 
-				<button mat-button [matMenuTriggerFor]="reports">
+				<button mat-button [matMenuTriggerFor]="reports" *ngIf="isLoggedIn">
 					{{"NAV.REPORTS" | translate}}
 				</button>
                 
@@ -177,7 +177,7 @@
 			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.6</div>
+		<div class="version" fxFlexAlign="start">Version 1.0.7</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

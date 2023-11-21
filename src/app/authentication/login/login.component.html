@@ -43,6 +43,7 @@
           	<span matPrefix>
             	<i class="fa fa-user prefix grey-text"></i>&nbsp;&nbsp;
             </span>
+            <mat-error >Please provide your full name</mat-error>
           </mat-form-field>
 
           <!-- Material input email -->
@@ -51,6 +52,7 @@
             <span matPrefix>
             	<i class="fa fa-mobile prefix grey-text"></i>&nbsp;&nbsp;
             </span>
+            <mat-error >Please provide a valid 10 digit mobile number</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -58,6 +60,7 @@
             <span matPrefix>
             	<i class="fa fa-envelope prefix grey-text"></i>&nbsp;&nbsp;
             </span>
+            <mat-error >Please provide a valid email</mat-error>
           </mat-form-field>
 
           <!-- Material input password -->
@@ -67,6 +70,7 @@
             	<i class="fa fa-lock prefix grey-text"></i>&nbsp;&nbsp;
             </span>
             <mat-icon class="mouse-hand" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error >Password should have atleast 4 characters</mat-error>
           </mat-form-field>
 
           <mat-form-field class="password" appearance="outline">
@@ -74,6 +78,7 @@
             	<i class="fa fa-lock prefix grey-text"></i>&nbsp;&nbsp;
             </span>
             <input [type]="hide?'password':'text'" id="materialFormCardConfirmPass" formControlName="materialFormCardConfirmPass" class="form-control" matInput placeholder="{{'SIGNUP_FORM.CONFIRM_PASSWORD' | translate}}" (keyup.enter)="onSubmit()">
+            <mat-error >Password and confirm password not matching</mat-error>
           </mat-form-field>
           <!-- <mat-error *ngIf="cardForm.errors?.passwordMismatched && cardForm.controls['materialFormCardConfirmPass'].touched && cardForm.controls['materialFormCardPasswordEx'].touched && cardForm.controls['materialFormCardConfirmPass'].dirty &&
             cardForm.controls['materialFormCardPasswordEx'].dirty">Passwords do not match</mat-error> -->
@@ -82,7 +87,7 @@
           errorLabel="{{'SELECT_PERSON_PROMPT'|translate}}" [isMandatory]="true"></app-person-exact-match>
           <!-- <mat-error *ngIf="!referrer">Please select referrer</mat-error> -->
           <div>
-            <button class="full-width" mat-raised-button type="reset" [disabled]="cardForm.invalid || !referrer" color="primary" (click)="onSubmit();">{{'SIGNUP_FORM.REGISTER'|translate}}</button>
+            <button class="full-width" mat-raised-button type="reset" [disabled]="cardForm.invalid" color="primary" (click)="onSubmit();">{{'SIGNUP_FORM.REGISTER'|translate}}</button>
           </div>
         </form>
       </mat-tab>

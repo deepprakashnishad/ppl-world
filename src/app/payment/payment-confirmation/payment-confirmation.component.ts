@@ -22,11 +22,19 @@ export class PaymentConfirmationComponent implements OnInit {
 
   merchantTransactionId: string;
 
+  redirectUrl: string = "/";
+
   isPaymentSuccessful: number = 0;
 
   message1: string = "Please Wait...Payment Verification In Progress";
 
   message2: string = "Thank you for contribution towards society.";
+
+  remainingTime: number=6;
+
+  navigateTimeout: any;
+
+  decrementInterval: any;
 
   constructor(
     private paymentService: PaymentService,
@@ -35,11 +43,14 @@ export class PaymentConfirmationComponent implements OnInit {
     private router: Router
   ) { 
     this.activatedRoute.queryParams.subscribe(params=>{
+      if(params['redirection_url']){
+        this.redirectUrl = params['redirection_url'];
+      }
       if(params['merchantTransactionId']){
         this.merchantTransactionId = params['merchantTransactionId'];  
         this.fetchPaymentStatus();
       }else{
-        // this.router.navigate(['/']);
+        this.router.navigate(['/']);
       }
     });
   }
@@ -55,16 +66,22 @@ export class PaymentConfirmationComponent implements OnInit {
         this.notifier.notify("success", "Payment successfull");
         this.isPaymentSuccessful = 1;
         this.message1 = "Payment successfull";
-        setTimeout(()=>{
-          this.router.navigate(['/']);
-          // window.location = environment.appUrl;
-        }, 12000)
+        this.decrementInterval = setInterval(()=>{this.remainingTime = this.remainingTime-1}, 1000, "decrementTime");
+        this.navigateTimeout = setTimeout(()=>{
+          this.router.navigate([this.redirectUrl]);
+        }, 6000, "navigate");
       }else{
         this.notifier.notify("error", "Payment failed. Please try again.");
         this.isPaymentSuccessful = -1;
         this.message1 = "Payment failed";
       }
     });
+  }
+
+  navigateTo(){
+    clearTimeout(this.navigateTimeout);
+    clearInterval(this.decrementInterval);
+    this.router.navigate([this.redirectUrl]);    
   }
   
 }

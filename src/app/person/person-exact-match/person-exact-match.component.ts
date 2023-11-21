@@ -56,9 +56,9 @@ export class PersonExactMatchComponent implements OnInit {
   }
 
   fetchPersonList(){
-    if(!this.mobileNumber || this.mobileNumber.length!=10){
+    if(!this.mobileNumber || this.mobileNumber.length!=10 || !this.mobileNumber.match(/^\d{10}$/)){
       this.notifier.notify("error", this.translate.instant("VALID_MOBILE_PROMPT"));
-      return;
+      return; 
     }
     this.personService.fetchReferrer(`+91${this.mobileNumber}`, this.detail, this.type)
     .subscribe((person)=>{
@@ -71,5 +71,11 @@ export class PersonExactMatchComponent implements OnInit {
   reset(){
     this.person = {n:"", m:"", s:"", e: "", p:"", co: ""};
     this.mobileNumber = "";
+  }
+
+  textChanged(){
+    if(this.mobileNumber && this.mobileNumber.length===10 && this.mobileNumber.match(/^\d{10}$/)){
+      this.fetchPersonList();
+    }
   }
 }
