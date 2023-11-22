@@ -51,7 +51,18 @@ export class AppComponent implements OnInit {
       }
     );
     this.updateLocalTags();
+
+    window.addEventListener('message', this.receiveMessage.bind(this), false);
     // this.requestPermission();
+  }
+
+  receiveMessage(event: MessageEvent) {
+    if (event.origin !== 'http://localhost:1337' && event.origin !== 'https://ai-expert.onrender.com') {
+      return;
+    }
+
+    // Do something with the message data
+    console.log('Received message from iframe:', event.data);
   }
 
   installPwa(): void {
@@ -89,7 +100,10 @@ export class AppComponent implements OnInit {
         });
         
       })  
-    });
-    
+    }); 
+  }
+
+  botResponded(event){
+    console.log(event);
   }
 }
