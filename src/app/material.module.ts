@@ -38,7 +38,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
-import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatBottomSheetModule, MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { MatDividerModule } from '@angular/material/divider';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 
@@ -135,7 +135,11 @@ export class MaterialModule {
   static forRoot(): ModuleWithProviders<MaterialModule> {
       return {
           ngModule: MaterialModule,
-          providers: [MatIconRegistry]
+          providers: [
+            MatIconRegistry,
+            { provide: MatBottomSheetRef, useValue: {} },
+            { provide: MAT_BOTTOM_SHEET_DATA, useValue: {} }
+          ]
       };
   }
 }

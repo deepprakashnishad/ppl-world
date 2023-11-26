@@ -1,10 +1,32 @@
 <div class="bContainer">
-	<div *ngIf="inactive">
+	<div *ngIf="person.status==='approval_pending'">
 		<h3>Hare Krishna, {{personName}}</h3>
-		<h4>Become an active member of Shri Shri Radha Govind Sewa Dham Trust and enjoy following benefits</h4>
+		<h4>Enjoy following benefits by becoming an active member of Shri Shri Radha Govind Sewa Dham Trust</h4>
 		<ul>
-			<li>Get access to platform to earn from numerous sources lifetime by referring your friends and relatives</li>
-			<li></li>
+			<li>Refer once, get reward lifetime</li>
+			<li>Innumerous products &amp; services</li>
+			<li>Redirect all your friends, relatives and connections. Enjoy benefits on everything they spent.</li>
+			<li>You get products and services of your choice.</li>
+			<li>More digital slots more gains.</li>
 		</ul>
+		<button mat-raised-button (click)="activate">Activate Now</button>
+		<div fxLayout="column" fxLayoutGap="8px" *ngIf="activate">
+			<mat-form-field>
+				<mat-label>{{'PROFILE.SLOT_COUNT' | translate}}</mat-label>
+				<button matPrefix mat-icon-button (click)="slotCount=slotCount-1; slotCountUpdated(slotCount)"><mat-icon>remove</mat-icon></button>
+				<input style="text-align:center;" matInput placeholder="{{'PROFILE.SLOT_COUNT' | translate}}" type="number" [(ngModel)]="slotCount" class="form-control" (keyup)="slotCountUpdated($event)" (change)="slotCountUpdated($event)">
+				<button matSuffix mat-icon-button (click)="slotCount=slotCount+1;slotCountUpdated(slotCount)"><mat-icon>add</mat-icon></button>
+			</mat-form-field>
+			<h5>{{totalAmountForSlots | currency: 'INR':'symbol-narrow'}}</h5>
+			<app-person-exact-match [mobile]="person.m" (personSelected)="personSelected($event, 'SLOT_PURCHASE')" [type]="'generic'" #boughtForSearchBox></app-person-exact-match>
+			<div fxLayout fxLayout.lt-md="column" fxLayoutGap="16px">
+				<button
+					mat-raised-button 
+					color="accent"
+					(click)="donate()">
+						Donate Online
+				</button>
+			</div>
+		</div>
 	</div>
 </div>

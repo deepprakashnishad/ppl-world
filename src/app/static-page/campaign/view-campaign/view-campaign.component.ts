@@ -89,7 +89,7 @@ export class ViewCampaignComponent implements OnInit {
 			}
 		});
     bottomSheet.afterDismissed().subscribe(result=>{
-      if(result.id){
+      if(result && result.id){
         this.notifier.notify("success", "Donation successfull");
       }
     });
