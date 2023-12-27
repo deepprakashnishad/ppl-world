@@ -3,6 +3,7 @@ import { Router, NavigationEnd } from '@angular/router'
 import { SwUpdate } from '@angular/service-worker';
 import { PwaService } from './pwa.service';
 import { GeneralService } from './general.service';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AuthenticationService } from './authentication/authentication.service';
 import { StorageService } from './storage.service';
 import { AngularFireMessaging } from '@angular/fire/messaging';
@@ -12,13 +13,29 @@ import { MyIdbService, TAG } from './my-idb.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [
+  trigger('toggleMenu', [
+
+    transition(':enter', [
+      style({opacity: 0}),
+      animate('500ms', style({opacity: 1}))
+    ]),
+    transition(':leave', [
+        style({opacity: 1}),
+        animate('500ms', style({opacity: 0}))
+      ])
+    ])
+  ]
 })
 export class AppComponent implements OnInit {
   title = 'shop-manager';
   isShowNavigation = true;
   pwa: PwaService;
   isLoggedIn: boolean;
+  message: string = "";
+
+  displayNotification = false;
 
   constructor(
     private router: Router,
@@ -30,6 +47,10 @@ export class AppComponent implements OnInit {
     private storageService: StorageService
   ) {
     this.pwa = this.pwaService;
+
+    /*setInterval(()=>{
+      this.displayNotification = !this.displayNotification;
+    }, 5000);*/
   }
 
   ngOnInit() {

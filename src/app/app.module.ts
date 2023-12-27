@@ -55,6 +55,7 @@ import { ProfileListComponent } from './marriage/profile-list/profile-list.compo
 import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer.component';
 import { CasteSearchComponent } from './marriage/caste/caste-search.component';
 import { StoreComponent } from './static-page/store/store.component';
+import { LeadsComponent } from './static-page/store/leads/leads.component';
 import {APP_BASE_HREF} from '@angular/common';
 
 const notifierDefaultOptions: NotifierOptions = {
@@ -130,6 +131,7 @@ const notifierDefaultOptions: NotifierOptions = {
     ServiceCategoryEditorComponent,
     CollectDonationFromOthersComponent,
     StoreComponent,
+    LeadsComponent,
     GuideComponent
    ],
   imports: [

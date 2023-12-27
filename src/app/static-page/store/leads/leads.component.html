@@ -1,0 +1,20 @@
+<div class="bContainer" fxLayout="column">
+	<mat-form-field class="full-width">
+		<mat-label>Buyer Name</mat-label>
+		<input matInput type="text" [(ngModel)]="name"/>
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<mat-label>Buyer Mobile</mat-label>
+		<input matInput type="text" [(ngModel)]="mobile"/>
+	</mat-form-field>
+	<mat-form-field class="full-width">
+		<mat-label>Buyer Pincode</mat-label>
+		<input matInput type="text" [(ngModel)]="pincode" (change)="getPincodeDetail()" (keydown.enter)="getPincodeDetail()"/>
+		<button matSuffix mat-icon-button color="accent" (click)=getPincodeDetail()><mat-icon>refresh</mat-icon></button>
+	</mat-form-field>
+	<app-autocomplete-with-add [enableAdd]="false" [items]="availableAreas" [label]="'Area'" [selectedItem]="area" (tagSelected)="areaSelected($event)"></app-autocomplete-with-add>
+  	<h5>{{city}}, {{state}}</h5>	
+	<app-person-exact-match (personSelected)="referrerSelected($event)" [type]="'generic'" [errorLabel]="'Referrer'" #referrer></app-person-exact-match>
+
+	<button class="full-width" mat-raised-button color="primary" (click)="save()">Save</button>
+</div>

@@ -10,7 +10,7 @@
 				</div>
 				<div class="sub-title" fxFlexAlign="center">{{person.email}} <span *ngIf="person.isEmailVerified"><mat-icon [ngStyle]="{'color':'green'}">verified</mat-icon></span></div>
 				<div class="sub-title">Status: {{person.status}}</div>
-				<app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment>
+				<!-- <app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment> -->
 				<a mat-link-button [routerLink]="'/reset-password'">{{'PROFILE.RESET_PASS' | translate}}</a>
 				<button mat-raised-button color="primary" (click)="openShareBottomSheet()">{{'SHARE' | translate}} <mat-icon>share</mat-icon></button>
 				<button mat-raised-button  color="accent"  (click)="requestNotification()">{{'NOTIFICATION' | translate}}</button>

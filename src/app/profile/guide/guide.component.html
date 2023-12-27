@@ -1,20 +1,19 @@
 <div class="bContainer">
-	<div *ngIf="person.status==='approval_pending'">
-		<h3>Hare Krishna, {{personName}}</h3>
-		<h4>Enjoy following benefits by becoming an active member of Shri Shri Radha Govind Sewa Dham Trust</h4>
-		<ul>
-			<li>Refer once, get reward lifetime</li>
-			<li>Innumerous products &amp; services</li>
-			<li>Redirect all your friends, relatives and connections. Enjoy benefits on everything they spent.</li>
-			<li>You get products and services of your choice.</li>
-			<li>More digital slots more gains.</li>
-		</ul>
-		<button mat-raised-button (click)="activate">Activate Now</button>
-		<div fxLayout="column" fxLayoutGap="8px" *ngIf="activate">
+	<div *ngIf="person.status==='APPROVAL_PENDING'">
+		<h3>Hare Krishna {{person.name}},</h3>
+		<h4>Becoming an active member of Shri Shri Radha Govind Sewa Dham Trust and enjoy</h4>
+		
+		<h2>Refer once, get reward lifetime on innumerous products &amp; services</h2>
+		<div fxLayout fxLayoutGap="16px">
+			<button mat-mini-fab (click)="dialogRef.close()" color="disabled"><mat-icon>close</mat-icon></button>
+			<button class="full-width" mat-raised-button (click)="donate()" color="primary">Activate Now by Donating Rs 500/- only</button>
+		</div>
+		
+		<!-- <div fxLayout="column" fxLayoutGap="8px" *ngIf="activate">
+			<mat-label>{{'PROFILE.SLOT_COUNT' | translate}}</mat-label>
 			<mat-form-field>
-				<mat-label>{{'PROFILE.SLOT_COUNT' | translate}}</mat-label>
-				<button matPrefix mat-icon-button (click)="slotCount=slotCount-1; slotCountUpdated(slotCount)"><mat-icon>remove</mat-icon></button>
-				<input style="text-align:center;" matInput placeholder="{{'PROFILE.SLOT_COUNT' | translate}}" type="number" [(ngModel)]="slotCount" class="form-control" (keyup)="slotCountUpdated($event)" (change)="slotCountUpdated($event)">
+				<button matPrefix mat-icon-button (click)="slotCount=slotCount-1>0?slotCount-1:1; slotCountUpdated(slotCount)"><mat-icon>remove</mat-icon></button>
+				<input style="text-align:center;" matInput type="number" [(ngModel)]="slotCount" class="form-control" (keyup)="slotCountUpdated($event)" (change)="slotCountUpdated($event)">
 				<button matSuffix mat-icon-button (click)="slotCount=slotCount+1;slotCountUpdated(slotCount)"><mat-icon>add</mat-icon></button>
 			</mat-form-field>
 			<h5>{{totalAmountForSlots | currency: 'INR':'symbol-narrow'}}</h5>
@@ -27,6 +26,16 @@
 						Donate Online
 				</button>
 			</div>
+		</div> -->
+	</div>
+	<div *ngIf="person.status==='ACTIVE' && person.directDownlines.length<5">
+		<h3>Hare Krishna {{person.name}},</h3>
+		<h3>Make your 5 friend active member and you become global member</h3>
+		
+		<h2>Get benefitted from each and every sale.</h2>
+		<div fxLayout fxLayoutGap="16px">
+			<button mat-mini-fab (click)="dialogRef.close()" color="disabled"><mat-icon>close</mat-icon></button>
+			<button fxFlex="stretch" mat-raised-button (click)="openShareBottomSheet()" color="primary">Share Now <mat-icon>share</mat-icon></button>
 		</div>
 	</div>
 </div>

@@ -2,7 +2,7 @@
 	<h2>{{displayDetails.title}}</h2>
 	<h3>{{order.prod}}</h3>	
 	<p>{{order.prodDesc}}</p>
-	<h4 *ngIf="order.amt">{{order.amt}}</h4>
+	<h4 *ngIf="order.amt">{{order.amt  | currency: 'INR':'symbol-narrow'}}</h4>
 	<mat-form-field appearance="outline" *ngIf="!order.amt">
 	    <input matInput placeholder="Amount" type="number" id="inputAmtReqd" class="form-control" [(ngModel)]="newAmount">
     </mat-form-field>

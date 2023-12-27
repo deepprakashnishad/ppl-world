@@ -225,5 +225,12 @@
 		"AL": "Address Line",
 		"LANDMARK": "Landmark",
 		"MOB": "Mobile"
+	},
+
+	"MESSAGES":{
+		"NEW": "Register for free and enjoy costly services like matrimonial service, job consultancy, financial consultancy etc for free",
+		"INACTIVE": "Become a proud active member just donating Rs 500 to spread the community services and get an opportunity to earn from number of products and services",
+		"ACTIVE": "Refer once and enjoy lifetime rewards",
+		"ACTIVE2": "वैश्विक सदस्य बनने के लिए केवल 5 सक्रिय सदस्य प्राप्त करें। ट्रस्ट द्वारा की गई प्रत्येक उत्पाद और सेवा की बिक्री से आपको लाभ मिलता है।"		
 	}
 }

@@ -10,6 +10,12 @@
 	<!-- Main -->
 	<main fxLayout="column" fxFlex>
 		<router-outlet></router-outlet>		
+		<!-- <div  *ngIf="displayNotification" class="notification-message" [@toggleMenu]>
+			<span *ngIf="msgType==='NEW'">{{"MESSAGES.NEW" | translate}}</span>
+			<span *ngIf="msgType==='INACTIVE'">{{"MESSAGES.INACTIVE" | translate}}</span>
+			<span *ngIf="msgType==='ACTIVE'">{{"MESSAGES.ACTIVE" | translate}}</span>
+			<span *ngIf="msgType==='ACTIVE2'">{{"MESSAGES.ACTIVE2" | translate}}</span>
+		</div> -->
 		<!-- <iframe class="chatbot" 
 			src="http://localhost:1337/" ></iframe>	 -->
 	</main>

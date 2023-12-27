@@ -14,12 +14,12 @@ import { environment } from './../../environments/environment';
 import { AngularFireMessaging } from '@angular/fire/messaging';
 import { map, mergeMap, startWith, mergeMapTo } from 'rxjs/operators';
 import { ShareComponent } from './../shared/share/share.component';
-// import { PaymentComponent } from './../payment/payment.component';
+import { PaymentComponent } from './../payment/payment.component';
 import {PersonExactMatchComponent} from './../person/person-exact-match/person-exact-match.component';
-// import {GuideComponent} from './guide/guide.component';
-/*import {
+import {GuideComponent} from './guide/guide.component';
+import {
   MatBottomSheet
-} from '@angular/material/bottom-sheet';*/
+} from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
 
   order: any;
 
-  totalAmountForSlots: number;
+  totalAmountForSlots: number = 2500;
 
   slotCount: number = 10;
 
@@ -63,7 +63,7 @@ export class ProfileComponent implements OnInit {
     private afMessaging: AngularFireMessaging,
     private router: Router,
     private generalService: GeneralService,
-    // private _bottomSheet: MatBottomSheet,
+    private _bottomSheet: MatBottomSheet,
     private notifier: NotifierService,
     private authService: AuthenticationService,
     private translate: TranslateService,
@@ -90,14 +90,14 @@ export class ProfileComponent implements OnInit {
         }
       }
 
-      if(this.person.status==="APPROVAL_PENDING"){
-        /*const dialogRef = this.dialog.open(GuideComponent, {
+      if(!this.person.directDownlines || this.person.directDownlines.length<5){
+        const dialogRef = this.dialog.open(GuideComponent, {
           data: {person: this.person},
         });
 
         dialogRef.afterClosed().subscribe(result => {
           console.log(result);
-        });*/
+        });
       }
     });
   }
@@ -168,7 +168,7 @@ export class ProfileComponent implements OnInit {
     if(!this.validatePurchase()){
       return;
     }
-    /*const bottomSheet = this._bottomSheet.open(PaymentComponent, {
+    const bottomSheet = this._bottomSheet.open(PaymentComponent, {
       data: {
         displayDetails: {
           title: "Donation"
@@ -190,7 +190,7 @@ export class ProfileComponent implements OnInit {
       }else{
         this.notifier.notify("error", "Some error occurred");
       }
-    });*/
+    });
   }
 
   uploadCompleted(event, type){
@@ -210,7 +210,7 @@ export class ProfileComponent implements OnInit {
     }
     var mTxt = `${this.person.name} is inviting you to GoodAct platform. Join GoodAct to help people in time of need and to get help in your critical phase of life. This is also an oppurtunity to make your dreams true. So join by clicking on below link. ${window.location.protocol}//${environment.appUrl}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
     var mLink = `${environment.appUrl}//${window.location.host}/login?referrer=${encodeURIComponent(this.person.mobile)}`;
-    // this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
+    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
   }
 
   personSelected($event, selectionType){
