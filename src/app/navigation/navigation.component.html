@@ -49,15 +49,16 @@
 				</mat-menu>
 
 				<mat-menu #services="matMenu">
-				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.MORNING_KIRTAN" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.EDU" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/service-reqd-editor')">{{"NAV.NEED_SERVICE" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/marriage-profile-list')">{{"NAV.SEARCH_SPOUSE" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/marriage-profile-list/self')">{{"NAV.CREATE_MARRIAGE_PROFILE" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.GRP_MARRIAGE" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
-				  <button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/shoppin')">{{"CATALOGUE" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.MORNING_KIRTAN" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.EDU" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/service-reqd-editor')">{{"NAV.NEED_SERVICE" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/marriage-profile-list')">{{"NAV.SEARCH_SPOUSE" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/marriage-profile-list/self')">{{"NAV.CREATE_MARRIAGE_PROFILE" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.GRP_MARRIAGE" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
+					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
 				</mat-menu>
 
 				<!-- <button mat-button (click)="navigateTo('/daily-report')">
@@ -147,6 +148,7 @@
 			</span>
 		</button>
 		<div class="mob-sub-menu" *ngIf="displayServicesMenu" [@toggleMenu]>
+			<button mat-button class="mobPageLink" (click)="navigateTo('/shoppin')">{{"CATALOGUE" | translate}}</button>
 			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.MORNING_KIRTAN" | translate}}</button>
 			<button mat-button class="mobPageLink" (click)="navigateTo('/explore')">{{"NAV.EDU" | translate}}</button>
 			<button mat-button class="mobPageLink" (click)="navigateTo('/service-offer-editor')">{{"NAV.UNEMPLOYED" | translate}}</button>
@@ -177,7 +179,7 @@
 			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.7</div>
+		<div class="version" fxFlexAlign="start">Version 1.0.8</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

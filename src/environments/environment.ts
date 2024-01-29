@@ -8,7 +8,7 @@ export const environment = {
   production: false,
   slotPrice: 250,
   baseurl: "http://localhost:4200/api",
-  
+  ecomUrl: "http://localhost:4200/ecom",
   allpayurl: "http://localhost:4200/allpay",
 
   phonepeurl: "http://localhost:4200/phonepe",

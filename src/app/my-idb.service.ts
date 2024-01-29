@@ -4,6 +4,11 @@ import { noop } from 'rxjs';
 
 export const TAG = "tag";
 
+export const ITEM_STORE = "item";
+export const PRICE_STORE = "price";
+export const STORE_SETTINGS_STORE = "storeSettings";
+export const TS_STORE = "ts_store";
+
 @Injectable({
   providedIn: 'root'
 })

@@ -47,6 +47,10 @@ export class ForgotPasswordComponent implements OnInit{
   }
 
   onSubmit(): void {
+    this.useremail = this.useremail.trim();
+    if(this.useremail.indexOf("@")<0 && this.useremail.length===10){
+      this.useremail = "+91"+this.useremail;
+    }
     if (this.validateEmail(this.useremail)) {
       this.authService.requestPasswordResetCode(this.useremail).subscribe(result => {
         if (result.success) {
@@ -62,10 +66,12 @@ export class ForgotPasswordComponent implements OnInit{
   }
 
   validateEmail(email) {
+    email = email.trim();
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var result = re.test(String(email).toLowerCase());
     if(!result){
-      const mob_tester = /^((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const mob_tester = /^\+\d{2,3}\d{10}$/;
+      result = mob_tester.test(email);
     }
     return result;
   }

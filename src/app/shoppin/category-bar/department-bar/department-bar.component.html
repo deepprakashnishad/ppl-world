@@ -1,0 +1,58 @@
+<!-- <div class="item-container" fxLayout>
+  <div class="item-card" *ngFor="let category of categories; let i=index;">
+    <div class="category-item">{{category.title}}</div>
+  </div>
+</div> -->
+
+<!-- <swiper 
+  [slidesPerView]="3"
+  [spaceBetween]="50"
+  [navigation]="true"
+  >
+  <ng-template class="clickable" swiperSlide *ngFor="let category of categories; let i=index;">
+    <div [ngClass]="selectedCategoryId && selectedCategoryId===category.id?'selected-category':'category-item'" fxLayout fxLayoutAlign="center center" (click)="navigateByDepartment(category)">
+      <img *ngIf="category.imgs && category.imgs['downloadUrl']" [src]="category.imgs['downloadUrl']" height="45px" width="45px"/>
+      {{category.title}}
+    </div>
+  </ng-template>
+</swiper> -->
+
+<!-- <nav fxHide.lt-lg>
+  <div class="container megha-menu" fxLayoutAlign="center">
+      <ul class="menu-main">
+          <li *ngFor="let category of categories; let i=index;"> 
+            <button mat-button class="menu-icon" [ngClass]="{'no-img': i == 3 || i == 5}" (click)="navigateByDepartment(category)">
+              <span><img *ngIf="i != 3 && i != 5" [src]="category?.imgs?.downloadUrl" height="25" width="25" /></span>
+              {{ category.title }} 
+            </button> 
+          </li>         
+      </ul>
+  </div>
+</nav> -->
+
+<nav fxHide.lt-lg *ngIf="categoryMenuItems.length>0">
+  <div class="container megha-menu" fxLayoutAlign="center">
+      <ul class="menu-main">
+          <li *ngFor="let node of categoryMenuItems; let i=index;"> 
+            <button mat-button class="menu-icon" (click)="navigateByDepartment(node.category)">
+              <span *ngIf="node.category?.imgs?.downloadUrl">
+                <img [src]="node.category?.imgs?.downloadUrl" height="25" width="25" />
+              </span>
+              {{ node.category?.title }} 
+            </button> 
+          </li>         
+      </ul>
+  </div>
+</nav>
+
+<div 
+     fxLayout="column"
+     fxLayoutGap="10px"
+     fxHide.gt-md *ngIf="categoryMenuItems && categoryMenuItems.length>0">
+  <div class="mob-menu" *ngFor="let catItem of categoryMenuItems">
+    <div (click)="navigateByDepartment(catItem.category)">
+      <span><img [src]="catItem.category.imgs?.downloadUrl" height="25" width="25" /></span>
+      {{ catItem.category?.title }}
+    </div>
+  </div>
+</div>

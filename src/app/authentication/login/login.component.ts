@@ -132,10 +132,10 @@ export class LoginComponent implements OnInit{
   login(): void {
     if (this.loginForm.valid) {
       this.errors = [];
-      var username = this.loginForm.get('inputUsername').value;
+      var username = this.loginForm.get('inputUsername').value.trim();
       const password = this.loginForm.get('inputPassword').value;
       this.rememberMe = this.loginForm.controls['inputRememberMe'].value;
-      if(username.indexOf("@")<0){
+      if(username.indexOf("@")<0 && username.length===10){
         username = "+91"+username;
       }
       this.authService.login(

@@ -1,0 +1,54 @@
+.mat-card{
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 5px;
+    max-width: 50%;
+    @media only screen and (max-width: 480px) {
+        min-width: 50%;
+        .img-container img{
+            width: 120px;
+            height: 120px;
+        }
+    }
+    @media only screen and (min-width: 480px) {
+        min-width: 50%;
+        .img-container img{
+            width: 180px;
+            height: 180px;
+        }
+    }
+    @media only screen and (min-width: 600px) {
+        min-width: 33%;
+        margin: 16px;
+        .img-container img{
+            width: 200px;
+            height: 200px;
+        }
+    }
+    @media only screen and (min-width: 768px) {
+        min-width: 25%;
+        margin: 16px;
+        .img-container img{
+            width: 200px;
+            height: 200px;
+        }
+    }
+    @media only screen and (min-width: 992px) {
+        min-width: 20%;
+    }
+}
+
+.img-container{
+    overflow: hidden;
+}
+
+.cat-image{
+    width: 100%;
+    min-width: 50px;
+    min-height: 50px;
+    height: auto;
+}
+
+.container{
+    padding: 16px;
+}

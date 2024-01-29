@@ -34,7 +34,6 @@ import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.com
 import { PaymentConfirmationComponent } from './payment/payment-confirmation/payment-confirmation.component';
 import { StoreComponent } from './static-page/store/store.component';
 
-
 const routes: Routes = [
 	 {
 		path: '', 
@@ -83,6 +82,7 @@ const routes: Routes = [
 		component: ViewCampaignComponent,
 		data: { title: 'View Component', permissions: []}
 	},
+
 	{
 		path: 'beneficiaries/:campaignid', 
 		component: BeneficiaryComponent,
@@ -198,7 +198,7 @@ const routes: Routes = [
 		component: GlobalEarningReportComponent,
 		data: { title: 'Transactions', permissions: []}
 	},
-    {
+  {
 		path: 'store', 
 		component: StoreComponent,
 		data: { title: 'Store', permissions: []}
@@ -208,7 +208,7 @@ const routes: Routes = [
 		component: SidenavComponent,
 		canActivate: [AuthGuardService], 
 		canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Admin', permissions: ['SHOP_EDITOR']},
+		data: { title: 'Admin', permissions: ["ADMIN"]},
 		children: [
 			{
 				path: '', 
@@ -254,9 +254,17 @@ const routes: Routes = [
 				data: { title: 'Activity Log', permissions: ['SHOP_EDITOR']}
 			},	
 			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
-				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},
+				data:{title: 'Person', resources: []}},
 		]
-	}
+	},
+	/*{
+		path: 'catalogue', 
+		component: CatalogueComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Admin', permissions: ["ADMIN"]},
+	}*/
+	{path: 'shoppin', loadChildren: () => import('./shoppin/shoppin.module').then(m => m.ShoppinModule)},
 ];
 
 @NgModule({

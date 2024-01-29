@@ -11,8 +11,14 @@
       "changeOrigin": true,
       "pathRewrite": {"^/api": ""}
     },
-    "/allpay/*":{
+    "/ecom/*":{
       "target": "http://localhost:1338",
+      "secure": false,
+      "changeOrigin": true,
+      "pathRewrite": {"^/ecom": ""}
+    },
+    "/allpay/*":{
+      "target": "http://localhost:1339",
       "secure": false,
       "changeOrigin": true,
       "pathRewrite": {"^/allpay": ""}

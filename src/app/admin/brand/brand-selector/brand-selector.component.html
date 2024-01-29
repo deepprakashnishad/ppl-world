@@ -1,0 +1,9 @@
+<mat-form-field>
+	<input matInput placeholder="Brand" aria-label="Brand" [matAutocomplete]="auto" [formControl]="brandControl" required="" >
+	<mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption="true" [displayWith]="displayFn" (optionSelected)="selected($event)">
+	  <mat-option *ngFor="let brand of brandFilteredList | async" [value]="brand">
+	    {{brand.sname}}
+	  </mat-option>
+	</mat-autocomplete>
+	<button matSuffix mat-icon-button color="primary" (click)="openAddEditBrandDialog()"><mat-icon>add</mat-icon></button>
+</mat-form-field>

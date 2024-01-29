@@ -1,9 +1,10 @@
 <mat-form-field class="full-width mFormField">
   <mat-label>{{inputLabel}}</mat-label>
   <input matInput type="text" [(ngModel)]="mobileNumber" (keyup)="textChanged()" (keydown.enter)="fetchPersonList()">
-  <button matSuffix mat-raised-button aria-label="Search" (click)="fetchPersonList()" color="primary">
-    {{'SEARCH' | translate}} <mat-icon>search</mat-icon>
+  <button matSuffix mat-raised-button aria-label="Search" (click)="fetchPersonList()" color="primary" fxHide.lt-md>
+    <span>{{'SEARCH' | translate}}</span><mat-icon>search</mat-icon>
   </button>
+  <button matSuffix mat-icon-button aria-label="Search" (click)="fetchPersonList()" color="primary" fxHide.gt-sm><mat-icon>search</mat-icon></button>
   <mat-hint class="error" *ngIf="!person.n && isMandatory">{{errorLabel}}</mat-hint>
 </mat-form-field>
 

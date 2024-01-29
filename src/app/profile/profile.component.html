@@ -1,6 +1,6 @@
 <div class="container">
-	<div fxLayout="row" fxLayout.lt-md="column">
-		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="start start">
+	<div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center center">
+		<div fxLayout="column" fxLayoutGap="8px" fxLayoutAlign="center center">
 			<img class="profile-pic" *ngIf="!person.pic?.downloadUrl" src="/assets/images/profile/profile.png" />
 			<img class="profile-pic" *ngIf="person.pic?.downloadUrl" [src]="person.pic?.downloadUrl" height="150" width="150"/>
 			<div fxLayout="column" fxLayoutGap="2px" >

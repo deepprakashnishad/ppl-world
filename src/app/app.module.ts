@@ -6,6 +6,8 @@ import {AppRoutingModule} from './app-routing.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import {SharedModule} from './shared/shared.module';
 import { AngularFireModule } from '@angular/fire';
+import { ShoppinModule } from './shoppin/shoppin.module';
+
 import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage';
 import {AngularFireAuth} from '@angular/fire/auth';
 import { AngularFireFunctionsModule } from '@angular/fire/functions';
@@ -144,6 +146,7 @@ const notifierDefaultOptions: NotifierOptions = {
     AdminModule,
     PersonModule,
     SharedModule,
+    ShoppinModule,
     NgxMaterialTimepickerModule,
     // ShareButtonsModule,
     // ShareIconsModule,

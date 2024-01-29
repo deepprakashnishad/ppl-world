@@ -19,20 +19,40 @@
     <h3>No transactions found!!!</h3>
   </div>
   <div *ngIf="transactions.length>0">
-    <mat-card [ngClass]="t.c_d==='c'?'transaction-card credit':'transaction-card debit'" *ngFor="let t of transactions">
-        <div fxLayout="row wrap" fxLayoutGap="16px">
-          <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
-          <!-- <div>
-            <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
-            <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span>
-          </div> -->
-          <div>{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
-          <div *ngIf="t.b">Bal: {{t.b | currency: 'INR':'symbol-narrow'}}</div>
-        </div>
-        <div class="comment">
-          {{t.c}}
-        </div>
-    </mat-card>
+    <div fxHide.lt-md>
+      <mat-card [ngClass]="t.c_d==='c'?'transaction-card credit':'transaction-card debit'" *ngFor="let t of transactions">
+          <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div fxFlex="10">Amt: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
+            <!-- <div>
+              <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
+              <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span>
+            </div> -->
+            <div fxFlex="20">{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
+            <div fxFlex="15"><span *ngIf="t.b">Bal: {{t.b | currency: 'INR':'symbol-narrow'}}</span></div>
+            <div class="comment" fxFlex="55">
+              {{t.c}}
+            </div>
+          </div>
+      </mat-card>
+    </div>
+    <div fxHide.gt-sm>
+      <mat-card [ngClass]="t.c_d==='c'?'transaction-card credit':'transaction-card debit'" *ngFor="let t of transactions">
+          <div fxLayout="column">
+            <div fxLayout fxLayoutAlign="space-between center">
+              <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
+              <!-- <div>
+                <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
+                <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span>
+              </div> -->
+              <div>{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
+            </div>
+            <div *ngIf="t.b">Bal: {{t.b | currency: 'INR':'symbol-narrow'}}</div>
+          </div>
+          <div class="comment">
+            {{t.c}}
+          </div>
+      </mat-card>
+    </div>
     <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More</button>
   </div>
 </div>

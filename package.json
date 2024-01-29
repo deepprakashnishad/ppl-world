@@ -14,7 +14,8 @@
     "dist": "electron-builder",
     "distp": "npm run build-prod && npm run dist",
     "test": "ng test",
-    "gen-cap-android": "npx cap sync && npx capacitor-assets generate && npx cap copy android && npx cap open android",
+    "gen-cap-android": "npx cap add android && npx cap sync && npx capacitor-assets generate && npx cap copy android && npx cap open android",
+    "build-aab": "npm run build-prod && npm run gen-cap-android",
     "deploy": "npm run build-prod && firebase deploy && npm run gen-cap-android",
     "lint": "ng lint",
     "e2e": "ng e2e"
