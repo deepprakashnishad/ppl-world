@@ -48,20 +48,46 @@
 				        {{'PROFILE.LEVELWISE' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
-				    <table>
-						<tr>
-							<th></th>
-							<th>{{'TOTAL' | translate}}</th>
-							<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">{{'ORBIT' | translate}} {{i+1}}</th>
-						</tr>
-						<tr *ngFor="let key of keys">
-							<td class="table-header">Level {{key}}</td>
-							<td>{{person.lwdlc[key]['count']}}</td>
-							<td *ngFor="let temp of [].constructor(maxChildOrbit); let j=index">
-								{{person.lwdlc[key][(j+1).toString()]?person.lwdlc[key][(j+1).toString()]:0}}
-							</td>
-						</tr>
-					</table>
+				    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between center">
+				    	<div>
+			    			<h3>Direct Downlines</h3>
+			    			<table>
+			    				<tr>
+			    					<th>No.</th>
+			    					<th>Name</th>
+			    					<th>Mobile</th>
+			    					<th>Downlines</th>
+			    					<th>Status</th>
+			    					<th>Slots</th>
+			    				</tr>
+			    				<tr *ngFor="let downline of person.directDownlines; let i=index;">
+			    					<td>{{i+1}}</td>
+			    					<td>{{downline.n}}</td>
+			    					<td>{{downline.m}}</td>
+			    					<td>{{downline.ddl?downline.ddl.length:0}}</td>
+			    					<td>{{downline.s}}</td>
+			    					<td>{{downline.curr_orbit}}</td>
+			    				</tr>
+			    			</table>
+				    	</div>
+				    	<div>
+				    		<h3>Levelwise Downlines count</h3>
+				    		<table>
+								<tr>
+									<th></th>
+									<th>{{'TOTAL' | translate}}</th>
+									<th *ngFor="let num of [].constructor(maxChildOrbit); let i=index">{{'ORBIT' | translate}} {{i+1}}</th>
+								</tr>
+								<tr *ngFor="let key of keys">
+									<td class="table-header">Level {{key}}</td>
+									<td>{{person.lwdlc[key]['count']}}</td>
+									<td *ngFor="let temp of [].constructor(maxChildOrbit); let j=index">
+										{{person.lwdlc[key][(j+1).toString()]?person.lwdlc[key][(j+1).toString()]:0}}
+									</td>
+								</tr>
+							</table>
+				    	</div>
+				    </div>
 				</mat-expansion-panel>
 
 				<mat-expansion-panel>

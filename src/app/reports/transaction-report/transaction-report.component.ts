@@ -26,12 +26,14 @@ export class TransactionReportComponent implements OnInit {
 
   isEndReached: boolean = false;
 
-  limit: number = 50;
+  limit: number = 10;
 
   offset: number = 0;
 
   startDate: string;
   endDate: string;
+
+  totalResult: number = 0;
 
   constructor(
     private notifier: NotifierService,
@@ -52,10 +54,11 @@ export class TransactionReportComponent implements OnInit {
 
   getTransactionReport(startDate: string, endDate: string){
     this.reportService.getTransactionReport(startDate, endDate, this.limit, this.offset).subscribe(results=>{
-      this.transactions = this.transactions.concat(results);
+      this.totalResult = results[0]['metadata'][0]['totalCount'];
+      this.transactions = this.transactions.concat(results[0]['data']);
       this.offset = this.transactions.length;
       
-      if(results.length < this.limit){
+      if(this.transactions.length >= this.totalResult){
         this.isEndReached = true;
       }
     });

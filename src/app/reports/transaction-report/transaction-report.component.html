@@ -40,10 +40,6 @@
           <div fxLayout="column">
             <div fxLayout fxLayoutAlign="space-between center">
               <div>Amount: {{t.a | currency: 'INR':'symbol-narrow'}}</div>
-              <!-- <div>
-                <span fxLayout class="credit" *ngIf="t.c_d==='c'">Cr <mat-icon>south_west</mat-icon></span>
-                <span fxLayout class="debit" *ngIf="t.c_d==='d'">Db <mat-icon>north_east</mat-icon></span>
-              </div> -->
               <div>{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
             </div>
             <div *ngIf="t.b">Bal: {{t.b | currency: 'INR':'symbol-narrow'}}</div>
@@ -53,6 +49,6 @@
           </div>
       </mat-card>
     </div>
-    <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More</button>
+    <button class="full-width" mat-raised-button color="primary" (click)="getTransactionReport(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More [{{transactions.length}} of {{totalResult}} Records]</button>
   </div>
 </div>
