@@ -136,7 +136,7 @@ export class ProfileComponent implements OnInit {
       return;
     }
     if(this.person.amtWithdrawable < this.totalAmountForSlots){
-      this.notifier.notify("error", `Insufficient balance. ${this.totalAmountForSlots - this.person.amtWithdrawable} more is required.`);
+      this.notifier.notify("error", `Insufficient balance. INR ${this.totalAmountForSlots - Math.round(this.person.amtWithdrawable)} more is required.`);
     }else{
       this.buyButtonDisabled = true;
       this.profileService.buySlots(

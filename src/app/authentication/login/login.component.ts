@@ -93,7 +93,7 @@ export class LoginComponent implements OnInit{
       this.errors = [];
       const name = this.cardForm.get('materialFormCardNameEx').value.trim();
       const password = this.cardForm.get('materialFormCardPasswordEx').value;
-      const email = this.cardForm.get('materialFormCardEmailEx').value.trim();
+      const email = this.cardForm.get('materialFormCardEmailEx').value?.trim();
       var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value.trim();
 
       /*if(!this.referrer){

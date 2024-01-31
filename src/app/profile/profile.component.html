@@ -48,7 +48,7 @@
 				        {{'PROFILE.LEVELWISE' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
-				    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between center">
+				    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between start">
 				    	<div>
 			    			<h3>Direct Downlines</h3>
 			    			<table>
@@ -63,7 +63,10 @@
 			    				<tr *ngFor="let downline of person.directDownlines; let i=index;">
 			    					<td>{{i+1}}</td>
 			    					<td>{{downline.n}}</td>
-			    					<td>{{downline.m}}</td>
+			    					<td>
+			    						<span fxHide.lt-md>{{downline.m}}</span>
+			    						<a fxHide.gt-sm [href]="'tel: '+downline.m">{{downline.m}}</a>
+			    					</td>
 			    					<td>{{downline.ddl?downline.ddl.length:0}}</td>
 			    					<td>{{downline.s}}</td>
 			    					<td>{{downline.curr_orbit}}</td>
