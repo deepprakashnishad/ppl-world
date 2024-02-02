@@ -8,8 +8,8 @@ export const environment = {
   baseurl: "https://goodact-vcm3.onrender.com",
   ecomUrl: "https://giriraj-backend.onrender.com",
   allpayurl: "https://node-allpay.onrender.com",
-  pincodeUrl: "http://localhost:5000/api-pincode",
-  // pincodeUrl: "https://api.postalpincode.in",
+  // pincodeUrl: "http://localhost:5000/api-pincode",
+  pincodeUrl: "https://api.postalpincode.in",
   firebase: {
     apiKey: "AIzaSyCxGjyohdgsmJM3uteNGGfAUrzXh3qY-ww",
     authDomain: "good-act.firebaseapp.com",

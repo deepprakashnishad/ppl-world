@@ -37,6 +37,7 @@ export class ShareComponent {
     this.emailUrl = encodeURI(this.emailUrl.replace("{mTxt}", this.mTxt).replace("{mTitle}", this.mTitle));
     this.twitterUrl = encodeURI(this.twitterUrl.replace("{mTxt}", this.mTxt).replace("{mTitle}", this.mTitle));
     this.instagramUrl = encodeURI(this.instagramUrl.replace("{mLink}", this.mLink));
+    console.log(this.whatsAppUrl);
   }
 
   openLink(event: MouseEvent): void {

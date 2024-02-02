@@ -14,7 +14,7 @@
 	</mat-form-field>
 	<app-autocomplete-with-add [enableAdd]="false" [items]="availableAreas" [label]="'Area'" [selectedItem]="area" (tagSelected)="areaSelected($event)"></app-autocomplete-with-add>
   	<h5>{{city}}, {{state}}</h5>	
-	<app-person-exact-match (personSelected)="referrerSelected($event)" [type]="'generic'" [errorLabel]="'Referrer'" #referrer></app-person-exact-match>
+	<app-person-exact-match (personSelected)="referrerSelected($event)" [type]="'generic'" [errorLabel]="'Referrer'" #referrer *ngIf="!isLoggedIn"></app-person-exact-match>
 
 	<button class="full-width" mat-raised-button color="primary" (click)="save()">Save</button>
 </div>

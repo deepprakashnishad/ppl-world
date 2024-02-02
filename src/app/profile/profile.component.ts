@@ -23,6 +23,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { TranslateService } from '@ngx-translate/core';
 
+const maxLevel = 4;
 
 @Component({
   selector: 'app-profile',
@@ -69,7 +70,6 @@ export class ProfileComponent implements OnInit {
     private translate: TranslateService,
     public dialog: MatDialog
   ){
-
   }
 
   ngOnInit(){
@@ -82,6 +82,7 @@ export class ProfileComponent implements OnInit {
       this.uploadPath = `person/${this.person.id}`;
       
       this.keys = Object.keys(this.person.lwdlc);
+      this.keys = this.keys.filter(ele=>Number(ele)<=maxLevel);
       for(var i=0;i < this.keys.length;i++){
         var currLevel = this.keys[i];
         var clKeys = Object.keys(this.person.lwdlc[currLevel]);

@@ -4,6 +4,14 @@ import { MyIdbService, STORE_SETTINGS_STORE, TS_STORE } from "src/app/my-idb.ser
 import { Category } from "../../../admin/category/category";
 import { CategoryService } from "../../../admin/category/category.service";
 import { CategoryTreeNode } from "../../../admin/category/CategoryTreeNode";
+import { ShareComponent } from 'src/app/shared/share/share.component';
+import { NotifierService } from 'angular-notifier';
+import {
+  MatBottomSheet
+} from '@angular/material/bottom-sheet';
+import { MatDialog } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
+import { LeadsComponent } from 'src/app/static-page/store/leads/leads.component';
 
 export const catRefreshDays = 30;
 export const catRefreshTimeInMillis = catRefreshDays*24*60*60*1000;
@@ -24,7 +32,10 @@ export class CategoriesComponent implements OnInit{
     private categoryService: CategoryService,
     private router: Router,
     private dbService: MyIdbService,
-    private cdr: ChangeDetectorRef
+    private notifier: NotifierService,
+    private cdr: ChangeDetectorRef,
+    private _bottomSheet: MatBottomSheet,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -97,5 +108,33 @@ export class CategoriesComponent implements OnInit{
 
   backNavigation() {
     this.displayedNodes = this.nodeNavigation.pop();
+  }
+
+  openShareBottomSheet(event, node: CategoryTreeNode){
+    if(!node){
+      this.notifier.notify("error", "Try again in sometime.")
+    }
+    var mTxt = `Browse ${node.title} catalogue by GoodAct. It's a one stop solution for all your needs. ${environment.appUrl }/product-by-category?referrer=${encodeURIComponent(sessionStorage.getItem("m")?sessionStorage.getItem("m"):"")}`;
+    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, mTitle: `Share ${node.title} catalogue`}});
+    event.stopPropagation();
+  }
+
+  call(event){
+    this.router.navigate([]).then(result => {  window.open("tel: +917880873187", '_blank'); });
+    event.stopPropagation();
+  }
+
+  openLeadsComponent(event, node: CategoryTreeNode){
+    var dialogRef = this.dialog.open(LeadsComponent, {
+        data: {
+            "category": node.title,
+            "details": {catId: node.id, catTitle: node.title, type: "category"}
+        }
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+        console.log(result);
+    });
+    event.stopPropagation();
+    return;
   }
 }

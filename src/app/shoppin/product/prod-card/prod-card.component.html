@@ -36,6 +36,12 @@
         </mat-select>
         <div class="price" *ngIf="selectedDiscount===null">{{product.prices[0]?.unitPrice | currency:'INR':'symbol-narrow':'1.2-2'}}</div>
       </div>   
+      <div fxLayout fxLayoutGap="12px">
+        <!-- <button mat-icon-button color="primary" (click)="share(node)" fxHide.gt-sm><mat-icon>share</mat-icon></button> -->
+        <button mat-raised-button color="primary" (click)="openShareBottomSheet($event)" >Share <mat-icon>share</mat-icon></button>
+        <!-- <button mat-raised-button color="primary" (click)="call($event)" >Call <mat-icon>phone</mat-icon></button> -->
+        <button mat-raised-button color="accent" (click)="openLeadsComponent($event)">Lead Details</button>
+      </div>
       <!-- <app-add-to-cart-button [product]="product" [selectedPrice]="selectedPrice"></app-add-to-cart-button> -->
     </div>
   </mat-card-content>

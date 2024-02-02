@@ -6,8 +6,9 @@ import { switchMap } from 'rxjs/internal/operators/switchMap';
 import { StoreService } from './../store.service';
 import { PersonService } from './../../../person/person.service';
 import { AddressService } from 'src/app/shared/address/address.service';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import { NotifierService } from 'angular-notifier';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-leads',
@@ -25,18 +26,30 @@ export class LeadsComponent implements OnInit {
     state: string;
     area: string;
     availableAreas: Array<string> = [];
+    details: any;
+    isLoggedIn: boolean = false;
 
     constructor(
         private storeService: StoreService,
         private personService: PersonService,
         private addressService: AddressService,
+        private authenticationService: AuthenticationService,
         private notifier: NotifierService,
+        private dialogRef: MatDialogRef<LeadsComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any
     ) {
-       console.log(data); 
+
+        this.authenticationService.isLoggedIn.subscribe(res=>{
+            this.isLoggedIn = res;
+            this.referrerId = sessionStorage.getItem("id");
+        })
 
         if(data.category){
             this.category = data.category;
+        }
+
+        if(data.details){
+            this.details = data.details;
         }
     }
 
@@ -45,10 +58,19 @@ export class LeadsComponent implements OnInit {
     }
 
     referrerSelected(event){
-        
+        this.referrerId = event.id;
     }
 
     save(){
+        if(!this.name){
+            this.notifier.notify("error", "Buyer name is required");
+            return;
+        }
+
+        if(!this.mobile){
+            this.notifier.notify("error", "Buyer mobile is required");
+            return;
+        }
         this.storeService.saveLead(
         {
             c: this.category, 
@@ -58,9 +80,16 @@ export class LeadsComponent implements OnInit {
             p: this.pincode, 
             ar: this.area,
             ci: this.city, 
-            st: this.state
+            st: this.state,
+            des: this.details
         }).subscribe(result=>{
-            console.log(result);
+            if(result.success){
+                this.notifier.notify("success", "Thank you for sharing contact. Lead successfully registered.")
+                this.notifier.notify("success", "We will contact them within 24 hrs");
+                this.dialogRef.close();
+            }else{
+                this.notifier.notify("error", "Failed to register. Please try again.");
+            }
         });
     }
 

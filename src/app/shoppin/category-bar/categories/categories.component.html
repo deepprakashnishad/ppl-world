@@ -8,6 +8,12 @@
         <img *ngIf="node.category?.imgs?.downloadUrl" class="cat-image" [src]="node.category?.imgs?.downloadUrl | safe">
       </div>
       <h4>{{node.title}}</h4>
+      <div fxLayout fxLayoutGap="12px">
+        <!-- <button mat-icon-button color="primary" (click)="share(node)" fxHide.gt-sm><mat-icon>share</mat-icon></button> -->
+        <button mat-raised-button color="primary" (click)="openShareBottomSheet($event, node)" >Share <mat-icon>share</mat-icon></button>
+        <!-- <button mat-raised-button color="primary" (click)="call($event)" >Call <mat-icon>phone</mat-icon></button> -->
+        <button mat-raised-button color="accent" (click)="openLeadsComponent($event, node)">Lead Details</button>
+      </div>
     </mat-card>
   </div>
 </div>
