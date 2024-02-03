@@ -1,0 +1,29 @@
+<div class="container" fxLayout="column">
+	<app-person-exact-match (personSelected)="buyerSelected($event)" [type]="'generic'" #buyerSearchBox></app-person-exact-match>
+	<mat-form-field>
+		<mat-label>Sale Amount</mat-label>
+		<input matInput placeholder="Sale Amount" type="number" [(ngModel)]="amt" />
+	</mat-form-field>
+	<div fxLayout fxLayoutGap="8px">
+		<mat-form-field>
+			<mat-label>Comission Percent</mat-label>
+			<input matInput placeholder="Commission" type="number" [(ngModel)]="com" />
+		</mat-form-field>
+		{{com*amt/100 | currency:'INR':'symbol-narrow':'1.2-2'}}
+	</div>
+	<div>
+		<mat-form-field>
+			<mat-label>Expense</mat-label>
+			<input matInput placeholder="Expenses" type="number" [(ngModel)]="exp" />
+		</mat-form-field>
+		{{exp*amt/100 | currency:'INR':'symbol-narrow':'1.2-2'}}
+	</div>
+	<div>
+		<mat-form-field>
+			<mat-label>Distribution</mat-label>
+			<input matInput placeholder="Distribution(%age)" type="number" readonly [ngModel]="com-exp" />
+		</mat-form-field>
+		{{(com-exp)*amt/100 | currency:'INR':'symbol-narrow':'1.2-2'}}
+	</div>
+	<button mat-raised-button (click)="save()" color="primary">Save</button>
+</div>

@@ -42,29 +42,22 @@ export class SidenavComponent implements OnDestroy, OnInit, AfterViewInit {
   @HostBinding('class.is-open')
   isOpen = true;
 
+  filteredRouteList = [];
+  userPermissions = sessionStorage.getItem("permissions");
+
   private _mobileQueryListener: () => void;
   isLoggedIn: boolean;
   title = 'Shop Admin';
   routeList = [
-    { path: '/admin', title: 'Dashboard', permissions: [] },
-    { path: '/admin/sale-point', title: 'Sale Point', permissions: ['CREATE_ORDER', 'UPDATE_ORDER', 'DELETE_ORDER'] },
-    {path: '/admin/my-store', title: 'My Store', permissions:[]},
-    { path: '/admin/store-settings', title: 'Store Settings', permissions: [] },
-    {path: '/admin/product', title: 'Product', permissions:[]},
-    {path: '/admin/category', title: 'Category'},
-    {path: '/admin/brand', title: 'Brand'},
-    {path: '/admin/facet', title: 'Attributes'},
-    { path: '/admin/banner', title: 'Banner' },
-    { path: '/admin/create-edit-section', title: 'Section Editor' },
-    {path: '/admin/permission', title: 'Permissions'},
-    { path: '/admin/role', title: 'Role' },
-    {path: '/admin/user-report', title: "User Report"},
-    {path: '/admin/person', title: 'Users'},
-    {path: '/admin/static-pages', title: 'Static Page'},
-    {path: '/admin/delivery', title: 'Delivery'},
-    {path: '/admin/order', title: 'Orders'},
-    {path: '/admin/pickup-point', title: 'Pickup Points'},
-    {path: '/admin/activity-log', title: 'Activity Logs'},
+    { path: '/admin', title: 'Dashboard', permissions: ['CREATE_PERMISSION'] },
+    {path: '/admin/add-sale', title: 'Add Sale Entry', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/category', title: 'Category', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/permission', title: 'Permissions', permissions:['CREATE_PERMISSION']},
+    { path: '/admin/role', title: 'Role', permissions:['CREATE_PERMISSION'] },
+    {path: '/admin/user-report', title: "User Report", permissions:['CREATE_PERMISSION']},
+    {path: '/admin/person', title: 'Users', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/order', title: 'Orders', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/activity-log', title: 'Activity Logs', permissions:['CREATE_PERMISSION']},
   ];
 
 	ngAfterViewInit() {}
@@ -92,6 +85,16 @@ export class SidenavComponent implements OnDestroy, OnInit, AfterViewInit {
     this.authenticationService.isLoggedIn.subscribe(value => {
       this.isLoggedIn = value;
     });
+    this.filteredRouteList = this.routeList.filter(ele=>{
+      for(var permission of ele.permissions){
+        if(this.userPermissions.indexOf(permission)>-1){
+          return ele;
+        }
+      }
+      return false;
+    });
+
+    this.isOpen = this.mobileQuery.matches?false: true;
   }
 
   ngOnDestroy(): void {
@@ -99,8 +102,7 @@ export class SidenavComponent implements OnDestroy, OnInit, AfterViewInit {
   }
 
   public toggle() {
-    console.log("Hello.I am in toggle");
-  	this.isOpen = !this.isOpen;
+    this.isOpen = !this.isOpen;
   }
 
   logout() {

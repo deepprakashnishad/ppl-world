@@ -7,6 +7,7 @@ import { PermissionComponent } from './permission/permission.component';
 import { RoleComponent } from './role/role.component';
 import { HomeComponent } from './home/home.component';
 import { ActivityLogComponent } from './activity-log/activity-log.component';
+import { SaleEntryListComponent } from './sale-entry/sale-entry-list.component';
 
 const routes: Routes = [
 	
@@ -15,48 +16,47 @@ const routes: Routes = [
 		component: HomeComponent,
 		canActivate: [AuthGuardService], 
     	canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Dashboard', permissions: ['SHOP_EDITOR','CREATE_BRAND', 'UPDATE_BRAND', 'DELETE_BRAND']},
+		data: { title: 'Dashboard', permissions: ['CREATE_PERMISSION']},
 		children: [
 			{
 				path: '', 
 				component: DashboardComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Brands', permissions: ['SHOP_EDITOR','CREATE_BRAND', 'UPDATE_BRAND', 'DELETE_BRAND']}
+				data: { title: 'Dashboard', permissions: ['CREATE_PERMISSION']}
 			},
+			{
+				path: 'add-sale', 
+				component: SaleEntryListComponent,
+				canActivate: [AuthGuardService], 
+				canDeactivate:[CanDeactivateGuardService],
+				data: { title: 'Activity Log', permissions: ['CREATE_ROLE']}
+      },
 			{
 				path: 'permission', 
 				component: PermissionComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Permission', permissions: []}
+				data: { title: 'Permission', permissions: ['CREATE_PERMISSION']}
 			},
 			{
 				path: 'role', 
 				component: RoleComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Role', permissions: []}
+				data: { title: 'Role', permissions: ['CREATE_ROLE']}
 			},	
 			{
 				path: 'activity-log', 
 				component: ActivityLogComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Activity Log', permissions: ['SHOP_EDITOR']}
+				data: { title: 'Activity Log', permissions: ['CREATE_ROLE']}
       },
 			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
 				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},
 		]
 	},
-
-	{
-		path: 'dashboard', 
-		component: DashboardComponent,
-		canActivate: [AuthGuardService], 
-    	canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Dashboard', permissions: ['SHOP_EDITOR','CREATE_BRAND', 'UPDATE_BRAND', 'DELETE_BRAND']}
-	},	
 ];
 
 @NgModule({

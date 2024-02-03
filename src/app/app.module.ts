@@ -162,6 +162,7 @@ const notifierDefaultOptions: NotifierOptions = {
       registrationStrategy: 'registerWhenStable:30000'
     }),
   ],
+  exports: [PersonModule],
   providers: [
     httpInterceptorProviders, AngularFireAuth, 
     { provide: BUCKET, useValue: environment.firebase.storageBucket },

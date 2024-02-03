@@ -203,7 +203,7 @@ const routes: Routes = [
 		component: StoreComponent,
 		data: { title: 'Store', permissions: []}
 	},
-	{
+	/*{
 		path: 'admin', 
 		component: SidenavComponent,
 		canActivate: [AuthGuardService], 
@@ -256,15 +256,9 @@ const routes: Routes = [
 			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
 				data:{title: 'Person', resources: []}},
 		]
-	},
-	/*{
-		path: 'catalogue', 
-		component: CatalogueComponent,
-		canActivate: [AuthGuardService], 
-		canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Admin', permissions: ["ADMIN"]},
-	}*/
+	},*/
 	{path: 'shoppin', loadChildren: () => import('./shoppin/shoppin.module').then(m => m.ShoppinModule)},
+	{path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 ];
 
 @NgModule({
