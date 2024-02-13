@@ -5,7 +5,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddEditSaleEntryComponent } from './add-edit-sale-entry/add-edit-sale-entry.component';
 import { AdminService } from './../admin.service';
 import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
@@ -19,7 +18,6 @@ export class SaleEntryListComponent implements OnInit, AfterViewInit {
   dataSource: MatTableDataSource<any>;
 
   @ViewChild('paginator') paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
   saleList: Array<any> = [];
   totalSaleCnt: number = 0;
 

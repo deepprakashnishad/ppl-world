@@ -6,7 +6,7 @@
 		<div fxFlex.gt-sm="55">
 			<div class="title">{{campaign?.title}}</div>
 			<div class="summary">Campaign created at: <span>{{campaign?.createdAt | date: 'dd/MM/yyyy'}}</span></div>
-			<div class="summary" *ngIf="campaign?.expiryDate && campaign?.expiryDate>0">End Date: <span>{{campaign?.expiryDate | date: 'dd/MM/yyyy'}}</span></div>
+			<div class="summary" *ngIf="campaign?.expiryDate && campaign?.expiryDate>0">End Date: <span>{{campaign?.expiryDate*1000 | date: 'dd/MM/yyyy'}}</span></div>
 			<div class="summary">Amount required: <span>{{campaign?.areqd | currency:'INR':'symbol-narrow' : '1.0-0'}}</span></div>
 			<div class="summary">Collection till date: <span>{{campaign?.cltd | currency:'INR':'symbol-narrow' : '1.0-0'}}</span></div>
 			<div class="summary">
@@ -22,15 +22,16 @@
 			<div class="summary">Category:<span> {{campaign?.cat | titlecase}}</span></div>
 			<div class="summary">Created By: <span>{{campaign?.owner?.name}}</span></div>
 			<div class="summary">Status: <span>{{campaign?.s}}</span></div>
-			<div fxLayout fxLayoutGap="16px" fxLayout.lt-md="column">
-				<button class="full-width" mat-raised-button color="primary" (click)="collectFromOthers()" *ngIf="canCollectDonation">Collect donation from others</button>
-				<button class="full-width" mat-raised-button color="error" (click)="donateFromBank()">Donate from Bank Account</button>
+			<div fxLayout="row" fxLayoutGap="8px" fxLayout.lt-md="column">
+				<button class="full-width" mat-raised-button color="accent" (click)="openShareBottomSheet()">{{'SHARE' | translate}} <mat-icon>share</mat-icon></button>
+				<button class="full-width" mat-raised-button color="primary" (click)="collectFromOthers()" *ngIf="canCollectDonation">Collect from others</button>
+				<button class="full-width" mat-raised-button color="error" (click)="donateFromBank()">Donate Online</button>
 				<!-- <button class="full-width" mat-raised-button color="accent" (click)="donateFromGoodAct()">Donate From Good Act</button> -->
 				<button class="full-width" mat-raised-button color="warn" (click)="subscribeCampaign()">Subscribe</button>
 			</div>
 		</div>
 	</div>
-	<div>
+	<div class="second-container">
 		<p class="desc">{{campaign?.desc}}</p>
 	</div>
     

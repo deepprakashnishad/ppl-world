@@ -12,7 +12,7 @@ import { AuthenticationService } from 'src/app/authentication/authentication.ser
 import { Slide } from "../../../shared/carousel/carousel.interface";
 import { AnimationType } from "../../../shared/carousel/carousel.animations";
 import { CarouselComponent } from "../../../shared/carousel/carousel.component";
-
+import { ShareComponent } from 'src/app/shared/share/share.component';
 import {
   MatBottomSheet,
   MatBottomSheetModule,
@@ -63,6 +63,12 @@ export class ViewCampaignComponent implements OnInit {
 		});
 	}
 
+	openShareBottomSheet(){
+    var mTxt = `${this.campaign.title}\n${this.campaign.desc}`;
+    var mLink = window.location;
+    this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
+  }
+
   donateFromGoodAct(){
     const bottomSheet = this._bottomSheet.open(DonateFromGAComponent, {data: this.campaign});
     bottomSheet.afterDismissed().subscribe(result=>{
@@ -98,6 +104,7 @@ export class ViewCampaignComponent implements OnInit {
   collectFromOthers(){
   	const bottomSheet = this._bottomSheet.open(CollectDonationFromOthersComponent, {data: this.campaign});
     bottomSheet.afterDismissed().subscribe(result=>{
+    	this.notifier.notify("success", "Donation collection successfull");
     });	
   }
 

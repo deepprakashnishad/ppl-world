@@ -175,11 +175,18 @@ export class ProfileComponent implements OnInit {
           title: "Donation"
         },
         order: {
+          title: `Digital Slots`,
+          qty: this.slotCount,
+          desc: `Donation for ${this.slotCount} slots for ${this.selectedPersonForApproval.n} with mob no. ${this.selectedPersonForApproval.m}`,
           prod: `Donation for ${this.slotCount} slots for ${this.selectedPersonForApproval.n} with mob no. ${this.selectedPersonForApproval.m}`,
           prodId: "UExpSlots",
           prodDesc: "",
           amount: this.totalAmountForSlots,
-          extraInfo: {"buyerId": this.selectedPersonForApproval.id}
+          action: "buySlots",
+          isPersonRequired: true,
+          extraInfo: {
+            "buyerId": this.selectedPersonForApproval.id
+          }
         },
         redirectUrl: "/profile",
         action_name: "Donate Now"

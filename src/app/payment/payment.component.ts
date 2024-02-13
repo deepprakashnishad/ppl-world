@@ -97,6 +97,26 @@ export class PaymentComponent implements OnInit {
       this.order.extraInfo = data.order.extraInfo;
     }
 
+    if(data.order.title){
+      this.order.title = data.order.title;
+    }
+
+    if(data.order.desc){
+      this.order.desc = data.order.desc;
+    }
+
+    if(data.order.isPersonRequired){
+      this.order.isPersonRequired = data.order.isPersonRequired;
+    }
+
+    if(data.order.action){
+      this.order.action = data.order.action;
+    }
+
+    if(data.order.actionDetails){
+      this.order.actionDetails = data.order.actionDetails; 
+    }
+
     if(data.redirectUrl){
       this.redirectUrl = data.redirectUrl;
     }

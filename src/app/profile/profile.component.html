@@ -19,7 +19,7 @@
 				<button mat-raised-button color="accent" (click)="navigateTo('/service-reqd-editor')">{{'NAV.NEED_SERVICE' | translate}} <mat-icon>payments</mat-icon></button>
 			</div>	
 		</div>
-		<div class="right-container" fxFlex="grow" fxLayout="column" fxLayoutGap="8px">
+		<div class="right-container" fxLayout="column" fxLayoutGap="8px">
 			<mat-accordian>
 				<mat-expansion-panel>
 					<mat-expansion-panel-header>
@@ -27,19 +27,21 @@
 				        {{'PROFILE.P10X' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
-				    <div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-						<div class="">{{'PROFILE.TEAM_SIZE' | translate}}: {{person.teamSize}}</div>
-						<div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div>
-						<div class="">{{'PROFILE.REFERRED_BY' | translate}}: {{person.referrer?.n}}</div>
-						<div class="">{{'PROFILE.SLOTS' | translate}}: {{person.currOrbit}}</div>
-					</div>
-					<div class="full-width" fxLayout fxLayoutAlign="space-between start" fxLayoutGap="8px" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
-						<div class="">{{'PROFILE.TC' | translate}}:<br>{{person.totalAmountCollected | currency: 'INR':'symbol-narrow'}}</div>
-						<div class="">{{ 'PROFILE.WITHDRAWABLE' | translate }}:<br>{{person.amtWithdrawable | currency: 'INR':'symbol-narrow'}}</div>
-						<div class="">{{'PROFILE.TAW' | translate}}:<br>{{person.totalAmountWithdrawnTillDate|currency: 'INR':'symbol-narrow'}}</div>
-						<div class="">Total Donated Amount:<br>{{person.paidAmount|currency: 'INR':'symbol-narrow'}}</div>
-						<div class="">{{'PROFILE.DQ' | translate}}:<br>{{person.donationQuota | currency: 'INR':'symbol-narrow'}}</div>
-					</div>
+				    <div class="content">
+		    			<div fxLayout fxLayoutAlign="space-between start" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+							<div class="">{{'PROFILE.TEAM_SIZE' | translate}}: {{person.teamSize}}</div>
+							<div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div>
+							<div class="">{{'PROFILE.REFERRED_BY' | translate}}: {{person.referrer?.n}}</div>
+							<div class="">{{'PROFILE.SLOTS' | translate}}: {{person.currOrbit}}</div>
+						</div>
+						<div fxLayout fxLayoutAlign="space-between start" fxLayoutGap="8px" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+							<div class="">{{'PROFILE.TC' | translate}}:<br>{{person.totalAmountCollected | currency: 'INR':'symbol-narrow'}}</div>
+							<div class="">{{ 'PROFILE.WITHDRAWABLE' | translate }}:<br>{{person.amtWithdrawable | currency: 'INR':'symbol-narrow'}}</div>
+							<div class="">{{'PROFILE.TAW' | translate}}:<br>{{person.totalAmountWithdrawnTillDate|currency: 'INR':'symbol-narrow'}}</div>
+							<div class="">Total Donated Amount:<br>{{person.paidAmount|currency: 'INR':'symbol-narrow'}}</div>
+							<div class="">{{'PROFILE.DQ' | translate}}:<br>{{person.donationQuota | currency: 'INR':'symbol-narrow'}}</div>
+						</div>
+				    </div>
 				</mat-expansion-panel>
 
 				<mat-expansion-panel>
@@ -48,7 +50,7 @@
 				        {{'PROFILE.LEVELWISE' | translate}}
 				      </mat-panel-title>
 				    </mat-expansion-panel-header>
-				    <div fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between start">
+				    <div class="table" fxLayout.gt-sm="row" fxLayout.lt-md="column" fxLayoutAlign.gt-sm="space-between start">
 				    	<div>
 			    			<h3>Direct Downlines</h3>
 			    			<table>
@@ -97,7 +99,7 @@
 					<mat-expansion-panel-header>
 						<mat-panel-title>{{'PROFILE.BUY_SLOTS' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
-					<div fxLayout="column" fxLayoutGap="8px">
+					<div class="content" fxLayout="column" fxLayoutGap="8px">
 						<mat-form-field>
 							<mat-label>{{'PROFILE.SLOT_COUNT' | translate}}</mat-label>
 							<button matPrefix mat-icon-button (click)="slotCount=slotCount-1; slotCountUpdated(slotCount)"><mat-icon>remove</mat-icon></button>
@@ -128,7 +130,7 @@
 					<mat-expansion-panel-header>
 						<mat-panel-title>{{'PROFILE.UPLOAD_IMAGES' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
-					<div fxLayout="row wrap" fxLayoutAlign="space-between center">
+					<div class="content" fxLayout="row wrap" fxLayoutAlign="space-between center">
 						<div fxLayout="column">
 							<app-uploader [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="uploadCompleted($event, 'adh_f')" [header]="'Aadhaar Front Image'" [newFilename]="'adh_f'"></app-uploader>
 							<img class="rectangular-img" *ngIf="person.aadhar_front?.downloadUrl" [src]="person.aadhar_front?.downloadUrl" height="150" width="300" alt="Aadhar Front"/>
@@ -159,7 +161,7 @@
 					<mat-expansion-panel-header>
 						<mat-panel-title>{{'PROFILE.TRANSFER_CREDITS' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
-					<div fxLayout="column" fxLayoutGap="8px">
+					<div class="content" fxLayout="column" fxLayoutGap="8px">
 						<app-person-exact-match (personSelected)="personSelected($event, 'CREDIT_TRANSFER')" [type]="'generic'" [errorLabel]="'Please select a person to transfer coins'" #beneficiary></app-person-exact-match>
 						<mat-form-field>
 							<mat-label>{{'PROFILE.CREDITS' | translate}}</mat-label>
@@ -178,7 +180,7 @@
 					<mat-expansion-panel-header>
 						<mat-panel-title>{{'SIGNUP_FORM.ADD_NEW_PERSON' | translate}}</mat-panel-title>
 					</mat-expansion-panel-header>
-					<div fxLayout="column" fxLayoutGap="8px">
+					<div class="content" fxLayout="column" fxLayoutGap="8px">
 						<mat-form-field>
 							<mat-label>{{'SIGNUP_FORM.NAME' | translate}}</mat-label>
 							<input matInput [(ngModel)]="np.name" placeholder="{{'SIGNUP_FORM.NAME' | translate}}">
