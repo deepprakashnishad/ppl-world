@@ -3,6 +3,7 @@
 	<h3>{{order.prod}}</h3>	
 	<p>{{order.prodDesc}}</p>
 	<h4 *ngIf="order.amt">{{order.amt  | currency: 'INR':'symbol-narrow'}}</h4>
+	<app-person-exact-match *ngIf="selectPerson" (personSelected)="personSelected($event, selectedPersonType)" [type]="'generic'" [inputLabel]="searchPersonHint" #searchBox></app-person-exact-match>
 	<mat-form-field appearance="outline" *ngIf="!order.amt">
 	    <input matInput placeholder="Amount" type="number" id="inputAmtReqd" class="form-control" [(ngModel)]="newAmount">
     </mat-form-field>

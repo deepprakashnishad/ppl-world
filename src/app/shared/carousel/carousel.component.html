@@ -1,29 +1,37 @@
-<div class="carousel" ngStyle.gt-sm="min-height: 90vh" ngStyle.lt-md="min-height: 300px">
-  <ng-container class="img-wrapper" *ngFor="let slide of slides; let i = index">
-    <img
-      *ngIf="i === currentSlide && slideSize==='full-size-slide'"
-      [src]="slide.src"
-      class="full-size-slide"
-      [@slideAnimation]="animationType"
-    />
-    <img
-      *ngIf="i === currentSlide  && slideSize==='natural'"
-      [src]="slide.src"
-      class="slide center"
-      [@slideAnimation]="animationType"
-    />
-    <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType" ngStyle.gt-sm="min-height: 90vh" ngStyle.lt-md="min-height: 300px">
-      <div class="small-text">{{slide.headline}}</div>
-      <div class="big-text">{{slide.text}}</div>
-      <button mat-raised-button color="primary" class="call-to-action-button" (click)="actionClicked(slide.linkToAction)">{{slide.callToActionText}}</button>
-    </div>
-  </ng-container>
+<div fxLayout.gt-sm="row" fxLayoutGap="12px">
+  <div fxLayout="column" fxLayoutGap="12px" fxHide.lt-md>
+    <img class="icon" *ngFor="let slide of slides; let i = index" [src]="slide.src" (click)="imageSelected(i)"/>
+  </div>
+  <div class="carousel" ngStyle.gt-sm="min-height: 90vh" ngStyle.lt-md="min-height: 300px">
+    <ng-container class="img-wrapper" *ngFor="let slide of slides; let i = index">
+      <img
+        *ngIf="i === currentSlide && slideSize==='full-size-slide'"
+        [src]="slide.src"
+        class="full-size-slide"
+        [@slideAnimation]="animationType"
+      />
+      <img
+        *ngIf="i === currentSlide  && slideSize==='natural'"
+        [src]="slide.src"
+        class="slide center"
+        [@slideAnimation]="animationType"
+      />
+      <div class="overlay" fxLayout="column" fxLayoutAlign="center center" *ngIf="slide.text && i === currentSlide" [@slideAnimation]="animationType" ngStyle.gt-sm="min-height: 90vh" ngStyle.lt-md="min-height: 300px">
+        <div class="small-text">{{slide.headline}}</div>
+        <div class="big-text">{{slide.text}}</div>
+        <button mat-raised-button color="primary" class="call-to-action-button" (click)="actionClicked(slide.linkToAction)">{{slide.callToActionText}}</button>
+      </div>
+    </ng-container>
 
-  <!-- controls -->
-  <button class="control prev" (click)="onPreviousClick()">
-    <span class="arrow left"></span>
-  </button>
-  <button class="control next" (click)="onNextClick()">
-    <span class="arrow right"></span>
-  </button>
+    <!-- controls -->
+    <button class="control prev" (click)="onPreviousClick()">
+      <span class="arrow left"></span>
+    </button>
+    <button class="control next" (click)="onNextClick()">
+      <span class="arrow right"></span>
+    </button>
+  </div>
+  <div fxLayout="row" fxLayoutGap="12px" fxHide.gt-sm>
+    <img class="icon" *ngFor="let slide of slides; let i = index" [src]="slide.src" (click)="imageSelected(i)"/>
+  </div>
 </div>

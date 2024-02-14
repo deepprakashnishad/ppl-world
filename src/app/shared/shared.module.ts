@@ -41,6 +41,8 @@ import { AddressComponent } from './address/address.component';
 import {MyGoogleMapComponent} from './my-google-maps/my-google-maps.component';
 import {LocationCoordinatesComponent} from './my-google-maps/location-coordinates/location-coordinates.component';
 
+// import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
+
 import { environment } from '../../environments/environment';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -77,7 +79,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LocationCoordinatesComponent,
     TagChipInputComponent,
     TagAutocompleteComponent,
-    TagEditorComponent
+    TagEditorComponent,
+    // PersonExactMatchComponent
   ],
   imports: [
     CommonModule,
@@ -134,7 +137,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LocationCoordinatesComponent,
     TagChipInputComponent,
     TagAutocompleteComponent,
-    TagEditorComponent
+    TagEditorComponent,
+    // PersonExactMatchComponent
   ],
   entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent, TagEditorComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

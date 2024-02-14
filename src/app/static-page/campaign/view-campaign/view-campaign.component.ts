@@ -64,8 +64,8 @@ export class ViewCampaignComponent implements OnInit {
 	}
 
 	openShareBottomSheet(){
-    var mTxt = `${this.campaign.title}\n${this.campaign.desc}`;
-    var mLink = window.location;
+    var mTxt = `${this.campaign.title}\n${this.campaign.desc}\n${window.location.href}`;
+    var mLink = window.location.href;
     this._bottomSheet.open(ShareComponent, {data: {"mTxt": mTxt, "mLink": mLink}});
   }
 
@@ -88,7 +88,11 @@ export class ViewCampaignComponent implements OnInit {
 				order: {
 					prod: this.campaign.title,
 					prodId: this.campaign.id,
-					prodDesc: this.campaign.desc
+					prodDesc: `Donation for ${this.campaign.title}`,
+					title: `Donation`,
+          qty: 1,
+          desc: `Donation for ${this.campaign.title}`,
+          action: "donation"
 				},
 				redirectUrl: "/explore",
 				action_name: "Donate"

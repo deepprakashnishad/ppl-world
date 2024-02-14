@@ -76,6 +76,10 @@ export class CarouselComponent implements OnInit {
     this.currentSlide = next === this.slides.length ? 0 : next;
   }
 
+  imageSelected(selectedIndex){
+    this.currentSlide = selectedIndex;
+  }
+
   ngOnInit() {
     this.preloadImages(); // for the demo
   }

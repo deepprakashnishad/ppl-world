@@ -32,6 +32,12 @@ export class PaymentComponent implements OnInit {
   @Input() order: any = {};
   @Input() displayDetails: any = {};
 
+  @Input() selectPerson:boolean = false;
+  @Input() selectedPersonType: string = "donor";
+  @Input() searchPersonHint: string = "Enter mobile number";
+  @Input() selectedPersonField: string;
+  selectedPerson: any;
+
   modeOfPayment: string = "online";
   orderId: string;
   payment: Payment = new Payment();
@@ -120,9 +126,23 @@ export class PaymentComponent implements OnInit {
     if(data.redirectUrl){
       this.redirectUrl = data.redirectUrl;
     }
+
+    if(data.selectedPersonField){
+      this.selectedPersonField = data.selectedPersonField;
+    }
   }
 
   ngOnInit() {
+  }
+
+  personSelected(event, type){
+    /*if(this.selectedPersonField){
+      if(!this.order.extraInfo){
+        this.order.extraInfo = {};
+      }
+      console.log(event);
+      this.order.extraInfo[this.selectedPersonField] = event.id;
+    }*/
   }
 
   placeOrder(paymentGateway) {
