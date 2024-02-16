@@ -23,6 +23,7 @@ import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view
 import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
+import { SaleReportComponent } from './reports/sale-report/sale-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
 import { ServiceCategoryEditorComponent } from './employment/category/service-category-editor.component';
@@ -192,6 +193,11 @@ const routes: Routes = [
 		path: 'transaction-report', 
 		component: TransactionReportComponent,
 		data: { title: 'Transactions', permissions: []}
+	},
+	{
+		path: 'sale-report', 
+		component: SaleReportComponent,
+		data: { title: 'Sale Report', permissions: []}
 	},
 	{
 		path: 'global-earning-report', 

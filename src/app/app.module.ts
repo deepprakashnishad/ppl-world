@@ -40,6 +40,7 @@ import { CreateCampaignComponent } from './static-page/campaign/create-campaign/
 import { DailyReportComponent } from './reports/daily-report/daily-report.component';
 import { TransactionReportComponent } from './reports/transaction-report/transaction-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
+import { SaleReportComponent } from './reports/sale-report/sale-report.component';
 import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { ViewCampaignComponent } from './static-page/campaign/view-campaign/view-campaign.component';
 import { WallOfFameComponent } from './static-page/campaign/wall-of-fame/wall-of-fame.component';
@@ -121,6 +122,7 @@ const notifierDefaultOptions: NotifierOptions = {
     DailyReportComponent,
     TransactionReportComponent,
     GlobalEarningReportComponent,
+    SaleReportComponent,
     ServiceOfferEditorComponent,
     ServiceDetailFormComponent,
     ServiceReqdEditorComponent,
