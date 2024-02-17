@@ -30,8 +30,8 @@
             <!-- <div fxFlex="10"><span *ngIf="t.com && t.exp">Commission: {{t.com-t.exp}}%</span></div> -->
             <div fxFlex="10">Commission: {{(t.com-t.exp)*t.amt/100 | currency: 'INR':'symbol-narrow'}}</div>
             <div fxFlex="10">Your Commission: 
-              <span *ngIf="t.level===1">{{((t.com-t.exp)*t.amt/100)*0.5 | currency: 'INR':'symbol-narrow'}}</span>
-              <span *ngIf="t.level>1 && t.level<=4">{{((t.com-t.exp)*t.amt/100)*0.1 | currency: 'INR':'symbol-narrow'}}</span>
+              <span *ngIf="t.level===1">{{((t.com-t.exp)*t.amt*0.01*0.82)*0.5 | currency: 'INR':'symbol-narrow'}}</span>
+              <span *ngIf="t.level>1 && t.level<=4">{{((t.com-t.exp)*t.amt*0.01*0.82)*0.1 | currency: 'INR':'symbol-narrow'}}</span>
             </div>
           </div>
       </mat-card>

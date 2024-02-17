@@ -188,13 +188,21 @@
 						<mat-form-field>
 							<mat-label>{{'SIGNUP_FORM.MOBILE' | translate}}</mat-label>
 							<input matInput [(ngModel)]="np.mobile" placeholder="{{'SIGNUP_FORM.MOBILE' | translate}}">
+							<span matSuffix>
+				            	<button *ngIf="!otpSent" mat-flat-button color="accent" (click)="generateOTP()">Send OTP</button>
+				            </span>
 						</mat-form-field>
+						<mat-form-field appearance="outline" *ngIf="otpSent">
+				            <input type="text" [(ngModel)]="np.otp" placeholder="OTP" matInput>
+				            <mat-error >Please enter OTP recieved on mobile number given above</mat-error>
+				        </mat-form-field>
 						<mat-form-field>
 							<mat-label>{{'SIGNUP_FORM.EMAIL' | translate}}</mat-label>
 							<input matInput [(ngModel)]="np.email" placeholder="{{'SIGNUP_FORM.EMAIL' | translate}}">
 						</mat-form-field>
 						<app-person-exact-match (personSelected)="personSelected($event, 'REFERRER')" [type]="'generic'" inputLabel="{{'SIGNUP_FORM.REFERRER'|translate}}" errorLabel="{{'SELECT_PERSON_PROMPT'|translate}}" #referrerCntl></app-person-exact-match>
-						<button mat-raised-button color="primary" (click)="saveNewPerson()">{{'SAVE' | translate}}</button>
+
+						<button *ngIf="otpSent" mat-raised-button color="primary" (click)="saveNewPerson()">{{'SAVE' | translate}}</button>
 					</div>
 				</mat-expansion-panel>
 			</mat-accordian>

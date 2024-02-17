@@ -52,6 +52,8 @@ export class ProfileComponent implements OnInit {
 
   buyButtonDisabled: boolean = false;
 
+  otpSent: boolean = false;
+
   np: any = {};
 
   @ViewChild('boughtForSearchBox') boughtFor: PersonExactMatchComponent;
@@ -292,15 +294,40 @@ export class ProfileComponent implements OnInit {
 
     this.authService.createUserOnBehalf(
       {
-        name: this.np.name, password: undefined, email: this.np.email, mobile: mobile, parent: this.np.parent}
+        name: this.np.name, 
+        password: undefined, 
+        email: this.np.email, 
+        mobile: mobile, 
+        parent: this.np.parent,
+        otp: this.np.otp
+      }
     ).subscribe((authResponse) =>  {
-      if (authResponse) {
+      if (authResponse['success']) {
         this.notifier.notify("success", this.translate.instant('SIGNUP_FORM.CREATION_SUCCESS_MSG'));
         this.np = {};
         this.referrerCntl.reset();
+      }else{
+        this.notifier.notify("error", authResponse['msg']);
       }
     }, error => {
       this.notifier.notify("error", error.error.msg);
+    });
+  }
+
+  generateOTP(){
+    var mobile = "+91" + this.np.mobile;
+    if(mobile.length != 13){
+      this.notifier.notify("error", "Invalid mobile number");
+      return;
+    }
+    this.authService.requestOTP(mobile).subscribe((result)=>{
+      if(result.success){
+        this.otpSent = true;
+
+        this.notifier.notify("success", "OTP sent to mobile number provided");
+      }else{
+        this.notifier.notify("error", "Failed to send OTP message. Please try again later.");
+      }
     });
   }
 }

@@ -87,6 +87,7 @@ export class AuthenticationService {
   		m: registrationData.mobile,
   		e: registrationData.email,
   		password: registrationData.password,
+      otp: registrationData.otp,
       p: registrationData.parent?registrationData.parent.id: undefined
   	};
   	return this.http.post<AuthResponse>(
@@ -102,7 +103,8 @@ export class AuthenticationService {
       n: registrationData.name,
       m: registrationData.mobile,
       e: registrationData.email,
-      p: registrationData.parent.id
+      p: registrationData.parent.id,
+      otp: registrationData.otp
     };
     return this.http.post<AuthResponse>(
       this.signupUrl+"/createUserOnBehalf", mRegistrationData)
@@ -243,11 +245,11 @@ export class AuthenticationService {
     });
   }
 
-  requestOTP(mobile, recaptchaToken): Observable<any> {
-    return this.http.post(`${environment.baseurl}/OTP/requestOTP`, {
+  requestOTP(mobile, recaptchaToken=undefined): Observable<any> {
+    return this.http.post(`${environment.baseurl}/UserLogin/requestOTP`, {
       type: "mobile",
       "token": recaptchaToken,
-      "mobile": mobile
+      "username": mobile
     });
   }
 

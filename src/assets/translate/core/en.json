@@ -41,7 +41,8 @@
 		"CREATION_FAILURE_MSG": "Failed to create user",
 		"NAME_MOB_MISS_PROMPT": "Name or mobile are missing",
 		"REF_MISS_PROMPT": "Referrer missing",
-		"REGISTER": "Register"
+		"REGISTER": "Register",
+		"TNC":"By signing up you agree to our Terms and Conditions. Click here to read it."
 	},
 
 	"NAV": {

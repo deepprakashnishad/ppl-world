@@ -5,9 +5,11 @@ import { AuthenticationService } from './../authentication.service';
 import {AuthResponse} from './../auth-response';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { TNCComponent } from 'src/app/static-page/tnc/tnc.component';
 import { Observable } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
 import { NotifierService } from 'angular-notifier';
+import { MatDialog } from '@angular/material/dialog';
 
 const MismatchPasswordValidator: ValidatorFn = (fg: FormGroup): ValidationErrors | null => {
   const pass = fg.get('materialFormCardPasswordEx');
@@ -44,18 +46,24 @@ export class LoginComponent implements OnInit{
 
     selectedTab: number = 0;
 
+    otpSent: boolean = false;
+
+    isOTPVerified: boolean = false;
+
   constructor(
     public fb: FormBuilder,
     private authService: AuthenticationService,
     public snackBar: MatSnackBar,
     private router: Router,
     private notifier: NotifierService,
+    private dialog: MatDialog,
     private route: ActivatedRoute) {
     this.cardForm = fb.group({
       materialFormCardNameEx: ['', [Validators.required, Validators.minLength(4)]],
       materialFormCardEmailEx: ['', [Validators.email]],
       materialFormCardMobile: ['', [Validators.maxLength(10), Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')]],
       materialFormCardPasswordEx: ['', [Validators.required, Validators.minLength(4)]],
+      materialFormCardOTP: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
       materialFormCardConfirmPass: ['', Validators.required],
     }, {validator: MismatchPasswordValidator});
 
@@ -94,6 +102,7 @@ export class LoginComponent implements OnInit{
       const name = this.cardForm.get('materialFormCardNameEx').value.trim();
       const password = this.cardForm.get('materialFormCardPasswordEx').value;
       const email = this.cardForm.get('materialFormCardEmailEx').value?.trim();
+      const otp = this.cardForm.get('materialFormCardOTP').value?.trim();
       var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value.trim();
 
       /*if(!this.referrer){
@@ -101,7 +110,7 @@ export class LoginComponent implements OnInit{
       }*/
 
       this.authService.signup(
-        {name: name, password: password, email: email, mobile: mobile, parent: this.referrer}
+        {name: name, password: password, email: email, mobile: mobile, parent: this.referrer, "otp": otp}
         ).subscribe((authResponse) =>  {
           this.authResponse = authResponse;
           if (authResponse) {
@@ -202,6 +211,26 @@ export class LoginComponent implements OnInit{
 
   referrerSelected(event){
     this.referrer = event;
+  }
+
+  openTnC(){
+    const dialogRef = this.dialog.open(TNCComponent, {height: "100%", width: "100%"});
+  }
+
+  generateOTP(){
+    var mobile = "+91" + this.cardForm.get('materialFormCardMobile').value.trim();
+    if(mobile.length != 13){
+      this.notifier.notify("error", "Invalid mobile number");
+      return;
+    }
+    this.authService.requestOTP(mobile).subscribe((result)=>{
+      if(result.success){
+        this.otpSent = true;
+        this.notifier.notify("success", "OTP sent to mobile number provided");
+      }else{
+        this.notifier.notify("error", "Failed to send OTP message. Please try again later.");
+      }
+    });
   }
 }
 
