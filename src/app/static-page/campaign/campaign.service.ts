@@ -89,12 +89,18 @@ export class CampaignService {
         catchError(this.handleError('Get beneficiaries', null))); 
   }
     
-    getBeneficiarySummary(cid: string, type: string = "campaign"){
-        return this.http.get<any>(`${this.campaignUrl}/getBeneficiarySummary?cid=${cid}&type=${type}`)
-          .pipe(
-            catchError(this.handleError('Get beneficiaries', null))); 
-    } 
+  getBeneficiarySummary(cid: string, type: string = "campaign"){
+    return this.http.get<any>(`${this.campaignUrl}/getBeneficiarySummary?cid=${cid}&type=${type}`)
+      .pipe(
+        catchError(this.handleError('Get beneficiaries', null))); 
+  } 
     
+  getCampaignDonors(campaignId: string, limit=50, offset=0){
+    console.log(campaignId);
+    return this.http.get<any>(`${this.campaignUrl}/getCampaignDonors?cid=${campaignId}&limit=${limit}&offset=${offset}`)
+      .pipe(
+        catchError(this.handleError('Get beneficiaries', null))); 
+  } 
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

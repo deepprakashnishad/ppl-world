@@ -3,6 +3,7 @@ import {
   OnInit, 
   ViewChild
 } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {FormControl} from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { CampaignService } from './../campaign.service';
@@ -19,8 +20,10 @@ export class WallOfFameComponent implements OnInit {
   limit: number = 50;
   donors: Array<any> = [];
   endOfDonorsReached:boolean = false;
+  isRegular: boolean = false;
 
   constructor(
+    private router: ActivatedRoute,
     private campaignService: CampaignService,
     private notifier: NotifierService
   ){
@@ -28,7 +31,14 @@ export class WallOfFameComponent implements OnInit {
   }
 
   ngOnInit(){
-    this.getDonors(0);
+    this.router.params.subscribe(params=>{
+      if(params['campaignId']){
+        this.getCampaignDonors(params['campaignId']); 
+      }else{
+        this.getDonors(0);
+        this.isRegular = true;
+      }
+    });
   }
 
   getDonors(offset: number){
@@ -43,5 +53,19 @@ export class WallOfFameComponent implements OnInit {
         this.notifier.notify("error", "Some error occurred. Please try again later.");
       }
     });
+  }
+
+  getCampaignDonors(campaignId, offset=0){
+    this.campaignService.getCampaignDonors(campaignId ,this.limit, offset).subscribe(result=>{
+      if(result.success){
+        if(result < this.limit){
+          this.endOfDonorsReached = true;
+        }  
+
+        this.donors = result.donors;
+      }else{
+        this.notifier.notify("error", "Some error occurred. Please try again later.");
+      }
+    }); 
   }
 }

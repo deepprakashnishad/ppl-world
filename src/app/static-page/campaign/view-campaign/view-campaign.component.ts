@@ -36,7 +36,8 @@ export class ViewCampaignComponent implements OnInit {
   canCollectDonation:boolean = false;
 
 	constructor(
-		private router: ActivatedRoute,
+		private activatedRoute: ActivatedRoute,
+		private router: Router,
 		private notifier: NotifierService,
     private _bottomSheet: MatBottomSheet,
 		private campaignService: CampaignService,
@@ -46,7 +47,7 @@ export class ViewCampaignComponent implements OnInit {
 	}
 
 	ngOnInit(){
-		this.router.params.subscribe(params=>{
+		this.activatedRoute.params.subscribe(params=>{
 			if(params['id']){
 				this.getCampaignDetail(params['id']);	
 			}
@@ -115,5 +116,9 @@ export class ViewCampaignComponent implements OnInit {
   subscribeCampaign(){
   	const bottomSheet = this._bottomSheet.open(SubscriptionComponent, {data: this.campaign});
     bottomSheet.afterDismissed().subscribe(result=>{});	
+  }
+
+  viewDonors(){
+  	this.router.navigate([`wall-of-fame/${this.campaign.id}`]);
   }
 }

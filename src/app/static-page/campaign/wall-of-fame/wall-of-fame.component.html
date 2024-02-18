@@ -9,10 +9,13 @@
 			  <img class="profile-pic" *ngIf="!donor.donor.pic?.downloadUrl" src="/assets/images/profile/profile.png" />
 			  <img class="profile-pic" *ngIf="donor.donor.pic?.downloadUrl" [src]="donor.donor.pic?.downloadUrl" height="150" width="150"/>
 			  <mat-card-content class="summary-highlight">
-			    <div>
+			    <div *ngIf="isRegular">
 			      Donation Subscribed: {{donor.donor.da | currency: 'INR':'symbol-narrow'}}
 		      	</div>
-			    <div>
+		      	<div *ngIf="!isRegular">
+			      Donation: {{donor.amt | currency: 'INR':'symbol-narrow'}}
+		      	</div>
+			    <div *ngIf="isRegular">
 			    	Total Donation: {{donor.totalAmt | currency: 'INR':'symbol-narrow'}}
 			    </div>
 			  </mat-card-content>

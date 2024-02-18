@@ -83,7 +83,6 @@ const routes: Routes = [
 		component: ViewCampaignComponent,
 		data: { title: 'View Component', permissions: []}
 	},
-
 	{
 		path: 'beneficiaries/:campaignid', 
 		component: BeneficiaryComponent,
@@ -126,6 +125,11 @@ const routes: Routes = [
 	},
 	{
 		path: 'wall-of-fame', 
+		component: WallOfFameComponent,
+		data: { title: 'Wall of fame', permissions: []}
+	},
+	{ 
+		path: 'wall-of-fame/:campaignId', 
 		component: WallOfFameComponent,
 		data: { title: 'Wall of fame', permissions: []}
 	},

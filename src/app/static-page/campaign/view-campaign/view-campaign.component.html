@@ -22,12 +22,13 @@
 			<div class="summary">Category:<span> {{campaign?.cat | titlecase}}</span></div>
 			<div class="summary">Created By: <span>{{campaign?.owner?.name}}</span></div>
 			<div class="summary">Status: <span>{{campaign?.s}}</span></div>
-			<div fxLayout="row" fxLayoutGap="8px" fxLayout.lt-md="column">
+			<div fxLayout="row wrap" fxLayoutGap="8px" fxLayout.lt-md="column">
 				<button class="full-width" mat-raised-button color="accent" (click)="openShareBottomSheet()">{{'SHARE' | translate}} <mat-icon>share</mat-icon></button>
 				<button class="full-width" mat-raised-button color="primary" (click)="collectFromOthers()" *ngIf="canCollectDonation">Collect from others</button>
 				<button class="full-width" mat-raised-button color="error" (click)="donateFromBank()">Donate Online</button>
 				<!-- <button class="full-width" mat-raised-button color="accent" (click)="donateFromGoodAct()">Donate From Good Act</button> -->
 				<button class="full-width" mat-raised-button color="warn" (click)="subscribeCampaign()">Subscribe</button>
+				<button class="full-width" mat-raised-button color="warn" (click)="viewDonors()">View Donors</button>
 			</div>
 		</div>
 	</div>
