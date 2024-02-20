@@ -49,20 +49,19 @@
           <!-- Material input email -->
           <mat-form-field appearance="outline">
             <input type="text" id="materialFormCardMobile" formControlName="materialFormCardMobile" class="form-control" matInput placeholder="{{'SIGNUP_FORM.MOBILE' | translate}}">
+            <span matPrefix>
+              <i class="fa fa-phone prefix grey-text"></i>&nbsp;&nbsp;
+            </span>
             <span matSuffix *ngIf="!otpSent">
             	<button  mat-flat-button color="accent" (click)="generateOTP()">Send OTP</button>
             </span>
             <mat-error >Please provide a valid 10 digit mobile number</mat-error>
           </mat-form-field>
 
-          <mat-form-field appearance="outline" *ngIf="otpSent">
+          <!-- <mat-form-field appearance="outline" *ngIf="otpSent">
             <input type="text" id="materialFormCardOTP" formControlName="materialFormCardOTP" class="form-control" matInput placeholder="OTP">
-            <!-- <button matSuffix mat-raised-button (click)="verifyOTP()">Verify OTP</button> -->
-            <!-- <span matPrefix>
-              <i class="fa fa-mobile prefix grey-text"></i>&nbsp;&nbsp;
-            </span> -->
             <mat-error >Please enter OTP recieved on mobile number given above</mat-error>
-          </mat-form-field>
+          </mat-form-field> -->
 
           <mat-form-field appearance="outline">
             <input type="email" id="materialFormCardEmailEx" formControlName="materialFormCardEmailEx" class="form-control" matInput placeholder="{{'SIGNUP_FORM.EMAIL' | translate}}">
@@ -96,7 +95,7 @@
           errorLabel="{{'SELECT_PERSON_PROMPT'|translate}}" [isMandatory]="true"></app-person-exact-match>
           <div class="tnc-link" (click)="openTnC()">{{'SIGNUP_FORM.TNC' | translate}}</div>
           <!-- <mat-error *ngIf="!referrer">Please select referrer</mat-error> -->
-          <div *ngIf="otpSent">
+          <div *ngIf="true">
             <button class="full-width" mat-raised-button type="reset" [disabled]="cardForm.invalid" color="primary" (click)="onSubmit();">{{'SIGNUP_FORM.REGISTER'|translate}}</button>
           </div>
         </form>

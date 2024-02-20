@@ -5,6 +5,7 @@ import {
 import {FormGroup, FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
 import { ReportService } from './../report.service';
+import { ActivatedRoute } from '@angular/router';
 
 const today = new Date();
 const month = today.getMonth();
@@ -36,10 +37,14 @@ export class SaleReportComponent implements OnInit {
   totalResult: number = 0;
 
   totalCommission: number = 0;
+  totalSaleAmount: number = 0;
+
+  reportType: string = "downline-report";
 
   constructor(
     private notifier: NotifierService,
-    private reportService: ReportService
+    private reportService: ReportService,
+    private route: ActivatedRoute
   ){
 
   }
@@ -48,16 +53,22 @@ export class SaleReportComponent implements OnInit {
     var currDate = new Date();
     var startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
     var endDate = new Date(new Date().setDate(currDate.getDate() + 1));
-    this.getTransactionReport(
-      startDate,
-      `${endDate.getFullYear()}/${endDate.getMonth()+1}/${endDate.getDate()}`      
-    );
+    this.route.params.subscribe(params=>{
+      if(params['type']==="my-report"){
+        this.reportType = "my-report";  
+      }
+      this.getTransactionReport(
+        startDate,
+        `${endDate.getFullYear()}/${endDate.getMonth()+1}/${endDate.getDate()}`
+      );
+    });
   }
 
   getTransactionReport(startDate: string, endDate: string){
-    this.reportService.getSaleReport(startDate, endDate, this.limit, this.offset).subscribe(results=>{
+    this.reportService.getSaleReport(startDate, endDate, this.limit, this.offset, this.reportType).subscribe(results=>{
       this.totalResult = results[0]['totalRecords'][0]['totalCount'];
       this.totalCommission = results[0]['totalCommission'][0]['total'];
+      this.totalSaleAmount = results[0]['totalAmount'][0]['total'];
       this.transactions = this.transactions.concat(results[0]['data']);
       this.offset = this.transactions.length;
       

@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit{
 
     selectedTab: number = 0;
 
-    otpSent: boolean = false;
+    otpSent: boolean = true;
 
     isOTPVerified: boolean = false;
 
@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit{
       materialFormCardEmailEx: ['', [Validators.email]],
       materialFormCardMobile: ['', [Validators.maxLength(10), Validators.required, Validators.minLength(10), Validators.pattern('[0-9]*')]],
       materialFormCardPasswordEx: ['', [Validators.required, Validators.minLength(4)]],
-      materialFormCardOTP: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
+      materialFormCardOTP: ['', [/*Validators.required, Validators.minLength(6), Validators.maxLength(6)*/]],
       materialFormCardConfirmPass: ['', Validators.required],
     }, {validator: MismatchPasswordValidator});
 

@@ -50,14 +50,20 @@ export class ReportService {
         catchError(this.handleError('Get Daily Report', null)));
   }
 
-  getSaleReport(startDate: string, endDate: string, limit: number, offset: number): Observable<any> {
+  getSaleReport(startDate: string, endDate: string, limit: number, offset: number, reportType: string="downline-report"): Observable<any> {
     if(!startDate){
       var currDate = new Date();
       startDate = `${currDate.getFullYear()}/${currDate.getMonth()+1}/${currDate.getDate()}`;
     }
-    return this.http.get<any>(`${this.reportUrl}/sale-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&limit=${limit}&offset=${offset}`)
+    if(reportType==="downline-report"){
+      return this.http.get<any>(`${this.reportUrl}/sale-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&limit=${limit}&offset=${offset}`)
       .pipe(
         catchError(this.handleError('Get Daily Report', null)));
+    }else{
+      return this.http.get<any>(`${this.reportUrl}/my-sale-report?start=${encodeURIComponent(startDate)}&end=${encodeURIComponent(endDate)}&limit=${limit}&offset=${offset}`)
+      .pipe(
+        catchError(this.handleError('Get Daily Report', null)));
+    }
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

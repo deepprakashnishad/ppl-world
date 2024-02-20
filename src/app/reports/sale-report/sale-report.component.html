@@ -19,35 +19,23 @@
     <h3>No transactions found!!!</h3>
   </div>
   <div *ngIf="transactions.length>0">
-    <div class="title total-commission">Total Commission - {{totalCommission | currency: 'INR':'symbol-narrow'}}</div>
-    <div fxHide.lt-md>
-      <mat-card *ngFor="let t of transactions">
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div fxFlex="10">{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
-            <div fxFlex="15">{{t.bd.n}}(L{{t.level}})</div>
-            <div fxFlex="10">Amt: {{t.amt | currency: 'INR':'symbol-narrow'}}</div>
-            <div fxFlex="25">{{t.t}}</div>
-            <!-- <div fxFlex="10"><span *ngIf="t.com && t.exp">Commission: {{t.com-t.exp}}%</span></div> -->
-            <div fxFlex="10">Commission: {{(t.com-t.exp)*t.amt/100 | currency: 'INR':'symbol-narrow'}}</div>
-            <div fxFlex="10">Your Commission: 
-              <span *ngIf="t.level===1">{{((t.com-t.exp)*t.amt*0.01*0.82)*0.5 | currency: 'INR':'symbol-narrow'}}</span>
-              <span *ngIf="t.level>1 && t.level<=4">{{((t.com-t.exp)*t.amt*0.01*0.82)*0.1 | currency: 'INR':'symbol-narrow'}}</span>
-            </div>
-          </div>
-      </mat-card>
+    <div fxLayout="row wrap" fxLayoutGap="24px">
+      <div class="title total-commission">Total Sale Amount - {{totalSaleAmount | currency: 'INR':'symbol-narrow'}}</div>
+      <div class="title total-commission">Total Commission - {{totalCommission | currency: 'INR':'symbol-narrow'}}</div>
     </div>
-    <div fxHide.gt-sm>
+    <div>
       <mat-card *ngFor="let t of transactions">
-        <div fxLayout="row wrap" fxLayoutGap="12px">
+        <div fxLayout="row wrap" fxLayoutGap.lt-md="12px" fxLayoutGap.gt-sm="48px">
           <div>{{t.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
-          <div>{{t.bd.n}}(L{{t.level}})</div>
+          <div *ngIf="reportType!=='my-report'">{{t.bd.n}}(L{{t.level}})</div>
           <div>Amt: {{t.amt | currency: 'INR':'symbol-narrow'}}</div>
           <div>{{t.t}}</div>
           <!-- <div fxFlex="10"><span *ngIf="t.com && t.exp">Commission: {{t.com-t.exp}}%</span></div> -->
           <div>Commission: {{(t.com-t.exp)*t.amt/100 | currency: 'INR':'symbol-narrow'}}</div>
-          <div>Your Commission: 
+          <div *ngIf="reportType!=='my-report'">Your Commission: 
             <span *ngIf="t.level===1">{{((t.com-t.exp)*t.amt/100)*0.5 | currency: 'INR':'symbol-narrow'}}</span>
             <span *ngIf="t.level>1 && t.level<=4">{{((t.com-t.exp)*t.amt/100)*0.1 | currency: 'INR':'symbol-narrow'}}</span>
+              <span>Status: {{t.s}}</span>
           </div>
         </div>
       </mat-card>

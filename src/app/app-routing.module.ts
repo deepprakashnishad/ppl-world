@@ -199,7 +199,7 @@ const routes: Routes = [
 		data: { title: 'Transactions', permissions: []}
 	},
 	{
-		path: 'sale-report', 
+		path: 'sale-report/:type', 
 		component: SaleReportComponent,
 		data: { title: 'Sale Report', permissions: []}
 	},
