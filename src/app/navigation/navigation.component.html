@@ -3,7 +3,7 @@
 	
 		<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
 			<div fxLayout="row" fxFlex="20">
-				<picture>
+				<picture (click)="navigateTo('/')">
 					<source media="(min-width:650px)" srcset="/assets/images/logo-72x72.png">
 				  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
 				  	<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto;">
@@ -37,6 +37,10 @@
 
 				<button mat-button [matMenuTriggerFor]="reports" *ngIf="isLoggedIn">
 					{{"NAV.REPORTS" | translate}}
+				</button>
+
+				<button mat-button (click)="navigateTo('/trader')" *ngIf="isLoggedIn">
+					Trading
 				</button>
                 
 				<mat-select fxFlex="10" class="big-navbar-select" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
@@ -89,8 +93,8 @@
 	</mat-toolbar-row> -->
 	<mat-toolbar-row class="narrow-navbar" fxHide.gt-sm>
 		<div fxLayout="row" fxFlex="30">
-			<div class="header-logo">
-				<a href="index.aspx"><img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto"></a>
+			<div class="header-logo" (click)="navigateTo('/')">
+				<img src="/assets/images/logo-48x48.png" alt="Good-Act" style="width:auto">
 			 </div>
 		</div>
 		<div fxLayout="row" fxFlex="20"></div>
@@ -125,6 +129,9 @@
 				<mat-icon *ngIf="displayReportMenu">expand_less</mat-icon>
 			</span>
 		</button>
+		<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('trader')">
+			Trading
+		</button>
 		<div *ngIf="displayReportMenu" class="mob-sub-menu" [@toggleMenu]>
 			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/transaction-report')">
 			{{"NAV.TRANS_REP" | translate}}
@@ -132,8 +139,11 @@
 			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/global-earning-report')">
 				{{"NAV.GLOBAL_REP" | translate}}
 			</button>
-			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/sale-report')">
+			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/sale-report/downline-report')">
 				{{"NAV.SALE_REP" | translate}}
+			</button>
+			<button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/sale-report/my-report')">
+				{{"NAV.MY_PURCHASES" | translate}}
 			</button>
 		</div>
 		<!-- <button *ngIf="isLoggedIn" mat-button class="mobPageLink" (click)="navigateTo('/daily-report')">
@@ -184,7 +194,7 @@
 			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.0.9</div>
+		<div class="version" fxFlexAlign="start">Version 1.1.1</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

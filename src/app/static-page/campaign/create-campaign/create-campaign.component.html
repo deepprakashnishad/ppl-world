@@ -1,5 +1,6 @@
 <div class="container" ngClass="webContainer" [ngClass.lt-sm]="{'webContainer': false, 'mContainer': true}" fxLayout="column" fxLayoutGap="8px">
 	<div fxLayout="row wrap" fxLayoutGap="8px" fxLayoutAlign="space-between center">
+		<a [href]="'/campaigns/view/'+campaign.id" target="_blank">View</a>
 		<mat-form-field appearance="outline" class="full-width">
 	      <input matInput placeholder="Title" type="text" id="inputTitle" class="form-control" [(ngModel)]="campaign.title" [readonly]="!enableEditMode">
 	      <span matPrefix>
@@ -34,6 +35,7 @@
 	      	<mat-option value="Paused">Paused</mat-option>
 	      	<mat-option value="Suspended">Suspended</mat-option>
 	      	<mat-option value="Blacklisted">Blacklisted</mat-option>
+	      	<mat-option value="Completed">Completed</mat-option>
 	      </mat-select>
 	    </mat-form-field>
 
@@ -53,9 +55,17 @@
 	</div>
 	<div fxLayout="column" *ngIf="campaign.id">
 		<app-uploader [maxAllowedFileSize]="1024" [uploadPath]="uploadPath" [isMultiple]="true" (imageUploaded)="uploadCompleted($event)" [header]="'Campaign Images'"></app-uploader>
-		<div fxLayout>
-			<div *ngFor="let image of campaign.assets">
-				<img [src]="image['downloadUrl']" width="150px" height="auto" />
+
+		<div class="cdk-virtual-scroll-data-source-example" *ngIf="campaign?.assets?.length>0">
+			<div fxLayout fxLayoutGap="12px">
+				<div *ngFor="let image of campaign?.assets; let i = index">
+					<mat-card>
+						<mat-card-content fxLayout="column" fxLayoutAlign="center center">
+							<img [src]="image['downloadUrl']" height="150px" width="150px"/>
+							<button mat-icon-button color="error" (click)="deleteImage(image, i)"><mat-icon>delete</mat-icon></button>
+						</mat-card-content>
+					</mat-card>
+				</div>
 			</div>
 		</div>
 	</div>

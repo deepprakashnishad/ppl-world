@@ -15,7 +15,7 @@ const routes: Routes = [
 		path: '', 
 		component: HomeComponent,
 		canActivate: [AuthGuardService], 
-    	canDeactivate:[CanDeactivateGuardService],
+  	canDeactivate:[CanDeactivateGuardService],
 		data: { title: 'Dashboard', permissions: ['CREATE_PERMISSION']},
 		children: [
 			{

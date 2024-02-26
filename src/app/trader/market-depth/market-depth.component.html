@@ -1,0 +1,26 @@
+<div fxLayout>
+	<div class="buy-container" fxFlex="50">
+		<table class="market-depth-table">
+			<tr fxLayout fxLayoutAlign="space-between center">
+				<th>Qty</th>
+				<th>Price</th>
+			</tr>
+			<tr *ngFor="let quote of buyQuotes" fxLayout fxLayoutAlign="space-between center">
+				<td>{{quote.q}}</td>
+				<td>{{quote['_id'].p}}</td>
+			</tr>
+		</table>
+	</div>
+	<div class="sell-container" fxFlex="50">
+		<table class="market-depth-table">
+			<tr fxLayout fxLayoutAlign="space-between center">
+				<th>Qty</th>
+				<th>Price</th>
+			</tr>
+			<tr *ngFor="let quote of sellQuotes" fxLayout fxLayoutAlign="space-between center">
+				<td>{{quote.q}}</td>
+				<td>{{quote['_id'].p}}</td>
+			</tr>
+		</table>
+	</div>
+</div>

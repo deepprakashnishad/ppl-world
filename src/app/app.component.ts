@@ -37,6 +37,8 @@ export class AppComponent implements OnInit {
 
   displayNotification = false;
 
+  showFooter: boolean = true;
+
   constructor(
     private router: Router,
     private pwaService: PwaService,
@@ -62,12 +64,17 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(
       (event: any) => {
         if (event instanceof NavigationEnd) {          
-         if (this.router.url.includes('admin')) {
+          if (this.router.url.includes('admin')) {
             this.isShowNavigation = false;
-         }
-         else {
-          this.isShowNavigation = true;
-         }
+          }else {
+            this.isShowNavigation = true;
+          }
+
+          if(this.router.url.includes('trader')){
+            this.showFooter = false;
+          }else{
+            this.showFooter = true;
+          }
         }
       }
     );

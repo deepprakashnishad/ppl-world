@@ -1,0 +1,10 @@
+<div fxLayout="column" fxFill>
+	<div class="content-container" fxFlex>
+		<router-outlet #o></router-outlet>
+	</div>
+	<div class="bottom-bar" fxLayout fxLayoutAlign="space-between center" fxFlexAlign="end">
+		<button mat-icon-button (click)="navigateTo('/trader/cockpit')"><mat-icon>dvr</mat-icon></button>
+		<button mat-icon-button (click)="navigateTo('/trader/my-orders')"><mat-icon>toc</mat-icon></button>
+		<button mat-icon-button (click)="navigateTo('/trader')"><mat-icon>person</mat-icon></button>
+	</div>
+</div>

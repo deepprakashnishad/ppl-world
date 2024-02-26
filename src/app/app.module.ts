@@ -145,8 +145,6 @@ const notifierDefaultOptions: NotifierOptions = {
     AuthenticationModule,
     NotifierModule.withConfig(notifierDefaultOptions),
     AppRoutingModule,
-    AdminModule,
-    PersonModule,
     SharedModule,
     ShoppinModule,
     NgxMaterialTimepickerModule,

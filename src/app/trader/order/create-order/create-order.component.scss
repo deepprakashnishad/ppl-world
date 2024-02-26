@@ -1,0 +1,37 @@
+.mat-button-toggle-checked.green{
+	background: green;
+	color: white;
+}
+
+.mat-button-toggle-checked.red{
+	background: red;
+	color: white;
+}
+
+.container-red{
+	background: #f1b0b0;
+	padding: 16px;
+}
+
+.container-green{
+	background: #c6f1c6;
+	padding: 16px;
+}
+
+.red{
+	background: #f1b0b0;
+	color: black;	
+}
+
+.green{
+	background: #c6f1c6;
+	color: black;	
+}
+
+::ng-deep mat-button-toggle-group{
+  outline: none;
+}
+
+.mat-button-toggle-standalone.mat-button-toggle-appearance-standard, .mat-button-toggle-group-appearance-standard{
+	border: none !important;
+}

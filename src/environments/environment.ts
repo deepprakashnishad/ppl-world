@@ -7,6 +7,8 @@ export const environment = {
   logoUrl: "https://fir-erp-944d6.web.app/assets/images/logo.jpeg",
   production: false,
   slotPrice: 250,
+  maxPermittedSlot: 1000,
+  maxPermittedAmt: 1000000,
   baseurl: "http://localhost:4200/api",
   ecomUrl: "http://localhost:4200/ecom",
   allpayurl: "http://localhost:4200/allpay",

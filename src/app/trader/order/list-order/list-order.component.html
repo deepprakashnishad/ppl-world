@@ -1,0 +1,32 @@
+<div class="container full-width date-container" fxLayout fxLayoutGap="8px">
+  <mat-form-field fxLayout class="example-form-field">
+    <mat-label>Select Date Range</mat-label>
+    <mat-date-range-input
+      [formGroup]="rangeForm"
+      [rangePicker]="rangePicker">
+      <input matStartDate placeholder="Start date" formControlName="start" (focus)="rangePicker.open()">
+      <input matEndDate placeholder="End date" formControlName="end" (focus)="rangePicker.open()">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-date-range-picker #rangePicker></mat-date-range-picker>
+    <!--  -->
+  </mat-form-field>
+  <mat-datepicker-toggle matIconSuffix [for]="rangePicker"></mat-datepicker-toggle>
+  <button mat-icon-button color="primary" (click)="refresh()"><mat-icon>refresh</mat-icon></button>
+</div>
+<div class="transaction-container">
+  <div *ngIf="orders.length===0">
+    <h3>No orders found!!!</h3>
+  </div>
+  <div *ngIf="orders.length>0">
+    <mat-card *ngFor="let o of orders">
+      <div fxLayout="row wrap" fxLayoutGap.lt-md="12px" fxLayoutGap.gt-sm="48px">
+        <div>{{o.datetime | date: 'dd MMM YYYY HH:mm:ss'}}</div>
+        <div>{{o.bs}}</div>
+        <div>Price: {{o.p | currency: 'INR':'symbol-narrow'}}</div>
+        <div>Status: {{o.s}}</div>
+      </div>
+    </mat-card>
+    <button class="full-width" mat-raised-button color="primary" (click)="getOrders(rangeForm.value.start, rangeForm.value.end)" *ngIf="!isEndReached">Load More [{{orders.length}} of {{totalResult}} Records]</button>
+  </div>
+</div>

@@ -20,8 +20,7 @@
 			src="http://localhost:1337/" ></iframe>	 -->
 	</main>
 	<!-- Footer -->
-	<div class="footer" fxLayout="column" fxLayoutAlign="space-around center">
-		<notifier-container class="notifier-container"></notifier-container>
+	<div class="footer" fxLayout="column" fxLayoutAlign="space-around center" *ngIf="showFooter">
 		<div class="footer-text">{{"FOOTER.NOTE" | translate}}</div>
 		<div class="full-width" fxLayout fxLayout.lt-md="column" fxLayoutAlign="space-between center">
 			<div fxLayout fxLayoutAlign="start center" fxLayoutGap="16px">
@@ -38,8 +37,11 @@
 				<button mat-icon-button><i class="fab fa-twitter"></i></button>
 				<button mat-icon-button><i class="fab fa-linkedin-in"></i></button>
 			</div>
-			<div class="version" fxFlexAlign="end">Version 1.1.0</div>
+			<div class="version" fxFlexAlign="end">Version 1.1.1</div>
 		</div>
+	</div>
+	<div>
+		<notifier-container class="notifier-container"></notifier-container>
 	</div>
 </div>
 

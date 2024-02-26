@@ -1,0 +1,26 @@
+<div [ngClass]="{'container-green': orderSide === 'B', 'container-red' : orderSide === 'S' }">
+	<div fxLayout="column">
+		<h3>{{entity.id}} - {{entity.name}}({{entity.ltp}})</h3>
+		<mat-form-field>
+			<mat-label>Quantity</mat-label>
+			<button matPrefix mat-icon-button (click)="qty=qty-1; orderCountUpdated(qty)"><mat-icon>remove</mat-icon></button>
+			<input style="text-align:center;" matInput placeholder="Quantity" type="number" [(ngModel)]="qty" class="form-control" (keyup)="orderCountUpdated($event)" (change)="orderCountUpdated($event)">
+			<button matSuffix mat-icon-button (click)="qty=qty+1;orderCountUpdated(qty)"><mat-icon>add</mat-icon></button>
+		</mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Price</mat-label>
+			<button matPrefix mat-icon-button (click)="price=price-0.1; priceUpdated(price)"><mat-icon>remove</mat-icon></button>
+			<input style="text-align:center;" matInput placeholder="Price" type="number" [(ngModel)]="price" class="form-control" (keyup)="priceUpdated($event)" (change)="priceUpdated($event)">
+			<button matSuffix mat-icon-button (click)="price=price+0.1;priceUpdated(price)"><mat-icon>add</mat-icon></button>
+		</mat-form-field>
+
+		<mat-button-toggle-group name="orderSide" aria-label="Font Style" [(ngModel)]="orderSide">
+		  <mat-button-toggle class="green" value="B">Buy</mat-button-toggle>
+		  <mat-button-toggle class="red" value="S">Sell</mat-button-toggle>
+		</mat-button-toggle-group>
+		<button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+
+		<app-market-depth #marketDepth [entityId]="entity.id"></app-market-depth>
+	</div>
+</div>

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NotifierService } from 'angular-notifier';
+import { AngularFireStorage } from '@angular/fire/storage';
 import {CampaignService} from './../campaign.service';
 import {Campaign} from './../campaign';
 
@@ -28,6 +29,7 @@ export class CreateCampaignComponent implements OnInit {
 		private activatedRoute: ActivatedRoute,
 		private router: Router,
 		private notifier: NotifierService,
+		private afs: AngularFireStorage,
 		private campaignService: CampaignService
 	){
 		this.categories = [
@@ -72,30 +74,11 @@ export class CreateCampaignComponent implements OnInit {
 	}
 
 	saveCampaign(){
-		if(!this.campaign.title){
-			this.notifier.notify("error", "Title missing");
-			return;
-		}
-		if(!this.campaign.areqd){
-			this.notifier.notify("error", "Amount required missing");
-			return;
-		}
-		if(!this.campaign.cat){
-			this.notifier.notify("error", "Category missing");
-			return;
-		}
-
-		if(!this.campaign.desc && this.campaign.desc.length<200){
-			this.notifier.notify("error", "Description should have atleast 200 characters");
-			return;
-		}
-		if(!this.campaign.s){
-			this.notifier.notify("error", "Status missing");
+		if(!this.validateCampaign()){
 			return;
 		}
 		if(this.campaign.id){
 			delete this.campaign['createdAt'];
-			console.log(this.campaign);
 			this.campaignService.updateCampaign(this.campaign).subscribe(result=>{
 				this.campaign = Campaign.fromJSON(result);
 				this.notifier.notify("success", "Campaign updated successfully");
@@ -114,7 +97,6 @@ export class CreateCampaignComponent implements OnInit {
 				
 			});
 		}
-		
 	}
 
 	expiryDateSelected(e){
@@ -137,7 +119,51 @@ export class CreateCampaignComponent implements OnInit {
 		});
 	}
 
+	deleteImage(event, index){
+    this.campaign.assets.splice(index, 1);
+    if(this.campaign.hasOwnProperty("id") && this.campaign.id !== undefined){
+    	if(!this.validateCampaign()){
+    		return;
+    	}
+    	delete this.campaign['createdAt'];
+    	this.campaignService.updateCampaign(this.campaign).subscribe(result=>{
+				this.campaign = Campaign.fromJSON(result);
+				this.notifier.notify("success", "Campaign updated successfully");
+				this.afs.ref(event['uploadPath']).delete().subscribe(result=>{
+          console.log(result);
+        })
+			});
+    }else{
+      this.notifier.notify("success", `Campaign id is missing`);
+    }
+  }
+
 	navigateTo(url){
 		this.router.navigate([url, this.campaign.id])
+	}
+
+	validateCampaign(){
+		if(!this.campaign.title){
+			this.notifier.notify("error", "Title missing");
+			return false;
+		}
+		if(!this.campaign.areqd){
+			this.notifier.notify("error", "Amount required missing");
+			return false;
+		}
+		if(!this.campaign.cat){
+			this.notifier.notify("error", "Category missing");
+			return false;
+		}
+
+		if(!this.campaign.desc && this.campaign.desc.length<200){
+			this.notifier.notify("error", "Description should have atleast 200 characters");
+			return false;
+		}
+		if(!this.campaign.s){
+			this.notifier.notify("error", "Status missing");
+			return false;
+		}
+		return true;
 	}
 }
