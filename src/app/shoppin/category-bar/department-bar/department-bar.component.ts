@@ -5,7 +5,7 @@ import { Category } from 'src/app/admin/category/category';
 import { CategoryService } from 'src/app/admin/category/category.service';
 import { CategoryTreeNode } from '../../../admin/category/CategoryTreeNode';
 import SwiperCore, { Navigation } from 'swiper/core';
-import { MyIdbService, STORE_SETTINGS_STORE, TS_STORE } from 'src/app/my-idb.service';
+import { MyIdbService, STORE_SETTINGS, TS_STORE } from 'src/app/my-idb.service';
 import { catRefreshTimeInMillis } from '../categories/categories.component';
 
 SwiperCore.use([Navigation]);

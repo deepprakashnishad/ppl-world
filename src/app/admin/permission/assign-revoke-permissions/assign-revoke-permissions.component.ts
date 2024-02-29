@@ -28,18 +28,19 @@ export class AssignRevokePermissionsComponent implements OnInit {
   selectedRevokePermissionList: Array<any> = []
 
   	updateRestrictedPermissions(){
-  		const grantedPermissionsIds = this.grantedPermissions.map(el=>el.id);
+  		const grantedPermissionsIds = this.grantedPermissions?.map(el=>el.id);
 
   		if(this.completePermissionList !== undefined){
   			this.restrictedPermissions = this.completePermissionList.filter(
 		        (el) => {
-		          return !grantedPermissionsIds.includes(el.id);
+		          return !grantedPermissionsIds?.includes(el.id);
 		        }
 		    );
   		}
   	}
 
   	ngOnChanges(changes: {[propKey: string]: SimpleChange}) {
+  		console.log(changes);
   		this.updateRestrictedPermissions();
   	}
 
@@ -53,7 +54,7 @@ export class AssignRevokePermissionsComponent implements OnInit {
   		this.permissionService.getPermissions()
 	  	.subscribe((permissions)=>{
 	  		this.completePermissionList = permissions;
-	  		let grantedPermissionsIds = this.grantedPermissions.map(el => el.id);
+	  		let grantedPermissionsIds = this.grantedPermissions?.map(el => el.id);
 			  this.updateRestrictedPermissions();	  	
  	  	});
   	}

@@ -23,10 +23,22 @@ export class AdminService {
         catchError(this.handleError('Add Sale Entry', null)));
   }
 
-  listSaleEntries(page, limit):Observable<any>{
-    return this.http.get<any>(`${this.adminUrl}/listSaleEntries?page=${page}&limit=${limit}`)
+  listSaleEntries(storeId, page, limit):Observable<any>{
+    return this.http.get<any>(`${this.adminUrl}/listSaleEntries?storeId=${storeId}&page=${page}&limit=${limit}`)
     .pipe(
         catchError(this.handleError('List Sale Entries', null))); 
+  }
+
+  updateSaleStatus(saleId, newStatus){
+    if(newStatus==="F" || newStatus==="P"){
+      return this.http.get<any>(this.adminUrl+"/processCompletedSales")
+      .pipe(
+          catchError(this.handleError('Update sale status', null)));  
+    }else{
+      return this.http.put<any>(this.adminUrl+"/updateSaleStatus", {id: saleId, status: newStatus})
+      .pipe(
+          catchError(this.handleError('Update sale status', null)));
+    }
   }
 
   private handleError<T> (operation = 'operation', result?: T) {

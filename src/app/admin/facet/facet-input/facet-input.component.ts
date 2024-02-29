@@ -40,13 +40,13 @@ export class FacetInputComponent implements OnInit {
 
   	ngOnInit() {
   		this.facetService.getFacets().subscribe(facets => {
-			this.allFacets = facets
-			this.facetFilteredList = this.facetControl.valueChanges.pipe(
-			startWith(''),
-			map((filterStr: string | null) => {
-				return this._filter(filterStr, this.allFacets)
-			}));
-		});
+				this.allFacets = facets
+				this.facetFilteredList = this.facetControl.valueChanges.pipe(
+				startWith(''),
+				map((filterStr: string | null) => {
+					return this._filter(filterStr, this.allFacets)
+				}));
+			});
   	}
 
   	_filter(value:string, list: Array<any>): Array<any>{

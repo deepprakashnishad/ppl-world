@@ -1,0 +1,70 @@
+<div class="container deep-padding" fxLayout="column">
+
+	<mat-form-field>
+	  <input type="text"
+			 matInput
+			 [(ngModel)]="store.title"
+			 placeholder="Store Name" />
+	</mat-form-field>
+  	<div fxLayout fxLayoutGap="16px" fxLayoutAlign="start center">
+  		<h2>Status - {{store.status}}</h2>
+  		<button mat-raised-button color="primary" (click)="navigateTo('/add-sale')" *ngIf="store.status==='APPROVED'">
+			Goto Sale List
+		</button>
+  	</div>
+  	<div class="section" fxLayout.gt-md="row" fxLayoutGap.gt-md="12px" fxLayout.lt-md="column">
+  		<mat-checkbox
+          (change)="samePersonUpdated($event.checked)">
+	      Same person creating the store
+	    </mat-checkbox>
+	    <br>
+		<mat-form-field>
+		  <input type="text"
+				 matInput
+				 [(ngModel)]="store.cp"
+				 placeholder="Contact Person Name" />
+		</mat-form-field>
+		<mat-form-field>
+		  <input type="text"
+				 matInput
+				 [(ngModel)]="store.cpc"
+				 placeholder="Contact Person Mobile" />
+		</mat-form-field>
+		<mat-form-field>
+		  <input type="text"
+				 matInput
+				 [(ngModel)]="store.cpe"
+				 placeholder="Contact Person Email" />
+		</mat-form-field>
+	</div>
+  	<mat-form-field>
+	  <input type="text"
+			 matInput
+			 [(ngModel)]="store.taxId"
+			 placeholder="TaxId(GST)" />
+	</mat-form-field>
+	<mat-label>Store Address/Pick Up Point</mat-label>
+	<app-address [fulfillmentType]="'self_pick'" [checkPincodeAvailability]=false (addressSelected)="addressSelected($event)" [selectedAddressId]="store.address" [myAddressOnly]="true"></app-address>
+	<div>
+		<mat-accordion>
+		  <mat-expansion-panel  *ngFor="let category of categories">
+		    <mat-expansion-panel-header>
+		      <mat-panel-title>
+		        {{category.dn}}
+		      </mat-panel-title>
+		    </mat-expansion-panel-header>
+		    <div class="container" fxLayout="row wrap">
+		    	<mat-card fxLayout="column" class="join-card" *ngFor="let subCat of category.cat" [@selection]="isCategorySelected(subCat)?'selected':'unselected'" class="selectable" (click)="toggleSelection(subCat, category._id)">
+                    <mat-card-header>
+                        <mat-card-title class="center">{{subCat.dn}}</mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image *ngIf="subCat.img" [src]="subCat.img['downloadUrl']">
+                </mat-card>
+		    </div>
+		  </mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<button mat-raised-button color="primary" (click)="save()">Save</button>
+	<button mat-raised-button color="accent" *ngIf="store.id && store.status==='DRAFT'" (click)="store.status='APPROVAL_PENDING'; save()">Request Approval</button>
+  </div>
+  

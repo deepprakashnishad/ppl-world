@@ -7,8 +7,6 @@ import { AgmCoreModule } from '@agm/core';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from 'ngx-translate-multi-http-loader';
 import {HttpClientModule, HttpClient } from '@angular/common/http';
-
-
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ProgressSpinnerComponent } from './progress-spinner/progress-spinner/progress-spinner.component';
 import { AssignRevokePermissionsComponent } from '../admin/permission/assign-revoke-permissions/assign-revoke-permissions.component';
@@ -40,8 +38,12 @@ import { AddEditAddressComponent } from './address/add-edit-address/add-edit-add
 import { AddressComponent } from './address/address.component';
 import {MyGoogleMapComponent} from './my-google-maps/my-google-maps.component';
 import {LocationCoordinatesComponent} from './my-google-maps/location-coordinates/location-coordinates.component';
-
-// import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
+import { AddEditStoreComponent } from '../admin/store/add-edit-store/add-edit-store.component';
+import { SaleEntryListComponent } from '../admin/sale-entry/sale-entry-list.component';
+import { AddEditSaleEntryComponent } from '../admin/sale-entry/add-edit-sale-entry/add-edit-sale-entry.component';
+import { StoreSelectorComponent } from './../admin/store/store-selector/store-selector.component';
+// import { PersonExactMatchComponent } from 'src/app/person/person-exact-match/person-exact-match.component';
+import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
 
 import { environment } from '../../environments/environment';
 
@@ -80,7 +82,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TagChipInputComponent,
     TagAutocompleteComponent,
     TagEditorComponent,
-    // PersonExactMatchComponent
+    SaleEntryListComponent,
+    AddEditSaleEntryComponent,
+    AddEditStoreComponent,
+    StoreSelectorComponent,
+    PersonExactMatchComponent,
   ],
   imports: [
     CommonModule,
@@ -138,9 +144,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     TagChipInputComponent,
     TagAutocompleteComponent,
     TagEditorComponent,
-    // PersonExactMatchComponent
+    SaleEntryListComponent,
+    AddEditStoreComponent,
+    AddEditSaleEntryComponent,
+    StoreSelectorComponent,
+    PersonExactMatchComponent,
   ],
-  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent, TagEditorComponent],
+  entryComponents:[AddEditPermissionComponent, ConfirmDialogComponent, TagEditorComponent, AddEditSaleEntryComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule { }

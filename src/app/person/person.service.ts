@@ -29,7 +29,7 @@ export class PersonService {
   }
 
   getCustomers(limit, offset, searchStr:string='') {
-    return this.http.get<Person>(`${this.PersonUrl}/queryCustomers?q=${searchStr}&l=${limit}&o=${offset}`)
+    return this.http.get<Person>(`${this.PersonUrl}/queryCustomers?q=${searchStr}&limit=${limit}&offset=${offset}`)
       .pipe(
         catchError(this.handleError('Get Customers', null)));
   }
@@ -82,6 +82,13 @@ export class PersonService {
 
   updatePermissions(Person): Observable<Person> {
     return this.http.patch<Person>(this.PersonUrl+"/updatePermissionCollection", Person)
+      .pipe(
+        catchError(this.handleError('Update Person permission collection', null))
+      )
+  }
+
+  getPersonDetail(personId, isPermissionReqd=false): Observable<Person>{
+    return this.http.get<Person>(`${this.PersonUrl}/getUserDetail?personId=${personId}&isPermissionReqd=${isPermissionReqd}`)
       .pipe(
         catchError(this.handleError('Update Person permission collection', null))
       )

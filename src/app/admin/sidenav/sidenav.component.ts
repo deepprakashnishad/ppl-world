@@ -52,10 +52,11 @@ export class SidenavComponent implements OnDestroy, OnInit, AfterViewInit {
     { path: '/admin', title: 'Dashboard', permissions: ['CREATE_PERMISSION'] },
     {path: '/admin/add-sale', title: 'Add Sale Entry', permissions:['CREATE_PERMISSION']},
     {path: '/admin/category', title: 'Category', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/store', title: 'Stores', permissions:['CREATE_STORE']},
     {path: '/admin/permission', title: 'Permissions', permissions:['CREATE_PERMISSION']},
     { path: '/admin/role', title: 'Role', permissions:['CREATE_PERMISSION'] },
     {path: '/admin/user-report', title: "User Report", permissions:['CREATE_PERMISSION']},
-    {path: '/admin/person', title: 'Users', permissions:['CREATE_PERMISSION']},
+    {path: '/person', title: 'Users', permissions:['CREATE_PERMISSION']},
     {path: '/admin/order', title: 'Orders', permissions:['CREATE_PERMISSION']},
     {path: '/admin/activity-log', title: 'Activity Logs', permissions:['CREATE_PERMISSION']},
   ];

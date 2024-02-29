@@ -1,11 +1,23 @@
 <mat-form-field class="full-width mFormField">
   <mat-label>{{inputLabel}}</mat-label>
-  <input matInput type="text" [(ngModel)]="mobileNumber" (keyup)="textChanged()" (keydown.enter)="fetchPersonList()">
+  <input 
+    matInput 
+    #mInput
+    [matAutocomplete]="auto" 
+    type="text" 
+    [formControl]="inputCntl"
+    [(ngModel)]="mobileNumber" 
+    (keyup)="textChanged()" 
+    (keydown.enter)="fetchPersonList()">
   <button matSuffix mat-raised-button aria-label="Search" (click)="fetchPersonList()" color="primary" fxHide.lt-md>
     <span>{{'SEARCH' | translate}}</span><mat-icon>search</mat-icon>
   </button>
   <button matSuffix mat-icon-button aria-label="Search" (click)="fetchPersonList()" color="primary" fxHide.gt-sm><mat-icon>search</mat-icon></button>
   <mat-hint class="error" *ngIf="!person.n && isMandatory">{{errorLabel}}</mat-hint>
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let item of filteredList | async" [value]="item">{{item.m.substring(3)}} | {{item.n}}</mat-option>
+  </mat-autocomplete>
 </mat-form-field>
 
 <p *ngIf="person.n"> {{person.n}} | {{person.m}} | {{person.e}} | {{person.s}}<span *ngIf="person.p"> | Referred By: {{person.p}}</span></p>

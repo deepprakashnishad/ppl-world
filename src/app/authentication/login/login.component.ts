@@ -210,7 +210,11 @@ export class LoginComponent implements OnInit{
   }
 
   referrerSelected(event){
-    this.referrer = event;
+    if(event.person){
+      this.referrer = event.person;
+    }else{
+      this.referrer = event;
+    }
   }
 
   openTnC(){

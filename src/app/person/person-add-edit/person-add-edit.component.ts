@@ -18,6 +18,7 @@ export class PersonAddEditComponent implements OnInit {
 
   personForm: FormGroup;
   person: Person;
+  personId: string;
   title: string;
   errors: Array<string>=[];
   roles: Array<Role>
@@ -34,6 +35,7 @@ export class PersonAddEditComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log(this.data);
   	this.personForm = this.fb.group({
   		name: ['', Validators.required],
   		mobile: ['', [Validators.required]],
@@ -42,18 +44,26 @@ export class PersonAddEditComponent implements OnInit {
   	});
 
   	if(this.data && this.data.person){
-  		this.person = this.data.person;
+  		this.person = Person.fromJSON(this.data.person);
       this.title = "Edit " + this.data.person.name;
+      this.personId = this.person.id;
+      this.getPersonDetail(this.personId);
   	}else{
   		this.person = new Person();
       this.title = "Add New Person";
   	}
 
-    this.roleService.getRoles().subscribe(
-      roles => {
+    this.roleService.getRoles().subscribe(roles => {
         this.roles = roles;
       }
     );
+  }
+
+  getPersonDetail(personId){
+    this.personService.getPersonDetail(personId, true).subscribe(result=>{
+      this.person = Person.fromJSON(result);
+      console.log(this.person.permissions);
+    })
   }
 
   save(person){

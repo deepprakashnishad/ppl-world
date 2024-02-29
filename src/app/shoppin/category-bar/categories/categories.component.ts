@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { MyIdbService, STORE_SETTINGS_STORE, TS_STORE } from "src/app/my-idb.service";
+import { MyIdbService, STORE_SETTINGS, TS_STORE } from "src/app/my-idb.service";
 import { Category } from "../../../admin/category/category";
 import { CategoryService } from "../../../admin/category/category.service";
 import { CategoryTreeNode } from "../../../admin/category/CategoryTreeNode";
@@ -40,7 +40,7 @@ export class CategoriesComponent implements OnInit{
 
   ngOnInit() {
     this.updateCategoryTree();
-    /*this.dbService.getValue(STORE_SETTINGS_STORE, "CAT_TREE").then(res=>{
+    /*this.dbService.getValue(STORE_SETTINGS, "CAT_TREE").then(res=>{
       this.nodes = res;
       if (!this.nodes) {
         this.updateCategoryTree(); 
@@ -63,7 +63,7 @@ export class CategoriesComponent implements OnInit{
           this.displayedNodes.push(ele);
         })
         sessionStorage.setItem("catTree", JSON.stringify(this.nodes));
-        this.dbService.setValue(STORE_SETTINGS_STORE, {"CAT_TREE": this.nodes});
+        this.dbService.setValue(STORE_SETTINGS, {"CAT_TREE": this.nodes});
         this.dbService.setValue(TS_STORE, {"CAT_TREE": Date.now()})
       });
     } else {
@@ -86,7 +86,7 @@ export class CategoriesComponent implements OnInit{
         this.displayedNodes.push(ele);
       });
       /*sessionStorage.setItem("catTree", JSON.stringify(this.nodes));
-      this.dbService.setValue(STORE_SETTINGS_STORE, {"CAT_TREE": this.nodes});
+      this.dbService.setValue(STORE_SETTINGS, {"CAT_TREE": this.nodes});
       this.dbService.setValue(TS_STORE, {"CAT_TREE": Date.now()})*/
     });
   }

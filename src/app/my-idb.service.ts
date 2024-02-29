@@ -1,30 +1,41 @@
 import { Injectable } from '@angular/core';
-import { openDB } from 'idb';
+import { openDB, IDBPDatabase, IDBPTransaction } from 'idb';
 import { noop } from 'rxjs';
 
 export const TAG = "tag";
 
 export const ITEM_STORE = "item";
 export const PRICE_STORE = "price";
-export const STORE_SETTINGS_STORE = "storeSettings";
+export const PERSON_STORE = "person";
+export const STORE_SETTINGS = "storeSettings";
+export const GENERIC_DATA = "generic_data";
 export const TS_STORE = "ts_store";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MyIdbService {
-  static db: any;
+  static db: IDBPDatabase<unknown>;
   constructor() { 
-    console.log("Upgrading DB");
     this.upgradeDB()
   }
 
   async upgradeDB(){
     if(MyIdbService.db===undefined){
-      MyIdbService.db = await openDB("mydb", 1, {
-        upgrade(db){
-          var objectStore = db.createObjectStore(TAG);
-          objectStore.createIndex("workCatIndex", "key", { unique: false });
+      MyIdbService.db = await openDB("good-act", 1, {
+        upgrade(
+          db: IDBPDatabase, 
+          oldVersion: number, 
+          newVersion: number, 
+          transaction: IDBPTransaction<unknown, string[], "versionchange">){
+          if(newVersion===1){
+            var objectStore = db.createObjectStore(TAG);
+            objectStore.createIndex("workCatIndex", "key", { unique: false });
+            var personStore = db.createObjectStore(PERSON_STORE);
+            personStore.createIndex("nameIndex", "n", { unique: false });
+            var shopStore = db.createObjectStore(STORE_SETTINGS);
+            var genericStore = db.createObjectStore(GENERIC_DATA);
+          }
         }
       });
     }
@@ -43,9 +54,6 @@ export class MyIdbService {
       .then(result=>{console.log(result)})
       .catch(err=>{console.log("error", err)});
     });
-    if(storeName){
-
-    }
   }
 
   async getValue(storeName, key){

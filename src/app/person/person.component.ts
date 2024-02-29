@@ -17,11 +17,12 @@ import { NotifierService } from 'angular-notifier';
 })
 export class PersonComponent implements OnInit {
 	personList: Array<Person>;
+
 	filteredPersons: Person[];
 	selectedPerson: Person;
 	filterStr:string = '';
   limit: number;
-  offset: number;
+  offset: number;      
 
   constructor(
     private personService: PersonService,

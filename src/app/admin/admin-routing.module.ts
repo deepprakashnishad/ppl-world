@@ -8,6 +8,7 @@ import { RoleComponent } from './role/role.component';
 import { HomeComponent } from './home/home.component';
 import { ActivityLogComponent } from './activity-log/activity-log.component';
 import { SaleEntryListComponent } from './sale-entry/sale-entry-list.component';
+import { StoreComponent } from './store/store.component';
 
 const routes: Routes = [
 	
@@ -32,6 +33,13 @@ const routes: Routes = [
 				canDeactivate:[CanDeactivateGuardService],
 				data: { title: 'Activity Log', permissions: ['CREATE_ROLE']}
       },
+      {
+				path: 'store', 
+				component: StoreComponent,
+				canActivate: [AuthGuardService], 
+				canDeactivate:[CanDeactivateGuardService],
+				data: { title: 'Activity Log', permissions: ['CREATE_STORE']}
+      },
 			{
 				path: 'permission', 
 				component: PermissionComponent,
@@ -53,8 +61,8 @@ const routes: Routes = [
 				canDeactivate:[CanDeactivateGuardService],
 				data: { title: 'Activity Log', permissions: ['CREATE_ROLE']}
       },
-			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
-				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},
+			/*{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
+				data:{title: 'Person', resources: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']}},*/
 		]
 	},
 ];

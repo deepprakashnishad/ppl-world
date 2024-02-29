@@ -1,7 +1,24 @@
 <div class="container">
+	<app-store-selector (storeSelected)="storeSelectionModified($event)"></app-store-selector>
 	<h3 *ngIf="saleList.length===0">No product found</h3>
 	<div class="mat-elevation-z8" [hidden]="saleList.length<=0">
-		<table class="full-width" mat-table [dataSource]="dataSource">
+		<div class="mat-card-container" fxHide.gt-sm>
+			<mat-card *ngFor="let sale of salesByPage[selectedPage-1]; let i=index">
+				<div>{{sale.sno}}. {{sale.bd?.n}} | {{sale.bd?.m}}</div>
+				<div>{{sale.amt | currency: 'INR': 'symbol-narrow': '1.2-2'}} | {{sale.com}}% | {{sale.com*sale.amt/100 | currency: 'INR': 'symbol-narrow': '1.2-2'}}</div>
+				<div fxLayout>
+					<button mat-icon-button (click)="updateSaleStatus(sale, ((selectedPage-1) * pageSize) + (i + 1), i, 'S')" color="primary" *ngIf="sale.s==='N'">
+						<span class="material-symbols-outlined"updateSaleStatus>data_check</span>
+					</button>
+					<button mat-icon-button (click)="updateSaleStatus(sale, ((selectedPage-1) * pageSize) + (i + 1), i, 'F')" color="primary" *ngIf="sale.s==='S'">
+						<span class="material-symbols-outlined">price_check</span>
+					</button>
+					<!-- <button mat-icon-button (click)="edit(sale, i)" color="warn" *ngIf="sale.s==='N'"><mat-icon>edit</mat-icon></button> -->
+					<button mat-icon-button (click)="updateSaleStatus(sale, ((selectedPage-1) * pageSize) + (i + 1), i, 'C')" color="error" *ngIf="sale.s==='N'"><mat-icon>cancel</mat-icon></button>
+				</div>
+			</mat-card>
+		</div>
+		<table class="full-width" mat-table [dataSource]="dataSource" fxHide.lt-md>
 			<ng-container matColumnDef="sno">
 				<th mat-header-cell *matHeaderCellDef>S No.</th>
 				<td mat-cell *matCellDef="let item; let i = index">
@@ -12,7 +29,7 @@
 			<ng-container matColumnDef="buyer">
 			<th mat-header-cell *matHeaderCellDef> Buyer </th>
 			<td mat-cell *matCellDef="let element"> 
-				{{element.bd.n}} | {{element.bd.m}}
+				{{element.bd?.n}} | {{element.bd?.m}}
 			</td>
 			</ng-container>
 
@@ -40,7 +57,7 @@
 			<td mat-cell *matCellDef="let element">
 				<span *ngIf="element.s==='N'">New</span>
 				<span *ngIf="element.s==='S'">Sale Completed</span>
-				<span *ngIf="element.s==='P'">Processed</span>
+				<span *ngIf="element.s==='P' || element.s==='F'">Processed</span>
 				<span *ngIf="element.s==='C'">Cancelled</span>
 				<span *ngIf="element.s==='D'">Deleted</span>
 			</td>
@@ -50,7 +67,14 @@
 			<th mat-header-cell *matHeaderCellDef> Actions </th>
 			<td mat-cell *matCellDef="let element; let i=index">
 				<div fxLayout>
-					<button mat-icon-button (click)="edit(element, i)" color="error"><mat-icon>edit</mat-icon></button>
+					<button mat-icon-button (click)="updateSaleStatus(element, ((selectedPage-1) * pageSize) + (i + 1), i, 'S')" color="primary" *ngIf="element.s==='N'">
+						<span class="material-symbols-outlined"updateSaleStatus>data_check</span>
+					</button>
+					<button mat-icon-button (click)="updateSaleStatus(element, ((selectedPage-1) * pageSize) + (i + 1), i, 'F')" color="primary" *ngIf="element.s==='S'">
+						<span class="material-symbols-outlined">price_check</span>
+					</button>
+					<!-- <button mat-icon-button (click)="edit(element, i)" color="warn" *ngIf="element.s==='N'"><mat-icon>edit</mat-icon></button> -->
+					<button mat-icon-button (click)="updateSaleStatus(element, ((selectedPage-1) * pageSize) + (i + 1), i, 'C')" color="error" *ngIf="element.s==='N'"><mat-icon>cancel</mat-icon></button>
 				</div>
 			</td>
 			</ng-container>
@@ -64,5 +88,5 @@
 		</mat-card> -->
 		<mat-paginator #paginator [length]="totalSaleCnt" (page)="pageUpdated($event)" [pageSize]="pageSize" showFirstLastButtons></mat-paginator>
 	</div>
-	<button class="floating-button" mat-fab (click)="openSaleEntryEditorDialog()"><mat-icon>add</mat-icon></button>
+	<button class="full-width" mat-raised-button (click)="openSaleEntryEditorDialog()" color="accent">Add New Sale <mat-icon>add</mat-icon></button>
 </div>

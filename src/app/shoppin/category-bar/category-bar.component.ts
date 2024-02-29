@@ -1,7 +1,7 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { MyIdbService, STORE_SETTINGS_STORE, TS_STORE } from 'src/app/my-idb.service';
+import { MyIdbService, STORE_SETTINGS, TS_STORE } from 'src/app/my-idb.service';
 import { Category } from '../../admin/category/category';
 import { CategoryService } from '../../admin/category/category.service';
 import { CategoryTreeNode } from '../../admin/category/CategoryTreeNode';
@@ -46,7 +46,7 @@ export class CategoryBarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dbService.getValue(STORE_SETTINGS_STORE, "CAT_TREE").then(res=>{
+    this.dbService.getValue(STORE_SETTINGS, "CAT_TREE").then(res=>{
       this.categories = res;
       // this.updateCategoryTree();
       if (!this.categories) {
@@ -66,7 +66,7 @@ export class CategoryBarComponent implements OnInit {
     this.categoryService.fetchCategoryTree(true).subscribe(result => {
       this.categories = result;
       sessionStorage.setItem("catTree", JSON.stringify(result));
-      this.dbService.setValue(STORE_SETTINGS_STORE, {"CAT_TREE": result});
+      this.dbService.setValue(STORE_SETTINGS, {"CAT_TREE": result});
       this.dbService.setValue(TS_STORE, {"CAT_TREE": Date.now()})
     });
   }

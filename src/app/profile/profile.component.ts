@@ -105,8 +105,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  newPersonSelected($event){
-    this.selectedPersonForApproval = $event;
+  isAuthorizedToAddSale(){
+    var isAuthorized = this.authService.authorizeUser(["ADD_SALE"]);
+    return isAuthorized;
+  }
+
+  newPersonSelected(event){
+    if(event.person){
+      this.selectedPersonForApproval = event.person; 
+    }
   }
 
   slotCountUpdated(event){
@@ -225,15 +232,15 @@ export class ProfileComponent implements OnInit {
 
   personSelected($event, selectionType){
     if(selectionType === "CREDIT_TRANSFER"){
-      this.transferCreditsTo = $event; 
+      this.transferCreditsTo = $event.person; 
       if(this.transferCreditsTo.id === this.person.id){
         this.notifier.notify("error", "Cannot transfer funds to self");
         this.beneficiary.reset();
       }  
     }else if(selectionType === "SLOT_PURCHASE"){
-      this.selectedPersonForApproval = $event;
+      this.selectedPersonForApproval = $event.person;
     }else if(selectionType === "REFERRER"){
-      this.np.parent = $event;
+      this.np.parent = $event.person;
     }
   }
 

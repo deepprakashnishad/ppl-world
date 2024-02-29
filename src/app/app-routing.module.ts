@@ -34,6 +34,8 @@ import { ProfileViewerComponent } from './marriage/profile-viewer/profile-viewer
 import { DummyPaymentComponent } from './payment/dummy-payment/dummy-payment.component';
 import { PaymentConfirmationComponent } from './payment/payment-confirmation/payment-confirmation.component';
 import { StoreComponent } from './static-page/store/store.component';
+import { AddEditStoreComponent } from './admin/store/add-edit-store/add-edit-store.component';
+import { SaleEntryListComponent } from './admin/sale-entry/sale-entry-list.component';
 
 const routes: Routes = [
 	 {
@@ -109,6 +111,20 @@ const routes: Routes = [
 		canDeactivate:[CanDeactivateGuardService],
 		data: { title: 'Service Required Editor', permissions: [], isLoggedIn: true}
 	},
+	{
+    path: 'local-store', 
+		component: AddEditStoreComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'My Store', isLoggedIn: true, permissions: [], loginErrorMessage: "Please login to register as seller"}
+  },
+  {
+		path: 'add-sale', 
+		component: SaleEntryListComponent,
+		canActivate: [AuthGuardService], 
+		canDeactivate:[CanDeactivateGuardService],
+		data: { title: 'Add New Sale', permissions: ['ADD_SALE']}
+  },
 	{
 		path: 'marriage-profile-editor', 
 		component: ProfileEditorComponent,
@@ -213,60 +229,7 @@ const routes: Routes = [
 		component: StoreComponent,
 		data: { title: 'Store', permissions: []}
 	},
-	/*{
-		path: 'admin', 
-		component: SidenavComponent,
-		canActivate: [AuthGuardService], 
-		canDeactivate:[CanDeactivateGuardService],
-		data: { title: 'Admin', permissions: ["ADMIN"]},
-		children: [
-			{
-				path: '', 
-				component: DashboardComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Brands', permissions: ['SHOP_EDITOR','CREATE_BRAND', 'UPDATE_BRAND', 'DELETE_BRAND']},
-			},
-			{
-				path: 'user-report',
-				component: UserReportComponent,
-				canActivate: [AuthGuardService],
-				canDeactivate: [CanDeactivateGuardService],
-				data: { title: 'Attributes', permissions: ['SHOP_EDITOR'] }
-			},
-			{
-				path: 'person',
-				component: PersonComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'product', permissions: ['CREATE_PERSON', 'UPDATE_PERSON', 'DELETE_PERSON']},				
-			},
-			{
-				path: 'permission', 
-				component: PermissionComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Permission', permissions: []}
-			},	
-		
-			{
-				path: 'role', 
-				component: RoleComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Role', permissions: []}
-			},
-			{
-				path: 'activity-log', 
-				component: ActivityLogComponent,
-				canActivate: [AuthGuardService], 
-				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Activity Log', permissions: ['SHOP_EDITOR']}
-			},	
-			{path: 'person', loadChildren: './../person/person.module#PersonModule', canLoad: [AuthGuardService],
-				data:{title: 'Person', resources: []}},
-		]
-	},*/
+	// {path: 'person', loadChildren: () => import('./person/person.module').then(m => m.PersonModule)},
 	{path: 'shoppin', loadChildren: () => import('./shoppin/shoppin.module').then(m => m.ShoppinModule)},
 	{path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
 	{path: 'trader', loadChildren: () => import('./trader/trader.module').then(m => m.TraderModule)},

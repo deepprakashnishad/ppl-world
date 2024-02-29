@@ -42,7 +42,12 @@ export class Person{
 
   static fromJSON(data) {
     var person = new Person();
-    person.id = data['id'];
+    if(data['id']){
+    	person.id = data['id'];	
+    }else {
+    	person.id = data['_id'];	
+    }
+    
     person.name = data['n'];
     person.mobile = data['m'];
     person.isMobileVerified = data['mv'];

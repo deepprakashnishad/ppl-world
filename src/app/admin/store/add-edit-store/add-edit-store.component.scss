@@ -1,0 +1,16 @@
+.section{
+	border: 1px dashed;
+}
+
+.selectable{
+  cursor: pointer;
+  max-width: 150px;
+  margin: 16px;
+}
+
+.selected{
+	color: white;
+	background: #2217c5;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);
+	background: linear-gradient(to right, #2217c5, #0eeba4);
+}

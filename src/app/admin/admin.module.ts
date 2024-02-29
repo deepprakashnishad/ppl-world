@@ -9,9 +9,9 @@ import { HomeComponent } from './home/home.component';
 import { ActivityLogComponent } from './activity-log/activity-log.component';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { UserReportComponent } from './reports/user-report/user-report.component';
-import { SaleEntryListComponent } from './sale-entry/sale-entry-list.component';
-import { AddEditSaleEntryComponent } from './sale-entry/add-edit-sale-entry/add-edit-sale-entry.component';
-import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
+import { StoreComponent } from './store/store.component';
+
+import { ViewStoreComponent } from './store/view-store/view-store.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,8 @@ import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-ext
     HomeComponent,
     ActivityLogComponent,
     UserReportComponent,
-    SaleEntryListComponent,
-    AddEditSaleEntryComponent,
-    PersonExactMatchComponent
+    StoreComponent,
+    ViewStoreComponent,
   ],
   imports: [
     SharedModule,
@@ -33,7 +32,6 @@ import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-ext
   exports: [
   ],
   entryComponents:[
-     AddEditSaleEntryComponent
   ],
   providers:[]
 })

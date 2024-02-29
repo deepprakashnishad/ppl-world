@@ -27,6 +27,12 @@ export class EmploymentService {
         catchError(this.handleError('Add category', null)));
   }
 
+  getCategoryByIds(catIds): Observable<any>{
+    return this.http.get<any>(`${this.categoryUrl}/listRawFormat?catIds=${catIds.join(",")}`)
+    .pipe(
+        catchError(this.handleError('List Category', null)));
+  }
+
   listCategory():Observable<any>{
     return this.http.get<any>(this.categoryUrl)
     .pipe(

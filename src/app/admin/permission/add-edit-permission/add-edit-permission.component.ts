@@ -28,7 +28,7 @@ export class AddEditPermissionComponent implements OnInit {
   		permission: ['', Validators.required],
   		description: ['']
   	});
-
+    
   	if(this.data && this.data.permission){
   		this.permission = this.data.permission;
       this.title = "Edit " + this.data.permission.permission;
