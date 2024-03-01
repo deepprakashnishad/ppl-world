@@ -70,6 +70,10 @@ export class CollectDonationFromOthersComponent implements OnInit {
   }
 
   donorSelected(event){
-    this.donor = event.id;
+    if(event.person){
+      this.donor = event.person.id;
+    }else{
+      this.donor = event.id;
+    }
   }
 }

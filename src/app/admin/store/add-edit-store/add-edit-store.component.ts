@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -58,8 +58,14 @@ export class AddEditStoreComponent implements OnInit {
     private afs: AngularFireStorage,
     private gService: GeneralService,
     private employmentService: EmploymentService,
-    private router: Router
-  ) { }
+    private router: Router,
+    @Optional() @Inject(MAT_DIALOG_DATA) data: any,
+    @Optional() private dialogRef: MatDialogRef<AddEditStoreComponent>
+  ) { 
+    if(data && data.store){
+      this.store = data.store;
+    }
+  }
 
   ngOnInit() {
     this.fetchCategories();
@@ -67,12 +73,14 @@ export class AddEditStoreComponent implements OnInit {
       this.selectedLang = lang;
       this.updateDisplayName();
     });
-    this.storeService.getMyStores().subscribe(result => {
-      if (result?.length>0) {
-        this.store = Store.fromJSON(result[0]);
-        this.selectCategoriesFromIds(this.store.cats);
-      }      
-    });
+    if(!this.store.id){
+      this.storeService.getMyStores().subscribe(result => {
+        if (result?.length>0) {
+          this.store = Store.fromJSON(result[0]);
+          this.selectCategoriesFromIds(this.store.cats);
+        }      
+      });
+    }
   }
 
   navigateTo(url){
@@ -88,6 +96,9 @@ export class AddEditStoreComponent implements OnInit {
       this.storeService.update(this.store).subscribe(result => {
         if (result['success']) {
           this.notifier.notify("success", "Store settings updated successfully");
+          if(this.dialogRef){
+            this.dialogRef.close(result['store']);
+          }          
         }
       });
     } else {
@@ -95,7 +106,9 @@ export class AddEditStoreComponent implements OnInit {
         if (result['success']) {
           this.store.id = result['id'];
           this.notifier.notify("success", "Store settings updated successfully");
-
+          if(this.dialogRef){
+            this.dialogRef.close(result['store']);
+          }
         }
       });
     }
@@ -122,6 +135,9 @@ export class AddEditStoreComponent implements OnInit {
   fetchCategories(){
     this.employmentService.listCategory().subscribe(result=>{
       this.categories = result;
+      if(this.store.cats){
+        this.selectCategoriesFromIds(this.store.cats);
+      }
       this.updateDisplayName();
     })
   }
@@ -162,6 +178,10 @@ export class AddEditStoreComponent implements OnInit {
   toggleSelection(subCat, base){
     if(this.isCategorySelected(subCat)){
       delete this.selectedCategories[subCat.id]
+      var index = this.store.cats.indexOf(subCat.id);
+      if(index >= 0){
+        this.store.cats.splice(index, 1);
+      }
     }else{
       this.selectedCategories[subCat.id] = {b: base, "subCat": subCat, key: subCat.id}
       this.store.cats.indexOf(subCat.id)<0? this.store.cats.push(subCat.id): console.log("Item is already present");

@@ -16,6 +16,12 @@
 			<th mat-header-cell *matHeaderCellDef mat-sort-header> Category</th>
 			<td mat-cell *matCellDef="let element"> {{element.b}} </td>
 			</ng-container>
+
+			<ng-container matColumnDef="com">
+			<th mat-header-cell *matHeaderCellDef mat-sort-header>Commission</th>
+			<td mat-cell *matCellDef="let element"> <span *ngIf="element.c">{{element.c}}% </span><span *ngIf="element.exp">| {{element.exp}}%</span> </td>
+			</ng-container>
+
 			<ng-container matColumnDef="actions">
 				<th mat-header-cell *matHeaderCellDef> Actions </th>
 				<td mat-cell *matCellDef="let element;  let i = dataIndex;">
@@ -54,6 +60,14 @@
 		<mat-form-field>
 			<mat-label>Group in {{selectedLang}}</mat-label>
 			<input matInput placeholder="Group in {{selectedLang}}" [(ngModel)]="sc['tr'][selectedLang]['b']" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Commission(%)</mat-label>
+			<input matInput placeholder="Commission(%)" [(ngModel)]="sc.c" />
+		</mat-form-field>
+		<mat-form-field>
+			<mat-label>Expense(%)</mat-label>
+			<input matInput placeholder="Expense(%)" [(ngModel)]="sc.exp" />
 		</mat-form-field>
 		<app-uploader *ngIf="sc.id" [maxAllowedFileSize]="50" [uploadPath]="uploadPath" [isMultiple]="false" (imageUploaded)="imageUploaded($event)" [newFilename]="sc.id" [header]="'Category Image'"></app-uploader>
 		<button mat-raised-button (click)="save()" color="primary">Save</button>

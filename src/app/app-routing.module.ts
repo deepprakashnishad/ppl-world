@@ -26,7 +26,7 @@ import { TransactionReportComponent } from './reports/transaction-report/transac
 import { SaleReportComponent } from './reports/sale-report/sale-report.component';
 import { GlobalEarningReportComponent } from './reports/global-earning-report/global-earning-report.component';
 import { ServiceOfferEditorComponent } from './employment/service-offer/service-offer-editor/service-offer-editor.component';
-import { ServiceCategoryEditorComponent } from './employment/category/service-category-editor.component';
+// import { ServiceCategoryEditorComponent } from './employment/category/service-category-editor.component';
 import { ServiceReqdEditorComponent } from './employment/service-reqd/service-reqd-editor/service-reqd-editor.component';
 import { ProfileEditorComponent } from './marriage/profile-editor/profile-editor.component';
 import { ProfileListComponent } from './marriage/profile-list/profile-list.component';
@@ -97,13 +97,13 @@ const routes: Routes = [
 		canDeactivate:[CanDeactivateGuardService],
 		data: { title: 'Service Offer Editor', permissions: [], isLoggedIn: true}
 	},
-	{
+	/*{
 		path: 'service-category-editor', 
 		component: ServiceCategoryEditorComponent,
 		canActivate: [AuthGuardService], 
 		canDeactivate:[CanDeactivateGuardService],
 		data: { title: 'Service Offer Editor', permissions: [], isLoggedIn: true}
-	},
+	},*/
 	{
 		path: 'service-reqd-editor', 
 		component: ServiceReqdEditorComponent,

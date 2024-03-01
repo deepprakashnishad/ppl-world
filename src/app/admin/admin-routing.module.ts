@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ActivityLogComponent } from './activity-log/activity-log.component';
 import { SaleEntryListComponent } from './sale-entry/sale-entry-list.component';
 import { StoreComponent } from './store/store.component';
+import { ServiceCategoryEditorComponent } from '../employment/category/service-category-editor.component';
 
 const routes: Routes = [
 	
@@ -31,14 +32,21 @@ const routes: Routes = [
 				component: SaleEntryListComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Activity Log', permissions: ['CREATE_ROLE']}
+				data: { title: 'Activity Log', permissions: ['ADD_SALE']}
       },
       {
 				path: 'store', 
 				component: StoreComponent,
 				canActivate: [AuthGuardService], 
 				canDeactivate:[CanDeactivateGuardService],
-				data: { title: 'Activity Log', permissions: ['CREATE_STORE']}
+				data: { title: 'Activity Log', permissions: ['APPROVE_STORE']}
+      },
+      {
+				path: 'category', 
+				component: ServiceCategoryEditorComponent,
+				canActivate: [AuthGuardService], 
+				canDeactivate:[CanDeactivateGuardService],
+				data: { title: 'Activity Log', permissions: ['UPDATE_CATEGORY']}
       },
 			{
 				path: 'permission', 

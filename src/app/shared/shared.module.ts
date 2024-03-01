@@ -42,8 +42,8 @@ import { AddEditStoreComponent } from '../admin/store/add-edit-store/add-edit-st
 import { SaleEntryListComponent } from '../admin/sale-entry/sale-entry-list.component';
 import { AddEditSaleEntryComponent } from '../admin/sale-entry/add-edit-sale-entry/add-edit-sale-entry.component';
 import { StoreSelectorComponent } from './../admin/store/store-selector/store-selector.component';
-// import { PersonExactMatchComponent } from 'src/app/person/person-exact-match/person-exact-match.component';
-import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
+import { PersonExactMatchComponent } from 'src/app/person/person-exact-match/person-exact-match.component';
+// import { PersonExactMatchComponent } from 'src/app/person/person-exact-match-extra/person-exact-match.component';
 
 import { environment } from '../../environments/environment';
 

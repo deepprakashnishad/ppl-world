@@ -17,6 +17,7 @@
 			<span matSuffix *ngIf="!isAuthorized('OVERRIDE_COMMISSION')">Loyalty points - {{com}}% | </span>
 			<span matSuffix>{{com*amt/100 | currency:'INR':'symbol-narrow':'1.2-2'}}</span>
 		</mat-form-field>
+		<h4 matSuffix *ngIf="!isAuthorized('OVERRIDE_COMMISSION')">Marketing Expense({{com}}%): {{com*amt/100 | currency:'INR':'symbol-narrow':'1.2-2'}}</h4>
 	</div>
 	<div *ngIf="isAuthorized('ADD_EXPENSE')">
 		<mat-form-field>

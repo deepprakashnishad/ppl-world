@@ -2,7 +2,7 @@
 <mat-toolbar class="navbar" #navToolbar>	
 	
 		<mat-toolbar-row *ngIf="!shrinkToolbar" class="main-header-item" fxHide.lt-md>
-			<div fxLayout="row" fxFlex="20">
+			<div fxLayout="row">
 				<picture (click)="navigateTo('/')">
 					<source media="(min-width:650px)" srcset="/assets/images/logo-72x72.png">
 				  	<source media="(min-width:465px)" srcset="/assets/images/logo-48x48.png">
@@ -12,7 +12,7 @@
 					<a href="index.aspx"><img src="/assets/images/logo.png" alt="logo.deepway"></a>
 				 </div> -->
 			</div>
-			<div class="nav-menu-container" fxLayout="row" fxFlex="80" fxLayoutAlign="center">
+			<div class="nav-menu-container" fxLayout="row" fxFlex="grow" fxLayoutAlign="center">
 				<button mat-button (click)="navigateTo('/')">
 					{{"NAV.HOME" | translate}}
 				</button>
@@ -66,12 +66,14 @@
 					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.FFL" | translate}}</button>
 					<button mat-menu-item (click)="navigateTo('/explore')">{{"NAV.ENVIRONMENT" | translate}}</button>
 				</mat-menu>
-
+				<button mat-button (click)="navigateTo('/local-store')">
+					Become a seller
+				</button>
 				<!-- <button mat-button (click)="navigateTo('/daily-report')">
 					Daily Report
 				</button> -->
-			 </div>
-			<div class="sign-in" fxLayout="row" fxFlex="20" fxLayoutAlign="end">
+			</div>
+			<div class="sign-in" fxLayout="row" fxLayoutAlign="end">
 				<button mat-button (click)="toggleLoginStatus(isLoggedIn)" *ngIf="isLoggedIn">
 					{{"NAV.LOGOUT" | translate}} <mat-icon aria-label="{{'NAV.LOGOUT' | translate}}">logout</mat-icon>
 				</button>
@@ -183,6 +185,9 @@
 		<button mat-button *ngIf="pwa.promptEvent" class="mobPageLink" (click)="installPwa()">
 			{{"NAV.INSTALL" | translate}}
 		</button>
+		<button mat-button class="mobPageLink" (click)="navigateTo('/local-store')">
+			Become a seller
+		</button>
 		<mat-select fxFlex="10" class="mobPageLink" [(value)]="selectedLanguage" (selectionChange)="updateLanguage($event)">
 			<mat-option *ngFor="let lang of langs" [value]="lang.mValue">{{lang.displayName}}</mat-option>
 		</mat-select>
@@ -194,7 +199,7 @@
 			{{"NAV.LOGOUT" | translate}} <mat-icon>logout</mat-icon>
 		</button>
 
-		<div class="version" fxFlexAlign="start">Version 1.1.3</div>
+		<div class="version" fxFlexAlign="start">Version 1.1.4</div>
 	</div>
 	<!-- <div class="offcanvas_footer">
 		<span>

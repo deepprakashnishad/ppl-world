@@ -1,6 +1,6 @@
 <div class="container">
 	<app-store-selector (storeSelected)="storeSelectionModified($event)"></app-store-selector>
-	<h3 *ngIf="saleList.length===0">No product found</h3>
+	<h3 *ngIf="saleList.length===0">No sale entry found</h3>
 	<div class="mat-elevation-z8" [hidden]="saleList.length<=0">
 		<div class="mat-card-container" fxHide.gt-sm>
 			<mat-card *ngFor="let sale of salesByPage[selectedPage-1]; let i=index">

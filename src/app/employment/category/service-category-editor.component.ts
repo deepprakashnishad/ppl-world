@@ -23,7 +23,7 @@ export class ServiceCategoryEditorComponent implements OnInit {
 
   categories: Array<any> = [];
 
-  displayedColumns: string[] = ['pic', 'n', 'b','actions'];
+  displayedColumns: string[] = ['pic', 'n', 'b', 'com', 'actions'];
 
   dataSource: MatTableDataSource<any>;
 

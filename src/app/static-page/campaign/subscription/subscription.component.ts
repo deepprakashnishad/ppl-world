@@ -95,6 +95,10 @@ export class SubscriptionComponent implements OnInit {
   }
 
   inspirationSelected(e, type){
-    this.inspiration = e.id;
+    if(e.person){
+      this.inspiration = e.person.id;
+    }else{
+      this.inspiration = e.id;
+    }
   }
 }

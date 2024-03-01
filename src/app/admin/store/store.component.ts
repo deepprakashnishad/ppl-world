@@ -27,7 +27,7 @@ export class StoreComponent implements OnInit {
   ngOnInit() {
   	this.storeService.getStores()
   	.subscribe((stores)=>{
-  		this.stores = stores;
+  		this.stores = Store.fromJSONArray(stores);
   	});
 
     this.isAddPermitted = this.authenticationService

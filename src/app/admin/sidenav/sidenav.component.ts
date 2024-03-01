@@ -51,7 +51,7 @@ export class SidenavComponent implements OnDestroy, OnInit, AfterViewInit {
   routeList = [
     { path: '/admin', title: 'Dashboard', permissions: ['CREATE_PERMISSION'] },
     {path: '/admin/add-sale', title: 'Add Sale Entry', permissions:['CREATE_PERMISSION']},
-    {path: '/admin/category', title: 'Category', permissions:['CREATE_PERMISSION']},
+    {path: '/admin/category', title: 'Category', permissions:['UPDATE_CATEGORY']},
     {path: '/admin/store', title: 'Stores', permissions:['CREATE_STORE']},
     {path: '/admin/permission', title: 'Permissions', permissions:['CREATE_PERMISSION']},
     { path: '/admin/role', title: 'Role', permissions:['CREATE_PERMISSION'] },

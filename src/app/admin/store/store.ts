@@ -57,4 +57,8 @@ export class Store{
 		}
 		return store;
 	}
+
+	static fromJSONArray(dataArray: Array<any>){
+		return dataArray.map(ele=> Store.fromJSON(ele));
+	}
 }

@@ -28,7 +28,7 @@ export class ViewStoreComponent implements OnInit {
   ngOnInit() {
   }
 
-  openAddEditStoreDialog(store){
+  openAddEditStoreDialog(store, index){
   	const dialogRef = this.dialog.open(AddEditStoreComponent, {
       data: {
         store: store
@@ -36,7 +36,9 @@ export class ViewStoreComponent implements OnInit {
     });
 
   	dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      if(result){
+        this.stores[index] = result;  
+      }      
     });
   }
 
@@ -50,6 +52,9 @@ export class ViewStoreComponent implements OnInit {
   }
 
   approveStore(store, index){
+    if(store.status!=="APPROVAL_PENDING"){
+      return;
+    }
     this.storeService.approveStore(store).subscribe(result=>{
       if(result.success){
         this.notifier.notify("success", "Approval successful");

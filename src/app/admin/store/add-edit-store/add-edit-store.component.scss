@@ -14,3 +14,8 @@
 	background: -webkit-linear-gradient(to right, #2217c5, #0eeba4);
 	background: linear-gradient(to right, #2217c5, #0eeba4);
 }
+
+.container{
+	overflow-y: auto;
+	max-height: 100vh;
+}

@@ -1,12 +1,12 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Component, ViewChild, Output, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, Output, OnInit, Inject, Optional } from '@angular/core';
 import { AdminService } from './../../admin.service';
 import { NotifierService } from 'angular-notifier';
 import { EmploymentService } from 'src/app/employment/employment.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
-import {PersonExactMatchComponent} from 'src/app/person/person-exact-match-extra/person-exact-match.component';
+import {PersonExactMatchComponent} from 'src/app/person/person-exact-match/person-exact-match.component';
 
 @Component({
   selector: 'app-add-edit-sale-entry',
@@ -34,9 +34,8 @@ export class AddEditSaleEntryComponent implements OnInit {
     private authService: AuthenticationService,
     private notifier: NotifierService,
     private dialogRef: MatDialogRef<AddEditSaleEntryComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
   ){
-    console.log(data.store);
     if(data.store.id){
       this.storeId = data.store.id;
     }
