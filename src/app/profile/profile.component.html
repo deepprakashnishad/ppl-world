@@ -35,6 +35,7 @@
 							<div class="">{{'PROFILE.DD' | translate}}: {{person.directDownlines?.length}}</div>
 							<div class="">{{'PROFILE.REFERRED_BY' | translate}}: {{person.referrer?.n}}</div>
 							<div class="">{{'PROFILE.SLOTS' | translate}}: {{person.currOrbit}}</div>
+							<div class="">Balance Share Amt: {{person.bsa}}</div>
 						</div>
 						<div fxLayout fxLayoutAlign="space-between start" fxLayoutGap="8px" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
 							<div class="">{{'PROFILE.TC' | translate}}:<br>{{person.totalAmountCollected | currency: 'INR':'symbol-narrow'}}</div>
@@ -63,6 +64,8 @@
 			    					<th>Downlines</th>
 			    					<th>Status</th>
 			    					<th>Slots</th>
+			    					<th>Total</th>
+			    					<th>BSA</th>
 			    				</tr>
 			    				<tr *ngFor="let downline of person.directDownlines; let i=index;">
 			    					<td>{{i+1}}</td>
@@ -72,8 +75,10 @@
 			    						<a fxHide.gt-sm [href]="'tel: '+downline.m">{{downline.m}}</a>
 			    					</td>
 			    					<td>{{downline.ddl?downline.ddl.length:0}}</td>
-			    					<td>{{downline.s}}</td>
+			    					<td>{{downline.s==='ACTIVE'?'A': 'P'}}</td>
 			    					<td>{{downline.curr_orbit}}</td>
+			    					<td>{{downline.tac|currency: 'INR':'symbol-narrow'}} </td>
+			    					<td>{{downline.bsa?downline.bsa:0|currency: 'INR':'symbol-narrow'}}</td>
 			    				</tr>
 			    			</table>
 				    	</div>

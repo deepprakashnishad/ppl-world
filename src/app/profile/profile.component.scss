@@ -39,6 +39,7 @@ td{
 
 .right-container{
   padding: 8px;
+  max-width: 100%;
 }
 
 .slot-counter{
@@ -67,4 +68,10 @@ td{
 .mat-row,
 .mat-header-row {
     display: table-row;
+}
+
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
