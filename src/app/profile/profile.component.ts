@@ -105,8 +105,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  isAuthorizedToAddSale(){
-    var isAuthorized = this.authService.authorizeUser(["ADD_SALE"]);
+  isAuthorized(permission){
+    var isAuthorized = this.authService.authorizeUser([permission]);
     return isAuthorized;
   }
 

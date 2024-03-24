@@ -15,7 +15,7 @@ import { NotifierService } from "angular-notifier";
 })
 export class SaleEntryListComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: Array<string> = ['sno', 'sale_amt', 'buyer', 'total_commission', 'expense', 'distribution', 'status', 'actions'];
+  displayedColumns: Array<string> = ['sno', 'date', 'sale_amt', 'buyer', 'total_commission', 'expense', 'distribution', 'status', 'actions'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild('paginator') paginator: MatPaginator;

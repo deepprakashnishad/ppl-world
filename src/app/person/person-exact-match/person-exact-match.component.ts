@@ -126,7 +126,6 @@ export class PersonExactMatchComponent implements OnInit {
   }
 
   selected(event){
-    console.log(event.option.value);
     if(event.option.value.id){
       this.mobileNumber = event.option.value.m.substring(3);
       this.person = event.option.value;

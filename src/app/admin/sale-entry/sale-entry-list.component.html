@@ -5,7 +5,14 @@
 		<div class="mat-card-container" fxHide.gt-sm>
 			<mat-card *ngFor="let sale of salesByPage[selectedPage-1]; let i=index">
 				<div>{{sale.sno}}. {{sale.bd?.n}} | {{sale.bd?.m}}</div>
-				<div>{{sale.amt | currency: 'INR': 'symbol-narrow': '1.2-2'}} | {{sale.com}}% | {{sale.com*sale.amt/100 | currency: 'INR': 'symbol-narrow': '1.2-2'}}</div>
+				<div fxLayout fxLayoutAlign="space-between center">
+					<div>
+						{{sale.datetime.split("T")[0]}}
+					</div>
+					<div>
+						{{sale.amt | currency: 'INR': 'symbol-narrow': '1.2-2'}} | {{sale.com}}% | {{sale.com*sale.amt/100 | currency: 'INR': 'symbol-narrow': '1.2-2'}}
+					</div>
+				</div>
 				<div fxLayout>
 					<button mat-icon-button (click)="updateSaleStatus(sale, ((selectedPage-1) * pageSize) + (i + 1), i, 'S')" color="primary" *ngIf="sale.s==='N'">
 						<span class="material-symbols-outlined"updateSaleStatus>data_check</span>
@@ -26,6 +33,13 @@
 				</td>
 			</ng-container>
 
+			<ng-container matColumnDef="date">
+				<th mat-header-cell *matHeaderCellDef>Date</th>
+				<td mat-cell *matCellDef="let element; let i = index">
+				   {{ element.datetime.split("T")[0] }}
+				</td>
+			</ng-container>
+
 			<ng-container matColumnDef="buyer">
 			<th mat-header-cell *matHeaderCellDef> Buyer </th>
 			<td mat-cell *matCellDef="let element"> 
@@ -40,7 +54,7 @@
 
 			<ng-container matColumnDef="total_commission">
 				<th mat-header-cell *matHeaderCellDef> Total Commission </th>
-				<td mat-cell *matCellDef="let element">{{element.com}}%</td>
+				<td mat-cell *matCellDef="let element">{{element.com*element.amt/100 | currency: 'INR': 'symbol-narrow': '1.2-2'}} | {{element.com}}%</td>
 			</ng-container>
 			<ng-container matColumnDef="expense">
 				<th mat-header-cell *matHeaderCellDef> Expense </th>

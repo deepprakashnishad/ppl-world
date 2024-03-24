@@ -12,7 +12,8 @@
 				<div class="sub-title">Status: {{person.status}}</div>
 				<!-- <app-payment  *ngIf="person.status==='APPROVAL_PENDING'" [order]="order" [action_name]="'Donate &amp; Join 10X Community'"></app-payment> -->
 				<a mat-link-button [routerLink]="'/reset-password'">{{'PROFILE.RESET_PASS' | translate}}</a>
-				<button mat-raised-button *ngIf="isAuthorizedToAddSale()" color="warn" (click)="navigateTo('/add-sale')">{{'ADD_SALE' | translate}} <mat-icon>point_of_sale</mat-icon></button>
+				<button mat-raised-button *ngIf="isAuthorized('CREATE_PERMISSION')" color="warn" (click)="navigateTo('/admin')">Admin Panel <mat-icon>setting</mat-icon></button>
+				<button mat-raised-button *ngIf="isAuthorized('ADD_SALE')" color="warn" (click)="navigateTo('/add-sale')">{{'ADD_SALE' | translate}} <mat-icon>point_of_sale</mat-icon></button>
 				<button mat-raised-button color="primary" (click)="openShareBottomSheet()">{{'SHARE' | translate}} <mat-icon>share</mat-icon></button>
 				<button mat-raised-button  color="accent"  (click)="requestNotification()">{{'NOTIFICATION' | translate}}</button>
 				<button mat-raised-button  color="warn"  (click)="navigateTo('/explore')">{{'VIEW_CAMP' | translate}}</button>

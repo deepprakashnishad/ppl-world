@@ -51,6 +51,10 @@ export class ProductDetailComponent implements OnInit {
   attrSelectedValueMap: Map<string, string> = new Map();
 
   variantAttrMap: Map<string, Array<any>> = new Map();
+  
+  selectedYoutubeVideoId: string;
+
+  mode: string = "image";
 
   constructor(
     private productService: ProductService,
@@ -158,6 +162,11 @@ export class ProductDetailComponent implements OnInit {
     this.selectedImage = url;
     this.enableAnimation = true;
     this.toggleState();
+  }
+
+  onVideoSelected(url){
+    this.mode = "youtube";
+    this.selectedYoutubeVideoId = url;
   }
 
   onDone($event) {
