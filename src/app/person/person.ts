@@ -29,6 +29,7 @@ export class Person{
 	aadhar_back: any;
 	pan: any;
 	lwdlc: any;
+	bsa: number;
 
 	constructor(){
 		this.email = "";
@@ -73,6 +74,9 @@ export class Person{
     person.amountCollectedForNextLevel = data['acnl'];
     person.lwdlc = data['lwdlc'];
     person.donationQuota = data['dq'];
+    if(data['bsa']){
+    	person.bsa = data['bsa'];
+    }
     return person;
   }
 
